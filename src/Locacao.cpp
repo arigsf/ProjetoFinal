@@ -1,9 +1,8 @@
 #include "Locacao.hpp"
+#include "Filme.hpp"
 
-#include <vector>
-#include <string>
 
-Locacao::Locacao() this->numeroLocacoes=0;
+Locacao::Locacao() {this->numeroLocacoes=0;}
 
 void Locacao::alugar(std::string CPF, std::vector<std::string> codigos){
     if(verificarCPF(CPF) == 1){
@@ -38,7 +37,7 @@ int Locacao::devolucao(std::string CPF, int dias){
     return 0;
 }
 
-int Locacao::devolucao(std::string CPF, int dias, int rebobinado){
+int Locacao::devolucao(std::string CPF, int dias, bool rebobinado){
     int multa = (rebobinado == 1) ? 0 : 2;
 
     return this->devolucao(CPF, dias) + multa;
