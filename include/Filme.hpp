@@ -3,6 +3,21 @@
 
 #include <string>
 #include <iostream>
+#include <map>
+
+// Declaracao de constantes globais para facilitar a legibilidade do codigo;
+
+const int LANCAMENTO = 0;
+const int ESTOQUE = 1;
+const int PROMOCAO = 2;
+
+// Map para ser usado na leitura de filmes, no programa principal;
+
+std::map<std::string, int> Categoria = {
+    {"Lancamento", LANCAMENTO},
+    {"Estoque", ESTOQUE},
+    {"Promocao", PROMOCAO}
+};
 
 class Filme {
 
@@ -16,11 +31,12 @@ public:
     virtual int calculaPreco(int) = 0; // Método virtual puro. Impede a instaciação de objetos da classe Filme diretamente
 };
 
+
 // Subclasse DVD que herda todos os atributos básicos da Classe Filme
 
 class DVD : private Filme {
 private:
-    int categoria; // 0 - Lançamento, 1 - Estoque, 2 - Promoção
+    int categoria; // 0 - Lancamento, 1 - Estoque, 2 - Promocao;
     
 public:
     DVD(int, int, std::string, int); // Construtor
