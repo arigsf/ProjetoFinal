@@ -21,14 +21,15 @@ int DVD::calculaPreco (int dias){
     
     else if (categoria == 2) return 10;
 
-    //Retorna -1 caso a categoria não seja válida
+    //Retorna -1 caso a categoria não seja válida;
     else {
         std::cout << "Categoria inválida" << std::endl; 
         return -1;
     }
 }
 
-int FITA::calculaPreco (int dias) {
-    return estaRebobinado ? 5 : 7; // R$5,00 se a fita estiver rebobinada, caso contrário há uma adição de R$2,00
+// Define um valor padrão para o número de dias, pois isso não tem influência no cálculo do preço da fita;
+int FITA::calculaPreco (int dias = 0) { 
+    return estaRebobinado ? 5 : 7; // R$5,00 se a fita estiver rebobinada, caso contrário há uma adição de R$2,00;
 }
 

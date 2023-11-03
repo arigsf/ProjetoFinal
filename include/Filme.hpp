@@ -13,6 +13,7 @@ protected:
 
 public:
     Filme(int, int, std::string); 
+    virtual int calculaPreco(int) = 0; // Método virtual puro. Impede a instaciação de objetos da classe Filme diretamente
 };
 
 // Subclasse DVD que herda todos os atributos básicos da Classe Filme
@@ -23,7 +24,7 @@ private:
     
 public:
     DVD(int, int, std::string, int); // Construtor
-    int calculaPreco(int); // Método que calcula preço do filme em função da categoria do DVD
+    int calculaPreco(int) override; // Método que calcula preço do filme em função da categoria do DVD
 };
 
 // Subclasse FITA que herda todos os atributos básicos da Classe Filme
@@ -34,7 +35,7 @@ private:
 
 public:
     FITA(int, int, std::string, bool); // Construtor
-    int calculaPreco(int); // Método que calcula o preço do filme levando em conta se a fita está ou não rebobinada
+    int calculaPreco(int) override; // Método que calcula o preço do filme levando em conta se a fita está ou não rebobinada
 };
 
 #endif
