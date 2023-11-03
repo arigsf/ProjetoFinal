@@ -30,3 +30,16 @@ int FITA::calculaPreco (int dias = 0) {
     return estaRebobinado ? 5 : 7; // R$5,00 se a fita estiver rebobinada, caso contrário há uma adição de R$2,00;
 }
 
+void Filme::imprimir() {
+    std::cout << identificador << ' ' << titulo << ' ' << unidades << ' ';
+}
+
+void DVD::imprimir() {
+    Filme::imprimir();
+    std::cout << "DVD" << std::endl;
+}
+
+void FITA::imprimir() {
+    Filme::imprimir();
+    std::cout << "FITA" << std::endl;
+}
