@@ -10,6 +10,7 @@
 const int LANCAMENTO = 0;
 const int ESTOQUE = 1;
 const int PROMOCAO = 2;
+const int FITA = 3;
 
 // Map para ser usado na leitura de filmes, no programa principal;
 
@@ -28,6 +29,9 @@ class Filme {
     public:
         Filme(int, int, std::string);
         int getIdentificador();
+        std::string getTitulo();
+        virtual bool isRebobinado(); // Retorna no caso de FITA se a fita está ou não rebobinada
+        virtual int getCategoria(); // Retorna categorias para o DVD e um valor diferente para fitas (3)
         virtual void imprimir(); // Método para imprimir dados do DVD ou FITA, se comporta de maneira diferente em cada um
 };
 
@@ -40,6 +44,7 @@ class DVD : private Filme {
         
     public:
         DVD(int, int, std::string, int); // Construtor
+        int getCategoria() override;
         void imprimir() override;
 };
 
@@ -47,11 +52,13 @@ class DVD : private Filme {
 
 class FITA: private Filme {
     private:
+        int categoria;
         bool estaRebobinado;
 
     public:
         FITA(int, int, std::string, bool); // Construtor
-        bool isRebobinado();
+        bool isRebobinado() override;
+        int getCategoria() override;
         void imprimir() override;
 };
 
