@@ -64,5 +64,5 @@ bool Filme::validarDados() {
 }
 
 bool DVD::validarDados() {
-    return Filme::validarDados() && !(categoria > -1 && categoria < 3); // Retorna true se os dados forem válidos, e false caso contrário
+    return Filme::validarDados() && !(categoria < 0 || categoria > 2); // Retorna true se os dados forem válidos, e false caso contrário
 }
