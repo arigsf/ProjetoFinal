@@ -68,7 +68,7 @@ void Estoque::lerArquivo(std::string diretorio)
 void Estoque::inserirFilme(Filme novoFilme)
 {
     // Verifica se os dados inseridos são válidos
-    if (novoFilme.getIdentificador() <= 0 || novoFilme.getTitulo() == "" || novoFilme.getCategoria() != 0)
+    if (novoFilme.getIdentificador() <= 0 || novoFilme.getTitulo() == "" || novoFilme.getCategoria() != 0 && novoFilme.getCategoria() != 1 && novoFilme.getCategoria() != 2)
     {
         std::cout << "ERRO: dados incorretos" << std::endl;
         return;
