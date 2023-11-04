@@ -2,10 +2,14 @@
 #include "Filme.hpp"
 
 
-Locacao::Locacao() {this->numeroLocacoes=0;}
+Locacao::Locacao() : numeroLocacoes(0){}
+
+void Locacao::removeLocacao(int posNoVetorLocacoes){
+    locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
+}
 
 void Locacao::alugar(std::string CPF, std::vector<Filme> filmes){
-    if(verificarCPF(CPF) == 1){
+    if(verificarCPF(CPF) == 0){
 
         this->locacoes.push_back(std::pair<std::string, std::vector<Filme>> (CPF, filmes));
         this->numeroLocacoes++;
@@ -15,9 +19,9 @@ void Locacao::alugar(std::string CPF, std::vector<Filme> filmes){
     } else std::cout << "Tal CPF ja esta com uma locacao pendente." << std::endl;
 }
 
-int Locacao::verificarCPF(std::string CPF){ // Verifica se o CPF já está com alguma locação pendente
-    for(auto i : this->locacoes) if(i.first == CPF) return 0;
-    return 1;
+bool Locacao::verificarCPF(std::string CPF){ // Verifica se o CPF já está com alguma locação pendente
+    for(std::pair<std::string, std::vector<Filme>> i : this->locacoes) if(i.first == CPF) return 1;
+    return 0;
 }
 
 int Locacao::devolucao(std::string CPF, int dias){
@@ -26,11 +30,14 @@ int Locacao::devolucao(std::string CPF, int dias){
 
         for(int i = 0; i<this->numeroLocacoes; i++){
             if(locacoes[i].first == CPF){
-                for(auto filme : locacoes[i].second){
-                    somaPrecos += calculoPreco(dias, filme);
+                for(Filme filme : locacoes[i].second){
+                    somaPrecos += filme.calculoPrecoLocacao(dias);
                 }
+
+                this->removeLocacao(i);
             }
         }
+
 
         std::cout << "Devolucao realizada com sucesso, apenas eh necessario o pagamento de " << somaPrecos << " reais." << std::endl;
 
@@ -41,22 +48,11 @@ int Locacao::devolucao(std::string CPF, int dias){
     return 0;
 }
 
-
-int Locacao::calculoPreco (int dias, Filme filme){
-    if (filme.getCategoria() == 0) return 20 * dias;
-    
-    else if (filme.getCategoria() == 1) return 10 * dias;
-
-    else if (filme.getCategoria() == 2) return 10;
-
-    else if (filme.getCategoria() == 3) return (filme.isRebobinado()) ? 5 : 7;
-}
-
 void Locacao::relatorio(){
     std::cout << "Imprimindo relatorio das locacoes pendentes...\n\n"; 
 
-    for(auto locacao : locacoes){
+    for(std::pair<std::string, std::vector<Filme>> locacao : locacoes){
         std::cout << locacao.first << " pendencias:\n";
-        for(auto filme : locacao.second) std::cout << "\t" << filme.getIdentificador() << " " << filme.getTitulo() << ";\n";
+        for(Filme filme : locacao.second) std::cout << "\t" << filme.getIdentificador() << " " << filme.getTitulo() << ";\n";
     }
 }
