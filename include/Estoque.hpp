@@ -11,6 +11,7 @@ class Estoque
 {
 private:
     std::vector<Filme> estoque;
+    std::string diretorio;
 public:
     void lerArquivo(std::string diretorio);
     void inserirFilme(Filme filme);
