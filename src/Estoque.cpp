@@ -1,4 +1,4 @@
-#include "./Estoque.hpp"
+#include "../include/Estoque.hpp"
 #include "Estoque.hpp"
 #include <iostream>
 #include <iterator>
@@ -9,7 +9,7 @@ void Estoque::lerArquivo(std::string diretorio)
 {
     std::ifstream arquivo(diretorio, std::ios::in);
 
-    //Verifica se o arquivo existe
+    // Verifica se o arquivo existe
     if (!arquivo.is_open())
     {
         std::cout << "ERRO: arquivo inexistente" << std::endl;
@@ -22,7 +22,7 @@ void Estoque::lerArquivo(std::string diretorio)
     std::vector<std::string> categorias_dvd = {"Lançamento", "Promoção", "Estoque"};
     std::string titulo, categoria_dvd, linha;
 
-    //Grava os dados na variável
+    // Grava os dados na variável
     while (arquivo >> tipo >> quantidade >> codigo)
     {
         total++;
@@ -45,7 +45,7 @@ void Estoque::lerArquivo(std::string diretorio)
                 }
             }
 
-            DVD filme = DVD(tipo, quantidade, codigo, titulo, 1);
+            DVD filme = DVD(quantidade, codigo, titulo, 1);
             filmes.push_back(filme);
         }
 
@@ -53,8 +53,8 @@ void Estoque::lerArquivo(std::string diretorio)
         {
             categoria_dvd = nullptr;
             titulo = linha;
-            
-            FITA filme = FITA(tipo, quantidade, codigo, titulo, 1);
+
+            FITA filme = FITA(quantidade, codigo, titulo, 1);
             filmes.push_back(filme);
         }
     }
@@ -65,19 +65,22 @@ void Estoque::lerArquivo(std::string diretorio)
     this->diretorio = diretorio;
 }
 
-void Estoque::inserirFilme(Filme novoFilme)
+void Estoque::inserirFilme(Filme *novoFilme)
 {
-    // Verifica se os dados inseridos são válidos
-    if (novoFilme.getIdentificador() <= 0 || novoFilme.getTitulo() == "" || novoFilme.getCategoria() != 0 && novoFilme.getCategoria() != 1 && novoFilme.getCategoria() != 2)
+    // Verifica se os dados inseridos são válidos de acordo com o tipo do filme
+    if (novoFilme->getTipo() == TIPO_DVD)
     {
-        std::cout << "ERRO: dados incorretos" << std::endl;
-        return;
+        if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "" || novoFilme->getCategoria() != 0 && novoFilme->getCategoria() != 1 && novoFilme->getCategoria() != 2)
+        {
+            std::cout << "ERRO: dados incorretos" << std::endl;
+            return;
+        }
     }
 
     // Verifica se o código já é usado em outro filme
-    for (Filme filme : this->estoque)
+    for (Filme *filme : this->estoque)
     {
-        if (filme.getIdentificador() == novoFilme.getIdentificador())
+        if (filme->getIdentificador() == novoFilme->getIdentificador())
         {
             std::cout << "ERRO: codigo repetido" << std::endl;
             return;
@@ -85,23 +88,22 @@ void Estoque::inserirFilme(Filme novoFilme)
     }
 
     this->estoque.push_back(novoFilme);
-    std::cout << "Filme " << novoFilme.getIdentificador() << " cadastrado com sucesso" << std::endl;
+    std::cout << "Filme " << novoFilme->getIdentificador() << " cadastrado com sucesso" << std::endl;
 }
 
 void Estoque::removerFilme(int codigo)
 {
-    //Percorre o estoque a procura do filme
-    auto it = std::remove_if(this->estoque.begin(), this->estoque.end(), [codigo](Filme filme){
-        return filme.getIdentificador() == codigo;
-    });
+    // Percorre o estoque a procura do filme
+    auto it = std::remove_if(this->estoque.begin(), this->estoque.end(), [codigo](Filme filme)
+                             { return filme.getIdentificador() == codigo; });
 
-    //Se existir um filme com o código associado, é excluído
+    // Se existir um filme com o código associado, é excluído
     if (it != this->estoque.end())
     {
         this->estoque.erase(it, this->estoque.end());
         std::cout << "Filme " << codigo << " removido com sucesso" << std::endl;
     }
-    //Caso contrário, aparece mensagem de erro
+    // Caso contrário, aparece mensagem de erro
     else
     {
         std::cout << "ERRO: codigo inexistente" << std::endl;
