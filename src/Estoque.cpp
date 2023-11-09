@@ -16,7 +16,7 @@ void Estoque::lerArquivo(std::string diretorio)
         return;
     }
 
-    std::vector<Filme> filmes;
+    std::vector<Filme *> filmes;
     char tipo;
     int quantidade, codigo, total = 0;
     std::vector<std::string> categorias_dvd = {"Lançamento", "Promoção", "Estoque"};
@@ -45,7 +45,7 @@ void Estoque::lerArquivo(std::string diretorio)
                 }
             }
 
-            DVD filme = DVD(quantidade, codigo, titulo, 1);
+            DVD *filme = new DVD(quantidade, codigo, titulo, 1);
             filmes.push_back(filme);
         }
 
@@ -54,7 +54,7 @@ void Estoque::lerArquivo(std::string diretorio)
             categoria_dvd = nullptr;
             titulo = linha;
 
-            FITA filme = FITA(quantidade, codigo, titulo, 1);
+            FITA *filme = new FITA(quantidade, codigo, titulo, 1);
             filmes.push_back(filme);
         }
     }
@@ -70,7 +70,7 @@ void Estoque::inserirFilme(Filme *novoFilme)
     // Verifica se os dados inseridos são válidos de acordo com o tipo do filme
     if (novoFilme->getTipo() == TIPO_DVD)
     {
-        if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "" || novoFilme->getCategoria() != 0 && novoFilme->getCategoria() != 1 && novoFilme->getCategoria() != 2)
+        if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "")
         {
             std::cout << "ERRO: dados incorretos" << std::endl;
             return;
@@ -94,8 +94,8 @@ void Estoque::inserirFilme(Filme *novoFilme)
 void Estoque::removerFilme(int codigo)
 {
     // Percorre o estoque a procura do filme
-    auto it = std::remove_if(this->estoque.begin(), this->estoque.end(), [codigo](Filme filme)
-                             { return filme.getIdentificador() == codigo; });
+    auto it = std::remove_if(this->estoque.begin(), this->estoque.end(), [codigo](Filme *filme)
+                             { return filme->getIdentificador() == codigo; });
 
     // Se existir um filme com o código associado, é excluído
     if (it != this->estoque.end())
@@ -110,10 +110,28 @@ void Estoque::removerFilme(int codigo)
     }
 }
 
-std::vector<Filme> Estoque::pesquisarFilmes(std::string filtro)
+std::vector<Filme *> Estoque::pesquisarFilmesCodigo(int codigo)
 {
+    // Lista todos os filmes que tem o código informado pelo usuário
+    for (Filme* filme : this->estoque)
+    {
+        if (filme->getIdentificador() == codigo)
+        {
+            filme->imprimir();
+            std::cout << std::endl;
+        }
+    }
 }
 
-void Estoque::imprimirRelatiorio()
+std::vector<Filme *> Estoque::pesquisarFilmesTitulo(std::string titulo)
 {
+    // Lista todos os filmes que tem o título informado pelo usuário
+    for (Filme* filme : this->estoque)
+    {
+        if (filme->getTitulo() == titulo)
+        {
+            filme->imprimir();
+            std::cout << std::endl;
+        }
+    }
 }

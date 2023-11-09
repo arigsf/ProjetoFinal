@@ -16,8 +16,8 @@ public:
     void lerArquivo(std::string diretorio);
     void inserirFilme(Filme* filme);
     void removerFilme(int codigo);
-    std::vector<Filme> pesquisarFilmes(std::string filtro);
-    void imprimirRelatiorio();
+    std::vector<Filme*> pesquisarFilmesCodigo(int filtro);
+    std::vector<Filme*> pesquisarFilmesTitulo(std::string filtro);
 };
 
 #endif
