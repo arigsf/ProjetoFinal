@@ -5,6 +5,20 @@
 #include <fstream>
 #include <algorithm>
 
+Estoque::Estoque()
+{
+}
+
+Estoque::~Estoque()
+{
+    for (Filme *filme : estoque)
+    {
+        delete filme;
+    }
+
+    estoque.clear();
+}
+
 void Estoque::lerArquivo(std::string diretorio)
 {
     std::ifstream arquivo(diretorio, std::ios::in);
@@ -113,7 +127,7 @@ void Estoque::removerFilme(int codigo)
 std::vector<Filme *> Estoque::pesquisarFilmesCodigo(int codigo)
 {
     // Lista todos os filmes que tem o código informado pelo usuário
-    for (Filme* filme : this->estoque)
+    for (Filme *filme : this->estoque)
     {
         if (filme->getIdentificador() == codigo)
         {
@@ -126,7 +140,7 @@ std::vector<Filme *> Estoque::pesquisarFilmesCodigo(int codigo)
 std::vector<Filme *> Estoque::pesquisarFilmesTitulo(std::string titulo)
 {
     // Lista todos os filmes que tem o título informado pelo usuário
-    for (Filme* filme : this->estoque)
+    for (Filme *filme : this->estoque)
     {
         if (filme->getTitulo() == titulo)
         {
