@@ -6,10 +6,10 @@ void Locacao::removeLocacao(int posNoVetorLocacoes){
     locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
 }
 
-void Locacao::alugar(std::string CPF, std::vector<Filme> filmes){
+void Locacao::alugar(std::string CPF, std::vector<Filme*> filmes){
     if(verificarCPF(CPF) == 0){
 
-        this->locacoes.push_back(std::pair<std::string, std::vector<Filme>> (CPF, filmes));
+        this->locacoes.push_back(std::pair<std::string, std::vector<Filme*>> (CPF, filmes));
         this->numeroLocacoes++;
 
         std::cout << "Aluguel aprovado para o CPF: " << CPF << std::endl;
@@ -18,7 +18,7 @@ void Locacao::alugar(std::string CPF, std::vector<Filme> filmes){
 }
 
 bool Locacao::verificarCPF(std::string CPF){ // Verifica se o CPF já está com alguma locação pendente
-    for(std::pair<std::string, std::vector<Filme>> i : this->locacoes) if(i.first == CPF) return 1;
+    for(std::pair<std::string, std::vector<Filme*>> i : this->locacoes) if(i.first == CPF) return 1;
     return 0;
 }
 
@@ -28,8 +28,8 @@ int Locacao::devolucao(std::string CPF, int dias){
 
         for(int i = 0; i<this->numeroLocacoes; i++){
             if(locacoes[i].first == CPF){
-                for(Filme filme : locacoes[i].second){
-                    somaPrecos += filme.calculoPrecoLocacao(dias);
+                for(Filme *filme : locacoes[i].second){
+                    somaPrecos += filme->calculoPrecoLocacao(dias);
                 }
 
                 this->removeLocacao(i);
@@ -49,8 +49,8 @@ int Locacao::devolucao(std::string CPF, int dias){
 void Locacao::relatorio(){
     std::cout << "Imprimindo relatorio das locacoes pendentes...\n\n"; 
 
-    for(std::pair<std::string, std::vector<Filme>> locacao : locacoes){
+    for(std::pair<std::string, std::vector<Filme*>> locacao : locacoes){
         std::cout << locacao.first << " pendencias:\n";
-        for(Filme filme : locacao.second) std::cout << "\t" << filme.getIdentificador() << " " << filme.getTitulo() << ";\n";
+        for(Filme *filme : locacao.second) std::cout << "\t" << filme->getIdentificador() << " " << filme->getTitulo() << ";\n";
     }
 }
