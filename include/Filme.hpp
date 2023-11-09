@@ -31,6 +31,8 @@ const std::map<int ,char> Tipo_Filme = {
     {TIPO_FITA, 'F'}
 };
 
+
+
 class Filme {
     protected:
         int identificador;
@@ -49,10 +51,10 @@ class Filme {
 
         // Cálculo do valor de locação, se comporta de maneira diferente para DVD ou FITA
         virtual int calculoPrecoLocacao(int) = 0; 
-
-        virtual void imprimir(); // Método para imprimir dados do DVD ou FITA, se comporta de maneira diferente em cada um
+        virtual std::string listarInformacoes(); // Método para listar as informacoes do DVD ou FITA, se comporta de maneira diferente em cada um
         virtual bool validarDados();
 };
+
 
 
 // Subclasse DVD que herda todos os atributos básicos da Classe Filme
@@ -66,7 +68,7 @@ class DVD : public Filme {
         int getCategoria();
 
         int calculoPrecoLocacao(int) override;
-        void imprimir() override;
+        std::string listarInformacoes() override;
         bool validarDados() override;
 };
 
@@ -81,7 +83,7 @@ class FITA: public Filme {
 
         bool isRebobinado(); // Retorna no caso de FITA se a fita está ou não rebobinada
         int calculoPrecoLocacao(int) override;
-        void imprimir() override;
+        std::string listarInformacoes() override;
 };
 
 #endif

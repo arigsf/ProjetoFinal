@@ -47,18 +47,16 @@ int FITA::calculoPrecoLocacao(int dias){
     return (this->isRebobinado() == true) ? 5 : 7;
 }
 
-void Filme::imprimir() {
-    std::cout << identificador << ' ' << titulo << ' ' << unidades << ' ';
+std::string Filme::listarInformacoes() {
+    return std::to_string(identificador) + " " + titulo + " " + std::to_string(unidades) + " ";
 }
 
-void DVD::imprimir() {
-    Filme::imprimir();
-    std::cout << "DVD" << std::endl;
+std::string DVD::listarInformacoes() {
+    return Filme::listarInformacoes() + "DVD";
 }
 
-void FITA::imprimir() {
-    Filme::imprimir();
-    std::cout << "FITA" << std::endl;
+std::string FITA::listarInformacoes() {
+    return Filme::listarInformacoes() + "FITA";
 }
 
 bool Filme::validarDados() {
