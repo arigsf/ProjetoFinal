@@ -18,8 +18,8 @@ public:
     void lerArquivo(std::string diretorio);
     void inserirFilme(Filme* filme);
     void removerFilme(int codigo);
-    std::vector<Filme*> pesquisarFilmesCodigo(int codigo);
-    std::vector<Filme*> pesquisarFilmesTitulo(std::string titulo);
+    void pesquisarFilmesCodigo(int codigo);
+    void pesquisarFilmesTitulo(std::string titulo);
 };
 
 #endif

@@ -124,7 +124,7 @@ void Estoque::removerFilme(int codigo)
     }
 }
 
-std::vector<Filme *> Estoque::pesquisarFilmesCodigo(int codigo)
+void Estoque::pesquisarFilmesCodigo(int codigo)
 {
     // Lista todos os filmes que tem o código informado pelo usuário
     for (Filme *filme : this->estoque)
@@ -137,7 +137,7 @@ std::vector<Filme *> Estoque::pesquisarFilmesCodigo(int codigo)
     }
 }
 
-std::vector<Filme *> Estoque::pesquisarFilmesTitulo(std::string titulo)
+void Estoque::pesquisarFilmesTitulo(std::string titulo)
 {
     // Lista todos os filmes que tem o título informado pelo usuário
     for (Filme *filme : this->estoque)
