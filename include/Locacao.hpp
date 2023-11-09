@@ -1,8 +1,6 @@
 #ifndef LOCACAO_H
 #define LOCACAO_H
 
-#include <vector>
-#include <string>
 #include "Filme.hpp"
 
 class Locacao {
