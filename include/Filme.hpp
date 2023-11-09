@@ -39,6 +39,7 @@ class Filme {
 
         virtual int calculoPrecoLocacao(int); // Cálculo do valor de locação, se comporta de maneira diferente para DVD ou FITA
         virtual void imprimir(); // Método para imprimir dados do DVD ou FITA, se comporta de maneira diferente em cada um
+        virtual bool validarDados();
 };
 
 
@@ -54,6 +55,7 @@ class DVD : public Filme {
 
         int calculoPrecoLocacao(int) override;
         void imprimir() override;
+        bool validarDados() override;
 };
 
 // Subclasse FITA que herda todos os atributos básicos da Classe Filme

@@ -58,3 +58,11 @@ void FITA::imprimir() {
     Filme::imprimir();
     std::cout << "FITA" << std::endl;
 }
+
+bool Filme::validarDados() {
+    return !(identificador <= 0 || titulo == ""); // Retorna true se os dados forem válidos, e false caso contrário
+}
+
+bool DVD::validarDados() {
+    return Filme::validarDados() && !(categoria < 0 || categoria > 2); // Retorna true se os dados forem válidos, e false caso contrário
+}
