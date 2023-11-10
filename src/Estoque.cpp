@@ -19,66 +19,6 @@ Estoque::~Estoque()
     estoque.clear();
 }
 
-void Estoque::lerArquivo(std::string diretorio)
-{
-    std::ifstream arquivo(diretorio, std::ios::in);
-
-    // Verifica se o arquivo existe
-    if (!arquivo.is_open())
-    {
-        std::cout << "ERRO: arquivo inexistente" << std::endl;
-        return;
-    }
-
-    std::vector<Filme *> filmes;
-    char tipo;
-    int quantidade, codigo, total = 0;
-    std::vector<std::string> categorias_dvd = {"Lançamento", "Promoção", "Estoque"};
-    std::string titulo, categoria_dvd, linha;
-
-    // Grava os dados na variável
-    while (arquivo >> tipo >> quantidade >> codigo)
-    {
-        total++;
-
-        getline(arquivo, linha);
-
-        if (tipo == 'D')
-        {
-            for (std::string categoria : categorias_dvd)
-            {
-                size_t pos = linha.find(categoria);
-                if (pos != std::string::npos)
-                {
-                    categoria_dvd = categoria;
-                    linha.erase(pos, categoria.length());
-                    linha.erase(0, linha.find_first_not_of(' '));
-                    linha.erase(linha.find_last_not_of(' ') + 1);
-                    titulo = linha;
-                    break;
-                }
-            }
-
-            DVD *filme = new DVD(quantidade, codigo, titulo, 1);
-            filmes.push_back(filme);
-        }
-
-        else
-        {
-            categoria_dvd = nullptr;
-            titulo = linha;
-
-            FITA *filme = new FITA(quantidade, codigo, titulo, 1);
-            filmes.push_back(filme);
-        }
-    }
-    std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
-    arquivo.close();
-
-    this->estoque = filmes;
-    this->diretorio = diretorio;
-}
-
 void Estoque::inserirFilme(Filme *novoFilme)
 {
     // Verifica se os dados inseridos são válidos de acordo com o tipo do filme

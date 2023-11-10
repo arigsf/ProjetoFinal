@@ -15,7 +15,6 @@ private:
 public:
     Estoque();
     ~Estoque();
-    void lerArquivo(std::string diretorio);
     void inserirFilme(Filme* filme);
     void removerFilme(int codigo);
     void pesquisarFilmesCodigo(int codigo);
