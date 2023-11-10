@@ -6,18 +6,16 @@
 #include "Funcoes.hpp"
 #include <iterator>
 
-class Sistema
-{
-private:
-    std::vector<Filme *> lista_Filmes;
-    
-public:
-    void lerArquivo(std::string);
-    void salvarDados();
-    void adcionarFilme(Filme *);
+class Sistema {
+
+    private:
+        // A classe sistema armazenara uma classe do tipo estoque
+        
+    public:
+        void lerArquivo(std::string);
+        void salvarDados();
 
 };
-
 
 
 #endif

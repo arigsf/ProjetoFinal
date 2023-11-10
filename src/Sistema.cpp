@@ -27,14 +27,14 @@ void Sistema::lerArquivo(std::string nome_do_arquivo) {
 
         if(tipo_item == 'D') {
             categoria_dvd = separarTituloCategoria(titulo_item);
-            DVD * novo_dvd = new DVD(unidades_item,codigo_item,titulo_item,categoria_dvd);
-            lista_Filmes.push_back(novo_dvd);
+            // DVD * novo_dvd = new DVD(unidades_item,codigo_item,titulo_item,categoria_dvd);
+            // Essa nova instancia sera adcionada ao estoque
 
         }
 
         else if(tipo_item == 'F') {
-            FITA * nova_fita = new FITA(unidades_item,codigo_item,titulo_item,true);
-            lista_Filmes.push_back(nova_fita);
+            // FITA * nova_fita = new FITA(unidades_item,codigo_item,titulo_item,true);
+            // Essa nova instancia sera adcionada ao estoque
         }
     } 
 
@@ -43,13 +43,8 @@ void Sistema::lerArquivo(std::string nome_do_arquivo) {
 }
 
 
-void Sistema::adcionarFilme(Filme *filme) {
-    this->lista_Filmes.push_back(filme);
-}
-
-
-
 void Sistema::salvarDados() {
+    
     std::ofstream arquivo_filmes("../backups/filmes_backup",std::ios::out | std::ios::trunc);
 
     if(!arquivo_filmes.is_open()) {
@@ -58,11 +53,7 @@ void Sistema::salvarDados() {
     }
 
 
-    for (Filme *filme : this->lista_Filmes)
-    {
-        arquivo_filmes << filme->listarInformacoes() << std::endl;
-        delete filme;
-    }
+    // Será implementado totalmente após a criação do tad Estoque
     
 
     arquivo_filmes.close();
