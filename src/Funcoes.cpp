@@ -10,7 +10,7 @@ void removerEspacosDireitaEsquerda(std::string &linha)  {
 
 int separarTituloCategoria(std::string &titulo) {
 
-    for (std::map<int, std::string>::iterator categoria = Categorias.begin(); categoria != Categorias.end(); categoria++) 
+    for (std::map<int, std::string>::const_iterator categoria = Categorias.begin(); categoria != Categorias.end(); categoria++) 
         {
             size_t pos = titulo.find(categoria->second); // A função find() retorna a primeira instancia da substring desejada
             if(pos != std::string::npos) { 
