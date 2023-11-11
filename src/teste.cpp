@@ -13,9 +13,12 @@ int main() {
         std::cin >> comando;
         
         if(comando == "LA") {
-            estoque->lerArquivo("../data/movies");            
+            estoque->lerArquivo("./data/movies");            
         }
 
-        else if(comando == "FS") break;
+        else if(comando == "FS") {
+            estoque->salvarDados();
+            break;
+        }
     }
 }
