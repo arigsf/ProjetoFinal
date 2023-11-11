@@ -57,12 +57,12 @@ std::string Filme::listarInformacoes()
 
 std::string DVD::listarInformacoes()
 {
-    return std::to_string('D') + " " + Filme::listarInformacoes() + " " + std::to_string(DVD::getCategoria());
+    return "D " + Filme::listarInformacoes() + " " + std::to_string(DVD::getCategoria());
 }
 
 std::string FITA::listarInformacoes()
 {
-    return std::to_string('F') + " " + Filme::listarInformacoes();
+    return "F " + Filme::listarInformacoes();
 }
 
 bool Filme::validarDados()
