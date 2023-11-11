@@ -48,15 +48,15 @@ int FITA::calculoPrecoLocacao(int dias){
 }
 
 std::string Filme::listarInformacoes() {
-    return std::to_string(identificador) + " " + titulo + " " + std::to_string(unidades) + " ";
+    return std::to_string(unidades) + " " + std::to_string(identificador) + " " + titulo + " ";
 }
 
 std::string DVD::listarInformacoes() {
-    return Filme::listarInformacoes() + "DVD";
+    return "D" + Filme::listarInformacoes();
 }
 
 std::string FITA::listarInformacoes() {
-    return Filme::listarInformacoes() + "FITA";
+    return "F" + Filme::listarInformacoes();
 }
 
 bool Filme::validarDados() {
