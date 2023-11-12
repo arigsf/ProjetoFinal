@@ -3,6 +3,7 @@
 Filme::Filme (int _unidades, int _identificador, std::string _titulo) : 
     unidades(_unidades), identificador(_identificador), titulo(_titulo) {}
 
+Filme::~Filme() {}
 
 DVD::DVD (int _unidades, int _identificador, std::string _titulo, int _categoria) : 
     Filme (_unidades, _identificador, _titulo) {
@@ -35,7 +36,8 @@ int DVD::calculoPrecoLocacao(int dias){
 
     else if (this->getCategoria() == PROMOCAO) return 10;
 
-    // Tratamento de erro
+    return -1;
+    // Implementar tratamento de erro
     
 }
 
@@ -45,18 +47,16 @@ int FITA::calculoPrecoLocacao(int dias){
     return (this->isRebobinado() == true) ? 5 : 7;
 }
 
-void Filme::imprimir() {
-    std::cout << identificador << ' ' << titulo << ' ' << unidades << ' ';
+std::string Filme::listarInformacoes() {
+    return std::to_string(unidades) + " " + std::to_string(identificador) + " " + titulo + " ";
 }
 
-void DVD::imprimir() {
-    Filme::imprimir();
-    std::cout << "DVD" << std::endl;
+std::string DVD::listarInformacoes() {
+    return "D" + Filme::listarInformacoes();
 }
 
-void FITA::imprimir() {
-    Filme::imprimir();
-    std::cout << "FITA" << std::endl;
+std::string FITA::listarInformacoes() {
+    return "F" + Filme::listarInformacoes();
 }
 
 bool Filme::validarDados() {
