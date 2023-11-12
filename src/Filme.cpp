@@ -50,6 +50,7 @@ int FITA::calculoPrecoLocacao(int dias)
     return (this->isRebobinado() == true) ? 5 : 7;
 }
 
+
 std::string Filme::listarInformacoes()
 {
     return std::to_string(unidades) + " " + std::to_string(identificador) + " " + titulo + " ";
@@ -63,7 +64,19 @@ std::string DVD::listarInformacoes()
 std::string FITA::listarInformacoes()
 {
     return "F " + Filme::listarInformacoes();
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bool Filme::validarDados()
 {
