@@ -4,7 +4,7 @@
 #include "Filme.hpp"
 
 void removerEspacosDireitaEsquerda(std::string &);
-
-int separarTituloCategoria(std::string &);
+const int separarTituloCategoria(std::string &);
+const int getCategoria(const std::string categoria);
 
 #endif

@@ -16,12 +16,12 @@ private:
 public:
     Estoque();
     ~Estoque();
-    void lerArquivo(std::string diretorio);
+    void lerArquivo(const std::string diretorio);
     void inserirFilme(Filme* filme);
-    void removerFilme(int codigo);
-    void pesquisarFilmesCodigo(int codigo);
-    void pesquisarFilmesTitulo(std::string titulo);
-    void salvarDados();
+    void removerFilme(const int identificador);
+    void pesquisarFilmesCodigo(const int identificador) const;
+    void pesquisarFilmesTitulo(const std::string titulo) const;
+    void salvarDados() const;
 };
 
 #endif

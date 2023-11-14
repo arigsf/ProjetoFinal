@@ -8,21 +8,28 @@ void removerEspacosDireitaEsquerda(std::string &linha)  {
 }
 
 
-int separarTituloCategoria(std::string &titulo) {
+const int separarTituloCategoria(std::string &titulo) {
 
-    for (std::map<int, std::string>::const_iterator categoria = Categorias.begin(); categoria != Categorias.end(); categoria++) 
-        {
-            size_t pos = titulo.find(categoria->second); // A função find() retorna a primeira instancia da substring desejada
-            if(pos != std::string::npos) { 
+    for (std::map<int, std::string>::const_iterator categoria = Categorias.begin(); categoria != Categorias.end(); categoria++) {
+        size_t pos = titulo.find(categoria->second); // A função find() retorna a primeira instancia da substring desejada
+        if(pos != std::string::npos) { 
             // se pos for diferende do valor falso esperado, encontramos a categoria certa
             titulo.erase(pos,categoria->second.length()); // a função erase remove a substring que contem a categoria da linha
             removerEspacosDireitaEsquerda(titulo);
             return categoria->first;
         }
-                
+            
     }
     
     // tratamento de erro
     return -1;
 
+}
+
+
+
+const int getCategoria(std::string categoria) {
+    for (std::map<int, std::string>::const_iterator it = Categorias.begin(); it != Categorias.end(); it++) {
+        if(it->second == categoria) return it-> first;
+    }
 }

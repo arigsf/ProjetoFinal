@@ -13,6 +13,11 @@ class Sistema {
         Estoque estoque;
         
     public:
+        void lerArquivo();
+        void cadastrarFilme();
+        void removerFilme();
+        void listarFIlmes();
+        void finalizarSistema();
         
 
 };

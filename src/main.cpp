@@ -20,14 +20,13 @@ int main() {
     {
         std::cin >> comando;
         
-        if(comando == LER_ARQUIVO) {
-            std::string nome_arquivo;
-            std::cin >> nome_arquivo;
-            sistema_principal.lerArquivo(nome_arquivo);
-        }
-
+        if(comando == LER_ARQUIVO) sistema_principal.lerArquivo();
+        else if(comando == CADASTRAR_FILME) sistema_principal.cadastrarFilme();
+        else if(comando == REMOVER_FILME) sistema_principal.removerFilme();
+        else if(comando == LISTAR_FILMES) sistema_principal.listarFIlmes();
+        
         else if(comando == FINALIZAR_SISTEMA) {
-            sistema_principal.salvarDados();
+            
             break;
         }
                 
