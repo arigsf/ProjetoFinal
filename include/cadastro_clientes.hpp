@@ -5,6 +5,9 @@
 #include <iostream>
 #include <vector>
 
+//FORMATO CPF: xxx.xxx.xxx-xx
+//FORMATO Data de Nascimento: dd/mm/yyyy
+
 class CadastroClientes {
 public:
     //Métodos que manipulam a lista dos clientes

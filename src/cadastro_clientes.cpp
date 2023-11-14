@@ -1,5 +1,9 @@
 #include "cadastro_clientes.hpp"
-#include <algorithm>
+#include <algorithm> //remoção de clientes
+#include <regex> //validar cpf e data de nascimento
+
+//FORMATO CPF: xxx.xxx.xxx-xx
+//FORMATO Data de Nascimento: dd/mm/yyyy
 
 //Implementação dos métodos da classe CadastroClientes
 void CadastroClientes::inserirCliente(Cliente* cliente) {
@@ -9,9 +13,30 @@ void CadastroClientes::inserirCliente(Cliente* cliente) {
         return;
     }
 
+    bool DadosIncorretos;
+    //Expressão singular que verifica e valida (ou não) o CPF
+    std::regex regexCPF(R"(\d{3}\.\d{3}\.\d{3}-\d{2})");
+    if (!std::regex_match(cliente->getCPF(), regexCPF)) {
+        DadosIncorretos = true;
+    }
+
+    if (cliente->getNome().empty()){
+        DadosIncorretos = true;
+    }
+    //Expressão singular que verifica e valida (ou não) a data de nascimento
+    std::regex regexDataNascimento(R"(\d{2}/\d{2}/\d{4})");
+    if (!std::regex_match(cliente->getDataNascimento(), regexDataNascimento)) {
+        DadosIncorretos = true;
+    }
+    //Se o CPF estiver inválido, nome vazio ou data de nascimento inválida, retorna erro
+    if (DadosIncorretos) {
+        std::cout << "ERRO: dados incorretos" << std::endl;
+        return;
+    }
+
     //Adiciona o cliente na lista
     clientes.push_back(cliente);
-    std::cout << "Cliente cadastrado com sucesso" << std::endl;
+    std::cout << "Cliente de CPF: " << cliente->getCPF() << " cadastrado com sucesso" << std::endl;
 }
 
 void CadastroClientes::removerCliente(const std::string& cpf) {
@@ -22,9 +47,12 @@ void CadastroClientes::removerCliente(const std::string& cpf) {
 
     //Caso o cliente seja encontrado, ele é removido
     if (it != clientes.end()) {
-        delete *it;  //Libera a memória do cliente
+        //Guarda o CPF removido para dizer qual é ele logo abaixo
+        std::string cpfRemovido = (*it)->getCPF();
+        //Libera a memória do cliente
+        delete *it;
         clientes.erase(it);
-        std::cout << "Cliente removido com sucesso" << std::endl;
+        std::cout << "Cliente de CPF: " << cpfRemovido << " removido com sucesso" << std::endl;
     } else {
         std::cout << "ERRO: CPF inexistente" << std::endl;
     }
@@ -47,9 +75,9 @@ void CadastroClientes::listarClientesOrdenados(bool porCPF) const {
                   });
     }
 
-    //Mostra os clientes ordenados
+    //Mostra os clientes ordenados na ordem: cpf, nome, data de nascimento, idade
     for (const auto& cliente : clientesOrdenados) {
-        std::cout << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
+        std::cout << "CPF: " << cliente->getCPF() << ", Nome: " << cliente->getNome() << ", Data de nascimento: " << cliente->getDataNascimento() << ", Idade: " << cliente->getIdade() << std::endl;
     }
 }
 
