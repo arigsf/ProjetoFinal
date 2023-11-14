@@ -64,19 +64,7 @@ std::string DVD::listarInformacoes()
 std::string FITA::listarInformacoes()
 {
     return "F " + Filme::listarInformacoes();
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 bool Filme::validarDados()
 {

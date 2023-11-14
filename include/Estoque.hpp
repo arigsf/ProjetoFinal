@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "Filme.hpp"
+#include "Funcoes.hpp"
 
 class Estoque
 {

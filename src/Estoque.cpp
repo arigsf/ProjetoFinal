@@ -22,56 +22,36 @@ void Estoque::lerArquivo(std::string diretorio)
 {
     std::ifstream arquivo(diretorio, std::ios::in);
 
-    if (!arquivo.is_open())
-    {
+    if (!arquivo.is_open()) {
         std::cout << "ERRO: arquivo inexistente" << std::endl;
         return;
     }
 
-    std::vector<Filme *> filmes;
-    char tipo;
-    int quantidade, codigo, total = 0;
-    std::vector<std::string> categorias_dvd = {"Lançamento", "Promoção", "Estoque"};
-    std::string titulo, categoria_dvd, linha;
+    char tipo_item;
+    int unidades_item, categoria_dvd, codigo_item, total = 0;
+    std::string titulo_item;
 
-    while (arquivo >> tipo >> quantidade >> codigo)
-    {
+    while (arquivo >> tipo_item >> unidades_item >> codigo_item) {
         total++;
+        getline(arquivo, titulo_item);
 
-        getline(arquivo, linha);
+        if (tipo_item == 'D') {
 
-        if (tipo == 'D')
-        {
-            for (std::string categoria : categorias_dvd)
-            {
-                size_t pos = linha.find(categoria);
-                if (pos != std::string::npos)
-                {
-                    categoria_dvd = categoria;
-                    linha.erase(pos, categoria.length());
-                    linha.erase(0, linha.find_first_not_of(' '));
-                    linha.erase(linha.find_last_not_of(' ') + 1);
-                    titulo = linha;
-                    break;
-                }
-            }
+            categoria_dvd = separarTituloCategoria(titulo_item);
+            DVD *novo_dvd = new DVD(unidades_item,codigo_item,titulo_item,categoria_dvd);
+            this->estoque.push_back(novo_dvd);
 
-            DVD *filme = new DVD(quantidade, codigo, titulo, 1);
-            filmes.push_back(filme);
+            
+        }
+        else if(tipo_item == 'F') {
+            FITA *nova_fita = new FITA(unidades_item,codigo_item,titulo_item, true);
+            this->estoque.push_back(nova_fita);
         }
 
-        else
-        {
-            titulo = linha;
-
-            FITA *filme = new FITA(quantidade, codigo, titulo, 1);
-            filmes.push_back(filme);
-        }
     }
-    std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
+    
     arquivo.close();
-
-    this->estoque = filmes;
+    std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
     this->diretorio = diretorio;
 }
 
