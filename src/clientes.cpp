@@ -3,11 +3,11 @@
 //FORMATO CPF: xxx.xxx.xxx-xx
 //FORMATO Data de Nascimento: dd/mm/yyyy
 
-// Implementação do construtor da classe Cliente
+//Implementação do construtor da classe Cliente
 Cliente::Cliente(const std::string cpf, const std::string nome, const std::string dataNascimento)
     : cpf(cpf), nome(nome), dataNascimento(dataNascimento) {}
 
-// Implementação dos métodos da classe Cliente
+//Implementação dos métodos da classe Cliente
 const std::string Cliente::getCPF() const {
     return cpf;
 }
@@ -29,6 +29,6 @@ int Cliente::getIdade() const {
     int anoAtual = atual->tm_year + 1900;
     int anoNascimento = std::stoi(dataNascimento.substr(6)); //Utilizar o formato dia/mês/ano, ou seja, dd/mm/yyyy. Ex: 06/04/1998
 
-    // Calcular e retornar a idade
+    //Calcular e retornar a idade
     return anoAtual - anoNascimento;
 }
