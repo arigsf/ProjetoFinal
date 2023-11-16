@@ -1,8 +1,6 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
-#include <fstream>
-#include "Locacao.hpp"
 #include "Funcoes.hpp"
 #include "Estoque.hpp"
 #include <iterator>
@@ -13,9 +11,9 @@ class Sistema {
         Estoque estoque;
         
     public:
-        void lerArquivo();
-        void cadastrarFilme();
-        void removerFilme();
+        void lerArquivo(const std::string);
+        void cadastrarFilme(Filme *);
+        void removerFilme(const int);
         void listarFIlmes();
         void finalizarSistema();
         

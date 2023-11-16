@@ -1,21 +1,15 @@
-#include "Filme.hpp"
+#include "../include/Filme.hpp"
 
 Filme::Filme(int _unidades, int _identificador, std::string _titulo) : unidades(_unidades), identificador(_identificador), titulo(_titulo) {}
 
 Filme::~Filme() {}
 
-DVD::DVD(int _unidades, int _identificador, std::string _titulo, int _categoria) : Filme(_unidades, _identificador, _titulo)
-{
-    this->categoria = _categoria;
+DVD::DVD(int _unidades, int _identificador, std::string _titulo, int _categoria) : Filme(_unidades, _identificador, _titulo), categoria(_categoria) {
     this->tipo = TIPO_DVD;
-    std::cout << "Filme " << identificador << " cadastrado com sucesso" << std::endl;
 }
 
-FITA::FITA(int _unidades, int _identificador, std::string _titulo, bool _estaRebobinado) : Filme(_unidades, _identificador, _titulo)
-{
-    this->estaRebobinado = _estaRebobinado;
+FITA::FITA(int _unidades, int _identificador, std::string _titulo, bool _estaRebobinado) : Filme(_unidades, _identificador, _titulo), estaRebobinado(_estaRebobinado) {
     this->tipo = TIPO_FITA;
-    std::cout << "Filme " << identificador << " cadastrado com sucesso" << std::endl;
 }
 
 int Filme::getIdentificador() { return this->identificador; }

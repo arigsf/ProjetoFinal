@@ -1,4 +1,4 @@
-#include "Estoque.hpp"
+#include "../include/Estoque.hpp"
 #include <iostream>
 #include <iterator>
 #include <fstream>
@@ -27,41 +27,51 @@ void Estoque::lerArquivo(const std::string diretorio)
         return;
     }
 
-    char tipo_item;
-    int unidades_item, categoria_dvd, identificador_item, total = 0;
-    std::string titulo_item;
+    int total = 0;
+    char tipo;
+    std::string titulo, linha;
+    int unidades, identificador;
 
-    while (arquivo >> tipo_item >> unidades_item >> identificador_item) {
-        total++;
-        getline(arquivo, titulo_item);
+    while(std::getline(arquivo,linha)) {
+    
+        // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
 
-        if (tipo_item == 'D') {
+        std::istringstream iss(linha);
+        // é um stream de input baseado em uma string
 
-            categoria_dvd = separarTituloCategoria(titulo_item);
-            DVD *novo_dvd = new DVD(unidades_item,identificador_item,titulo_item,categoria_dvd);
-            this->estoque.push_back(novo_dvd);
+        if(!(iss >> tipo >> unidades >> identificador)) continue; // caso a ordem não tenha sido respeitada, ou tenha dado erro
+        if(!(std::getline(iss >> std::ws, titulo))) continue;
 
+        Filme *novo_filme = nullptr;
+
+        if (tipo == 'F') novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
+        
+        else if(tipo == 'D') {
+            int categoria = separarTituloCategoria(titulo);
+            if(categoria == -1) continue;// Caso alguma categoria tenha sido encontrada
+            removerEspacosDireitaEsquerda(titulo);
+            novo_filme = new DVD(unidades,identificador,titulo,categoria);
+        
             
         }
-        else if(tipo_item == 'F') {
-            FITA *nova_fita = new FITA(unidades_item,identificador_item,titulo_item, true);
-            this->estoque.push_back(nova_fita);
-        }
+
+        if(this->inserirFilme(novo_filme,false)) total++;
 
     }
+    
     
     arquivo.close();
     std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
     this->diretorio = diretorio;
 }
 
-void Estoque::inserirFilme(Filme *novoFilme)
-{
+bool Estoque::inserirFilme(Filme *novoFilme, bool mensagens)
+{   
     // Verifica se os dados inseridos são válidos de acordo com o tipo do filme
     if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "")
     {
-        std::cout << "ERRO: dados incorretos" << std::endl;
-        return;
+        if(mensagens) std::cout << "ERRO: dados incorretos" << std::endl;
+        return false;
     }
 
     // Verifica se o código já é usado em outro filme
@@ -69,13 +79,14 @@ void Estoque::inserirFilme(Filme *novoFilme)
     {
         if (filme->getIdentificador() == novoFilme->getIdentificador())
         {
-            std::cout << "ERRO: identificador repetido" << std::endl;
-            return;
+            if(mensagens) std::cout << "ERRO: identificador repetido" << std::endl;
+            return false;
         }
     }
 
     this->estoque.push_back(novoFilme);
-    std::cout << "Filme " << novoFilme->getIdentificador() << " cadastrado com sucesso" << std::endl;
+    if(mensagens) std::cout << "Filme " << novoFilme->getIdentificador() << " cadastrado com sucesso" << std::endl;
+    return true;
 }
 
 void Estoque::removerFilme(const int identificador)

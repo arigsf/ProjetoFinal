@@ -1,5 +1,21 @@
 #include "../include/Funcoes.hpp"
 
+
+const bool retornaVerdadeiroFalso() {
+    // Cria um gerador de números aleatórios
+    std::random_device rd;
+    std::mt19937 gen(rd()); // Pode escolher um outro algoritmo se desejar
+
+    // Define a faixa de valores possíveis (0 ou 1)
+    std::uniform_int_distribution<> dis(0, 1);
+
+    // Gera um número aleatório (0 ou 1) e retorna true caso for igual a 1, e falso caso seja 0
+    return  1 == dis(gen);
+
+}
+
+
+
 void removerEspacosDireitaEsquerda(std::string &linha)  {
     
     linha.erase(0,linha.find_first_not_of(' ')); 
@@ -26,10 +42,28 @@ const int separarTituloCategoria(std::string &titulo) {
 
 }
 
+// Funções usadas na classe Sistema
 
+Filme* lerFilme() {
 
-const int getCategoria(std::string categoria) {
-    for (std::map<int, std::string>::const_iterator it = Categorias.begin(); it != Categorias.end(); it++) {
-        if(it->second == categoria) return it-> first;
+    char tipo;
+    std::string titulo;
+    int unidades, identificador;
+
+    if(!(std::cin >> tipo >> unidades >> identificador)) return nullptr; // Retorna nulo caso a ordem não seja respeitada
+    std::cin.ignore();
+    if(!(std::getline(std::cin,titulo))) return nullptr; // retorna nulo caso haja algum erro na leitura da linha
+
+    Filme *novo_filme = nullptr;
+
+    if (tipo == 'F') novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
+    
+    else if(tipo == 'D') {
+        int categoria = separarTituloCategoria(titulo);
+        if(categoria == -1) return nullptr; // Retorna nulo caso não haja uma categoria especificada
+        removerEspacosDireitaEsquerda(titulo);
+        novo_filme = new DVD(unidades,identificador,titulo,categoria);
     }
+    
+    return novo_filme;
 }

@@ -17,12 +17,29 @@ int main() {
     Sistema sistema_principal;
     
     while (true)
-    {
+    {        
         std::cin >> comando;
         
-        if(comando == LER_ARQUIVO) sistema_principal.lerArquivo();
-        else if(comando == CADASTRAR_FILME) sistema_principal.cadastrarFilme();
-        else if(comando == REMOVER_FILME) sistema_principal.removerFilme();
+        if(comando == LER_ARQUIVO) {
+            std::string diretorio;
+            std::cin >> diretorio;
+            sistema_principal.lerArquivo(diretorio);
+        }
+        
+        else if(comando == CADASTRAR_FILME) {
+            Filme* novo_filme = lerFilme();
+            if(novo_filme) sistema_principal.cadastrarFilme(novo_filme); // Se novo_filme não for nulo
+            else {
+                std::cin.clear();
+                std::cin.ignore();
+                std::cout << "Dados inválidos, por favor tente novamente" << std::endl;
+            } 
+        }
+        else if(comando == REMOVER_FILME) {
+            int identificador;
+            std::cin >> identificador;
+            sistema_principal.removerFilme(identificador);
+        } 
         else if(comando == LISTAR_FILMES) sistema_principal.listarFIlmes();
         
         else if(comando == FINALIZAR_SISTEMA) {

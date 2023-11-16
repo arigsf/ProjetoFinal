@@ -6,6 +6,8 @@
 #include <vector>
 #include "Filme.hpp"
 #include "Funcoes.hpp"
+#include <sstream>
+
 
 class Estoque
 {
@@ -17,7 +19,7 @@ public:
     Estoque();
     ~Estoque();
     void lerArquivo(const std::string diretorio);
-    void inserirFilme(Filme* filme);
+    bool inserirFilme(Filme* filme, bool);
     void removerFilme(const int identificador);
     void pesquisarFilmesCodigo(const int identificador) const;
     void pesquisarFilmesTitulo(const std::string titulo) const;
