@@ -52,7 +52,7 @@ std::string Filme::listarInformacoes()
 
 std::string DVD::listarInformacoes()
 {
-    return "D " + Filme::listarInformacoes() + " " + std::to_string(DVD::getCategoria());
+    return "D " + Filme::listarInformacoes() + " " + Categorias.at(this->getCategoria());
 }
 
 std::string FITA::listarInformacoes()

@@ -1,13 +1,16 @@
 #ifndef ESTOQUE_H
 #define ESTOQUE_H
 
-#include <iostream>
-#include <string>
-#include <vector>
 #include "Filme.hpp"
 #include "Funcoes.hpp"
 #include <sstream>
 
+
+const std::map<std::string, std::function<bool(const Filme*, const Filme*)>> COMPARADORES_FILME = {
+    {"C", [](const Filme* a, const Filme* b) { return a->getIdentificador() < b->getIdentificador(); }},
+    {"N", [](const Filme* a, const Filme* b) { return a->getTitulo() < b->getTitulo(); }},
+    {"U", [](const Filme* a, const Filme* b) { return a->getUnidades() < b->getUnidades(); }}
+};
 
 class Estoque
 {
@@ -18,12 +21,12 @@ private:
 public:
     Estoque();
     ~Estoque();
-    void lerArquivo(const std::string diretorio);
-    bool inserirFilme(Filme* filme, bool);
-    void removerFilme(const int identificador);
-    void pesquisarFilmesCodigo(const int identificador) const;
-    void pesquisarFilmesTitulo(const std::string titulo) const;
-    void listarFilmesOrdenados(const bool) const;
+    void lerArquivo(const std::string);
+    bool inserirFilme(Filme* , bool);
+    void removerFilme(const int);
+    void pesquisarFilmesCodigo(const int) const;
+    void pesquisarFilmesTitulo(const std::string) const;
+    void listarFilmesOrdenados(const std::string) const;
     void salvarDados() const;
 };
 

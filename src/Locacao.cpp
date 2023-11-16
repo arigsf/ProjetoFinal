@@ -1,4 +1,4 @@
-#include "Locacao.hpp"
+#include "../include/Locacao.hpp"
 
 Locacao::Locacao() : numeroLocacoes(0){}
 

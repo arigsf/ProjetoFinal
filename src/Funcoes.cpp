@@ -50,20 +50,41 @@ Filme* lerFilme() {
     std::string titulo;
     int unidades, identificador;
 
-    if(!(std::cin >> tipo >> unidades >> identificador)) return nullptr; // Retorna nulo caso a ordem não seja respeitada
+    std::cin >> tipo >> unidades >> identificador;
     std::cin.ignore();
-    if(!(std::getline(std::cin,titulo))) return nullptr; // retorna nulo caso haja algum erro na leitura da linha
+    std::getline(std::cin,titulo);
 
-    Filme *novo_filme = nullptr;
+    Filme *filme = nullptr;
 
-    if (tipo == 'F') novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
-    
-    else if(tipo == 'D') {
-        int categoria = separarTituloCategoria(titulo);
-        if(categoria == -1) return nullptr; // Retorna nulo caso não haja uma categoria especificada
-        removerEspacosDireitaEsquerda(titulo);
-        novo_filme = new DVD(unidades,identificador,titulo,categoria);
+    if(tipo == 'D') {
+        std::string categoria;
+        std::cin >> categoria;
+        std::map<int,std::string>::const_iterator it;
+
+        for (it = Categorias.begin(); it != Categorias.end();it++)
+            if(it->second == categoria) break;
+        
+        filme = new DVD(unidades,identificador,titulo,it->first);
     }
+
+    else if(tipo == 'F') filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
     
-    return novo_filme;
+
+
+    // if(!(std::cin >> tipo >> unidades >> identificador)) return nullptr; // Retorna nulo caso a ordem não seja respeitada
+    // std::cin.ignore();
+    // if(!(std::getline(std::cin,titulo))) return nullptr; // retorna nulo caso haja algum erro na leitura da linha
+
+    // Filme *novo_filme = nullptr;
+
+    // if (tipo == 'F') novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
+    
+    // else if(tipo == 'D') {
+    //     int categoria = separarTituloCategoria(titulo);
+    //     if(categoria == -1) return nullptr; // Retorna nulo caso não haja uma categoria especificada
+    //     removerEspacosDireitaEsquerda(titulo);
+    //     novo_filme = new DVD(unidades,identificador,titulo,categoria);
+    // }
+    
+    return filme;
 }

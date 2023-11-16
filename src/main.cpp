@@ -28,30 +28,26 @@ int main() {
         
         else if(comando == CADASTRAR_FILME) {
             Filme* novo_filme = lerFilme();
-            if(novo_filme) sistema_principal.cadastrarFilme(novo_filme); // Se novo_filme não for nulo
-            else {
-                std::cin.clear();
-                std::cin.ignore();
-                std::cout << "Dados inválidos, por favor tente novamente" << std::endl;
-            } 
+            sistema_principal.cadastrarFilme(novo_filme);
+            
         }
+        
         else if(comando == REMOVER_FILME) {
             int identificador;
             std::cin >> identificador;
             sistema_principal.removerFilme(identificador);
         } 
-        else if(comando == LISTAR_FILMES) {
-            char codigo_titulo;
-            std::cin >> codigo_titulo;
 
-            if(codigo_titulo == 'C') sistema_principal.listarFilmesOrdenados(true);
-            else if(codigo_titulo == 'T') sistema_principal.listarFilmesOrdenados(false);
-            
+        else if(comando == LISTAR_FILMES) {
+            std::string ordenacao;
+            std::cin >> ordenacao;
+            sistema_principal.listarFilmesOrdenados(ordenacao);
+
             
         }
         
         else if(comando == FINALIZAR_SISTEMA) {
-            
+            sistema_principal.finalizarSistema();
             break;
         }
                 

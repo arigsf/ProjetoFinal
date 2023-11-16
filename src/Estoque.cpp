@@ -120,44 +120,28 @@ void Estoque::pesquisarFilmesCodigo(const int identificador) const
     }
 }
 
-void Estoque::pesquisarFilmesTitulo(const std::string titulo) const
-{
+void Estoque::pesquisarFilmesTitulo(const std::string titulo) const {
     // Lista todos os filmes que tem o título informado pelo usuário
     for (Filme *filme : this->estoque)
-    {
         if (filme->getTitulo() == titulo)
         {
             filme->listarInformacoes();
             std::cout << std::endl;
         }
-    }
 }
 
-void Estoque::listarFilmesOrdenados(const bool identificador) const {
+void Estoque::listarFilmesOrdenados(const std::string ordenacao) const {
 
-    std::vector<Filme*> filmes_ordenados = this->estoque;
+    if(COMPARADORES_FILME.find(ordenacao) != COMPARADORES_FILME.end()) {
+        std::vector<Filme*> filmes_ordenados = this->estoque;
+        std::sort(filmes_ordenados.begin(),filmes_ordenados.end(), COMPARADORES_FILME.at(ordenacao));
 
-    if(identificador) {
-        std::sort(filmes_ordenados.begin(),filmes_ordenados.end(),
-            [](const Filme* a, const Filme* b) {
-                return a->getIdentificador() < b->getIdentificador();
-            });
-    }
-
-    else {
-        std::sort(filmes_ordenados.begin(),filmes_ordenados.end(),
-            [](const Filme* a, const Filme* b) {
-                return a->getTitulo() < b->getTitulo();
-            });
-    }
-
-
-
-    for (const Filme * filme : filmes_ordenados)
+        for (const Filme * filme : filmes_ordenados)
         std::cout << filme->getIdentificador() << " " << filme->getTitulo() 
         << " " << filme->getUnidades() << filme->getTipo() << std::endl;
+    }
+    else std::cout << "Erro: opção inexistente" << std::endl;
     
-
 }
 
 void Estoque::salvarDados() const
@@ -165,7 +149,6 @@ void Estoque::salvarDados() const
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
     std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
     
-
     if (!arquivo.is_open()) {
         std::cout << "Erro: não foi possível criar o arquivo" << std::endl;
         return;
