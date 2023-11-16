@@ -12,11 +12,10 @@ void Sistema::removerFilme(const int identificador) {
     this->estoque.removerFilme(identificador);
 }
 
-void Sistema::listarFIlmes() {
-    // char ordem;
-    // std::cin >> ordem;
-
+void Sistema::listarFilmesOrdenados(bool porIndentificador) const {
+    this->estoque.listarFilmesOrdenados(porIndentificador);
 }
+
 
 void Sistema::finalizarSistema() {
     this->estoque.salvarDados();

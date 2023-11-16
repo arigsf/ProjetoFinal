@@ -68,8 +68,7 @@ void Estoque::lerArquivo(const std::string diretorio)
 bool Estoque::inserirFilme(Filme *novoFilme, bool mensagens)
 {   
     // Verifica se os dados inseridos são válidos de acordo com o tipo do filme
-    if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "")
-    {
+    if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "") {
         if(mensagens) std::cout << "ERRO: dados incorretos" << std::endl;
         return false;
     }
@@ -132,6 +131,33 @@ void Estoque::pesquisarFilmesTitulo(const std::string titulo) const
             std::cout << std::endl;
         }
     }
+}
+
+void Estoque::listarFilmesOrdenados(const bool identificador) const {
+
+    std::vector<Filme*> filmes_ordenados = this->estoque;
+
+    if(identificador) {
+        std::sort(filmes_ordenados.begin(),filmes_ordenados.end(),
+            [](const Filme* a, const Filme* b) {
+                return a->getIdentificador() < b->getIdentificador();
+            });
+    }
+
+    else {
+        std::sort(filmes_ordenados.begin(),filmes_ordenados.end(),
+            [](const Filme* a, const Filme* b) {
+                return a->getTitulo() < b->getTitulo();
+            });
+    }
+
+
+
+    for (const Filme * filme : filmes_ordenados)
+        std::cout << filme->getIdentificador() << " " << filme->getTitulo() 
+        << " " << filme->getUnidades() << filme->getTipo() << std::endl;
+    
+
 }
 
 void Estoque::salvarDados() const

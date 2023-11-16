@@ -23,6 +23,7 @@ public:
     void removerFilme(const int identificador);
     void pesquisarFilmesCodigo(const int identificador) const;
     void pesquisarFilmesTitulo(const std::string titulo) const;
+    void listarFilmesOrdenados(const bool) const;
     void salvarDados() const;
 };
 

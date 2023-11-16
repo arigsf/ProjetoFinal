@@ -40,7 +40,15 @@ int main() {
             std::cin >> identificador;
             sistema_principal.removerFilme(identificador);
         } 
-        else if(comando == LISTAR_FILMES) sistema_principal.listarFIlmes();
+        else if(comando == LISTAR_FILMES) {
+            char codigo_titulo;
+            std::cin >> codigo_titulo;
+
+            if(codigo_titulo == 'C') sistema_principal.listarFilmesOrdenados(true);
+            else if(codigo_titulo == 'T') sistema_principal.listarFilmesOrdenados(false);
+            
+            
+        }
         
         else if(comando == FINALIZAR_SISTEMA) {
             

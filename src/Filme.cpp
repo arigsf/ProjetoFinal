@@ -12,13 +12,13 @@ FITA::FITA(int _unidades, int _identificador, std::string _titulo, bool _estaReb
     this->tipo = TIPO_FITA;
 }
 
-int Filme::getIdentificador() { return this->identificador; }
+const int Filme::getIdentificador() const { return this->identificador; }
 
-int Filme::getUnidades() { return this->unidades; }
+const int Filme::getUnidades() const { return this->unidades; }
 
-std::string Filme::getTitulo() { return this->titulo; }
+const std::string Filme::getTitulo() const { return this->titulo; }
 
-int Filme::getTipo() { return this->tipo; }
+const int Filme::getTipo() const { return this->tipo; }
 
 int DVD::getCategoria() { return this->categoria; }
 
