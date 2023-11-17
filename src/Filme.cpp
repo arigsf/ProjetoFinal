@@ -1,30 +1,24 @@
-#include "Filme.hpp"
+#include "../include/Filme.hpp"
 
 Filme::Filme(int _unidades, int _identificador, std::string _titulo) : unidades(_unidades), identificador(_identificador), titulo(_titulo) {}
 
 Filme::~Filme() {}
 
-DVD::DVD(int _unidades, int _identificador, std::string _titulo, int _categoria) : Filme(_unidades, _identificador, _titulo)
-{
-    this->categoria = _categoria;
+DVD::DVD(int _unidades, int _identificador, std::string _titulo, int _categoria) : Filme(_unidades, _identificador, _titulo), categoria(_categoria) {
     this->tipo = TIPO_DVD;
-    std::cout << "Filme " << identificador << " cadastrado com sucesso" << std::endl;
 }
 
-FITA::FITA(int _unidades, int _identificador, std::string _titulo, bool _estaRebobinado) : Filme(_unidades, _identificador, _titulo)
-{
-    this->estaRebobinado = _estaRebobinado;
+FITA::FITA(int _unidades, int _identificador, std::string _titulo, bool _estaRebobinado) : Filme(_unidades, _identificador, _titulo), estaRebobinado(_estaRebobinado) {
     this->tipo = TIPO_FITA;
-    std::cout << "Filme " << identificador << " cadastrado com sucesso" << std::endl;
 }
 
-int Filme::getIdentificador() { return this->identificador; }
+const int Filme::getIdentificador() const { return this->identificador; }
 
-int Filme::getUnidades() { return this->unidades; }
+const int Filme::getUnidades() const { return this->unidades; }
 
-std::string Filme::getTitulo() { return this->titulo; }
+const std::string Filme::getTitulo() const { return this->titulo; }
 
-int Filme::getTipo() { return this->tipo; }
+const int Filme::getTipo() const { return this->tipo; }
 
 int DVD::getCategoria() { return this->categoria; }
 
@@ -53,30 +47,18 @@ int FITA::calculoPrecoLocacao(int dias)
 
 std::string Filme::listarInformacoes()
 {
-    return std::to_string(unidades) + " " + std::to_string(identificador) + " " + titulo + " ";
+    return std::to_string(unidades) + " " + std::to_string(identificador) + " " + titulo;
 }
 
 std::string DVD::listarInformacoes()
 {
-    return "D " + Filme::listarInformacoes() + " " + std::to_string(DVD::getCategoria());
+    return "D " + Filme::listarInformacoes() + " " + Categorias.at(this->getCategoria());
 }
 
 std::string FITA::listarInformacoes()
 {
     return "F " + Filme::listarInformacoes();
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 bool Filme::validarDados()
 {

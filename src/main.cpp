@@ -17,17 +17,37 @@ int main() {
     Sistema sistema_principal;
     
     while (true)
-    {
+    {        
         std::cin >> comando;
         
         if(comando == LER_ARQUIVO) {
-            std::string nome_arquivo;
-            std::cin >> nome_arquivo;
-            sistema_principal.lerArquivo(nome_arquivo);
+            std::string diretorio;
+            std::cin >> diretorio;
+            sistema_principal.lerArquivo(diretorio);
         }
+        
+        else if(comando == CADASTRAR_FILME) {
+            Filme* novo_filme = lerFilme();
+            sistema_principal.cadastrarFilme(novo_filme);
+            
+        }
+        
+        else if(comando == REMOVER_FILME) {
+            int identificador;
+            std::cin >> identificador;
+            sistema_principal.removerFilme(identificador);
+        } 
 
+        else if(comando == LISTAR_FILMES) {
+            std::string ordenacao;
+            std::cin >> ordenacao;
+            sistema_principal.listarFilmesOrdenados(ordenacao);
+
+            
+        }
+        
         else if(comando == FINALIZAR_SISTEMA) {
-            sistema_principal.salvarDados();
+            sistema_principal.finalizarSistema();
             break;
         }
                 
