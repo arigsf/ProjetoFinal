@@ -22,7 +22,7 @@ public:
     Estoque();
     ~Estoque();
     void lerArquivo(const std::string);
-    bool inserirFilme(Filme* , bool);
+    bool inserirFilme(Filme*);
     void removerFilme(const int);
     void pesquisarFilmesCodigo(const int) const;
     void pesquisarFilmesTitulo(const std::string) const;

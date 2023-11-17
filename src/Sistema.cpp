@@ -5,7 +5,7 @@ void Sistema::lerArquivo(const std::string diretorio) {
 }
 
 void Sistema::cadastrarFilme(Filme *novo_filme) {
-    this->estoque.inserirFilme(novo_filme, true);
+    this->estoque.inserirFilme(novo_filme);
 }
 
 void Sistema::removerFilme(const int identificador) {

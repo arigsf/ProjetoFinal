@@ -47,7 +47,7 @@ int FITA::calculoPrecoLocacao(int dias)
 
 std::string Filme::listarInformacoes()
 {
-    return std::to_string(unidades) + " " + std::to_string(identificador) + " " + titulo + " ";
+    return std::to_string(unidades) + " " + std::to_string(identificador) + " " + titulo;
 }
 
 std::string DVD::listarInformacoes()

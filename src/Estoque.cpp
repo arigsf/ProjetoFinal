@@ -4,16 +4,11 @@
 #include <fstream>
 #include <algorithm>
 
-Estoque::Estoque()
-{
-}
+Estoque::Estoque() {}
 
 Estoque::~Estoque()
 {
-    for (Filme *filme : estoque)
-    {
-        delete filme;
-    }
+    for (Filme *filme : estoque) delete filme;
 
     estoque.clear();
 }
@@ -33,9 +28,7 @@ void Estoque::lerArquivo(const std::string diretorio)
     int unidades, identificador;
 
     while(std::getline(arquivo,linha)) {
-    
         // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
-
         std::istringstream iss(linha);
         // é um stream de input baseado em uma string
 
@@ -44,32 +37,33 @@ void Estoque::lerArquivo(const std::string diretorio)
 
         Filme *novo_filme = nullptr;
 
-        if (tipo == 'F') novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
+        if (tipo == 'F') {
+            removerEspacosDireitaEsquerda(titulo);
+            novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
+        }
+         
         
         else if(tipo == 'D') {
             int categoria = separarTituloCategoria(titulo);
             if(categoria == -1) continue;// Caso alguma categoria tenha sido encontrada
             removerEspacosDireitaEsquerda(titulo);
             novo_filme = new DVD(unidades,identificador,titulo,categoria);
-        
-            
         }
 
-        if(this->inserirFilme(novo_filme,false)) total++;
+        if(this->inserirFilme(novo_filme)) total++;
 
     }
-    
     
     arquivo.close();
     std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
     this->diretorio = diretorio;
 }
 
-bool Estoque::inserirFilme(Filme *novoFilme, bool mensagens)
+bool Estoque::inserirFilme(Filme *novoFilme)
 {   
     // Verifica se os dados inseridos são válidos de acordo com o tipo do filme
     if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "") {
-        if(mensagens) std::cout << "ERRO: dados incorretos" << std::endl;
+        std::cout << "ERRO: dados incorretos" << std::endl;
         return false;
     }
 
@@ -78,13 +72,13 @@ bool Estoque::inserirFilme(Filme *novoFilme, bool mensagens)
     {
         if (filme->getIdentificador() == novoFilme->getIdentificador())
         {
-            if(mensagens) std::cout << "ERRO: identificador repetido" << std::endl;
+            std::cout << "ERRO: identificador repetido" << std::endl;
             return false;
         }
     }
 
     this->estoque.push_back(novoFilme);
-    if(mensagens) std::cout << "Filme " << novoFilme->getIdentificador() << " cadastrado com sucesso" << std::endl;
+    std::cout << "Filme " << novoFilme->getIdentificador() << " cadastrado com sucesso" << std::endl;
     return true;
 }
 
@@ -109,7 +103,7 @@ void Estoque::removerFilme(const int identificador)
 
 void Estoque::pesquisarFilmesCodigo(const int identificador) const
 {
-    // Lista todos os filmes que tem o código informado pelo usuário
+    // Lista todos os filmes que tem o identificador informado pelo usuário
     for (Filme *filme : this->estoque)
     {
         if (filme->getIdentificador() == identificador)
@@ -136,9 +130,18 @@ void Estoque::listarFilmesOrdenados(const std::string ordenacao) const {
         std::vector<Filme*> filmes_ordenados = this->estoque;
         std::sort(filmes_ordenados.begin(),filmes_ordenados.end(), COMPARADORES_FILME.at(ordenacao));
 
-        for (const Filme * filme : filmes_ordenados)
-        std::cout << filme->getIdentificador() << " " << filme->getTitulo() 
-        << " " << filme->getUnidades() << filme->getTipo() << std::endl;
+        for (const Filme * filme : filmes_ordenados) {
+            std::cout << filme->getIdentificador() << " " << filme->getTitulo() 
+            << " " << filme->getUnidades() << " " << Tipo_Filme.at(filme->getTipo()) << " ";
+
+            if(filme->getTipo() == TIPO_DVD) {
+                DVD *dvd = (DVD*) filme;
+                std::cout << Categorias.at(dvd->getCategoria());
+                // Downcasting para usar a função getCategoria
+            }
+
+            std::cout << std::endl;
+        }
     }
     else std::cout << "Erro: opção inexistente" << std::endl;
     
@@ -158,6 +161,5 @@ void Estoque::salvarDados() const
     for (Filme *filme : this->estoque)
         arquivo << filme->listarInformacoes() << std::endl;
     
-
     arquivo.close();
 }
