@@ -41,7 +41,7 @@ class Filme {
         int tipo;
 
     public:
-        Filme(int, int, std::string);
+        Filme(int, int, std::string, int);
         virtual ~Filme();
 
         const int getIdentificador() const;

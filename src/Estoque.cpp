@@ -3,6 +3,8 @@
 #include <iterator>
 #include <fstream>
 #include <algorithm>
+#include <sstream>
+
 
 Estoque::Estoque() {}
 
@@ -77,6 +79,15 @@ bool Estoque::inserirFilme(Filme *novoFilme)
         }
     }
 
+    if(novoFilme->getTipo() == TIPO_DVD) {
+        DVD *dvd = dynamic_cast<DVD*>(novoFilme);
+        if(Categorias.find(dvd->getCategoria()) == Categorias.end()) {
+            std::cout << "ERRO: categoria inválida" << std::endl;
+            return false;
+        }
+
+    }
+
     this->estoque.push_back(novoFilme);
     std::cout << "Filme " << novoFilme->getIdentificador() << " cadastrado com sucesso" << std::endl;
     return true;
@@ -130,12 +141,12 @@ void Estoque::listarFilmesOrdenados(const std::string ordenacao) const {
         std::vector<Filme*> filmes_ordenados = this->estoque;
         std::sort(filmes_ordenados.begin(),filmes_ordenados.end(), COMPARADORES_FILME.at(ordenacao));
 
-        for (const Filme * filme : filmes_ordenados) {
+        for (Filme * filme : filmes_ordenados) {
             std::cout << filme->getIdentificador() << " " << filme->getTitulo() 
             << " " << filme->getUnidades() << " " << Tipo_Filme.at(filme->getTipo()) << " ";
 
             if(filme->getTipo() == TIPO_DVD) {
-                DVD *dvd = (DVD*) filme;
+                DVD *dvd = dynamic_cast<DVD*>(filme);
                 std::cout << Categorias.at(dvd->getCategoria());
                 // Downcasting para usar a função getCategoria
             }
