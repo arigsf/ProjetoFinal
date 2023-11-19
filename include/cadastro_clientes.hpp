@@ -14,14 +14,12 @@ public:
     void inserirCliente(Cliente* cliente);
     void removerCliente(const std::string& cpf);
     void listarClientesOrdenados(bool porCPF) const;
-
+    //Método que verifica a existência de algum cliente
+    bool clienteExiste(const std::string& cpf) const;
     //Destrutor
     ~CadastroClientes();
 
 private:
-    //Método que verifica a existência de algum cliente
-    bool clienteExiste(const std::string& cpf) const;
-
     //Lista dos clientes
     std::vector<Cliente*> clientes;
 };

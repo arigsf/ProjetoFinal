@@ -2,6 +2,7 @@
 #define FUNCOES_H
 
 #include "Filme.hpp"
+#include "clientes.hpp"
 #include <random>
 
 
@@ -12,7 +13,6 @@ const bool retornaVerdadeiroFalso();
 void removerEspacosDireitaEsquerda(std::string &);
 const int separarTituloCategoria(std::string &);
 // Funções usadas em sistema
-Filme* lerFilme();
 
 
 #endif

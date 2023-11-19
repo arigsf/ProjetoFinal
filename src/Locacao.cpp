@@ -1,13 +1,13 @@
 #include "../include/Locacao.hpp"
 
-Locacao::Locacao() : numeroLocacoes(0){}
+int Locacao::numeroLocacoes = 0;
 
 void Locacao::removeLocacao(int posNoVetorLocacoes){
     locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
 }
 
-void Locacao::alugar(std::string CPF, std::vector<Filme*> filmes){
-    if(verificarCPF(CPF) == 0){
+void Locacao::alugar(std::string CPF, std::vector<Filme*> &filmes){
+    if(!verificarCPF(CPF)){
 
         this->locacoes.push_back(std::pair<std::string, std::vector<Filme*>> (CPF, filmes));
         this->numeroLocacoes++;
@@ -18,15 +18,15 @@ void Locacao::alugar(std::string CPF, std::vector<Filme*> filmes){
 }
 
 bool Locacao::verificarCPF(std::string CPF){ // Verifica se o CPF já está com alguma locação pendente
-    for(std::pair<std::string, std::vector<Filme*>> i : this->locacoes) if(i.first == CPF) return 1;
-    return 0;
+    for(std::pair<std::string, std::vector<Filme*>> i : this->locacoes) if(i.first == CPF) return true;
+    return false;
 }
 
 int Locacao::devolucao(std::string CPF, int dias){
-    if(verificarCPF(CPF) == 1){
+    if(verificarCPF(CPF)){
         int somaPrecos = 0;
 
-        for(int i = 0; i<this->numeroLocacoes; i++){
+        for(int i = 0; i < this->numeroLocacoes; i++){
             if(locacoes[i].first == CPF){
                 for(Filme *filme : locacoes[i].second){
                     somaPrecos += filme->calculoPrecoLocacao(dias);
@@ -38,11 +38,11 @@ int Locacao::devolucao(std::string CPF, int dias){
 
 
         std::cout << "Devolucao realizada com sucesso, apenas eh necessario o pagamento de " << somaPrecos << " reais." << std::endl;
-
         return somaPrecos;
 
-    } else std::cout << "Tal CPF nao possui pendencias com o nosso sistema." << std::endl;
-
+    } 
+    
+    std::cout << "Tal CPF nao possui pendencias com o nosso sistema." << std::endl;
     return 0;
 }
 

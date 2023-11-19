@@ -3,7 +3,6 @@
 
 #include "Filme.hpp"
 #include "Funcoes.hpp"
-#include <sstream>
 
 
 const std::map<std::string, std::function<bool(const Filme*, const Filme*)>> COMPARADORES_FILME = {
@@ -27,6 +26,7 @@ public:
     void pesquisarFilmesCodigo(const int) const;
     void pesquisarFilmesTitulo(const std::string) const;
     void listarFilmesOrdenados(const std::string) const;
+    Filme *FilmeExiste(const int) const;
     void salvarDados() const;
 };
 
