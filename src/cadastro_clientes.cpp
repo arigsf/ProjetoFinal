@@ -144,6 +144,7 @@ void CadastroClientes::lerArquivo() {
         data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
         palavras.pop_back();
         nome = std::accumulate(palavras.begin(), palavras.end(), std::string());        
+        palavras.clear();
         novo_cliente = new Cliente(cpf,nome,data_nascimento);
 
         this->inserirCliente(novo_cliente);

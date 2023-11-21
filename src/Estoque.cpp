@@ -25,37 +25,49 @@ void Estoque::lerArquivo(const std::string diretorio)
         return;
     }
 
-    int total = 0;
+    
     char tipo;
+    int total = 0;
+    Filme *novo_filme;
     std::string titulo, linha;
     int unidades, identificador;
+    
 
     while (std::getline(arquivo, linha))
     {
         // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
         std::istringstream iss(linha);
+        novo_filme = nullptr;
         // é um stream de input baseado em uma string
 
-        if (!(iss >> tipo >> unidades >> identificador))
-            continue; // caso a ordem não tenha sido respeitada, ou tenha dado erro
-        if (!(std::getline(iss >> std::ws, titulo)))
-            continue;
+        iss >> tipo >> unidades >> identificador;
 
-        Filme *novo_filme = nullptr;
-
-        if (tipo == 'F')
-        {
-            removerEspacosDireitaEsquerda(titulo);
-            novo_filme = new FITA(unidades, identificador, titulo, retornaVerdadeiroFalso());
+        if(tipo == Tipo_Filme.at(TIPO_FITA)) {
+            std::getline(iss >> std::ws, titulo);
+            novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
         }
 
-        else if (tipo == 'D')
-        {
-            int categoria = separarTituloCategoria(titulo);
-            if (categoria == -1)
-                continue; // Caso alguma categoria tenha sido encontrada
-            removerEspacosDireitaEsquerda(titulo);
-            novo_filme = new DVD(unidades, identificador, titulo, categoria);
+
+        else if(tipo == Tipo_Filme.at(TIPO_DVD)) {
+
+            std::string palavra;
+            std::vector<std::string> palavras;
+            while (iss >> palavra) palavras.push_back(palavra); // As palavras são separadas em um arranjo
+
+            // A ultima palavra corresponde a categoria do DVD
+            int indice_categoria = -1;
+            for (std::map<int,std::string>::const_iterator it = Categorias.begin(); it != Categorias.end();it++)
+                if(it->second == palavras.back()) {
+                    indice_categoria = it->first;
+                    break;
+                } 
+            
+            if(indice_categoria != -1) palavras.pop_back();
+            
+            titulo = std::accumulate(palavras.begin(), palavras.end(), std::string());
+            palavras.clear();
+
+            novo_filme = new DVD(unidades,identificador,titulo,indice_categoria);
         }
 
         if (this->inserirFilme(novo_filme))
