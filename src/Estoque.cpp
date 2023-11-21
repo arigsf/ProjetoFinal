@@ -63,7 +63,7 @@ void Estoque::lerArquivo(const std::string diretorio)
                 } 
             
             if(indice_categoria != -1) palavras.pop_back();
-            
+
             titulo = std::accumulate(palavras.begin(), palavras.end(), std::string());
             palavras.clear();
 
@@ -81,31 +81,34 @@ void Estoque::lerArquivo(const std::string diretorio)
 
 bool Estoque::inserirFilme(Filme *novoFilme)
 {
+    bool erro = false;
     // Verifica se os dados inseridos são válidos de acordo com o tipo do filme
     if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "")
     {
         std::cout << "ERRO: dados incorretos" << std::endl;
-        return false;
+        erro = true;
     }
 
     // Verifica se o código já é usado em outro filme
-    for (Filme *filme : this->estoque)
-    {
-        if (filme->getIdentificador() == novoFilme->getIdentificador())
-        {
-            std::cout << "ERRO: identificador repetido" << std::endl;
-            return false;
-        }
+    
+    else if(this->filmeExiste(novoFilme->getIdentificador()) != nullptr) {
+        std::cout << "ERRO: identificador repetido" << std::endl;
+        erro = true;
     }
 
-    if (novoFilme->getTipo() == TIPO_DVD)
+    else if (novoFilme->getTipo() == TIPO_DVD)
     {
         DVD *dvd = dynamic_cast<DVD *>(novoFilme);
         if (Categorias.find(dvd->getCategoria()) == Categorias.end())
         {
             std::cout << "ERRO: categoria inválida" << std::endl;
-            return false;
+            erro = true;
         }
+    }
+
+    if(erro) {
+        delete novoFilme;
+        return false;
     }
 
     this->estoque.push_back(novoFilme);
@@ -116,12 +119,13 @@ bool Estoque::inserirFilme(Filme *novoFilme)
 void Estoque::removerFilme(const int identificador)
 {
     // Percorre o estoque a procura do filme
-    auto it = std::remove_if(this->estoque.begin(), this->estoque.end(), [identificador](Filme *filme)
+    std::vector<Filme*>::iterator it = std::remove_if(this->estoque.begin(), this->estoque.end(), [identificador](Filme *filme)
                              { return filme->getIdentificador() == identificador; });
 
     // Se existir um filme com o código associado, é excluído
     if (it != this->estoque.end())
     {
+        delete *it;
         this->estoque.erase(it, this->estoque.end());
         std::cout << "Filme " << identificador << " removido com sucesso" << std::endl;
     }

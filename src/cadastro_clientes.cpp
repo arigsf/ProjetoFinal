@@ -20,6 +20,7 @@ void CadastroClientes::inserirCliente(Cliente* cliente) {
     //Verificação de existência do cliente
     if (clienteExiste(cliente->getCPF())) {
         std::cout << "ERRO: CPF repetido" << std::endl;
+        delete cliente;
         return;
     }
 
@@ -27,12 +28,14 @@ void CadastroClientes::inserirCliente(Cliente* cliente) {
     std::regex regexCPF(R"(\d{3}\.\d{3}\.\d{3}-\d{2})");
     if (!std::regex_match(cliente->getCPF(), regexCPF)) {
         std::cout << "ERRO: Formato inválido de CPF" << std::endl;
+        delete cliente;
         return;
     }
 
     //Verificar se o nome do cliente está vazio
     if (cliente->getNome().empty()) {
         std::cout << "ERRO: Nome vazio" << std::endl;
+        delete cliente;
         return;
     }
 
@@ -40,6 +43,7 @@ void CadastroClientes::inserirCliente(Cliente* cliente) {
     std::regex regexDataNascimento(R"(\d{2}/\d{2}/\d{4})");
     if (!std::regex_match(cliente->getDataNascimento(), regexDataNascimento)) {
         std::cout << "ERRO: Formato inválido de data de nascimento" << std::endl;
+        delete cliente;
         return;
     }
 
