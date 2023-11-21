@@ -1,19 +1,30 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
-#include <fstream>
+#include "Estoque.hpp"
 #include "Locacao.hpp"
-#include "Funcoes.hpp"
+#include "cadastro_clientes.hpp"
 #include <iterator>
 
 class Sistema {
 
     private:
-        // A classe sistema armazenara uma classe do tipo estoque
+        Estoque estoque;
+        Locacao locacao;
+        CadastroClientes clientes;
         
     public:
-        void lerArquivo(std::string);
-        void salvarDados();
+        void lerArquivo(const std::string);
+        void cadastrarFilme(Filme *);
+        void removerFilme(const int);
+        void listarFilmesOrdenados(const std::string) const;
+        void finalizarSistema();
+        void cadastrarCliente(Cliente *);
+        void listarClientesOrdenados(const std::string) const;
+        void removerCliente(const std::string);
+        void alugarFilmes(std::string, std::vector<int> &const);
+        void devolverFilmes(std::string, int);
+        
 
 };
 

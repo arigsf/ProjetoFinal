@@ -41,13 +41,13 @@ class Filme {
         int tipo;
 
     public:
-        Filme(int, int, std::string);
+        Filme(int, int, std::string, int);
         virtual ~Filme();
 
-        int getIdentificador();
-        int getUnidades();
-        std::string getTitulo();
-        int getTipo();
+        const int getIdentificador() const;
+        const int getUnidades() const;
+        const std::string getTitulo() const;
+        const int getTipo() const;
 
         // Cálculo do valor de locação, se comporta de maneira diferente para DVD ou FITA
         virtual int calculoPrecoLocacao(int) = 0; 
