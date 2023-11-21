@@ -49,6 +49,9 @@ class Filme {
         const std::string getTitulo() const;
         const int getTipo() const;
 
+        void adicionarUnidades(int);
+        void removerUnidades(int);
+
         // Cálculo do valor de locação, se comporta de maneira diferente para DVD ou FITA
         virtual int calculoPrecoLocacao(int) = 0; 
         virtual std::string listarInformacoes(); // Método para listar as informacoes do DVD ou FITA, se comporta de maneira diferente em cada um

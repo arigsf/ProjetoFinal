@@ -16,6 +16,21 @@ const std::string Filme::getTitulo() const { return this->titulo; }
 
 const int Filme::getTipo() const { return this->tipo; }
 
+void Filme::adicionarUnidades(int valor) {
+    if(valor > 0)
+        this->unidades += valor;
+    else
+        std::cout << "Valor inválido a ser adicionado às unidades do filme: " << this->getTitulo() << std::endl;
+}
+
+void Filme::removerUnidades(int valor) {
+    if(valor > 0 && this->unidades >= valor) 
+        this->unidades -= valor;
+
+    else
+        std::cout << "Valor inválido a ser removido das unidades do filme: " << this->getTitulo() << std::endl;
+}
+
 int DVD::getCategoria() { return this->categoria; }
 
 int DVD::calculoPrecoLocacao(int dias)
