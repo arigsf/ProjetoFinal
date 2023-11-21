@@ -4,31 +4,46 @@
 //FORMATO Data de Nascimento: dd/mm/yyyy
 
 //Implementação do construtor da classe Cliente
-Cliente::Cliente(const std::string cpf, const std::string nome, const std::string dataNascimento)
-    : cpf(cpf), nome(nome), dataNascimento(dataNascimento) {}
+Cliente::Cliente(const std::string cpf, const std::string nome, const std::string dataNascimento, const std::string endereco)
+    : cpf(cpf), nome(nome), dataNascimento(dataNascimento), endereco(endereco) {}
 
 //Implementação dos métodos da classe Cliente
-const std::string Cliente::getCPF() const {
+const std::string Cliente::GetCPF() const {
     return cpf;
 }
 
-const std::string Cliente::getNome() const {
+const std::string Cliente::GetNome() const {
     return nome;
 }
 
-const std::string Cliente::getDataNascimento() const {
+const std::string Cliente::GetDataNascimento() const {
     return dataNascimento;
 }
 
-int Cliente::getIdade() const {
+const std::string Cliente::GetEndereco() const {
+    return endereco;
+}
+
+int Cliente::GetIdade() const {
     //Obtém hora e data do sistema
     std::time_t t = std::time(0);
     std::tm* atual = std::localtime(&t);
 
-    //Obtém o ano atual e o ano de nascimento do cliente
-    int anoAtual = atual->tm_year + 1900;
-    int anoNascimento = std::stoi(dataNascimento.substr(6)); //Utilizar o formato dia/mês/ano, ou seja, dd/mm/yyyy. Ex: 06/04/1998
+    //Obtém a data atual e de nascimento do cliente
+    int AnoAtual = atual->tm_year + 1900;
+    int MesAtual = atual->tm_mon + 1;
+    int DiaAtual = atual->tm_mday;
 
-    //Calcular e retornar a idade
-    return anoAtual - anoNascimento;
+    //Utilizar o formato dia/mês/ano, ou seja, dd/mm/yyyy. Ex: 06/04/1998
+    int AnoNascimento = std::stoi(dataNascimento.substr(6));
+    int MesNascimento = std::stoi(dataNascimento.substr(3,2));
+    int DiaNascimento = std::stoi(dataNascimento.substr(0,2));
+
+    //Calcula e retorna a idade
+    int Idade = AnoAtual - AnoNascimento;
+
+    if(MesAtual < MesNascimento || (MesAtual == MesNascimento && DiaAtual < DiaNascimento)) {
+        Idade--;
+}
+return Idade;
 }
