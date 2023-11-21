@@ -5,12 +5,12 @@
 #include <algorithm>
 #include <sstream>
 
-
 Estoque::Estoque() {}
 
 Estoque::~Estoque()
 {
-    for (Filme *filme : estoque) delete filme;
+    for (Filme *filme : estoque)
+        delete filme;
 
     estoque.clear();
 }
@@ -19,7 +19,8 @@ void Estoque::lerArquivo(const std::string diretorio)
 {
     std::ifstream arquivo(diretorio, std::ios::in);
 
-    if (!arquivo.is_open()) {
+    if (!arquivo.is_open())
+    {
         std::cout << "ERRO: arquivo inexistente" << std::endl;
         return;
     }
@@ -29,42 +30,48 @@ void Estoque::lerArquivo(const std::string diretorio)
     std::string titulo, linha;
     int unidades, identificador;
 
-    while(std::getline(arquivo,linha)) {
+    while (std::getline(arquivo, linha))
+    {
         // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
         std::istringstream iss(linha);
         // é um stream de input baseado em uma string
 
-        if(!(iss >> tipo >> unidades >> identificador)) continue; // caso a ordem não tenha sido respeitada, ou tenha dado erro
-        if(!(std::getline(iss >> std::ws, titulo))) continue;
+        if (!(iss >> tipo >> unidades >> identificador))
+            continue; // caso a ordem não tenha sido respeitada, ou tenha dado erro
+        if (!(std::getline(iss >> std::ws, titulo)))
+            continue;
 
         Filme *novo_filme = nullptr;
 
-        if (tipo == 'F') {
+        if (tipo == 'F')
+        {
             removerEspacosDireitaEsquerda(titulo);
-            novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
+            novo_filme = new FITA(unidades, identificador, titulo, retornaVerdadeiroFalso());
         }
-         
-        
-        else if(tipo == 'D') {
+
+        else if (tipo == 'D')
+        {
             int categoria = separarTituloCategoria(titulo);
-            if(categoria == -1) continue;// Caso alguma categoria tenha sido encontrada
+            if (categoria == -1)
+                continue; // Caso alguma categoria tenha sido encontrada
             removerEspacosDireitaEsquerda(titulo);
-            novo_filme = new DVD(unidades,identificador,titulo,categoria);
+            novo_filme = new DVD(unidades, identificador, titulo, categoria);
         }
 
-        if(this->inserirFilme(novo_filme)) total++;
-
+        if (this->inserirFilme(novo_filme))
+            total++;
     }
-    
+
     arquivo.close();
     std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
     this->diretorio = diretorio;
 }
 
 bool Estoque::inserirFilme(Filme *novoFilme)
-{   
+{
     // Verifica se os dados inseridos são válidos de acordo com o tipo do filme
-    if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "") {
+    if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "")
+    {
         std::cout << "ERRO: dados incorretos" << std::endl;
         return false;
     }
@@ -79,13 +86,14 @@ bool Estoque::inserirFilme(Filme *novoFilme)
         }
     }
 
-    if(novoFilme->getTipo() == TIPO_DVD) {
-        DVD *dvd = dynamic_cast<DVD*>(novoFilme);
-        if(Categorias.find(dvd->getCategoria()) == Categorias.end()) {
+    if (novoFilme->getTipo() == TIPO_DVD)
+    {
+        DVD *dvd = dynamic_cast<DVD *>(novoFilme);
+        if (Categorias.find(dvd->getCategoria()) == Categorias.end())
+        {
             std::cout << "ERRO: categoria inválida" << std::endl;
             return false;
         }
-
     }
 
     this->estoque.push_back(novoFilme);
@@ -125,7 +133,8 @@ void Estoque::pesquisarFilmesCodigo(const int identificador) const
     }
 }
 
-void Estoque::pesquisarFilmesTitulo(const std::string titulo) const {
+void Estoque::pesquisarFilmesTitulo(const std::string titulo) const
+{
     // Lista todos os filmes que tem o título informado pelo usuário
     for (Filme *filme : this->estoque)
         if (filme->getTitulo() == titulo)
@@ -135,18 +144,22 @@ void Estoque::pesquisarFilmesTitulo(const std::string titulo) const {
         }
 }
 
-void Estoque::listarFilmesOrdenados(const std::string ordenacao) const {
+void Estoque::listarFilmesOrdenados(const std::string ordenacao) const
+{
 
-    if(COMPARADORES_FILME.find(ordenacao) != COMPARADORES_FILME.end()) {
-        std::vector<Filme*> filmes_ordenados = this->estoque;
-        std::sort(filmes_ordenados.begin(),filmes_ordenados.end(), COMPARADORES_FILME.at(ordenacao));
+    if (COMPARADORES_FILME.find(ordenacao) != COMPARADORES_FILME.end())
+    {
+        std::vector<Filme *> filmes_ordenados = this->estoque;
+        std::sort(filmes_ordenados.begin(), filmes_ordenados.end(), COMPARADORES_FILME.at(ordenacao));
 
-        for (Filme * filme : filmes_ordenados) {
-            std::cout << filme->getIdentificador() << " " << filme->getTitulo() 
-            << " " << filme->getUnidades() << " " << Tipo_Filme.at(filme->getTipo()) << " ";
+        for (Filme *filme : filmes_ordenados)
+        {
+            std::cout << filme->getIdentificador() << " " << filme->getTitulo()
+                      << " " << filme->getUnidades() << " " << Tipo_Filme.at(filme->getTipo()) << " ";
 
-            if(filme->getTipo() == TIPO_DVD) {
-                DVD *dvd = dynamic_cast<DVD*>(filme);
+            if (filme->getTipo() == TIPO_DVD)
+            {
+                DVD *dvd = dynamic_cast<DVD *>(filme);
                 std::cout << Categorias.at(dvd->getCategoria());
                 // Downcasting para usar a função getCategoria
             }
@@ -154,16 +167,30 @@ void Estoque::listarFilmesOrdenados(const std::string ordenacao) const {
             std::cout << std::endl;
         }
     }
-    else std::cout << "Erro: opção inexistente" << std::endl;
-    
+    else
+        std::cout << "Erro: opção inexistente" << std::endl;
+}
+
+Filme *Estoque::filmeExiste(const int identificador) const
+{
+    // Verifica se o filme existe com esse identificador
+    for (Filme *filme : this->estoque)
+    {
+        if (filme->getIdentificador() == identificador)
+        {
+            return filme;
+        }
+    }
+    return nullptr;
 }
 
 void Estoque::salvarDados() const
 {
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
     std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
-    
-    if (!arquivo.is_open()) {
+
+    if (!arquivo.is_open())
+    {
         std::cout << "Erro: não foi possível criar o arquivo" << std::endl;
         return;
     }
@@ -171,6 +198,6 @@ void Estoque::salvarDados() const
     // Percorre a lista de filmes e adiciona no arquivo
     for (Filme *filme : this->estoque)
         arquivo << filme->listarInformacoes() << std::endl;
-    
+
     arquivo.close();
 }
