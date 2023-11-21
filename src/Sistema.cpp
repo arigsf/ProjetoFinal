@@ -1,62 +1,58 @@
 #include "../include/Sistema.hpp"
 
+void Sistema::lerArquivo(const std::string diretorio) {
+    this->estoque.lerArquivo(diretorio);
+}
 
+void Sistema::cadastrarFilme(Filme *novo_filme) {
+    this->estoque.inserirFilme(novo_filme);
+}
 
-void Sistema::lerArquivo(std::string nome_do_arquivo) {
+void Sistema::removerFilme(const int identificador) {
+    this->estoque.removerFilme(identificador);
+}
 
-   
-    std::ifstream arquivo_filmes(nome_do_arquivo, std::ios::in);
-    // O Arquivo é aberto em modo de leitura
+void Sistema::listarFilmesOrdenados(const std::string ordenacao) const {
+    this->estoque.listarFilmesOrdenados(ordenacao);
+}
 
-    if(!arquivo_filmes.is_open()) {
-        std::cout << "Erro: arquivos inexistente" << std::endl;
-        return;
-        // Caso o arquivo não exista, uma mensagem de erro é exibida e a função é encerrada
+void Sistema::cadastrarCliente(Cliente *cliente) {
+    this->clientes.inserirCliente(cliente);
+}
+
+void Sistema::listarClientesOrdenados(const std::string ordenacao) const {
+    bool ordem = ordenacao == "C" ;
+    this->clientes.listarClientesOrdenados(ordem);
+}
+
+void  Sistema::removerCliente(const std::string cpf) {
+    this->clientes.removerCliente(cpf);
+}
+
+void Sistema::alugarFilmes(std::string cpf, std::vector<int> &ids) {
+
+    if(!this->clientes.clienteExiste(cpf)) std::cout << "ERRO: CPF inexistente" << std::endl;
+    
+    std::vector<Filme*> filmes;
+    for (int &i : ids)
+    {
+        Filme *filme = this->estoque.FilmeExiste(i);
+        if(filme != nullptr) filmes.push_back(filme);
     }
 
-
-    char tipo_item;
-    int unidades_item, categoria_dvd, codigo_item, total = 0;
-    std::string titulo_item;
+    this->locacao.alugar(cpf,filmes);
     
 
-    while (arquivo_filmes >> tipo_item >> unidades_item >> codigo_item)
-    {
-        total++; // Os valores tipo(char), quantidade (int) e codigo(int) são lido separadamente
-        std::getline(arquivo_filmes,titulo_item); // Como não sabemos se o nome do filme tem mais de uma palavra, faremos uma analise posteriormente para separar a categoria do nome
+}
 
-        if(tipo_item == 'D') {
-            categoria_dvd = separarTituloCategoria(titulo_item);
-            // DVD * novo_dvd = new DVD(unidades_item,codigo_item,titulo_item,categoria_dvd);
-            // Essa nova instancia sera adcionada ao estoque
+void Sistema::devolverFilmes(std::string cpf, int dias) {
 
-        }
+    if(!this->clientes.clienteExiste(cpf)) std::cout << "ERRO: CPF inexistente" << std::endl;
+    this->locacao.devolucao(cpf, dias);
 
-        else if(tipo_item == 'F') {
-            // FITA * nova_fita = new FITA(unidades_item,codigo_item,titulo_item,true);
-            // Essa nova instancia sera adcionada ao estoque
-        }
-    } 
-
-    std::cout << total<< " Filmes cadastrados com sucesso" << std::endl;
-    arquivo_filmes.close();
 }
 
 
-void Sistema::salvarDados() {
-    
-    std::ofstream arquivo_filmes("../backups/filmes_backup",std::ios::out | std::ios::trunc);
-
-    if(!arquivo_filmes.is_open()) {
-        std::cout << "Erro: não foi possível criar o arquivo" << std::endl;
-        return;
-    }
-
-
-    // Será implementado totalmente após a criação do tad Estoque
-    
-
-    arquivo_filmes.close();
-
-    
+void Sistema::finalizarSistema() {
+    this->estoque.salvarDados();
 }
