@@ -16,12 +16,19 @@ public:
     void listarClientesOrdenados(bool porCPF) const;
     //Método que verifica a existência de algum cliente
     bool clienteExiste(const std::string& cpf) const;
+    //Construtor
+    CadastroClientes();
     //Destrutor
     ~CadastroClientes();
 
 private:
     //Lista dos clientes
+    static std::string diretorio;
     std::vector<Cliente*> clientes;
+    // Salvar dados antes do enceramento do sistema, para garantir que nenhum dado se perca
+    void salvarDados();
+    // Ler banco de dados com as informações de clientes registrados anteriormente
+    void lerArquivo();
 };
 
 #endif

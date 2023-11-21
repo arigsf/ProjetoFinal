@@ -1,9 +1,9 @@
 #include "../include/Estoque.hpp"
 #include <iostream>
 #include <iterator>
-#include <fstream>
+#include <fstream> // Operações com arquivos
 #include <algorithm>
-#include <sstream>
+#include <sstream> // Operações com leitura de linha
 
 Estoque::Estoque() {}
 

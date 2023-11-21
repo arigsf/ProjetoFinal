@@ -1,9 +1,19 @@
 #include "cadastro_clientes.hpp"
 #include <algorithm> //Remoção de clientes
 #include <regex> //Validar cpf e data de nascimento
+#include <fstream> // Operações com arquivos
+#include <sstream> // Operações com leitura de linha
+#include <numeric> // Transformar vetor de strings em uma string
+
 
 //FORMATO CPF: xxx.xxx.xxx-xx
 //FORMATO Data de Nascimento: dd/mm/yyyy
+
+std::string CadastroClientes::diretorio = "../data/Clientes/clientes.txt";
+
+CadastroClientes::CadastroClientes() {
+    this->lerArquivo();
+}
 
 //Implementação dos métodos da classe CadastroClientes
 void CadastroClientes::inserirCliente(Cliente* cliente) {
@@ -87,11 +97,67 @@ bool CadastroClientes::clienteExiste(const std::string& cpf) const {
     });
 }
 
+
+void CadastroClientes::salvarDados() {
+
+    // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
+    std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
+
+    if (!arquivo.is_open())
+    {
+        std::cout << "Erro: não foi possível criar o arquivo" << std::endl;
+        return;
+    }
+
+    // Percorre a lista de filmes e adiciona no arquivo
+    for (Cliente *cliente : this->clientes)
+        arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
+
+    arquivo.close();   
+}
+
+
+void CadastroClientes::lerArquivo() {
+    
+    std::ifstream arquivo(this->diretorio, std::ios::in);
+
+    if (!arquivo.is_open())
+    {
+        std::cout << "ERRO: arquivo inexistente" << std::endl;
+        return;
+    }
+
+    std::string linha, palavra,cpf, nome, data_nascimento;
+    std::vector<std::string> palavras;
+    Cliente *novo_cliente;
+
+    while (getline(std::cin,linha)) {
+
+        // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
+        std::istringstream iss(linha);
+        // é um stream de input baseado em uma string
+        iss >> cpf;
+
+        while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
+        //devido ao fato de não sabermos a quantidade de palavras do none
+
+        data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
+        palavras.pop_back();
+        nome = std::accumulate(palavras.begin(), palavras.end(), std::string());        
+        novo_cliente = new Cliente(cpf,nome,data_nascimento);
+
+        this->inserirCliente(novo_cliente);
+    }
+}
+
 //Implementa o destrutor
 CadastroClientes::~CadastroClientes() {
+
+    this->salvarDados();
     //Limpa o vetor de ponteiros
     for (Cliente* cliente : clientes) {
         delete cliente;
     }
     clientes.clear();
 }
+
