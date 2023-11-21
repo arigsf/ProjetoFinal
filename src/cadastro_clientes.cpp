@@ -104,7 +104,8 @@ Cliente* CadastroClientes::clienteExiste(const std::string& cpf) const {
 }
 
 
-void CadastroClientes::salvarDados() {
+void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limpardados decide, se após dos dados serem salvos eles devem ser desalocados
+
 
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
     std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
@@ -115,9 +116,20 @@ void CadastroClientes::salvarDados() {
         return;
     }
 
+    if(limparDados) {
+
+        for (Cliente *cliente : this->clientes) {
+            arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
+            delete cliente;
+        }
+
+        this->clientes.clear();
+    }
     // Percorre a lista de filmes e adiciona no arquivo
-    for (Cliente *cliente : this->clientes)
-        arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
+    
+    else 
+        for (Cliente *cliente : this->clientes)
+            arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
 
     arquivo.close();   
 }
@@ -159,12 +171,6 @@ void CadastroClientes::lerArquivo() {
 
 //Implementa o destrutor
 CadastroClientes::~CadastroClientes() {
-
-    this->salvarDados();
-    //Limpa o vetor de ponteiros
-    for (Cliente* cliente : clientes) {
-        delete cliente;
-    }
-    clientes.clear();
+    this->salvarDados(true);
 }
 

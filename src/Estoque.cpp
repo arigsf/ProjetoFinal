@@ -9,10 +9,7 @@ Estoque::Estoque() {}
 
 Estoque::~Estoque()
 {
-    for (Filme *filme : estoque)
-        delete filme;
-
-    estoque.clear();
+    salvarDados(true);
 }
 
 void Estoque::lerArquivo(const std::string diretorio)
@@ -200,7 +197,7 @@ Filme *Estoque::filmeExiste(const int identificador) const
     return nullptr;
 }
 
-void Estoque::salvarDados() const
+void Estoque::salvarDados(const bool limparDados) // O parametro limpardados decide, se após dos dados serem salvos eles devem ser desalocados
 {
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
     std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
@@ -211,9 +208,20 @@ void Estoque::salvarDados() const
         return;
     }
 
+    if(limparDados) {
+        
+        for (Filme *filme : estoque) {
+            arquivo << filme->listarInformacoes() << std::endl;
+            delete filme;
+        }
+
+        this->estoque.clear();
+    }
+
     // Percorre a lista de filmes e adiciona no arquivo
-    for (Filme *filme : this->estoque)
-        arquivo << filme->listarInformacoes() << std::endl;
+    else
+        for (Filme *filme : this->estoque)
+            arquivo << filme->listarInformacoes() << std::endl;
 
     arquivo.close();
 }

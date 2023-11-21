@@ -26,7 +26,7 @@ private:
     static std::string diretorio;
     std::vector<Cliente*> clientes;
     // Salvar dados antes do enceramento do sistema, para garantir que nenhum dado se perca
-    void salvarDados();
+    void salvarDados(const bool);
     // Ler banco de dados com as informações de clientes registrados anteriormente
     void lerArquivo();
 };

@@ -51,8 +51,3 @@ void Sistema::devolverFilmes(std::string cpf, int dias) {
     this->locacao.devolucao(cpf, dias);
 
 }
-
-
-void Sistema::finalizarSistema() {
-    this->estoque.salvarDados();
-}

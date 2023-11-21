@@ -116,11 +116,7 @@ int main() {
             
         }
 
-        
-        else if(comando == FINALIZAR_SISTEMA) {
-            sistema_principal.finalizarSistema();
-            break;
-        }
+        else if(comando == FINALIZAR_SISTEMA) break;
                 
     }
     
