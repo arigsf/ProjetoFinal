@@ -15,7 +15,7 @@ public:
     void removerCliente(const std::string& cpf);
     void listarClientesOrdenados(bool porCPF) const;
     //Método que verifica a existência de algum cliente
-    bool clienteExiste(const std::string& cpf) const;
+    Cliente* clienteExiste(const std::string& cpf) const;
     //Construtor
     CadastroClientes();
     //Destrutor

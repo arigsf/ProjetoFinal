@@ -94,11 +94,13 @@ void CadastroClientes::listarClientesOrdenados(bool porCPF) const {
     }
 }
 
-bool CadastroClientes::clienteExiste(const std::string& cpf) const {
+Cliente* CadastroClientes::clienteExiste(const std::string& cpf) const {
     //Verifica se um cliente de mesmo CPF está na lista
-    return std::any_of(clientes.begin(), clientes.end(), [&cpf](const Cliente* cliente) {
-        return cliente->getCPF() == cpf;
-    });
+    for (Cliente *cliente : this->clientes)
+        if (cliente->getCPF() == cpf)
+            return cliente;
+
+    return nullptr;
 }
 
 
