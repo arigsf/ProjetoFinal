@@ -18,7 +18,6 @@ class Sistema {
         void cadastrarFilme(Filme *);
         void removerFilme(const int);
         void listarFilmesOrdenados(const std::string) const;
-        void finalizarSistema();
         void cadastrarCliente(Cliente *);
         void listarClientesOrdenados(const std::string) const;
         void removerCliente(const std::string);

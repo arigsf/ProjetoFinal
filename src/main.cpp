@@ -41,7 +41,10 @@ int main() {
 
                 int indice_categoria = -1;
                 for (std::map<int,std::string>::const_iterator it = Categorias.begin(); it != Categorias.end();it++)
-                    if(it->second == categoria) indice_categoria = it->first;
+                    if(it->second == categoria) {
+                        indice_categoria = it->first;
+                        break;
+                    } 
 
                 filme = new DVD(unidades,identificador,titulo,indice_categoria);
             }
@@ -113,11 +116,7 @@ int main() {
             
         }
 
-        
-        else if(comando == FINALIZAR_SISTEMA) {
-            sistema_principal.finalizarSistema();
-            break;
-        }
+        else if(comando == FINALIZAR_SISTEMA) break;
                 
     }
     
