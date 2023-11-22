@@ -13,7 +13,7 @@ class Locacao {
     public:
         Locacao(); // Construtor
 
-        void alugar(std::string, std::vector<Filme*> &const); // CPF, Filmes
+        void alugar(std::string, std::vector<Filme*>&); // CPF, Filmes
         bool verificarCPF(std::string); // Verificação se CPF já está com uma locação pendente
         
         int devolucao(std::string, int); // Devolução para DVDs
