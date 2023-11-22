@@ -27,7 +27,7 @@ public:
     void pesquisarFilmesCodigo(const int) const;
     void pesquisarFilmesTitulo(const std::string) const;
     void listarFilmesOrdenados(const std::string) const;
-    Filme *filmeExiste(const int) const;
+    Filme *filmeValido(const int) const;
     void salvarDados(const bool);
 };
 

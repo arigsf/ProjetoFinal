@@ -192,16 +192,26 @@ void Estoque::listarFilmesOrdenados(const std::string ordenacao) const
         std::cout << "Erro: opção inexistente" << std::endl;
 }
 
-Filme *Estoque::filmeExiste(const int identificador) const
+Filme *Estoque::filmeValido(const int identificador) const
 {
     // Verifica se o filme existe com esse identificador
     for (Filme *filme : this->estoque)
     {
         if (filme->getIdentificador() == identificador)
         {
-            return filme;
+            if(filme->getUnidades() > 0) 
+                return filme;
+
+            else 
+            {
+                std::cout << "ERRO: Unidades do filme " << filme->getTitulo() << " insuficientes" << std::endl;
+                return nullptr;
+            }
+            
         }
     }
+
+    std::cout << "ERRO: Id inválido" << std::endl; 
     return nullptr;
 }
 
