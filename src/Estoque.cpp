@@ -148,13 +148,21 @@ void Estoque::pesquisarFilmesCodigo(const int identificador) const
 
 void Estoque::pesquisarFilmesTitulo(const std::string titulo) const
 {
-    // Lista todos os filmes que tem o título informado pelo usuário
+    // Lista todos os filmes que tem o título ou parte dele informado pelo usuário
     for (Filme *filme : this->estoque)
-        if (filme->getTitulo() == titulo)
+    {
+        std::string tituloFilme = filme->getTitulo();
+        std::transform(tituloFilme.begin(), tituloFilme.end(), tituloFilme.begin(), ::tolower);
+        std::string tituloDesejado = titulo;
+        std::transform(tituloDesejado.begin(), tituloDesejado.end(), tituloDesejado.begin(), ::tolower);
+
+        // Verifica se a substring está contida no título do filme
+        if (tituloFilme.find(tituloDesejado) != std::string::npos)
         {
             filme->listarInformacoes();
             std::cout << std::endl;
         }
+    }
 }
 
 void Estoque::listarFilmesOrdenados(const std::string ordenacao) const
