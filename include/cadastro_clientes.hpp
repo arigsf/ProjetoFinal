@@ -11,19 +11,25 @@
 class CadastroClientes {
 public:
     //Métodos que manipulam a lista dos clientes
+
     void InserirCliente(Cliente* cliente);
     void RemoverCliente(const std::string& cpf);
     void ListarClientesOrdenados(bool porCPF) const;
-
+    //Método que verifica a existência de algum cliente
+    Cliente* ClienteExiste(const std::string& cpf) const;
+    //Construtor
+    CadastroClientes();
     //Destrutor
     ~CadastroClientes();
 
 private:
-    //Método que verifica a existência de algum cliente
-    bool ClienteExiste(const std::string& cpf) const;
-
     //Lista dos clientes
+    static std::string diretorio;
     std::vector<Cliente*> clientes;
+    // Salvar dados antes do enceramento do sistema, para garantir que nenhum dado se perca
+    void salvarDados(const bool);
+    // Ler banco de dados com as informações de clientes registrados anteriormente
+    void lerArquivo();
 };
 
 #endif

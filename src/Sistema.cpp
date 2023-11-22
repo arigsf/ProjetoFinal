@@ -36,7 +36,7 @@ void Sistema::alugarFilmes(std::string cpf, std::vector<int> &ids) {
     std::vector<Filme*> filmes;
     for (int &i : ids)
     {
-        Filme *filme = this->estoque.FilmeExiste(i);
+        Filme *filme = this->estoque.filmeExiste(i);
         if(filme != nullptr) filmes.push_back(filme);
     }
 
@@ -50,9 +50,4 @@ void Sistema::devolverFilmes(std::string cpf, int dias) {
     if(!this->clientes.clienteExiste(cpf)) std::cout << "ERRO: CPF inexistente" << std::endl;
     this->locacao.devolucao(cpf, dias);
 
-}
-
-
-void Sistema::finalizarSistema() {
-    this->estoque.salvarDados();
 }
