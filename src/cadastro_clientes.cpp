@@ -16,9 +16,9 @@ CadastroClientes::CadastroClientes() {
 }
 
 //Implementação dos métodos da classe CadastroClientes
-void CadastroClientes::InserirCliente(Cliente* cliente) {
+void CadastroClientes::inserirCliente(Cliente* cliente) {
     //Verificação de existência do cliente
-    if (ClienteExiste(cliente->GetCPF())) {
+    if (clienteExiste(cliente->getCPF())) {
         std::cout << "ERRO: CPF repetido" << std::endl;
         delete cliente;
         return;
@@ -26,14 +26,14 @@ void CadastroClientes::InserirCliente(Cliente* cliente) {
 
     //Expressão regular para validar o formato do CPF
     std::regex regexCPF(R"(\d{3}\.\d{3}\.\d{3}-\d{2})");
-    if (!std::regex_match(cliente->GetCPF(), regexCPF)) {
+    if (!std::regex_match(cliente->getCPF(), regexCPF)) {
         std::cout << "ERRO: Formato inválido de CPF" << std::endl;
         delete cliente;
         return;
     }
 
     //Verificar se o nome do cliente está vazio
-    if (cliente->GetNome().empty()) {
+    if (cliente->getNome().empty()) {
         std::cout << "ERRO: Nome vazio" << std::endl;
         delete cliente;
         return;
@@ -41,7 +41,7 @@ void CadastroClientes::InserirCliente(Cliente* cliente) {
 
     //Expressão regular para validar o formato da data de nascimento
     std::regex regexDataNascimento(R"(\d{2}/\d{2}/\d{4})");
-    if (!std::regex_match(cliente->GetDataNascimento(), regexDataNascimento)) {
+    if (!std::regex_match(cliente->getDataNascimento(), regexDataNascimento)) {
         std::cout << "ERRO: Formato inválido de data de nascimento" << std::endl;
         delete cliente;
         return;
@@ -49,19 +49,19 @@ void CadastroClientes::InserirCliente(Cliente* cliente) {
 
     //Adiciona o cliente na lista se todos os dados estiverem corretos
     clientes.push_back(cliente);
-    std::cout << "Cliente de CPF: " << cliente->GetCPF() << " cadastrado com sucesso" << std::endl;
+    std::cout << "Cliente de CPF: " << cliente->getCPF() << " cadastrado com sucesso" << std::endl;
 }
 
-void CadastroClientes::RemoverCliente(const std::string& cpf) {
+void CadastroClientes::removerCliente(const std::string& cpf) {
     //Procura o cliente na lista
     std::vector<Cliente*>::iterator it = std::find_if(clientes.begin(), clientes.end(), [&cpf](const Cliente* cliente) {
-        return cliente->GetCPF() == cpf;
+        return cliente->getCPF() == cpf;
     });
 
     //Caso o cliente seja encontrado, ele é removido
     if (it != clientes.end()) {
         //Guarda o CPF removido para dizer qual é ele logo abaixo
-        std::string cpfRemovido = (*it)->GetCPF();
+        std::string cpfRemovido = (*it)->getCPF();
         //Libera a memória do cliente
         delete *it;
         clientes.erase(it);
@@ -71,7 +71,7 @@ void CadastroClientes::RemoverCliente(const std::string& cpf) {
     }
 }
 
-void CadastroClientes::ListarClientesOrdenados(bool porCPF) const {
+void CadastroClientes::listarClientesOrdenados(bool porCPF) const {
     //Gera uma cópia da lista dos clientes
     std::vector<Cliente*> clientesOrdenados = clientes;
 
@@ -79,23 +79,23 @@ void CadastroClientes::ListarClientesOrdenados(bool porCPF) const {
     if (porCPF) {
         std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
                   [](const Cliente* a, const Cliente* b) {
-                      return a->GetCPF() < b->GetCPF();
+                      return a->getCPF() < b->getCPF();
                   });
     } else {
         std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
                   [](const Cliente* a, const Cliente* b) {
-                      return a->GetNome() < b->GetNome();
+                      return a->getNome() < b->getNome();
                   });
     }
 
     //Mostra os clientes ordenados na ordem: cpf, nome, data de nascimento, idade
     for (const Cliente* cliente : clientesOrdenados) {
-        std::cout << "CPF: " << cliente->GetCPF() << ", Nome: " << cliente->GetNome() << ", Data de nascimento: " << cliente->GetDataNascimento() << ", Idade: " << cliente->GetIdade() << std::endl;
+        std::cout << "CPF: " << cliente->getCPF() << ", Nome: " << cliente->getNome() << ", Data de nascimento: " << cliente->getDataNascimento() << ", Idade: " << cliente->getIdade() << std::endl;
     }
 }
 
 
-Cliente* CadastroClientes::ClienteExiste(const std::string& cpf) const {
+Cliente* CadastroClientes::clienteExiste(const std::string& cpf) const {
     //Verifica se um cliente de mesmo CPF está na lista
     for (Cliente *cliente : this->clientes)
         if (cliente->getCPF() == cpf)

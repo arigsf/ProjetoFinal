@@ -8,23 +8,23 @@ Cliente::Cliente(const std::string cpf, const std::string nome, const std::strin
     : cpf(cpf), nome(nome), dataNascimento(dataNascimento), endereco(endereco) {}
 
 //Implementação dos métodos da classe Cliente
-const std::string Cliente::GetCPF() const {
+const std::string Cliente::getCPF() const {
     return cpf;
 }
 
-const std::string Cliente::GetNome() const {
+const std::string Cliente::getNome() const {
     return nome;
 }
 
-const std::string Cliente::GetDataNascimento() const {
+const std::string Cliente::getDataNascimento() const {
     return dataNascimento;
 }
 
-const std::string Cliente::GetEndereco() const {
+const std::string Cliente::getEndereco() const {
     return endereco;
 }
 
-int Cliente::GetIdade() const {
+int Cliente::getIdade() const {
     //Obtém hora e data do sistema
     std::time_t t = std::time(0);
     std::tm* atual = std::localtime(&t);

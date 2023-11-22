@@ -12,11 +12,11 @@ class CadastroClientes {
 public:
     //Métodos que manipulam a lista dos clientes
 
-    void InserirCliente(Cliente* cliente);
-    void RemoverCliente(const std::string& cpf);
-    void ListarClientesOrdenados(bool porCPF) const;
+    void inserirCliente(Cliente* cliente);
+    void removerCliente(const std::string& cpf);
+    void listarClientesOrdenados(bool porCPF) const;
     //Método que verifica a existência de algum cliente
-    Cliente* ClienteExiste(const std::string& cpf) const;
+    Cliente* clienteExiste(const std::string& cpf) const;
     //Construtor
     CadastroClientes();
     //Destrutor
