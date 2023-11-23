@@ -31,8 +31,11 @@ void  Sistema::removerCliente(const std::string cpf) {
 
 void Sistema::alugarFilmes(std::string cpf, std::vector<int> &ids, const int dias) {
 
-    if(!this->clientes.clienteExiste(cpf)) std::cout << "ERRO: CPF inexistente" << std::endl;
-    
+    if(!this->clientes.clienteExiste(cpf)) {
+        std::cout << "ERRO: CPF inexistente" << std::endl;
+        return;
+    }
+
     std::vector<Filme*> filmes;
     for (int &i : ids)
     {
@@ -45,10 +48,33 @@ void Sistema::alugarFilmes(std::string cpf, std::vector<int> &ids, const int dia
 
 }
 
-void Sistema::devolverFilmes(std::string cpf, int dias) {
+void Sistema::devolverFilmes(std::string cpf, std::vector<int> &ids, const int dias) {
 
-    if(!this->clientes.clienteExiste(cpf)) std::cout << "ERRO: CPF inexistente" << std::endl;
-    this->locacao.devolucao(cpf, dias);
+    if(!this->clientes.clienteExiste(cpf)) {
+        std::cout << "ERRO: CPF inexistente" << std::endl;
+        return;
+    }
+
+    int valorDaMulta = 0;
+    std::vector<Filme*> filmes;
+    for (int &i : ids)
+    {
+        Filme *filme = this->estoque.filmeValido(i);
+        if(filme != nullptr){
+            bool isDanificado;
+            std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado?"<< std::endl;
+            std::cin >> isDanificado;
+            if(filme->getTipo() == 1) { // Se o filme é fita, precisamos verificar se está rebobinado
+                bool isRebobinado;
+                std::cout << "A fita " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta rebobinado?"<< std::endl;
+                std::cin >> isRebobinado;
+                if(!isRebobinado) valorDaMulta += 2;
+            }
+            valorDaMulta += this->locacao.devolucao(cpf, filme, dias, isDanificado);
+            // Implementar tratamento de exceção (se filme não estiver locado)
+
+        }
+    }    
 
 }
 

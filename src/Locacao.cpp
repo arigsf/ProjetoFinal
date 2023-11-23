@@ -6,9 +6,15 @@ void Locacao::removeLocacao(int posNoVetorLocacoes){
     locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
 }
 
+std::pair<std::string, std::pair<Filme*, int>> Locacao::encontrarLocacao(std::string CPF, Filme* filme){
+    for(auto i : this->locacoes) if(i.first == CPF && i.second.first->getIdentificador() == filme->getIdentificador()) return i;
+    // Implementar tratamento de erro.....
+    return std::pair<std::string, std::pair<Filme*, int>> ("AAAAA", std::pair<Filme*, int>(filme, 0)); // Momentaneo (a ser removido do projeto)
+}
+
 int Locacao::getLocacoesPorCliente(std::string CPF){
     int soma = 0;
-    for(std::pair<std::string, Filme*> i : this->locacoes) if(i.first == CPF) soma++;
+    for(auto i : this->locacoes) if(i.first == CPF) soma++;
     return soma;
 }
 
@@ -18,7 +24,7 @@ void Locacao::alugar(std::string CPF, std::vector<Filme*>&filmes, int dias) {
 
         for(Filme* f : filmes){
             f->removerUnidades();
-            this->locacoes.push_back(std::pair<std::string, Filme*> (CPF, f));
+            this->locacoes.push_back(std::pair<std::string, std::pair<Filme*, int>> (CPF, std::pair<Filme*, int> (f, dias)));
             this->numeroLocacoes++;
             valorAluguel += f->calculoPrecoLocacao(dias);
         }
@@ -34,7 +40,11 @@ bool Locacao::verificarCPFmaxFilmes(std::string CPF, int qtdFilmes){ // Verifica
     return false;
 }
 
-int Locacao::devolucao(std::string CPF, int dias){
+int Locacao::devolucao(std::string CPF, Filme* filme, int dias, bool isDanificado){
+    int valorMultas = 0;
+
+    auto locacao = encontrarLocacao(CPF, filme);
+
     if(verificarCPFmaxFilmes(CPF)){
         int somaPrecos = 0;
 
