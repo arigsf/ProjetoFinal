@@ -93,6 +93,7 @@ int main() {
             std::string cpf;
             std::cin >> cpf;
             std::vector<int> ids;
+            int dias;
 
             
             while (true) {   
@@ -102,7 +103,13 @@ int main() {
                 ids.push_back(id);
             }
 
-            sistema_principal.alugarFilmes(cpf, ids);
+            while (true) {
+                
+                std::cin >> dias;
+                if(dias > 0 || dias <= 7) break;
+            }
+
+            sistema_principal.alugarFilmes(cpf, ids, dias);
             
             
         }

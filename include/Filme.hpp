@@ -8,6 +8,8 @@
 #include <iterator>
 #include <fstream>
 #include <algorithm>
+#include <cmath>
+#include <iomanip>
 
 // Declaracao de constantes globais para facilitar a legibilidade do codigo;
 
@@ -53,7 +55,7 @@ class Filme {
         void removerUnidades();
 
         // Cálculo do valor de locação, se comporta de maneira diferente para DVD ou FITA
-        virtual int calculoPrecoLocacao(int) = 0; 
+        virtual float calculoPrecoLocacao(int) = 0; 
         virtual std::string listarInformacoes(); // Método para listar as informacoes do DVD ou FITA, se comporta de maneira diferente em cada um
         virtual bool validarDados();
 };
@@ -70,7 +72,7 @@ class DVD : public Filme {
         DVD(int, int, std::string, int); // Construtor
         int getCategoria();
 
-        int calculoPrecoLocacao(int) override;
+        float calculoPrecoLocacao(int) override;
         std::string listarInformacoes() override;
         bool validarDados() override;
 };
@@ -85,7 +87,7 @@ class FITA: public Filme {
         FITA(int, int, std::string, bool); // Construtor
 
         bool isRebobinado(); // Retorna no caso de FITA se a fita está ou não rebobinada
-        int calculoPrecoLocacao(int) override;
+        float calculoPrecoLocacao(int) override;
         std::string listarInformacoes() override;
 };
 

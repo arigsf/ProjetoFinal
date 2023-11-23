@@ -30,16 +30,16 @@ void Filme::removerUnidades() {
 
 int DVD::getCategoria() { return this->categoria; }
 
-int DVD::calculoPrecoLocacao(int dias)
+float DVD::calculoPrecoLocacao(int dias) // Cálculo simulado a preços reais
 {
     if (this->getCategoria() == LANCAMENTO)
-        return 20 * dias;
+        return std::log2(dias*dias) + 8 + 2*dias;
 
     else if (this->getCategoria() == ESTOQUE)
-        return 10 * dias;
+        return std::log2(dias*dias) + 4 + dias;
 
     else if (this->getCategoria() == PROMOCAO)
-        return 10;
+        return 5;
 
     return -1;
     // Implementar tratamento de erro
@@ -47,9 +47,9 @@ int DVD::calculoPrecoLocacao(int dias)
 
 bool FITA::isRebobinado() { return this->estaRebobinado; }
 
-int FITA::calculoPrecoLocacao(int dias)
+float FITA::calculoPrecoLocacao(int dias)
 {
-    return (this->isRebobinado() == true) ? 5 : 7;
+    return 5;
 }
 
 

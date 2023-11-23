@@ -6,26 +6,36 @@ void Locacao::removeLocacao(int posNoVetorLocacoes){
     locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
 }
 
-void Locacao::alugar(std::string CPF, std::vector<Filme*>&filmes) {
-    if(!verificarCPF(CPF)){
-
-        for(Filme* f : filmes) f->removerUnidades();
-
-        this->locacoes.push_back(std::pair<std::string, std::vector<Filme*>> (CPF, filmes));
-        this->numeroLocacoes++;
-
-        std::cout << "Aluguel aprovado para o CPF: " << CPF << std::endl;
-
-    } else std::cout << "Tal CPF ja esta com uma locacao pendente." << std::endl;
+int Locacao::getLocacoesPorCliente(std::string CPF){
+    int soma = 0;
+    for(std::pair<std::string, Filme*> i : this->locacoes) if(i.first == CPF) soma++;
+    return soma;
 }
 
-bool Locacao::verificarCPF(std::string CPF){ // Verifica se o CPF já está com alguma locação pendente
-    for(std::pair<std::string, std::vector<Filme*>> i : this->locacoes) if(i.first == CPF) return true;
+void Locacao::alugar(std::string CPF, std::vector<Filme*>&filmes, int dias) {
+    if(!verificarCPFmaxFilmes(CPF, size(filmes))){
+        float valorAluguel = 0;
+
+        for(Filme* f : filmes){
+            f->removerUnidades();
+            this->locacoes.push_back(std::pair<std::string, Filme*> (CPF, f));
+            this->numeroLocacoes++;
+            valorAluguel += f->calculoPrecoLocacao(dias);
+        }
+
+        std::cout << "Aluguel de " << dias << " dias foi aprovado para o CPF: " << CPF << std::endl;
+        std::cout << "Valor a ser cobrado: " << std::setprecision(2) << std::fixed << valorAluguel << std::endl;
+
+    } else std::cout << "Tal CPF ultrapassara o limite de 10 locacoes pendentes." << std::endl;
+}
+
+bool Locacao::verificarCPFmaxFilmes(std::string CPF, int qtdFilmes){ // Verifica se o CPF pode alugar mais itens (qtdFilmes), sem que ultrapasse o limite de 10 locações
+    if(qtdFilmes+getLocacoesPorCliente(CPF)>=10) return true;
     return false;
 }
 
 int Locacao::devolucao(std::string CPF, int dias){
-    if(verificarCPF(CPF)){
+    if(verificarCPFmaxFilmes(CPF)){
         int somaPrecos = 0;
 
         for(int i = 0; i < this->numeroLocacoes; i++){
@@ -52,8 +62,7 @@ int Locacao::devolucao(std::string CPF, int dias){
 void Locacao::relatorio(){
     std::cout << "Imprimindo relatorio das locacoes pendentes...\n\n"; 
 
-    for(std::pair<std::string, std::vector<Filme*>> locacao : locacoes){
-        std::cout << locacao.first << " pendencias:\n";
-        for(Filme *filme : locacao.second) std::cout << "\t" << filme->getIdentificador() << " " << filme->getTitulo() << ";\n";
+    for(std::pair<std::string, Filme*> locacao : this->locacoes){
+        std::cout << "\t" << locacao.first << " - " << locacao.second->getIdentificador() << " " << locacao.second->getTitulo() << ";\n";
     }
 }
