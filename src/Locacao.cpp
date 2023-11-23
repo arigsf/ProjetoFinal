@@ -6,8 +6,10 @@ void Locacao::removeLocacao(int posNoVetorLocacoes){
     locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
 }
 
-void Locacao::alugar(std::string CPF, std::vector<Filme*> &filmes){
+void Locacao::alugar(std::string CPF, std::vector<Filme*>&filmes) {
     if(!verificarCPF(CPF)){
+
+        for(Filme* f : filmes) f->removerUnidades();
 
         this->locacoes.push_back(std::pair<std::string, std::vector<Filme*>> (CPF, filmes));
         this->numeroLocacoes++;
@@ -30,6 +32,7 @@ int Locacao::devolucao(std::string CPF, int dias){
             if(locacoes[i].first == CPF){
                 for(Filme *filme : locacoes[i].second){
                     somaPrecos += filme->calculoPrecoLocacao(dias);
+                    filme->adicionarUnidades();
                 }
 
                 this->removeLocacao(i);
