@@ -89,7 +89,7 @@ int main() {
 
         else if(comando == ALUGAR_FILME) {
             
-            int id;
+            int id, dias;
             std::string cpf;
             std::cin >> cpf;
             std::vector<int> ids;
@@ -102,17 +102,33 @@ int main() {
                 ids.push_back(id);
             }
 
-            sistema_principal.alugarFilmes(cpf, ids);
+            while (true) {
+                
+                std::cin >> dias;
+                if(dias > 0 || dias <= 7) break;
+            }
+
+            sistema_principal.alugarFilmes(cpf, ids, dias);
             
             
         }
 
         else if(comando == DEVOLVER_FILME) {
 
-            int dias;
+            int id, dias, qtdDanificado, qtdNaoRebobinado;
             std::string cpf;
             std::cin >> cpf, dias;
-            sistema_principal.devolverFilmes(cpf,dias);
+            std::vector<int> ids;
+
+            while (true) {   
+
+                std::cin >> id;
+                if(id  <= 0) break;
+                ids.push_back(id);
+            }
+
+
+            sistema_principal.devolverFilmes(cpf, ids, dias);
             
         }
 

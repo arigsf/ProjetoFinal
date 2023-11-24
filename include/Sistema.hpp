@@ -3,7 +3,7 @@
 
 #include "Estoque.hpp"
 #include "Locacao.hpp"
-#include "cadastro_clientes.hpp"
+#include "Cadastro_clientes.hpp"
 #include <iterator>
 
 class Sistema {
@@ -21,8 +21,8 @@ class Sistema {
         void cadastrarCliente(Cliente *);
         void listarClientesOrdenados(const std::string) const;
         void removerCliente(const std::string);
-        void alugarFilmes(std::string, std::vector<int> &const);
-        void devolverFilmes(std::string, int);
+        void alugarFilmes(std::string, std::vector<int> const, const int);
+        void devolverFilmes(std::string, std::vector<int> const, const int); // CPF, Filmes por ID, dias
         
 
 };
