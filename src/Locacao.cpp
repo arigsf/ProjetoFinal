@@ -67,7 +67,7 @@ int Locacao::devolucao(std::string CPF, Filme* filme, int dias, bool isDanificad
 void Locacao::relatorio(){
     std::cout << "Imprimindo relatorio das locacoes pendentes...\n\n"; 
 
-    for(std::pair<std::string, Filme*> locacao : this->locacoes){
-        std::cout << "\t" << locacao.first << " - " << locacao.second->getIdentificador() << " " << locacao.second->getTitulo() << ";\n";
+    for(std::pair<std::string, std::pair<Filme*, int>> locacao : this->locacoes){
+        std::cout << "\t" << locacao.first << " - " << locacao.second.first->getIdentificador() << " " << locacao.second.first->getTitulo() << ";\n";
     }
 }
