@@ -1,5 +1,5 @@
 output: main.o Cadastro_clientes.o Clientes.o Estoque.o Filme.o Funcoes.o Locacao.o Sistema.o
-	g++ main.o Cadastro_clientes.o Clientes.o Estoque.o Filme.o Funcoes.o Locacao.o Sistema.o -o output
+	g++ main.o Cadastro_clientes.o Clientes.o Estoque.o Filme.o Funcoes.o Locacao.o Sistema.o -o ./build/output
 
 Cadastro_clientes.o: ./src/Cadastro_clientes.cpp
 	g++ -I ./include -c ./src/Cadastro_clientes.cpp
