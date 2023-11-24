@@ -3,7 +3,7 @@
 
 #include "Estoque.hpp"
 #include "Locacao.hpp"
-#include "cadastro_clientes.hpp"
+#include "Cadastro_clientes.hpp"
 #include <iterator>
 
 class Sistema {
