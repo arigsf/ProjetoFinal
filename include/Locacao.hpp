@@ -8,8 +8,9 @@ class Locacao {
         static int numeroLocacoes;
         std::vector<std::pair<std::string, std::pair<Filme*, int>>> locacoes; // Vector de pares com (CPF, par(filme, dias))
 
-        void removeLocacao(int); // Função para remoção de uma locação após a devolução, como parâmetro apenas a posição no vetor locacoes
-        std::pair<std::string, std::pair<Filme*, int>> encontrarLocacao(std::string, Filme*); // Função que encontra locação
+        void removeLocacao(int); // Função para remoção de uma locação após a devolução, como parâmetro a posição no vetor locações
+        int getPosicaoLocacaoVetorLocacoes(std::pair<std::string, std::pair<Filme*, int>>); // Encontra a posição da locação no vetor locações
+        std::pair<std::string, std::pair<Filme*, int>> getLocacao(std::string, Filme*); // Função que encontra locação
 
     public:
         Locacao(); // Construtor

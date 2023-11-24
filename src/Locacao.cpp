@@ -6,7 +6,13 @@ void Locacao::removeLocacao(int posNoVetorLocacoes){
     locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
 }
 
-std::pair<std::string, std::pair<Filme*, int>> Locacao::encontrarLocacao(std::string CPF, Filme* filme){
+int Locacao::getPosicaoLocacaoVetorLocacoes(std::pair<std::string, std::pair<Filme*, int>> locacao){
+    for(int i = 0; i<locacoes.size(); i++){
+        if(&(this->locacoes[i]) == &locacao) return i;
+    }
+}
+
+std::pair<std::string, std::pair<Filme*, int>> Locacao::getLocacao(std::string CPF, Filme* filme){
     for(auto i : this->locacoes) if(i.first == CPF && i.second.first->getIdentificador() == filme->getIdentificador()) return i;
     // Implementar tratamento de erro.....
     return std::pair<std::string, std::pair<Filme*, int>> ("AAAAA", std::pair<Filme*, int>(filme, 0)); // Momentaneo (a ser removido do projeto)
@@ -43,30 +49,19 @@ bool Locacao::verificarCPFmaxFilmes(std::string CPF, int qtdFilmes){ // Verifica
 int Locacao::devolucao(std::string CPF, Filme* filme, int dias, bool isDanificado){
     int valorMultas = 0;
 
-    auto locacao = encontrarLocacao(CPF, filme);
+    auto locacao = this->getLocacao(CPF, filme);
+    // Implementar tratamento erro
+    int diasAlugados = locacao.second.second;
+    if(diasAlugados < dias){ // Multa por atraso (calculo linear da multa)
+        valorMultas += (diasAlugados-dias)*2;
+    }
 
-    if(verificarCPFmaxFilmes(CPF)){
-        int somaPrecos = 0;
+    if(isDanificado == true) valorMultas+=20; // Multa por danificação do produto
 
-        for(int i = 0; i < this->numeroLocacoes; i++){
-            if(locacoes[i].first == CPF){
-                for(Filme *filme : locacoes[i].second){
-                    somaPrecos += filme->calculoPrecoLocacao(dias);
-                    filme->adicionarUnidades();
-                }
+    filme->adicionarUnidades();
+    this->removeLocacao(getPosicaoLocacaoVetorLocacoes(locacao));
 
-                this->removeLocacao(i);
-            }
-        }
-
-
-        std::cout << "Devolucao realizada com sucesso, apenas eh necessario o pagamento de " << somaPrecos << " reais." << std::endl;
-        return somaPrecos;
-
-    } 
-    
-    std::cout << "Tal CPF nao possui pendencias com o nosso sistema." << std::endl;
-    return 0;
+    return valorMultas;
 }
 
 void Locacao::relatorio(){

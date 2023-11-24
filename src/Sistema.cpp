@@ -72,9 +72,9 @@ void Sistema::devolverFilmes(std::string cpf, std::vector<int> &ids, const int d
             }
             valorDaMulta += this->locacao.devolucao(cpf, filme, dias, isDanificado);
             // Implementar tratamento de exceção (se filme não estiver locado)
-
         }
     }    
+    std::cout << "\n\nDevolucoes realizadas com sucesso, valor de multas a serem liquidadas: " << valorDaMulta << std::endl;
 
 }
 
