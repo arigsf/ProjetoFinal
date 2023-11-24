@@ -24,7 +24,7 @@ int Locacao::getLocacoesPorCliente(std::string CPF){
     return soma;
 }
 
-void Locacao::alugar(std::string CPF, std::vector<Filme*>&filmes, int dias) {
+void Locacao::alugar(std::string CPF, std::vector<Filme*>filmes, int dias) {
     if(!verificarCPFmaxFilmes(CPF, size(filmes))){
         float valorAluguel = 0;
 

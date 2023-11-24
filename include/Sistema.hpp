@@ -21,8 +21,8 @@ class Sistema {
         void cadastrarCliente(Cliente *);
         void listarClientesOrdenados(const std::string) const;
         void removerCliente(const std::string);
-        void alugarFilmes(std::string, std::vector<int> &const, const int);
-        void devolverFilmes(std::string, std::vector<int> &const, const int); // CPF, Filmes por ID, dias
+        void alugarFilmes(std::string, std::vector<int> const, const int);
+        void devolverFilmes(std::string, std::vector<int> const, const int); // CPF, Filmes por ID, dias
         
 
 };

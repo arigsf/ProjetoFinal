@@ -17,7 +17,7 @@ class Locacao {
 
         int getLocacoesPorCliente(std::string); // CPF
 
-        void alugar(std::string, std::vector<Filme*>&, int); // CPF, Filmes, dias de locação
+        void alugar(std::string, std::vector<Filme*>, int); // CPF, Filmes, dias de locação
         bool verificarCPFmaxFilmes(std::string, int); // Verifica se o CPF pode alugar mais itens (qtdFilmes), sem que ultrapasse o limite de 10 locações
         
         int devolucao(std::string, Filme*, int, bool); // Devolução por filme e caracteristicas do mesmo na devolução, retornando o valor a ser pago (multas), sendo o ultimo booleanos isDanificado

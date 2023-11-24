@@ -29,7 +29,7 @@ void  Sistema::removerCliente(const std::string cpf) {
     this->clientes.removerCliente(cpf);
 }
 
-void Sistema::alugarFilmes(std::string cpf, std::vector<int> &ids, const int dias) {
+void Sistema::alugarFilmes(std::string cpf, std::vector<int> ids, const int dias) {
 
     if(!this->clientes.clienteExiste(cpf)) {
         std::cout << "ERRO: CPF inexistente" << std::endl;
@@ -48,7 +48,7 @@ void Sistema::alugarFilmes(std::string cpf, std::vector<int> &ids, const int dia
 
 }
 
-void Sistema::devolverFilmes(std::string cpf, std::vector<int> &ids, const int dias) {
+void Sistema::devolverFilmes(std::string cpf, std::vector<int> ids, const int dias) {
 
     if(!this->clientes.clienteExiste(cpf)) {
         std::cout << "ERRO: CPF inexistente" << std::endl;
