@@ -7,6 +7,9 @@ build/main.o: ./src/main.cpp ./include/Sistema.hpp
 build/Sistema.o: ./src/Sistema.cpp ./include/Sistema.hpp ./include/Locacao.hpp ./include/Estoque.hpp ./include/cadastro_clientes.hpp ./include/Funcoes.hpp
 	g++ -I ./include -c -g ./src/Sistema.cpp -o build/Sistema.o
 
+build/Funcoes.o: ./src/Funcoes.cpp ./include/Funcoes.hpp ./include/Filme.hpp
+	g++ -I ./include -c -g ./src/Funcoes.cpp -o build/Funcoes.o
+
 build/cadastro_clientes.o: ./src/cadastro_clientes.cpp ./include/cadastro_clientes.hpp ./include/clientes.hpp
 	g++ -I ./include -c -g ./src/cadastro_clientes.cpp -o build/cadastro_clientes.o
 
@@ -22,8 +25,5 @@ build/Filme.o: ./src/Filme.cpp ./include/Filme.hpp
 build/Locacao.o: ./src/Locacao.cpp ./include/Locacao.hpp ./include/Filme.hpp
 	g++ -I ./include -c -g ./src/Locacao.cpp -o build/Locacao.o
 
-build/Funcoes.o: ./src/Funcoes.cpp ./include/Funcoes.hpp ./include/Filme.hpp ./include/clientes.hpp
-	g++ -I ./include -c -g ./src/Funcoes.cpp -o build/Funcoes.o
-	
 clean:
 	rm build/*

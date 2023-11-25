@@ -46,7 +46,7 @@ int isCategoriaValido(std::string &categoria) {
     return -1;
 }
 
-bool isCpfValido(std::string cpf) {
+bool isCpfValido(std::string &cpf) {
     //Expressão regular para validar o formato do CPF
     std::regex regexCPF(R"(\d{3}\.\d{3}\.\d{3}-\d{2})");
     if (!std::regex_match(cpf, regexCPF)) return false;
@@ -55,7 +55,7 @@ bool isCpfValido(std::string cpf) {
 }
 
 
-bool isDataNascimentoValido(std::string data) {
+bool isDataNascimentoValido(std::string &data) {
     //Expressão regular para validar o formato da data de nascimento
     std::regex regexDataNascimento(R"(\d{2}/\d{2}/\d{4})");
     if (!std::regex_match(data, regexDataNascimento)) return false;
