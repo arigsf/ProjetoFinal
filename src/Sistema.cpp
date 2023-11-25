@@ -80,7 +80,7 @@ void Sistema::cadastrarCliente() {
     std::string cpf, nome, data_nascimento;
     
     while(true) {
-        std::cout << "Digite o CPF do cliente: ";
+        std::cout << "\nDigite o CPF no formato ""XXX.XXX.XXX-XX"": ";
         std::cin >> cpf;
 
         if(!isCPFValido(cpf)) std::cout << "\nERRO: Formato inválido de CPF\n" << std::endl;
@@ -93,13 +93,14 @@ void Sistema::cadastrarCliente() {
     std::getline(std::cin,nome);
 
     while(true) {
-        std::cout << "\nDigite  a data de nascimento no formato DD/MM/AAAA: ";
+        std::cout << "\nDigite a data de nascimento no formato DD/MM/AAAA: ";
         std::cin >> data_nascimento;
         if(!isDataNascimentoValido(data_nascimento)) std::cout << "\nERRO: Formato inválido de data de nascimento\n" << std::endl;
         else break;
     }
 
     Cliente* novo_cliente = new Cliente(cpf,nome,data_nascimento);
+    clientes.inserirCliente(novo_cliente);
 
     std::cout << "\nCliente de CPF: " << cpf << " cadastrado com sucesso" << std::endl;
 }
