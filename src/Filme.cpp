@@ -1,4 +1,9 @@
-#include "../include/Filme.hpp"
+#include "Filme.hpp"
+
+/**
+ * @file Filme.cpp
+ * @brief Implementação das classes Filme, DVD e FITA.
+ */
 
 Filme::Filme(int _unidades, int _identificador, std::string _titulo, int _tipo) : unidades(_unidades), identificador(_identificador), titulo(_titulo), tipo(_tipo) {}
 
@@ -16,33 +21,37 @@ const std::string Filme::getTitulo() const { return this->titulo; }
 
 const int Filme::getTipo() const { return this->tipo; }
 
-void Filme::adicionarUnidades() {
+void Filme::adicionarUnidades()
+{
     this->unidades++;
 }
 
-void Filme::removerUnidades() {
-    if(this->unidades >= 1) {
-         this->unidades--;
-    } else {
+void Filme::removerUnidades()
+{
+    if (this->unidades >= 1)
+    {
+        this->unidades--;
+    }
+    else
+    {
         std::cout << "ERRO: Filme: " << this->getTitulo() << " nao disponivel no momento." << std::endl;
     }
 }
 
 int DVD::getCategoria() { return this->categoria; }
 
-float DVD::calculoPrecoLocacao(int dias) // Cálculo simulado a preços reais
+float DVD::calculoPrecoLocacao(int dias)
 {
     if (this->getCategoria() == LANCAMENTO)
-        return std::log2(dias*dias) + 8 + 2*dias;
+        return std::log2(dias * dias) + 8 + 2 * dias;
 
     else if (this->getCategoria() == ESTOQUE)
-        return std::log2(dias*dias) + 4 + dias;
+        return std::log2(dias * dias) + 4 + dias;
 
     else if (this->getCategoria() == PROMOCAO)
         return 5;
 
     return -1;
-    // Implementar tratamento de erro
 }
 
 bool FITA::isRebobinado() { return this->estaRebobinado; }
@@ -51,7 +60,6 @@ float FITA::calculoPrecoLocacao(int dias)
 {
     return 5;
 }
-
 
 std::string Filme::listarInformacoes()
 {
@@ -70,10 +78,10 @@ std::string FITA::listarInformacoes()
 
 bool Filme::validarDados()
 {
-    return !(identificador <= 0 || titulo == ""); // Retorna true se os dados forem válidos, e false caso contrário
+    return !(identificador <= 0 || titulo == "");
 }
 
 bool DVD::validarDados()
 {
-    return Filme::validarDados() && !(categoria < 0 || categoria > 2); // Retorna true se os dados forem válidos, e false caso contrário
+    return Filme::validarDados() && !(categoria < 0 || categoria > 2);
 }

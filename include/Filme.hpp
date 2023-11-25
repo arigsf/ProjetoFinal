@@ -11,7 +11,12 @@
 #include <cmath>
 #include <iomanip>
 
-// Declaracao de constantes globais para facilitar a legibilidade do codigo;
+/**
+ * @file Filme.hpp
+ * @brief Definição da classe Filme e suas subclasses DVD e FITA.
+ */
+
+// Declaração de constantes globais para facilitar a legibilidade do código.
 
 const int LANCAMENTO = 0;
 const int ESTOQUE = 1;
@@ -20,75 +25,146 @@ const int PROMOCAO = 2;
 const int TIPO_DVD = 0;
 const int TIPO_FITA = 1;
 
-// Maps para serem usados na leitura de filmes, no programa principal;
+// Maps para serem usados na leitura de filmes, no programa principal.
 
-const std::map<int ,std::string> Categorias = {
+const std::map<int, std::string> Categorias = {
     {LANCAMENTO, "Lançamento"},
     {ESTOQUE, "Estoque"},
-    {PROMOCAO, "Promoção"}
-};
+    {PROMOCAO, "Promoção"}};
 
-const std::map<int ,char> Tipo_Filme = {
+const std::map<int, char> Tipo_Filme = {
     {TIPO_DVD, 'D'},
-    {TIPO_FITA, 'F'}
+    {TIPO_FITA, 'F'}};
+
+/**
+ * @class Filme
+ * @brief Classe pai para representar um filme.
+ */
+
+class Filme
+{
+protected:
+    int identificador;
+    int unidades;
+    std::string titulo;
+    int tipo;
+
+public:
+    /**
+     * @brief Construtor da classe Filme.
+     * @param unidades O número de unidades disponíveis do filme.
+     * @param identificador O identificador único do filme.
+     * @param titulo O título do filme.
+     * @param tipo O tipo do filme (DVD ou FITA).
+     */
+    Filme(int, int, std::string, int);
+
+    /**
+     * @brief Destrutor da classe Filme.
+     */
+    virtual ~Filme();
+
+    /**
+     * @brief Obtém o identificador do filme.
+     * @return O identificador do filme.
+     */
+    const int getIdentificador() const;
+
+    /**
+     * @brief Obtém o número de unidades disponíveis do filme.
+     * @return O número de unidades disponíveis.
+     */
+    const int getUnidades() const;
+
+    /**
+     * @brief Obtém o título do filme.
+     * @return O título do filme.
+     */
+    const std::string getTitulo() const;
+
+    /**
+     * @brief Obtém o tipo do filme (DVD ou FITA).
+     * @return O tipo do filme.
+     */
+    const int getTipo() const;
+
+    void adicionarUnidades();
+    void removerUnidades();
+
+    /**
+     * @brief Calcula o valor de locação do filme.
+     * @param dias O número de dias para locação.
+     * @return O valor de locação calculado.
+     */
+    virtual float calculoPrecoLocacao(int) = 0;
+
+    /**
+     * @brief Lista as informações do filme.
+     * @return Uma string contendo as informações do filme.
+     */
+    virtual std::string listarInformacoes();
+
+    /**
+     * @brief Valida os dados do filme.
+     * @return true se os dados são válidos, false caso contrário.
+     */
+    virtual bool validarDados();
 };
 
+/**
+ * @class DVD
+ * @brief Subclasse de Filme que representa um DVD.
+ */
 
+class DVD : public Filme
+{
+private:
+    int categoria;
 
-class Filme {
-    protected:
-        int identificador;
-        int unidades;
-        std::string titulo;
-        int tipo;
+public:
+    /**
+     * @brief Construtor da subclasse DVD.
+     * @param unidades O número de unidades disponíveis do DVD.
+     * @param identificador O identificador único do DVD.
+     * @param titulo O título do DVD.
+     * @param categoria A categoria do DVD.
+     */
+    DVD(int, int, std::string, int);
 
-    public:
-        Filme(int, int, std::string, int);
-        virtual ~Filme();
+    /**
+     * @brief Obtém a categoria do DVD.
+     * @return A categoria do DVD.
+     */
+    int getCategoria();
 
-        const int getIdentificador() const;
-        const int getUnidades() const;
-        const std::string getTitulo() const;
-        const int getTipo() const;
-
-        void adicionarUnidades();
-        void removerUnidades();
-
-        // Cálculo do valor de locação, se comporta de maneira diferente para DVD ou FITA
-        virtual float calculoPrecoLocacao(int) = 0; 
-        virtual std::string listarInformacoes(); // Método para listar as informacoes do DVD ou FITA, se comporta de maneira diferente em cada um
-        virtual bool validarDados();
+    float calculoPrecoLocacao(int) override;
+    std::string listarInformacoes() override;
+    bool validarDados() override;
 };
 
+class FITA : public Filme
+{
+private:
+    bool estaRebobinado;
 
+public:
+    /**
+     * @brief Construtor da subclasse Fita.
+     * @param unidades O número de unidades disponíveis da Fita.
+     * @param identificador O identificador único da Fita.
+     * @param titulo O título da Fita.
+     * @param estaRebobinado A rebobinação da Fita.
+     */
+    FITA(int, int, std::string, bool);
 
-// Subclasse DVD que herda todos os atributos básicos da Classe Filme
+    /**
+     * @brief Verifica se a fita está rebobinada.
+     * @return true se a fita está rebobinada, false caso contrário.
+     */
+    bool isRebobinado();
 
-class DVD : public Filme {
-    private:
-        int categoria; // 0 - Lancamento, 1 - Estoque, 2 - Promocao;
-        
-    public:
-        DVD(int, int, std::string, int); // Construtor
-        int getCategoria();
-
-        float calculoPrecoLocacao(int) override;
-        std::string listarInformacoes() override;
-        bool validarDados() override;
-};
-
-// Subclasse FITA que herda todos os atributos básicos da Classe Filme
-
-class FITA: public Filme {
-    private:
-        bool estaRebobinado;
-
-    public:
-        FITA(int, int, std::string, bool); // Construtor
-
-        bool isRebobinado(); // Retorna no caso de FITA se a fita está ou não rebobinada
-        float calculoPrecoLocacao(int) override;
-        std::string listarInformacoes() override;
+    float calculoPrecoLocacao(int) override;
+    std::string listarInformacoes() override;
 };
 
 #endif
