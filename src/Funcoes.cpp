@@ -37,8 +37,8 @@ bool isIdentificadorValido(const int identificador) { // Verifica se o id é val
 }
 
 
-int isCategoriaValido(std::string &categoria) {
-    for (std::map<int,std::string>::const_iterator it = Categorias.begin(); it != Categorias.end();it++)
+int isCategoriaValido(char categoria) {
+    for (std::map<int,char>::const_iterator it = Categorias.begin(); it != Categorias.end();it++)
         if(it->second == categoria) {
             return it->first;
         } 

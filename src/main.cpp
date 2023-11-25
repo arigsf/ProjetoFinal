@@ -10,6 +10,8 @@ const std::string LISTAR_CLIENTES = "LC";
 const std::string ALUGAR_FILME = "AL";
 const std::string DEVOLVER_FILME = "DV";
 const std::string FINALIZAR_SISTEMA = "FS";
+const std::string LIMPAR_TERMINAL = "CL";
+const std::string MOSTRAR_OPCOES = "MO";
 
 
 int main() {
@@ -35,20 +37,9 @@ int main() {
     std::cout << "/ /___/ / / / /  __/ ___ |/ / /_/ / /_/ / /_/ /  __/ /  \n";
     std::cout << "\\____/_/_/ /_/\\___/_/  |_/_/\\__,_/\\__, /\\__,_/\\___/_/   \n";
     std::cout << "                                 /____/                 \n";
-    std::cout << "========================================================\n\n";
-
-    std::cout << "Opções disponíveis:\n";
-    std::cout << " - " << LER_ARQUIVO << ": Ler Arquivo\n";
-    std::cout << " - " << CADASTRAR_FILME << ": Cadastrar Filme\n";
-    std::cout << " - " << REMOVER_FILME << ": Remover Filme\n";
-    std::cout << " - " << CADASTRAR_CLIENTE << ": Cadastrar Cliente\n";
-    std::cout << " - " << LISTAR_FILMES << ": Listar Filmes\n";
-    std::cout << " - " << REMOVER_CLIENTES << ": Remover Clientes\n";
-    std::cout << " - " << LISTAR_CLIENTES << ": Listar Clientes\n";
-    std::cout << " - " << ALUGAR_FILME << ": Alugar Filme\n";
-    std::cout << " - " << DEVOLVER_FILME << ": Devolver Filme\n";
-    std::cout << " - " << FINALIZAR_SISTEMA << ": Finalizar Sistema\n\n";
     std::cout << "========================================================\n";
+
+    sistema_principal.mostrarOpcoes();
     
     while (true) {
         std::cout << "\nComando: ";
@@ -63,7 +54,9 @@ int main() {
         else if(comando == LISTAR_CLIENTES) sistema_principal.listarClientesOrdenados();
         else if(comando == ALUGAR_FILME) sistema_principal.alugarFilmes();
         else if(comando == DEVOLVER_FILME) sistema_principal.devolverFilmes();
-        else if(comando == FINALIZAR_SISTEMA) break;
+        else if(comando == LIMPAR_TERMINAL) sistema_principal.limparTerminal();
+        else if(comando == MOSTRAR_OPCOES) sistema_principal.mostrarOpcoes();
+        else if(comando == FINALIZAR_SISTEMA) break; 
                 
     }
     

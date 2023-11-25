@@ -22,13 +22,13 @@ const int TIPO_FITA = 1;
 
 // Maps para serem usados na leitura de filmes, no programa principal;
 
-const std::map<int ,std::string> Categorias = {
-    {LANCAMENTO, "Lançamento"},
-    {ESTOQUE, "Estoque"},
-    {PROMOCAO, "Promoção"}
+const std::map<int, char> Categorias = {
+    {LANCAMENTO, 'L'},
+    {ESTOQUE, 'E'},
+    {PROMOCAO, 'P'}
 };
 
-const std::map<int ,char> Tipo_Filme = {
+const std::map<int, char> Tipo_Filme = {
     {TIPO_DVD, 'D'},
     {TIPO_FITA, 'F'}
 };

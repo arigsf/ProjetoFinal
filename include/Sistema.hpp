@@ -24,8 +24,8 @@ class Sistema {
         void removerCliente();
         void alugarFilmes();
         void devolverFilmes(); // CPF, Filmes por ID, dias
-        
-
+        void limparTerminal();
+        void mostrarOpcoes();
 };
 
 
