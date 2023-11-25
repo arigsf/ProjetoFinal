@@ -1,102 +1,118 @@
 #include "../include/Cadastro_clientes.hpp"
-#include <algorithm> //Remoção de clientes
-#include <regex> //Validar cpf e data de nascimento
-#include <fstream> // Operações com arquivos
-#include <sstream> // Operações com leitura de linha
-#include <numeric> // Transformar vetor de strings em uma string
+#include <algorithm>
+#include <regex>
+#include <fstream>
+#include <sstream>
+#include <numeric>
 
-
-//FORMATO CPF: xxx.xxx.xxx-xx
-//FORMATO Data de Nascimento: dd/mm/yyyy
+/**
+ * @file cadastro_clientes.cpp
+ * @brief Implementação dos métodos da classe Cliente.
+ */
 
 std::string CadastroClientes::diretorio = "../data/Clientes/clientes.txt";
 
-CadastroClientes::CadastroClientes() {
+CadastroClientes::CadastroClientes()
+{
     this->lerArquivo();
 }
 
-//Implementação dos métodos da classe CadastroClientes
-void CadastroClientes::inserirCliente(Cliente* cliente) {
-    //Verificação de existência do cliente
-    if (clienteExiste(cliente->getCPF())) {
+void CadastroClientes::inserirCliente(Cliente *cliente)
+{
+    // Verificação de existência do cliente
+    if (clienteExiste(cliente->getCPF()))
+    {
         std::cout << "ERRO: CPF repetido" << std::endl;
         delete cliente;
         return;
     }
 
-    //Expressão regular para validar o formato do CPF
+    // Expressão regular para validar o formato do CPF
     std::regex regexCPF(R"(\d{3}\.\d{3}\.\d{3}-\d{2})");
-    if (!std::regex_match(cliente->getCPF(), regexCPF)) {
+    if (!std::regex_match(cliente->getCPF(), regexCPF))
+    {
         std::cout << "ERRO: Formato inválido de CPF" << std::endl;
         delete cliente;
         return;
     }
 
-    //Verificar se o nome do cliente está vazio
-    if (cliente->getNome().empty()) {
+    // Verificar se o nome do cliente está vazio
+    if (cliente->getNome().empty())
+    {
         std::cout << "ERRO: Nome vazio" << std::endl;
         delete cliente;
         return;
     }
 
-    //Expressão regular para validar o formato da data de nascimento
+    // Expressão regular para validar o formato da data de nascimento
     std::regex regexDataNascimento(R"(\d{2}/\d{2}/\d{4})");
-    if (!std::regex_match(cliente->getDataNascimento(), regexDataNascimento)) {
+    if (!std::regex_match(cliente->getDataNascimento(), regexDataNascimento))
+    {
         std::cout << "ERRO: Formato inválido de data de nascimento" << std::endl;
         delete cliente;
         return;
     }
 
-    //Adiciona o cliente na lista se todos os dados estiverem corretos
+    // Adiciona o cliente na lista se todos os dados estiverem corretos
     clientes.push_back(cliente);
     std::cout << "Cliente de CPF: " << cliente->getCPF() << " cadastrado com sucesso" << std::endl;
 }
 
-void CadastroClientes::removerCliente(const std::string& cpf) {
-    //Procura o cliente na lista
-    std::vector<Cliente*>::iterator it = std::find_if(clientes.begin(), clientes.end(), [&cpf](const Cliente* cliente) {
-        return cliente->getCPF() == cpf;
-    });
+void CadastroClientes::removerCliente(const std::string &cpf)
+{
+    // Procura o cliente na lista
+    std::vector<Cliente *>::iterator it = std::find_if(clientes.begin(), clientes.end(), [&cpf](const Cliente *cliente)
+                                                       { return cliente->getCPF() == cpf; });
 
-    //Caso o cliente seja encontrado, ele é removido
-    if (it != clientes.end()) {
-        //Guarda o CPF removido para dizer qual é ele logo abaixo
+    // Caso o cliente seja encontrado, ele é removido
+    if (it != clientes.end())
+    {
+        // Guarda o CPF removido para dizer qual é ele logo abaixo
         std::string cpfRemovido = (*it)->getCPF();
-        //Libera a memória do cliente
+        // Libera a memória do cliente
         delete *it;
         clientes.erase(it);
         std::cout << "Cliente de CPF: " << cpfRemovido << " removido com sucesso" << std::endl;
-    } else {
+    }
+    else
+    {
         std::cout << "ERRO: CPF inexistente" << std::endl;
     }
 }
 
-void CadastroClientes::listarClientesOrdenados(bool porCPF) const {
-    //Gera uma cópia da lista dos clientes
-    std::vector<Cliente*> clientesOrdenados = clientes;
+void CadastroClientes::listarClientesOrdenados(bool porCPF) const
+{
+    // Gera uma cópia da lista dos clientes
+    std::vector<Cliente *> clientesOrdenados = clientes;
 
-    //Ordena a lista com base na opção escolhida
-    if (porCPF) {
+    // Ordena a lista com base na opção escolhida
+    if (porCPF)
+    {
         std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
-                  [](const Cliente* a, const Cliente* b) {
+                  [](const Cliente *a, const Cliente *b)
+                  {
                       return a->getCPF() < b->getCPF();
                   });
-    } else {
+    }
+    else
+    {
         std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
-                  [](const Cliente* a, const Cliente* b) {
+                  [](const Cliente *a, const Cliente *b)
+                  {
                       return a->getNome() < b->getNome();
                   });
     }
 
-    //Mostra os clientes ordenados na ordem: cpf, nome, data de nascimento, idade
-    for (const Cliente* cliente : clientesOrdenados) {
+    // Mostra os clientes ordenados na ordem: cpf, nome, data de nascimento, idade
+    for (const Cliente *cliente : clientesOrdenados)
+    {
         std::cout << "CPF: " << cliente->getCPF() << ", Nome: " << cliente->getNome() << ", Data de nascimento: " << cliente->getDataNascimento() << ", Idade: " << cliente->getIdade() << std::endl;
     }
 }
 
-
-Cliente* CadastroClientes::clienteExiste(const std::string& cpf) const {
-    //Verifica se um cliente de mesmo CPF está na lista
+Cliente *CadastroClientes::clienteExiste(const std::string &cpf) const
+{
+    // Verifica se um cliente de mesmo CPF está na lista
     for (Cliente *cliente : this->clientes)
         if (cliente->getCPF() == cpf)
             return cliente;
@@ -104,9 +120,8 @@ Cliente* CadastroClientes::clienteExiste(const std::string& cpf) const {
     return nullptr;
 }
 
-
-void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limpardados decide, se após dos dados serem salvos eles devem ser desalocados
-
+void CadastroClientes::salvarDados(const bool limparDados)
+{ // O parametro limpardados decide, se após dos dados serem salvos eles devem ser desalocados
 
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
     std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
@@ -117,9 +132,11 @@ void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limp
         return;
     }
 
-    if(limparDados) {
+    if (limparDados)
+    {
 
-        for (Cliente *cliente : this->clientes) {
+        for (Cliente *cliente : this->clientes)
+        {
             arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
             delete cliente;
         }
@@ -127,17 +144,17 @@ void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limp
         this->clientes.clear();
     }
     // Percorre a lista de filmes e adiciona no arquivo
-    
-    else 
+
+    else
         for (Cliente *cliente : this->clientes)
             arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
 
-    arquivo.close();   
+    arquivo.close();
 }
 
+void CadastroClientes::lerArquivo()
+{
 
-void CadastroClientes::lerArquivo() {
-    
     std::ifstream arquivo(this->diretorio, std::ios::in);
 
     if (!arquivo.is_open())
@@ -146,33 +163,34 @@ void CadastroClientes::lerArquivo() {
         return;
     }
 
-    std::string linha, palavra,cpf, nome, data_nascimento;
+    std::string linha, palavra, cpf, nome, data_nascimento;
     std::vector<std::string> palavras;
     Cliente *novo_cliente;
 
-    while (getline(std::cin,linha)) {
+    while (getline(std::cin, linha))
+    {
 
         // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
         std::istringstream iss(linha);
         // é um stream de input baseado em uma string
         iss >> cpf;
 
-        while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
-        //devido ao fato de não sabermos a quantidade de palavras do none
+        while (iss >> palavra)
+            palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
+        // devido ao fato de não sabermos a quantidade de palavras do none
 
         data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
         palavras.pop_back();
-        nome = std::accumulate(palavras.begin(), palavras.end(), std::string());        
+        nome = std::accumulate(palavras.begin(), palavras.end(), std::string());
         palavras.clear();
-        novo_cliente = new Cliente(cpf,nome,data_nascimento);
+        novo_cliente = new Cliente(cpf, nome, data_nascimento);
 
         this->inserirCliente(novo_cliente);
     }
-
 }
 
-//Implementa o destrutor
-CadastroClientes::~CadastroClientes() {
+// Implementa o destrutor
+CadastroClientes::~CadastroClientes()
+{
     this->salvarDados(true);
 }
-
