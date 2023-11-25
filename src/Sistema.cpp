@@ -1,35 +1,139 @@
-#include "../include/Sistema.hpp"
+#include "Sistema.hpp"
+#include "Funcoes.hpp"
 
-void Sistema::lerArquivo(const std::string diretorio) {
+void Sistema::lerArquivo() {
+    std::string diretorio;
+    std::cin >> diretorio;
     this->estoque.lerArquivo(diretorio);
 }
 
-void Sistema::cadastrarFilme(Filme *novo_filme) {
-    this->estoque.inserirFilme(novo_filme);
+void Sistema::cadastrarFilme() {
+    
+    
+    char tipo;
+    while(true) {
+        std::cin >> tipo;
+
+        if(!isTipoValido(tipo)) std::cout << "Erro : Tipo invalido, digite novamente" << std::endl;
+        else break;
+    }
+
+    int unidades, identificador;
+    while (true) {
+        std::cin >> unidades;
+
+        if(!isUnidadesValido) std::cout << "Erro : Quantidades invalida, digite novamente" << std::endl;
+        else break;
+    }
+
+    while(true) {     
+        std::cin >> identificador;
+
+        if(!isIdentificadorValido) std::cout << "Erro : Identificador invalido, digite novamente" << std::endl;
+        else if(!this->estoque.filmeExiste(identificador)) std::cout << "ERRO: identificador repetido" << std::endl; 
+        
+        else break;
+    }
+
+    std::string titulo;
+    std::cin.ignore();
+    std::getline(std::cin,titulo);
+
+    Filme *filme;            
+
+    if(tipo == Tipo_Filme.at(TIPO_DVD)) {
+
+        std::string categoria;
+        int indice_categoria;
+
+        while(true) {
+
+            std::cin >> categoria;
+            indice_categoria = isCategoriaValido(categoria);
+            if(indice_categoria < 0) std::cout << "Erro : Categoria invalida, digite novamente" << std::endl;
+            else break;
+        }
+            
+        filme = new DVD(unidades,identificador,titulo,indice_categoria);
+    }
+
+    else if(tipo == 'F') filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
+
+    this->estoque.inserirFilme(filme);
+
+
 }
 
-void Sistema::removerFilme(const int identificador) {
+void Sistema::removerFilme() {
+    int identificador;
+    std::cin >> identificador;
     this->estoque.removerFilme(identificador);
 }
 
-void Sistema::listarFilmesOrdenados(const std::string ordenacao) const {
+void Sistema::listarFilmesOrdenados() const {
+    std::string ordenacao;
+    std::cin >> ordenacao;
     this->estoque.listarFilmesOrdenados(ordenacao);
 }
 
-void Sistema::cadastrarCliente(Cliente *cliente) {
-    this->clientes.inserirCliente(cliente);
+void Sistema::cadastrarCliente() {
+    std::string cpf, nome, data_nascimento;
+    
+    while(true) {
+        std::cin >> cpf;
+
+        if(!isCPFValido(cpf)) std::cout << "ERRO: Formato inválido de CPF" << std::endl;
+        else if (this->clientes.clienteExiste(cpf)) std::cout << "ERRO: CPF repetido" << std::endl;
+        else break;
+    }
+
+    std::cin.ignore();
+    std::getline(std::cin,nome);
+
+    while(true) {
+        std::cin >> data_nascimento;
+        if(!isDataNascimentoValido(data_nascimento)) std::cout << "ERRO: Formato inválido de data de nascimento" << std::endl;
+        else break;
+    }
+
+    Cliente* novo_cliente = new Cliente(cpf,nome,data_nascimento);
 }
 
-void Sistema::listarClientesOrdenados(const std::string ordenacao) const {
+void Sistema::listarClientesOrdenados() const {
+    std::string ordenacao;
+    std::cin >> ordenacao;
     bool ordem = ordenacao == "C" ;
     this->clientes.listarClientesOrdenados(ordem);
 }
 
-void  Sistema::removerCliente(const std::string cpf) {
-    this->clientes.removerCliente(cpf);
+void  Sistema::removerCliente() {
+    std::string cpf;
+    std::cin >> cpf;
+    if(isCPFValido(cpf)) this->clientes.removerCliente(cpf);
+    else std::cout << "ERRO: Formato inválido de CPF" << std::endl;
+
 }
 
-void Sistema::alugarFilmes(std::string cpf, std::vector<int> ids, const int dias) {
+void Sistema::alugarFilmes() {
+
+    int id, dias;
+    std::string cpf;
+    std::cin >> cpf;
+    std::vector<int> ids;
+
+    
+    while (true) {   
+
+        std::cin >> id;
+        if(id  <= 0) break;
+        ids.push_back(id);
+    }
+
+    while (true) {
+        
+        std::cin >> dias;
+        if(dias > 0 || dias <= 7) break;
+    }
 
     if(!this->clientes.clienteExiste(cpf)) {
         std::cout << "ERRO: CPF inexistente" << std::endl;
@@ -48,7 +152,18 @@ void Sistema::alugarFilmes(std::string cpf, std::vector<int> ids, const int dias
 
 }
 
-void Sistema::devolverFilmes(std::string cpf, std::vector<int> ids, const int dias) {
+void Sistema::devolverFilmes() {
+
+    int id, dias, qtdDanificado, qtdNaoRebobinado;
+    std::string cpf;
+    std::cin >> cpf, dias;
+    std::vector<int> ids;
+
+    while (true) {   
+        std::cin >> id;
+        if(id  <= 0) break;
+        ids.push_back(id);
+    }
 
     if(!this->clientes.clienteExiste(cpf)) {
         std::cout << "ERRO: CPF inexistente" << std::endl;

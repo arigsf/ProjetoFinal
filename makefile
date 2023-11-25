@@ -1,29 +1,29 @@
-output: main.o Cadastro_clientes.o Clientes.o Estoque.o Filme.o Funcoes.o Locacao.o Sistema.o
-	g++ main.o Cadastro_clientes.o Clientes.o Estoque.o Filme.o Funcoes.o Locacao.o Sistema.o -o ./build/output
+output: build/main.o build/Sistema.o build/cadastro_clientes.o build/clientes.o build/Estoque.o build/Filme.o build/Locacao.o build/Funcoes.o
+	g++ -g build/*.o -o ./build/output
 
-Cadastro_clientes.o: ./src/Cadastro_clientes.cpp
-	g++ -I ./include -c ./src/Cadastro_clientes.cpp
+build/main.o: ./src/main.cpp ./include/Sistema.hpp
+	g++ -I ./include -c -g ./src/main.cpp -o build/main.o
 
-Clientes.o: ./src/Clientes.cpp
-	g++ -I ./include -c ./src/Clientes.cpp
+build/Sistema.o: ./src/Sistema.cpp ./include/Sistema.hpp ./include/Locacao.hpp ./include/Estoque.hpp ./include/cadastro_clientes.hpp ./include/Funcoes.hpp
+	g++ -I ./include -c -g ./src/Sistema.cpp -o build/Sistema.o
 
-Estoque.o: ./src/Estoque.cpp
-	g++ -I ./include -c ./src/Estoque.cpp
+build/cadastro_clientes.o: ./src/cadastro_clientes.cpp ./include/cadastro_clientes.hpp ./include/clientes.hpp
+	g++ -I ./include -c -g ./src/cadastro_clientes.cpp -o build/cadastro_clientes.o
 
-Filme.o: ./src/Filme.cpp
-	g++ -I ./include -c ./src/Filme.cpp
+build/clientes.o: ./src/clientes.cpp ./include/clientes.hpp
+	g++ -I ./include -c -g ./src/clientes.cpp -o build/clientes.o
 
-Funcoes.o: ./src/Funcoes.cpp
-	g++ -I ./include -c ./src/Funcoes.cpp
+build/Estoque.o: ./src/Estoque.cpp ./include/Estoque.hpp ./include/Filme.hpp
+	g++ -I ./include -c -g ./src/Estoque.cpp -o build/Estoque.o
 
-Locacao.o: ./src/Locacao.cpp
-	g++ -I ./include -c ./src/Locacao.cpp
+build/Filme.o: ./src/Filme.cpp ./include/Filme.hpp
+	g++ -I ./include -c -g ./src/Filme.cpp -o build/Filme.o
 
-Sistema.o: ./src/Sistema.cpp
-	g++ -I ./include -c ./src/Sistema.cpp
+build/Locacao.o: ./src/Locacao.cpp ./include/Locacao.hpp ./include/Filme.hpp
+	g++ -I ./include -c -g ./src/Locacao.cpp -o build/Locacao.o
 
-main.o: ./src/main.cpp
-	g++ -I ./include -c ./src/main.cpp
-
+build/Funcoes.o: ./src/Funcoes.cpp ./include/Funcoes.hpp ./include/Filme.hpp ./include/clientes.hpp
+	g++ -I ./include -c -g ./src/Funcoes.cpp -o build/Funcoes.o
+	
 clean:
-	rm *.o
+	rm build/*

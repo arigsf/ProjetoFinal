@@ -3,6 +3,7 @@
 #include <iterator>
 #include <fstream> // Operações com arquivos
 #include <algorithm>
+#include <numeric>
 #include <sstream> // Operações com leitura de linha
 
 Estoque::Estoque() {}
