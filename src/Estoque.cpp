@@ -56,8 +56,8 @@ void Estoque::lerArquivo(const std::string diretorio)
 
             // A ultima palavra corresponde a categoria do DVD
             int indice_categoria = -1;
-            for (std::map<int,std::string>::const_iterator it = Categorias.begin(); it != Categorias.end();it++)
-                if(it->second == palavras.back()) {
+            for (std::map<int,char>::const_iterator it = Categorias.begin(); it != Categorias.end();it++)
+                if(it->second == palavras.back()[0]) {
                     indice_categoria = it->first;
                     break;
                 } 
