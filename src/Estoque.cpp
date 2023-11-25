@@ -6,7 +6,9 @@
 #include <numeric>
 #include <sstream> // Operações com leitura de linha
 
-Estoque::Estoque() {}
+Estoque::Estoque() {
+    this->lerArquivo("./data/Filmes/filmes");
+}
 
 Estoque::~Estoque()
 {
@@ -110,7 +112,6 @@ bool Estoque::inserirFilme(Filme *novoFilme)
     }
 
     this->estoque.push_back(novoFilme);
-    std::cout << "Filme " << novoFilme->getIdentificador() << " cadastrado com sucesso" << std::endl;
     return true;
 }
 

@@ -5,6 +5,7 @@
 #include "Locacao.hpp"
 #include "cadastro_clientes.hpp"
 #include <iterator>
+#include <unistd.h>
 
 class Sistema {
 

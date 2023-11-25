@@ -1,4 +1,5 @@
 #include "cadastro_clientes.hpp"
+#include <unistd.h>
 #include <algorithm> //Remoção de clientes
 #include <regex> //Validar cpf e data de nascimento
 #include <fstream> // Operações com arquivos
@@ -13,6 +14,7 @@ std::string CadastroClientes::diretorio = "./data/Clientes/clientes.txt";
 
 CadastroClientes::CadastroClientes() {
     this->lerArquivo();
+    
 }
 
 
@@ -21,7 +23,6 @@ void CadastroClientes::inserirCliente(Cliente* cliente) {
 
     //Adiciona o cliente na lista se todos os dados estiverem corretos
     clientes.push_back(cliente);
-    std::cout << "Cliente de CPF: " << cliente->getCPF() << " cadastrado com sucesso" << std::endl;
 }
 
 void CadastroClientes::removerCliente(const std::string& cpf) {
@@ -43,24 +44,19 @@ void CadastroClientes::removerCliente(const std::string& cpf) {
     }
 }
 
-void CadastroClientes::listarClientesOrdenados(bool porCPF) const {
+void CadastroClientes::listarClientesOrdenados() const {
     //Gera uma cópia da lista dos clientes
     std::vector<Cliente*> clientesOrdenados = clientes;
 
-    //Ordena a lista com base na opção escolhida
-    if (porCPF) {
-        std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
-                  [](const Cliente* a, const Cliente* b) {
-                      return a->getCPF() < b->getCPF();
-                  });
-    } else {
-        std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
-                  [](const Cliente* a, const Cliente* b) {
-                      return a->getNome() < b->getNome();
-                  });
-    }
+    //Ordena a lista com base no nome;
+    
+    std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
+        [](const Cliente* a, const Cliente* b) {
+                return a->getNome() < b->getNome();
+        });
 
     //Mostra os clientes ordenados na ordem: cpf, nome, data de nascimento, idade
+    std::cout << '\n';
     for (const Cliente* cliente : clientesOrdenados) {
         std::cout << "CPF: " << cliente->getCPF() << ", Nome: " << cliente->getNome() << ", Data de nascimento: " << cliente->getDataNascimento() << ", Idade: " << cliente->getIdade() << std::endl;
     }
@@ -121,6 +117,7 @@ void CadastroClientes::lerArquivo() {
     std::string linha, palavra,cpf, nome, data_nascimento;
     std::vector<std::string> palavras;
     Cliente *novo_cliente;
+    int aux = 0; //Variável auxiliar para guardar o n° de clientes cadastrados com sucesso
 
     while (getline(arquivo,linha)) {
 
@@ -139,9 +136,12 @@ void CadastroClientes::lerArquivo() {
         novo_cliente = new Cliente(cpf,nome,data_nascimento);
 
         this->inserirCliente(novo_cliente);
+        aux++;
     }
 
     arquivo.close();
+
+    if(aux) std::cout << aux << " clientes cadastrados com sucesso" << std::endl;
 }
 
 //Implementa o destrutor

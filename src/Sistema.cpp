@@ -61,7 +61,7 @@ void Sistema::cadastrarFilme() {
 
     this->estoque.inserirFilme(filme);
 
-
+    std::cout << "Filme " << identificador << " cadastrado com sucesso" << std::endl;
 }
 
 void Sistema::removerFilme() {
@@ -80,30 +80,32 @@ void Sistema::cadastrarCliente() {
     std::string cpf, nome, data_nascimento;
     
     while(true) {
+        std::cout << "Digite o CPF do cliente: ";
         std::cin >> cpf;
 
-        if(!isCPFValido(cpf)) std::cout << "ERRO: Formato inválido de CPF" << std::endl;
-        else if (this->clientes.clienteExiste(cpf)) std::cout << "ERRO: CPF repetido" << std::endl;
+        if(!isCPFValido(cpf)) std::cout << "\nERRO: Formato inválido de CPF\n" << std::endl;
+        else if (this->clientes.clienteExiste(cpf)) std::cout << "\nERRO: CPF repetido\n" << std::endl;
         else break;
     }
 
+    std::cout << "\nDigite o nome do cliente: ";
     std::cin.ignore();
     std::getline(std::cin,nome);
 
     while(true) {
+        std::cout << "\nDigite  a data de nascimento no formato DD/MM/AAAA: ";
         std::cin >> data_nascimento;
-        if(!isDataNascimentoValido(data_nascimento)) std::cout << "ERRO: Formato inválido de data de nascimento" << std::endl;
+        if(!isDataNascimentoValido(data_nascimento)) std::cout << "\nERRO: Formato inválido de data de nascimento\n" << std::endl;
         else break;
     }
 
     Cliente* novo_cliente = new Cliente(cpf,nome,data_nascimento);
+
+    std::cout << "\nCliente de CPF: " << cpf << " cadastrado com sucesso" << std::endl;
 }
 
 void Sistema::listarClientesOrdenados() const {
-    std::string ordenacao;
-    std::cin >> ordenacao;
-    bool ordem = ordenacao == "C" ;
-    this->clientes.listarClientesOrdenados(ordem);
+    this->clientes.listarClientesOrdenados();
 }
 
 void  Sistema::removerCliente() {
