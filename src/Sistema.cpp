@@ -121,6 +121,7 @@ void Sistema::alugarFilmes() {
 
     int id, dias;
     std::string cpf;
+    std::cout << "\nDigite CPF no formato ""XXX.XXX.XXX-XX"": ";
     std::cin >> cpf;
     std::vector<int> ids;
 
@@ -137,7 +138,7 @@ void Sistema::alugarFilmes() {
     }
 
     while (true) {
-        
+        std::cout << "\nDigite o n° de dias do aluguel (entre 1 e 7): ";
         std::cin >> dias;
         if(dias > 0 || dias <= 7) break;
     }
@@ -155,21 +156,26 @@ void Sistema::alugarFilmes() {
 }
 
 void Sistema::devolverFilmes() {
-
+    
     int id, dias, qtdDanificado, qtdNaoRebobinado;
     std::string cpf;
-    std::cin >> cpf, dias;
+    std::cout << "\nDigite CPF no formato ""XXX.XXX.XXX-XX"": ";
+    std::cin >> cpf;
+
+    if(!this->clientes.clienteExiste(cpf)) {
+        std::cout << "ERRO: CPF inexistente" << std::endl;
+        return;
+    }
+
+    std::cout << "\n\nDigite o n° de dias decorridos desde o aluguel: ";
+    std::cin >> dias;
+    
     std::vector<int> ids;
 
     while (true) {   
         std::cin >> id;
         if(id  <= 0) break;
         ids.push_back(id);
-    }
-
-    if(!this->clientes.clienteExiste(cpf)) {
-        std::cout << "ERRO: CPF inexistente" << std::endl;
-        return;
     }
 
     int valorDaMulta = 0;
