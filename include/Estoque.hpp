@@ -5,6 +5,7 @@
 #include "Funcoes.hpp"
 #include <functional>
 
+const std::string DIRETORIO_PADRAO_FILMES = "./data/Filmes/filmes";
 
 const std::map<std::string, std::function<bool(const Filme*, const Filme*)>> COMPARADORES_FILME = {
     {"C", [](const Filme* a, const Filme* b) { return a->getIdentificador() < b->getIdentificador(); }},

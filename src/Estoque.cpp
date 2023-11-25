@@ -7,7 +7,7 @@
 #include <sstream> // Operações com leitura de linha
 
 Estoque::Estoque() {
-    this->lerArquivo("./data/Filmes/filmes");
+    this->lerArquivo(DIRETORIO_PADRAO_FILMES);
 }
 
 Estoque::~Estoque()

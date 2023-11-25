@@ -2,7 +2,16 @@
 #include "Funcoes.hpp"
 
 void Sistema::lerArquivo() {
+    char tipo;
     std::string diretorio;
+
+    std::cout << "Filmes ou Clientes (F/C)? ";
+    while (true) {
+        std::cin >> tipo;
+        if(tipo != ARQUIVO_CLIENTES && tipo != ARQUIVO_FILMES) std::cout << "Erro : Tipo de leitura inválido" << std::endl;
+        else break;
+    }
+    
     std::cout << "\nDigite o caminho para o arquivo: ";
     std::cin >> diretorio;
     this->estoque.lerArquivo(diretorio);
