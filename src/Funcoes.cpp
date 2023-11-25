@@ -1,9 +1,9 @@
 #include "Funcoes.hpp"
-#include "Filme.hpp"
 #include <iterator>
 #include <random>
 #include <regex> //Validar cpf e data de nascimento
 #include <map>
+#include <string>
 
 
 const bool retornaVerdadeiroFalso() {
@@ -19,7 +19,7 @@ const bool retornaVerdadeiroFalso() {
 
 }
 
-bool isTipoValido(char tipo) { // Verifica se o tipo de Filme é valido
+bool isTipoValido(const char tipo) { // Verifica se o tipo de Filme é valido
 
     for (std::map<int,char>::const_iterator it = Tipo_Filme.begin(); it != Tipo_Filme.end(); it++)
         if(it->second == tipo) return true;
@@ -28,11 +28,11 @@ bool isTipoValido(char tipo) { // Verifica se o tipo de Filme é valido
 
 }
 
-bool isUnidadesValido(int unidades) { //Verifica se unidades é um valor maior que zero   
+bool isUnidadesValido(const int unidades) { //Verifica se unidades é um valor maior que zero   
     return unidades > 0;
 }
 
-bool isIdentificadorValido(int identificador) { // Verifica se o id é valido
+bool isIdentificadorValido(const int identificador) { // Verifica se o id é valido
     return identificador > 0;
 }
 
@@ -46,7 +46,7 @@ int isCategoriaValido(std::string &categoria) {
     return -1;
 }
 
-bool isCpfValido(std::string &cpf) {
+bool isCPFValido(std::string &cpf) {
     //Expressão regular para validar o formato do CPF
     std::regex regexCPF(R"(\d{3}\.\d{3}\.\d{3}-\d{2})");
     if (!std::regex_match(cpf, regexCPF)) return false;

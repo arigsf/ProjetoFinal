@@ -1,4 +1,4 @@
-#include "../include/Locacao.hpp"
+#include "Locacao.hpp"
 
 int Locacao::numeroLocacoes = 0;
 

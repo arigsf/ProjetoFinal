@@ -1,4 +1,4 @@
-#include "../include/Filme.hpp"
+#include "Filme.hpp"
 
 Filme::Filme(int _unidades, int _identificador, std::string _titulo, int _tipo) : unidades(_unidades), identificador(_identificador), titulo(_titulo), tipo(_tipo) {}
 
