@@ -124,6 +124,10 @@ void Sistema::alugarFilmes() {
     std::cin >> cpf;
     std::vector<int> ids;
 
+    if(!this->clientes.clienteExiste(cpf)) {
+        std::cout << "ERRO: CPF inexistente" << std::endl;
+        return;
+    }
     
     while (true) {   
 
@@ -136,11 +140,6 @@ void Sistema::alugarFilmes() {
         
         std::cin >> dias;
         if(dias > 0 || dias <= 7) break;
-    }
-
-    if(!this->clientes.clienteExiste(cpf)) {
-        std::cout << "ERRO: CPF inexistente" << std::endl;
-        return;
     }
 
     std::vector<Filme*> filmes;
