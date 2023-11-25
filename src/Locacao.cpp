@@ -1,5 +1,10 @@
 #include "../include/Locacao.hpp"
 
+/**
+ * @file Locacao.cpp
+ * @brief Implementação dos métodos da classe Locacao.
+ */
+
 int Locacao::numeroLocacoes = 0;
 
 Locacao::Locacao(){}
