@@ -57,7 +57,7 @@ public:
      * @param titulo O título do filme.
      * @param tipo O tipo do filme (DVD ou FITA).
      */
-    Filme(int, int, std::string, int);
+    Filme(int unidades, int identificador, std::string titulo, int tipo);
 
     /**
      * @brief Destrutor da classe Filme.
@@ -96,7 +96,7 @@ public:
      * @param dias O número de dias para locação.
      * @return O valor de locação calculado.
      */
-    virtual float calculoPrecoLocacao(int) = 0;
+    virtual float calculoPrecoLocacao(int dias) = 0;
 
     /**
      * @brief Lista as informações do filme.
@@ -129,7 +129,7 @@ public:
      * @param titulo O título do DVD.
      * @param categoria A categoria do DVD.
      */
-    DVD(int, int, std::string, int);
+    DVD(int unidades, int identificador, std::string titulo, int categoria);
 
     /**
      * @brief Obtém a categoria do DVD.
@@ -137,7 +137,7 @@ public:
      */
     int getCategoria();
 
-    float calculoPrecoLocacao(int) override;
+    float calculoPrecoLocacao(int dias) override;
     std::string listarInformacoes() override;
     bool validarDados() override;
 };
@@ -155,7 +155,7 @@ public:
      * @param titulo O título da Fita.
      * @param estaRebobinado A rebobinação da Fita.
      */
-    FITA(int, int, std::string, bool);
+    FITA(int unidades, int identificador, std::string titulo, bool estaRebobinado);
 
     /**
      * @brief Verifica se a fita está rebobinada.
@@ -163,7 +163,7 @@ public:
      */
     bool isRebobinado();
 
-    float calculoPrecoLocacao(int) override;
+    float calculoPrecoLocacao(int dias) override;
     std::string listarInformacoes() override;
 };
 
