@@ -1,4 +1,4 @@
-#include "../include/Locacao.hpp"
+#include "Locacao.hpp"
 
 int Locacao::numeroLocacoes = 0;
 
@@ -7,6 +7,7 @@ Locacao::Locacao(){}
 void Locacao::removeLocacao(int posNoVetorLocacoes){
     locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
 }
+
 
 int Locacao::getPosicaoLocacaoVetorLocacoes(std::pair<std::string, std::pair<Filme*, int>> locacao){
     for(int i = 0; i<locacoes.size(); i++){

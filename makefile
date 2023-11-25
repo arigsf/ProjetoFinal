@@ -1,29 +1,29 @@
-output: main.o Cadastro_clientes.o Clientes.o Estoque.o Filme.o Funcoes.o Locacao.o Sistema.o
-	g++ main.o Cadastro_clientes.o Clientes.o Estoque.o Filme.o Funcoes.o Locacao.o Sistema.o -o ./build/output
+output: build/main.o build/Sistema.o build/Funcoes.o build/Estoque.o build/Filme.o build/Cadastro_Clientes.o build/Clientes.o build/Locacao.o 
+	g++ -g build/*.o -o ./build/output
 
-Cadastro_clientes.o: ./src/Cadastro_clientes.cpp
-	g++ -I ./include -c ./src/Cadastro_clientes.cpp
+build/main.o: ./src/main.cpp ./include/Sistema.hpp
+	g++ -I ./include -c -g ./src/main.cpp -o build/main.o
 
-Clientes.o: ./src/Clientes.cpp
-	g++ -I ./include -c ./src/Clientes.cpp
+build/Sistema.o: ./src/Sistema.cpp ./include/Sistema.hpp
+	g++ -I ./include -c -g ./src/Sistema.cpp -o build/Sistema.o
 
-Estoque.o: ./src/Estoque.cpp
-	g++ -I ./include -c ./src/Estoque.cpp
+build/Funcoes.o: ./src/Funcoes.cpp ./include/Funcoes.hpp
+	g++ -I ./include -c -g ./src/Funcoes.cpp -o build/Funcoes.o
 
-Filme.o: ./src/Filme.cpp
-	g++ -I ./include -c ./src/Filme.cpp
+build/Estoque.o: ./src/Estoque.cpp ./include/Estoque.hpp
+	g++ -I ./include -c -g ./src/Estoque.cpp -o build/Estoque.o
 
-Funcoes.o: ./src/Funcoes.cpp
-	g++ -I ./include -c ./src/Funcoes.cpp
+build/Filme.o: ./src/Filme.cpp ./include/Filme.hpp
+	g++ -I ./include -c -g ./src/Filme.cpp -o build/Filme.o
 
-Locacao.o: ./src/Locacao.cpp
-	g++ -I ./include -c ./src/Locacao.cpp
+build/Cadastro_Clientes.o: ./src/Cadastro_Clientes.cpp ./include/Cadastro_Clientes.hpp
+	g++ -I ./include -c -g ./src/Cadastro_Clientes.cpp -o build/Cadastro_Clientes.o
 
-Sistema.o: ./src/Sistema.cpp
-	g++ -I ./include -c ./src/Sistema.cpp
+build/Clientes.o: ./src/Clientes.cpp ./include/Clientes.hpp
+	g++ -I ./include -c -g ./src/Clientes.cpp -o build/Clientes.o
 
-main.o: ./src/main.cpp
-	g++ -I ./include -c ./src/main.cpp
+build/Locacao.o: ./src/Locacao.cpp ./include/Locacao.hpp
+	g++ -I ./include -c -g ./src/Locacao.cpp -o build/Locacao.o
 
 clean:
-	rm *.o
+	rm build/*

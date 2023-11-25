@@ -1,51 +1,19 @@
-#include "../include/Cadastro_clientes.hpp"
+#include "Cadastro_Clientes.hpp"
 #include <algorithm> //Remoção de clientes
 #include <regex> //Validar cpf e data de nascimento
 #include <fstream> // Operações com arquivos
 #include <sstream> // Operações com leitura de linha
 #include <numeric> // Transformar vetor de strings em uma string
 
-
 //FORMATO CPF: xxx.xxx.xxx-xx
 //FORMATO Data de Nascimento: dd/mm/yyyy
 
-std::string CadastroClientes::diretorio = "../data/Clientes/clientes.txt";
-
 CadastroClientes::CadastroClientes() {
-    this->lerArquivo();
+    this->lerArquivo(DIRETORIO_PADRAO_CLIENTES);
 }
 
 //Implementação dos métodos da classe CadastroClientes
 void CadastroClientes::inserirCliente(Cliente* cliente) {
-    //Verificação de existência do cliente
-    if (clienteExiste(cliente->getCPF())) {
-        std::cout << "ERRO: CPF repetido" << std::endl;
-        delete cliente;
-        return;
-    }
-
-    //Expressão regular para validar o formato do CPF
-    std::regex regexCPF(R"(\d{3}\.\d{3}\.\d{3}-\d{2})");
-    if (!std::regex_match(cliente->getCPF(), regexCPF)) {
-        std::cout << "ERRO: Formato inválido de CPF" << std::endl;
-        delete cliente;
-        return;
-    }
-
-    //Verificar se o nome do cliente está vazio
-    if (cliente->getNome().empty()) {
-        std::cout << "ERRO: Nome vazio" << std::endl;
-        delete cliente;
-        return;
-    }
-
-    //Expressão regular para validar o formato da data de nascimento
-    std::regex regexDataNascimento(R"(\d{2}/\d{2}/\d{4})");
-    if (!std::regex_match(cliente->getDataNascimento(), regexDataNascimento)) {
-        std::cout << "ERRO: Formato inválido de data de nascimento" << std::endl;
-        delete cliente;
-        return;
-    }
 
     //Adiciona o cliente na lista se todos os dados estiverem corretos
     clientes.push_back(cliente);
@@ -109,7 +77,7 @@ void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limp
 
 
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
-    std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
+    std::ofstream arquivo(DIRETORIO_PADRAO_CLIENTES, std::ios::out | std::ios::trunc);
 
     if (!arquivo.is_open())
     {
@@ -136,9 +104,9 @@ void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limp
 }
 
 
-void CadastroClientes::lerArquivo() {
+void CadastroClientes::lerArquivo(std::string diretorio) {
     
-    std::ifstream arquivo(this->diretorio, std::ios::in);
+    std::ifstream arquivo(diretorio, std::ios::in);
 
     if (!arquivo.is_open())
     {
@@ -150,7 +118,7 @@ void CadastroClientes::lerArquivo() {
     std::vector<std::string> palavras;
     Cliente *novo_cliente;
 
-    while (getline(std::cin,linha)) {
+    while (getline(arquivo,linha)) {
 
         // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
         std::istringstream iss(linha);
@@ -169,10 +137,10 @@ void CadastroClientes::lerArquivo() {
         this->inserirCliente(novo_cliente);
     }
 
+    arquivo.close();
 }
 
 //Implementa o destrutor
 CadastroClientes::~CadastroClientes() {
     this->salvarDados(true);
 }
-

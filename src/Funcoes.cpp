@@ -1,4 +1,9 @@
-#include "../include/Funcoes.hpp"
+#include "Funcoes.hpp"
+#include <iterator>
+#include <random>
+#include <regex> //Validar cpf e data de nascimento
+#include <map>
+#include <string>
 
 
 const bool retornaVerdadeiroFalso() {
@@ -14,32 +19,45 @@ const bool retornaVerdadeiroFalso() {
 
 }
 
+bool isTipoValido(const char tipo) { // Verifica se o tipo de Filme é valido
 
-
-void removerEspacosDireitaEsquerda(std::string &linha)  {
+    for (std::map<int,char>::const_iterator it = Tipo_Filme.begin(); it != Tipo_Filme.end(); it++)
+        if(it->second == tipo) return true;
     
-    linha.erase(0,linha.find_first_not_of(' ')); 
-    // remove os espaços a direita, a função find_first_not_of retorna o primeiro caracter que não é um espaço
-    linha.erase(linha.find_last_not_of(' ')+1); // remove os espaços a esquerda, a função find_last_not_of retorna o ultimo caracter que não é um espaço
+    return false;
+
+}
+
+bool isUnidadesValido(const int unidades) { //Verifica se unidades é um valor maior que zero   
+    return unidades > 0;
+}
+
+bool isIdentificadorValido(const int identificador) { // Verifica se o id é valido
+    return identificador > 0;
 }
 
 
-const int separarTituloCategoria(std::string &titulo) {
+int isCategoriaValido(std::string &categoria) {
+    for (std::map<int,std::string>::const_iterator it = Categorias.begin(); it != Categorias.end();it++)
+        if(it->second == categoria) {
+            return it->first;
+        } 
 
-    for (std::map<int, std::string>::const_iterator categoria = Categorias.begin(); categoria != Categorias.end(); categoria++) {
-        size_t pos = titulo.find(categoria->second); // A função find() retorna a primeira instancia da substring desejada
-        if(pos != std::string::npos) { 
-            // se pos for diferende do valor falso esperado, encontramos a categoria certa
-            titulo.erase(pos,categoria->second.length()); // a função erase remove a substring que contem a categoria da linha
-            removerEspacosDireitaEsquerda(titulo);
-            return categoria->first;
-        }
-            
-    }
-    
-    // Nenhuma Categoria foi encontrada
     return -1;
-
 }
 
-// Funções usadas na classe Sistema
+bool isCPFValido(std::string &cpf) {
+    //Expressão regular para validar o formato do CPF
+    std::regex regexCPF(R"(\d{3}\.\d{3}\.\d{3}-\d{2})");
+    if (!std::regex_match(cpf, regexCPF)) return false;
+    return true;
+    
+}
+
+
+bool isDataNascimentoValido(std::string &data) {
+    //Expressão regular para validar o formato da data de nascimento
+    std::regex regexDataNascimento(R"(\d{2}/\d{2}/\d{4})");
+    if (!std::regex_match(data, regexDataNascimento)) return false;
+    return true;
+}

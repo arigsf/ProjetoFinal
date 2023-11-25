@@ -2,17 +2,17 @@
 #define FUNCOES_H
 
 #include "Filme.hpp"
-#include "Clientes.hpp"
-#include <random>
-
+#include <string>
 
 // Função de aleatoridade em fitas
 const bool retornaVerdadeiroFalso();
 
-// Funções usadas em Estoque
-void removerEspacosDireitaEsquerda(std::string &);
-const int separarTituloCategoria(std::string &);
-// Funções usadas em sistema
-
+bool isTipoValido(const char);
+bool isUnidadesValido(const int);
+bool isIdentificadorValido(const int);
+int isCategoriaValido(std::string &);
+// Nota, bug presente, que afirma que não há referencia definida para esta função abaixo
+bool isCPFValido(std::string &);
+bool isDataNascimentoValido(std::string &);
 
 #endif
