@@ -1,9 +1,12 @@
 #ifndef SISTEMA_H
 #define SISTEMA_H
 
+const char ARQUIVO_FILMES = 'F';
+const char ARQUIVO_CLIENTES = 'C';
+
 #include "Estoque.hpp"
 #include "Locacao.hpp"
-#include "cadastro_clientes.hpp"
+#include "Cadastro_Clientes.hpp"
 #include <iterator>
 
 class Sistema {

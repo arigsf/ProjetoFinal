@@ -1,20 +1,16 @@
-#include "cadastro_clientes.hpp"
+#include "Cadastro_Clientes.hpp"
 #include <algorithm> //Remoção de clientes
 #include <regex> //Validar cpf e data de nascimento
 #include <fstream> // Operações com arquivos
 #include <sstream> // Operações com leitura de linha
 #include <numeric> // Transformar vetor de strings em uma string
 
-
 //FORMATO CPF: xxx.xxx.xxx-xx
 //FORMATO Data de Nascimento: dd/mm/yyyy
 
-std::string CadastroClientes::diretorio = "./data/Clientes/clientes.txt";
-
 CadastroClientes::CadastroClientes() {
-    this->lerArquivo();
+    this->lerArquivo(DIRETORIO_PADRAO_CLIENTES);
 }
-
 
 //Implementação dos métodos da classe CadastroClientes
 void CadastroClientes::inserirCliente(Cliente* cliente) {
@@ -81,7 +77,7 @@ void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limp
 
 
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
-    std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
+    std::ofstream arquivo(DIRETORIO_PADRAO_CLIENTES, std::ios::out | std::ios::trunc);
 
     if (!arquivo.is_open())
     {
@@ -108,9 +104,9 @@ void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limp
 }
 
 
-void CadastroClientes::lerArquivo() {
+void CadastroClientes::lerArquivo(std::string diretorio) {
     
-    std::ifstream arquivo(this->diretorio, std::ios::in);
+    std::ifstream arquivo(diretorio, std::ios::in);
 
     if (!arquivo.is_open())
     {

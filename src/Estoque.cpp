@@ -6,7 +6,9 @@
 #include <numeric>
 #include <sstream> // Operações com leitura de linha
 
-Estoque::Estoque() {}
+Estoque::Estoque() {
+    this->lerArquivo(DIRETORIO_PADRAO_FILMES);
+}
 
 Estoque::~Estoque()
 {
@@ -74,7 +76,6 @@ void Estoque::lerArquivo(const std::string diretorio)
 
     arquivo.close();
     std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
-    this->diretorio = diretorio;
 }
 
 bool Estoque::inserirFilme(Filme *novoFilme)
@@ -221,7 +222,7 @@ Filme *Estoque::filmeValido(const int identificador) const
 void Estoque::salvarDados(const bool limparDados) // O parametro limpardados decide, se após dos dados serem salvos eles devem ser desalocados
 {
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
-    std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
+    std::ofstream arquivo(DIRETORIO_PADRAO_FILMES, std::ios::out | std::ios::trunc);
 
     if (!arquivo.is_open())
     {
