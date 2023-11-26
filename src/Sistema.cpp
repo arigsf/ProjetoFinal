@@ -2,19 +2,22 @@
 #include "Funcoes.hpp"
 
 void Sistema::lerArquivo() {
+
     char tipo;
     std::string diretorio;
 
     std::cout << "Filmes ou Clientes (F/C)? ";
     while (true) {
         std::cin >> tipo;
-        if(tipo != ARQUIVO_CLIENTES && tipo != ARQUIVO_FILMES) std::cout << "Erro : Tipo de leitura inválido" << std::endl;
+        if(tipo != ARQUIVO_CLIENTES && tipo != ARQUIVO_FILMES) std::cout << "ERRO: Tipo de leitura inválido" << std::endl;
         else break;
     }
     
     std::cout << "\nDigite o caminho para o arquivo: ";
     std::cin >> diretorio;
-    this->estoque.lerArquivo(diretorio);
+
+    if(ARQUIVO_FILMES) this->estoque.lerArquivo(diretorio);
+    else if (ARQUIVO_CLIENTES) this->clientes.lerArquivo(diretorio);
 }
 
 void Sistema::cadastrarFilme() {
@@ -22,7 +25,7 @@ void Sistema::cadastrarFilme() {
     while(true) {
         std::cout << "\nDigite o tipo do filme\n[D] - dvd\n[F] - fita\n\nEscolha: ";
         std::cin >> tipo;
-        if(!isTipoValido(tipo)) std::cout << "Erro : Tipo invalido, digite novamente" << std::endl;
+        if(!isTipoValido(tipo)) std::cout << "ERRO: Tipo invalido, digite novamente" << std::endl;
         else break;
     }
 
@@ -31,7 +34,7 @@ void Sistema::cadastrarFilme() {
         std::cout << "\nInsira a quantidade: ";
         std::cin >> unidades;
 
-        if(!isUnidadesValido) std::cout << "Erro : Quantidades invalida, digite novamente" << std::endl;
+        if(!isUnidadesValido) std::cout << "ERRO: Quantidades invalida, digite novamente" << std::endl;
         else break;
     }
 
@@ -39,7 +42,7 @@ void Sistema::cadastrarFilme() {
         std::cout << "\nInsira o identificador: ";
         std::cin >> identificador;
 
-        if(!isIdentificadorValido) std::cout << "Erro : Identificador invalido, digite novamente" << std::endl;
+        if(!isIdentificadorValido) std::cout << "ERRO: Identificador invalido, digite novamente" << std::endl;
         else if(this->estoque.filmeExiste(identificador)) std::cout << "ERRO: identificador repetido" << std::endl; 
         
         else break;
@@ -115,8 +118,7 @@ void Sistema::cadastrarCliente() {
     }
 
     Cliente* novo_cliente = new Cliente(cpf,nome,data_nascimento);
-    clientes.inserirCliente(novo_cliente);
-
+    this->clientes.inserirCliente(novo_cliente);
     std::cout << "\nCliente de CPF: " << cpf << " cadastrado com sucesso" << std::endl;
 }
 

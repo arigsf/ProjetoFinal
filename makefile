@@ -1,4 +1,4 @@
-output: build/main.o build/Sistema.o build/Funcoes.o build/Estoque.o build/Filme.o build/Cadastro_clientes.o build/Clientes.o build/Locacao.o 
+output: build/main.o build/Sistema.o build/Funcoes.o build/Estoque.o build/Filme.o build/Cadastro_Clientes.o build/Clientes.o build/Locacao.o 
 	g++ -g build/*.o -o ./build/output
 
 build/main.o: ./src/main.cpp ./include/Sistema.hpp
@@ -10,15 +10,14 @@ build/Sistema.o: ./src/Sistema.cpp ./include/Sistema.hpp
 build/Funcoes.o: ./src/Funcoes.cpp ./include/Funcoes.hpp
 	g++ -I ./include -c -g ./src/Funcoes.cpp -o build/Funcoes.o
 
-
 build/Estoque.o: ./src/Estoque.cpp ./include/Estoque.hpp
 	g++ -I ./include -c -g ./src/Estoque.cpp -o build/Estoque.o
 
 build/Filme.o: ./src/Filme.cpp ./include/Filme.hpp
 	g++ -I ./include -c -g ./src/Filme.cpp -o build/Filme.o
 
-build/Cadastro_clientes.o: ./src/Cadastro_clientes.cpp ./include/Cadastro_clientes.hpp
-	g++ -I ./include -c -g ./src/Cadastro_clientes.cpp -o build/Cadastro_clientes.o
+build/Cadastro_Clientes.o: ./src/Cadastro_Clientes.cpp ./include/Cadastro_Clientes.hpp
+	g++ -I ./include -c -g ./src/Cadastro_Clientes.cpp -o build/Cadastro_Clientes.o
 
 build/Clientes.o: ./src/Clientes.cpp ./include/Clientes.hpp
 	g++ -I ./include -c -g ./src/Clientes.cpp -o build/Clientes.o

@@ -4,9 +4,10 @@
 const char ARQUIVO_FILMES = 'F';
 const char ARQUIVO_CLIENTES = 'C';
 
+
 #include "Estoque.hpp"
 #include "Locacao.hpp"
-#include "Cadastro_clientes.hpp"
+#include "Cadastro_Clientes.hpp"
 #include <iterator>
 #include <unistd.h>
 
