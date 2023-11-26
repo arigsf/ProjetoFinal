@@ -2,6 +2,12 @@
 #define LOCACAO_H
 
 #include "Filme.hpp"
+#include <unistd.h>
+#include <algorithm> //Remoção de clientes
+#include <regex> //Validar cpf e data de nascimento
+#include <fstream> // Operações com arquivos
+#include <sstream> // Operações com leitura de linha
+#include <numeric> // Transformar vetor de strings em uma string
 
 class Locacao {
     private:

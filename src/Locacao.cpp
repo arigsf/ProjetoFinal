@@ -42,9 +42,9 @@ std::vector<std::pair<std::vector<std::string>, std::vector<int>>> Locacao::leit
         return logLocacoes;
     }
 
-    std::string linha, CPFCliente, nomeFilme;
-    int identificadorFilme, dias, multaPaga, total;
+    std::string linha, palavra, CPFCliente, nomeFilme;
     std::vector<std::string> palavras;
+    int identificadorFilme, dias, multaPaga, total;
 
     while (getline(arquivo,linha)) {
         // Formato (par) par1 -> (nomeFilme, CPFCliente); par2 -> (identificadorFilme, dias, multaPaga)
@@ -55,15 +55,21 @@ std::vector<std::pair<std::vector<std::string>, std::vector<int>>> Locacao::leit
 
         // é um stream de input baseado em uma string
         iss >> identificadorFilme;
-        
-        iss >> nomeFilme >> CPFCliente >> dias >> multaPaga;
+        while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
+        // devido ao fato de não sabermos a quantidade de palavras do nome
+        multaPaga = std::stoi(palavras.back()); palavras.pop_back();
+        dias = std::stoi(palavras.back()); palavras.pop_back();
+        CPFCliente = palavras.back(); palavras.pop_back();
+        nomeFilme = std::accumulate(palavras.begin(), palavras.end(), std::string(), [](const std::string& texto, const std::string& palavra) {
+            return texto + (texto.empty() ? "" : " ") + palavra;
+        }); // União das palavras do nome do filme, com a adição do espaço entre as palavras    
+        palavras.clear();
         
         parLeitura.first.push_back(nomeFilme);
         parLeitura.first.push_back(CPFCliente);
         parLeitura.second.push_back(identificadorFilme);
         parLeitura.second.push_back(dias);
         parLeitura.second.push_back(multaPaga);
-        
 
         logLocacoes.push_back(parLeitura);
 

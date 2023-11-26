@@ -123,7 +123,7 @@ void CadastroClientes::lerArquivo() {
         iss >> cpf;
 
         while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
-        //devido ao fato de não sabermos a quantidade de palavras do none
+        // devido ao fato de não sabermos a quantidade de palavras do nome
 
         data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
         palavras.pop_back();
