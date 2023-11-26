@@ -216,6 +216,10 @@ void Sistema::devolverFilmes() {
     std::cout << "\n\nDevolucoes realizadas com sucesso, valor de multas a serem liquidadas: " << valorDaMulta << std::endl;
 }
 
+void Sistema::listarLogLocacoes() {
+    this->locacao.historicoLocacoes();
+}
+
 void Sistema::limparTerminal() {
     std::system("clear");
 }
@@ -231,6 +235,7 @@ void Sistema::mostrarOpcoes() {
     std::cout << " - LC: Listar Clientes\n";
     std::cout << " - AL: Alugar Filme\n";
     std::cout << " - DV: Devolver Filme\n";
+    std::cout << " - LL: Listar Log Locações\n";
     std::cout << " - CL: Limpar Terminal\n";
     std::cout << " - MO: Mostrar Opções\n";
     std::cout << " - FS: Finalizar Sistema\n\n";

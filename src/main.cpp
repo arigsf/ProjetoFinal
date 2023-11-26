@@ -9,6 +9,7 @@ const std::string REMOVER_CLIENTES = "RC";
 const std::string LISTAR_CLIENTES = "LC";
 const std::string ALUGAR_FILME = "AL";
 const std::string DEVOLVER_FILME = "DV";
+const std::string LISTAR_LOG_LOCACOES = "LL";
 const std::string FINALIZAR_SISTEMA = "FS";
 const std::string LIMPAR_TERMINAL = "CL";
 const std::string MOSTRAR_OPCOES = "MO";
@@ -54,6 +55,7 @@ int main() {
         else if(comando == LISTAR_CLIENTES) sistema_principal.listarClientesOrdenados();
         else if(comando == ALUGAR_FILME) sistema_principal.alugarFilmes();
         else if(comando == DEVOLVER_FILME) sistema_principal.devolverFilmes();
+        else if(comando == LISTAR_LOG_LOCACOES) sistema_principal.listarLogLocacoes();
         else if(comando == LIMPAR_TERMINAL) sistema_principal.limparTerminal();
         else if(comando == MOSTRAR_OPCOES) sistema_principal.mostrarOpcoes();
         else if(comando == FINALIZAR_SISTEMA) break; 

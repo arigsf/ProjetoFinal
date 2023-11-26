@@ -2,7 +2,11 @@
 
 int Locacao::numeroLocacoes = 0;
 
+const std::string DIRETORIO_HISTORICO_LOCACOES = "./data/Locacoes/historico_Locacoes";
+
 Locacao::Locacao(){}
+
+// Metodos privados da classe
 
 void Locacao::removeLocacao(int posNoVetorLocacoes){
     locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
@@ -21,6 +25,59 @@ std::pair<std::string, std::pair<Filme*, int>> Locacao::getLocacao(std::string C
     return std::pair<std::string, std::pair<Filme*, int>> ("AAAAA", std::pair<Filme*, int>(filme, 0)); // Momentaneo (a ser removido do projeto)
 }
 
+// Log Locações
+
+void Locacao::salvarLocacaoLog(Filme* filme, std::string CPF, int dias, int valorMultas){
+
+}
+
+std::vector<std::pair<std::vector<std::string>, std::vector<int>>> Locacao::leituraLocacaoLog(){
+    std::ifstream arquivo(DIRETORIO_HISTORICO_LOCACOES, std::ios::in);
+
+    std::vector<std::pair<std::vector<std::string>, std::vector<int>>> logLocacoes;
+
+    if (!arquivo.is_open())
+    {
+        std::cout << "ERRO: arquivo de historico de locações inexistente" << std::endl;
+        return logLocacoes;
+    }
+
+    std::string linha, CPFCliente, nomeFilme;
+    int identificadorFilme, dias, multaPaga, total;
+    std::vector<std::string> palavras;
+
+    while (getline(arquivo,linha)) {
+        // Formato (par) par1 -> (nomeFilme, CPFCliente); par2 -> (identificadorFilme, dias, multaPaga)
+        std::pair<std::vector<std::string>, std::vector<int>> parLeitura;
+
+        // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
+        std::istringstream iss(linha);
+
+        // é um stream de input baseado em uma string
+        iss >> identificadorFilme;
+        
+        iss >> nomeFilme >> CPFCliente >> dias >> multaPaga;
+        
+        parLeitura.first.push_back(nomeFilme);
+        parLeitura.first.push_back(CPFCliente);
+        parLeitura.second.push_back(identificadorFilme);
+        parLeitura.second.push_back(dias);
+        parLeitura.second.push_back(multaPaga);
+        
+
+        logLocacoes.push_back(parLeitura);
+
+        total++;
+    }
+
+    arquivo.close();
+    if(total) std::cout << total << " logs de locacoes lidos com sucesso" << std::endl;
+
+    return logLocacoes;
+}
+
+// Metodos publicos da classe
+
 int Locacao::getLocacoesPorCliente(std::string CPF){
     int soma = 0;
     for(auto i : this->locacoes) if(i.first == CPF) soma++;
@@ -33,6 +90,7 @@ void Locacao::alugar(std::string CPF, std::vector<Filme*>filmes, int dias) {
 
         for(Filme* f : filmes){
             f->removerUnidades();
+            // Implementar tratamento de erro (se não há filmes)
             this->locacoes.push_back(std::pair<std::string, std::pair<Filme*, int>> (CPF, std::pair<Filme*, int> (f, dias)));
             this->numeroLocacoes++;
             valorAluguel += f->calculoPrecoLocacao(dias);
@@ -61,6 +119,9 @@ int Locacao::devolucao(std::string CPF, Filme* filme, int dias, bool isDanificad
 
     if(isDanificado == true) valorMultas+=20; // Multa por danificação do produto
 
+    // Salvando log
+    //this->salvarLocacaoLog(filme, CPF, dias, valorMultas);
+
     filme->adicionarUnidades();
     this->removeLocacao(getPosicaoLocacaoVetorLocacoes(locacao));
 
@@ -72,5 +133,12 @@ void Locacao::relatorio(){
 
     for(std::pair<std::string, std::pair<Filme*, int>> locacao : this->locacoes){
         std::cout << "\t" << locacao.first << " - " << locacao.second.first->getIdentificador() << " " << locacao.second.first->getTitulo() << ";\n";
+    }
+}
+
+void Locacao::historicoLocacoes(){
+    std::vector<std::pair<std::vector<std::string>, std::vector<int>>> logLocacoes = this->leituraLocacaoLog();
+    for(auto locacao : logLocacoes){
+        std::cout << "\t" << locacao.second[0] << " - " << locacao.first[0] << " - " << locacao.first[1] << " - " << locacao.second[1] << " - " << locacao.second[2] << std::endl;
     }
 }
