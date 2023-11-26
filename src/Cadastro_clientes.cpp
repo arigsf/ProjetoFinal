@@ -17,7 +17,6 @@ CadastroClientes::CadastroClientes() {
     
 }
 
-
 //Implementação dos métodos da classe CadastroClientes
 void CadastroClientes::inserirCliente(Cliente* cliente) {
 
@@ -62,7 +61,6 @@ void CadastroClientes::listarClientesOrdenados() const {
     }
 }
 
-
 Cliente* CadastroClientes::clienteExiste(const std::string& cpf) const {
     //Verifica se um cliente de mesmo CPF está na lista
     for (Cliente *cliente : this->clientes)
@@ -71,7 +69,6 @@ Cliente* CadastroClientes::clienteExiste(const std::string& cpf) const {
 
     return nullptr;
 }
-
 
 void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limpardados decide, se após dos dados serem salvos eles devem ser desalocados
 
@@ -102,7 +99,6 @@ void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limp
 
     arquivo.close();   
 }
-
 
 void CadastroClientes::lerArquivo() {
     

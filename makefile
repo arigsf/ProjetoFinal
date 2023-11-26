@@ -10,7 +10,6 @@ build/Sistema.o: ./src/Sistema.cpp ./include/Sistema.hpp
 build/Funcoes.o: ./src/Funcoes.cpp ./include/Funcoes.hpp
 	g++ -I ./include -c -g ./src/Funcoes.cpp -o build/Funcoes.o
 
-
 build/Estoque.o: ./src/Estoque.cpp ./include/Estoque.hpp
 	g++ -I ./include -c -g ./src/Estoque.cpp -o build/Estoque.o
 

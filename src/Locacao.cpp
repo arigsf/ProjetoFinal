@@ -8,7 +8,6 @@ void Locacao::removeLocacao(int posNoVetorLocacoes){
     locacoes.erase(locacoes.begin() + posNoVetorLocacoes);
 }
 
-
 int Locacao::getPosicaoLocacaoVetorLocacoes(std::pair<std::string, std::pair<Filme*, int>> locacao){
     for(int i = 0; i<locacoes.size(); i++){
         if(&(this->locacoes[i]) == &locacao) return i;

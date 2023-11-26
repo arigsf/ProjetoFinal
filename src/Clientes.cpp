@@ -12,7 +12,6 @@ const std::string Cliente::getCPF() const {
     return cpf;
 }
 
-
 const std::string Cliente::getNome() const {
     return nome;
 }

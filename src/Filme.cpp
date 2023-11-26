@@ -10,7 +10,6 @@ FITA::FITA(int _unidades, int _identificador, std::string _titulo, bool _estaReb
 
 const int Filme::getIdentificador() const { return this->identificador; }
 
-
 const int Filme::getUnidades() const { return this->unidades; }
 
 const std::string Filme::getTitulo() const { return this->titulo; }
