@@ -2,10 +2,13 @@
 #define CADASTRO_CLIENTES_HPP
 
 #include "Clientes.hpp"
+#include "Funcoes.hpp"
 #include <iostream>
 #include <vector>
 
 const std::string DIRETORIO_PADRAO_CLIENTES = "./data/Clientes/clientes";
+const std::string DIRETORIO_LOG_CLIENTES = "./data/Clientes/logs";
+
 
 //FORMATO CPF: xxx.xxx.xxx-xx
 //FORMATO Data de Nascimento: dd/mm/yyyy
@@ -16,7 +19,7 @@ public:
 
     void inserirCliente(Cliente* cliente);
     void removerCliente(const std::string& cpf);
-    void listarClientesOrdenados(bool porCPF) const;
+    void listarClientesOrdenados() const;
     //Método que verifica a existência de algum cliente
     Cliente* clienteExiste(const std::string& cpf) const;
     // Ler banco de dados com as informações de clientes registrados anteriormente

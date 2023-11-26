@@ -18,6 +18,7 @@ Estoque::~Estoque()
 void Estoque::lerArquivo(const std::string diretorio)
 {
     std::ifstream arquivo(diretorio, std::ios::in);
+    std::ofstream log (DIRETORIO_LOG_FILMES,std::ios::app);
 
     if (!arquivo.is_open())
     {
@@ -25,6 +26,11 @@ void Estoque::lerArquivo(const std::string diretorio)
         return;
     }
 
+    if (!log.is_open())
+    {
+        std::cout << "ERRO: não foi possivel encontrar ou criar o arquivo" << std::endl;
+        return;
+    }
     
     char tipo;
     int total = 0;
@@ -42,8 +48,34 @@ void Estoque::lerArquivo(const std::string diretorio)
 
         iss >> tipo >> unidades >> identificador;
 
+        if(!isTipoValido(tipo)){
+            
+            log << linha << " - ERRO: tipo inválido" << std::endl;
+            continue;
+        }
+        if(!isUnidadesValido(unidades)) {
+            log << linha << " - ERRO: unidades inválido" << std::endl;
+            continue;
+        }
+            
+        if(!isIdentificadorValido(identificador)) {
+            log << linha << " - ERRO: Identificador invalido" << std::endl;
+            continue;
+        }
+            
+        if(this->filmeExiste(identificador)) {
+            log << linha << " - ERRO: Identificador repetido" << std::endl;
+            continue;
+        }
+
         if(tipo == Tipo_Filme.at(TIPO_FITA)) {
             std::getline(iss >> std::ws, titulo);
+
+            if(titulo.empty()) {
+                log << linha << " - ERRO: Nome vazio" << std::endl;
+                continue;
+            }
+
             novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
         }
 
@@ -55,64 +87,47 @@ void Estoque::lerArquivo(const std::string diretorio)
             while (iss >> palavra) palavras.push_back(palavra); // As palavras são separadas em um arranjo
 
             // A ultima palavra corresponde a categoria do DVD
-            int indice_categoria = -1;
-            for (std::map<int,std::string>::const_iterator it = Categorias.begin(); it != Categorias.end();it++)
-                if(it->second == palavras.back()) {
-                    indice_categoria = it->first;
-                    break;
-                } 
             
-            if(indice_categoria != -1) palavras.pop_back();
 
-            titulo = std::accumulate(palavras.begin(), palavras.end(), std::string());
+            int indiceCategoria = isCategoriaValido(palavras.back()[0]);
+            if(indiceCategoria == -1) {
+                log << linha << " - ERRO: categoria invalida" << std::endl;
+                continue;
+            }
+            
+            palavras.pop_back();
+            
+            std::ostringstream concatenar;
+            for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
+                concatenar << *(it);
+                if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
+            } 
+
+
+            titulo = concatenar.str();
+            
+            if(titulo.empty()) {
+                log << linha << " - ERRO: Nome vazio" << std::endl;
+                continue;
+            }
+            
             palavras.clear();
 
-            novo_filme = new DVD(unidades,identificador,titulo,indice_categoria);
+            novo_filme = new DVD(unidades,identificador,titulo,indiceCategoria);
         }
 
-        if (this->inserirFilme(novo_filme))
-            total++;
+        this->inserirFilme(novo_filme);
+        total++;
     }
 
+    log.close();
     arquivo.close();
-    std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
+    if(total) std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
 }
 
-bool Estoque::inserirFilme(Filme *novoFilme)
+void Estoque::inserirFilme(Filme *novoFilme)
 {
-    bool erro = false;
-    // Verifica se os dados inseridos são válidos de acordo com o tipo do filme
-    if (novoFilme->getIdentificador() <= 0 || novoFilme->getTitulo() == "")
-    {
-        std::cout << "ERRO: dados incorretos" << std::endl;
-        erro = true;
-    }
-
-    // Verifica se o código já é usado em outro filme
-    
-    else if(this->filmeExiste(novoFilme->getIdentificador()) != nullptr) {
-        std::cout << "ERRO: identificador repetido" << std::endl;
-        erro = true;
-    }
-
-    else if (novoFilme->getTipo() == TIPO_DVD)
-    {
-        DVD *dvd = dynamic_cast<DVD *>(novoFilme);
-        if (Categorias.find(dvd->getCategoria()) == Categorias.end())
-        {
-            std::cout << "ERRO: categoria inválida" << std::endl;
-            erro = true;
-        }
-    }
-
-    if(erro) {
-        delete novoFilme;
-        return false;
-    }
-
     this->estoque.push_back(novoFilme);
-    std::cout << "Filme " << novoFilme->getIdentificador() << " cadastrado com sucesso" << std::endl;
-    return true;
 }
 
 void Estoque::removerFilme(const int identificador)
@@ -183,7 +198,7 @@ void Estoque::listarFilmesOrdenados(const std::string ordenacao) const
             if (filme->getTipo() == TIPO_DVD)
             {
                 DVD *dvd = dynamic_cast<DVD *>(filme);
-                std::cout << Categorias.at(dvd->getCategoria());
+                std::cout << aux_Categorias.at(dvd->getCategoria());
                 // Downcasting para usar a função getCategoria
             }
 

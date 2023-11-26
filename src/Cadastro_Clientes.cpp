@@ -14,10 +14,8 @@ CadastroClientes::CadastroClientes() {
 
 //Implementação dos métodos da classe CadastroClientes
 void CadastroClientes::inserirCliente(Cliente* cliente) {
-
     //Adiciona o cliente na lista se todos os dados estiverem corretos
     clientes.push_back(cliente);
-    std::cout << "Cliente de CPF: " << cliente->getCPF() << " cadastrado com sucesso" << std::endl;
 }
 
 void CadastroClientes::removerCliente(const std::string& cpf) {
@@ -39,24 +37,19 @@ void CadastroClientes::removerCliente(const std::string& cpf) {
     }
 }
 
-void CadastroClientes::listarClientesOrdenados(bool porCPF) const {
+void CadastroClientes::listarClientesOrdenados() const {
     //Gera uma cópia da lista dos clientes
     std::vector<Cliente*> clientesOrdenados = clientes;
 
-    //Ordena a lista com base na opção escolhida
-    if (porCPF) {
-        std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
-                  [](const Cliente* a, const Cliente* b) {
-                      return a->getCPF() < b->getCPF();
-                  });
-    } else {
-        std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
-                  [](const Cliente* a, const Cliente* b) {
-                      return a->getNome() < b->getNome();
-                  });
-    }
+    //Ordena a lista com base no nome;
+    
+    std::sort(clientesOrdenados.begin(), clientesOrdenados.end(),
+        [](const Cliente* a, const Cliente* b) {
+                return a->getNome() < b->getNome();
+        });
 
     //Mostra os clientes ordenados na ordem: cpf, nome, data de nascimento, idade
+    std::cout << '\n';
     for (const Cliente* cliente : clientesOrdenados) {
         std::cout << "CPF: " << cliente->getCPF() << ", Nome: " << cliente->getNome() << ", Data de nascimento: " << cliente->getDataNascimento() << ", Idade: " << cliente->getIdade() << std::endl;
     }
@@ -107,6 +100,8 @@ void CadastroClientes::salvarDados(const bool limparDados) { // O parametro limp
 void CadastroClientes::lerArquivo(std::string diretorio) {
     
     std::ifstream arquivo(diretorio, std::ios::in);
+    std::ofstream log (DIRETORIO_LOG_CLIENTES,std::ios::app);
+
 
     if (!arquivo.is_open())
     {
@@ -114,30 +109,67 @@ void CadastroClientes::lerArquivo(std::string diretorio) {
         return;
     }
 
+
+    if (!log.is_open())
+    {
+        std::cout << "ERRO: não foi possivel encontrar ou criar o arquivo" << std::endl;
+        return;
+    }
+
     std::string linha, palavra,cpf, nome, data_nascimento;
     std::vector<std::string> palavras;
     Cliente *novo_cliente;
+    int total = 0;
 
     while (getline(arquivo,linha)) {
 
         // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
         std::istringstream iss(linha);
+
         // é um stream de input baseado em uma string
         iss >> cpf;
+
+        if(!isCPFValido(cpf)) {
+            log << linha << " - ERRO: CPF invalido" << std::endl;
+            continue;
+        }
 
         while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
         //devido ao fato de não sabermos a quantidade de palavras do none
 
         data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
+        
+        if(!isDataNascimentoValido(data_nascimento)) {
+            log << linha << " - ERRO: data de nascimento invalida" << std::endl;
+            continue;
+        }
+
         palavras.pop_back();
-        nome = std::accumulate(palavras.begin(), palavras.end(), std::string());        
+
+        std::ostringstream concatenar;
+        for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
+            concatenar << *(it);
+            if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
+        } 
+
+        nome = concatenar.str();
+
+        if(nome.empty()) {
+            log << linha << " - ERRO: Nome invalido" << std::endl;
+            continue;
+        }
+
         palavras.clear();
         novo_cliente = new Cliente(cpf,nome,data_nascimento);
 
         this->inserirCliente(novo_cliente);
+        total++;
     }
 
+    log.close();
     arquivo.close();
+    if(total) std::cout << total << " clientes cadastrados com sucesso" << std::endl;
+    
 }
 
 //Implementa o destrutor

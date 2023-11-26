@@ -6,7 +6,7 @@
 #include <functional>
 
 const std::string DIRETORIO_PADRAO_FILMES = "./data/Filmes/filmes";
-
+const std::string DIRETORIO_LOG_FILMES = "./data/Filmes/logs";
 
 const std::map<std::string, std::function<bool(const Filme*, const Filme*)>> COMPARADORES_FILME = {
     {"C", [](const Filme* a, const Filme* b) { return a->getIdentificador() < b->getIdentificador(); }},
@@ -22,7 +22,7 @@ public:
     Estoque();
     ~Estoque();
     void lerArquivo(const std::string);
-    bool inserirFilme(Filme*);
+    void inserirFilme(Filme*);
     void removerFilme(const int);
     void pesquisarFilmesCodigo(const int) const;
     void pesquisarFilmesTitulo(const std::string) const;
