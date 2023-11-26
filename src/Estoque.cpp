@@ -183,7 +183,7 @@ void Estoque::listarFilmesOrdenados(const std::string ordenacao) const
             if (filme->getTipo() == TIPO_DVD)
             {
                 DVD *dvd = dynamic_cast<DVD *>(filme);
-                std::cout << Categorias.at(dvd->getCategoria());
+                std::cout << aux_Categorias.at(dvd->getCategoria());
                 // Downcasting para usar a função getCategoria
             }
 
