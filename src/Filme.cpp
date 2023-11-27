@@ -1,42 +1,47 @@
 #include "Filme.hpp"
 
-Filme::Filme(int _unidades, int _identificador, std::string _titulo, int _tipo) : unidades(_unidades), identificador(_identificador), titulo(_titulo), tipo(_tipo) {}
+Filme::Filme(int unidades, int identificador, std::string titulo, int tipo) : _unidades(unidades), _identificador(identificador), _titulo(titulo), _tipo(tipo) {}
 
 Filme::~Filme() {}
 
-DVD::DVD(int _unidades, int _identificador, std::string _titulo, int _categoria) : Filme(_unidades, _identificador, _titulo, TIPO_DVD), categoria(_categoria) {}
+DVD::DVD(int unidades, int identificador, std::string titulo, int categoria) : Filme(unidades, identificador, titulo, TIPO_DVD), _categoria(categoria) {}
 
-FITA::FITA(int _unidades, int _identificador, std::string _titulo, bool _estaRebobinado) : Filme(_unidades, _identificador, _titulo, TIPO_FITA), estaRebobinado(_estaRebobinado) {}
+FITA::FITA(int unidades, int identificador, std::string titulo, bool estaRebobinado) : Filme(unidades, identificador, titulo, TIPO_FITA), _estaRebobinado(estaRebobinado) {}
 
-const int Filme::getIdentificador() const { return this->identificador; }
+const int Filme::getIdentificador() const { return this->_identificador; }
 
-const int Filme::getUnidades() const { return this->unidades; }
+const int Filme::getUnidades() const { return this->_unidades; }
 
-const std::string Filme::getTitulo() const { return this->titulo; }
+const std::string Filme::getTitulo() const { return this->_titulo; }
 
-const int Filme::getTipo() const { return this->tipo; }
+const int Filme::getTipo() const { return this->_tipo; }
 
-void Filme::adicionarUnidades() {
-    this->unidades++;
+void Filme::adicionarUnidades()
+{
+    this->_unidades++;
 }
 
-void Filme::removerUnidades() {
-    if(this->unidades >= 1) {
-         this->unidades--;
-    } else {
+void Filme::removerUnidades()
+{
+    if (this->_unidades >= 1)
+    {
+        this->_unidades--;
+    }
+    else
+    {
         std::cout << "ERRO: Filme: " << this->getTitulo() << " nao disponivel no momento." << std::endl;
     }
 }
 
-int DVD::getCategoria() { return this->categoria; }
+int DVD::getCategoria() { return this->_categoria; }
 
 float DVD::calculoPrecoLocacao(int dias) // Cálculo simulado a preços reais
 {
     if (this->getCategoria() == LANCAMENTO)
-        return std::log2(dias*dias) + 8 + 2*dias;
+        return std::log2(dias * dias) + 8 + 2 * dias;
 
     else if (this->getCategoria() == ESTOQUE)
-        return std::log2(dias*dias) + 4 + dias;
+        return std::log2(dias * dias) + 4 + dias;
 
     else if (this->getCategoria() == PROMOCAO)
         return 5;
@@ -45,17 +50,16 @@ float DVD::calculoPrecoLocacao(int dias) // Cálculo simulado a preços reais
     // Implementar tratamento de erro
 }
 
-bool FITA::isRebobinado() { return this->estaRebobinado; }
+bool FITA::isRebobinado() { return this->_estaRebobinado; }
 
 float FITA::calculoPrecoLocacao(int dias)
 {
     return 5;
 }
 
-
 std::string Filme::listarInformacoes()
 {
-    return std::to_string(unidades) + " " + std::to_string(identificador) + " " + titulo;
+    return std::to_string(_unidades) + " " + std::to_string(_identificador) + " " + _titulo;
 }
 
 std::string DVD::listarInformacoes()
@@ -70,10 +74,10 @@ std::string FITA::listarInformacoes()
 
 bool Filme::validarDados()
 {
-    return !(identificador <= 0 || titulo == ""); // Retorna true se os dados forem válidos, e false caso contrário
+    return !(_identificador <= 0 || _titulo == ""); // Retorna true se os dados forem válidos, e false caso contrário
 }
 
 bool DVD::validarDados()
 {
-    return Filme::validarDados() && !(categoria < 0 || categoria > 2); // Retorna true se os dados forem válidos, e false caso contrário
+    return Filme::validarDados() && !(_categoria < 0 || _categoria > 2); // Retorna true se os dados forem válidos, e false caso contrário
 }
