@@ -3,6 +3,7 @@
 int Locacao::_numeroLocacoes = 0;
 
 const std::string DIRETORIO_HISTORICO_LOCACOES = "./data/Locacoes/historico_Locacoes";
+const std::string DIRETORIO_LOCACOES_PENDENTES = "./data/Locacoes/locacoes_Pendentes";
 
 Locacao::Locacao() {}
 
@@ -13,11 +14,11 @@ void Locacao::removeLocacao(int posNoVetorLocacoes)
     _locacoes.erase(_locacoes.begin() + posNoVetorLocacoes);
 }
 
-int Locacao::getPosicaoLocacaoVetorLocacoes(std::pair<std::string, std::pair<Filme *, int>> locacao)
+int Locacao::getPosicaoLocacaoVetorLocacoes(std::pair<std::string, std::pair<Filme *, int>>* locacao)
 {
     for (int i = 0; i < _locacoes.size(); i++)
     {
-        if (&(this->_locacoes[i]) == &locacao)
+        if (this->_locacoes[i] == *locacao)
             return i;
     }
     return -1;
@@ -33,6 +34,23 @@ std::pair<std::string, std::pair<Filme *, int>> Locacao::getLocacao(std::string 
 }
 
 // Log Locações
+
+void Locacao::salvarLocacaoPendentes(){ // Atualiza arquivo locações pendentes para o estado atual do sistema
+    // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
+    std::ofstream arquivo(DIRETORIO_LOCACOES_PENDENTES, std::ios::out | std::ios::trunc);
+
+    if (!arquivo.is_open())
+    {
+        std::cout << "Erro: não foi possível criar/encontrar o arquivo para salvar locação" << std::endl;
+        return;
+    }
+
+    for (auto locacao : this->_locacoes){
+        arquivo << locacao.second.first->getIdentificador() << " " << locacao.second.first->getTitulo() << " " << locacao.first << " " << locacao.second.second << std::endl;
+    }
+
+    arquivo.close();
+}
 
 void Locacao::salvarLocacaoLog(Filme *filme, std::string CPF, int dias, int valorMultas)
 {
@@ -51,12 +69,14 @@ void Locacao::salvarLocacaoLog(Filme *filme, std::string CPF, int dias, int valo
 
     if (!arquivo.is_open())
     {
-        std::cout << "Erro: não foi possível criar o arquivo para salvar locação finalizada" << std::endl;
+        std::cout << "Erro: não foi possível criar/encontrar o arquivo para salvar locação finalizada" << std::endl;
         return;
     }
 
     for (auto locacao : logLocacoes)
         arquivo << locacao.second[0] << " " << locacao.first[0] << " " << locacao.first[1] << " " << locacao.second[1] << " " << locacao.second[2] << std::endl;
+    
+    arquivo.close();
 }
 
 std::vector<std::pair<std::vector<std::string>, std::vector<int>>> Locacao::leituraLocacaoLog()
@@ -74,7 +94,6 @@ std::vector<std::pair<std::vector<std::string>, std::vector<int>>> Locacao::leit
     std::string linha, palavra, CPFCliente, nomeFilme;
     std::vector<std::string> palavras;
     int identificadorFilme, dias, multaPaga;
-    int total = 0;
 
     while (getline(arquivo, linha))
     {
@@ -106,18 +125,69 @@ std::vector<std::pair<std::vector<std::string>, std::vector<int>>> Locacao::leit
         parLeitura.second.push_back(multaPaga);
 
         logLocacoes.push_back(parLeitura);
+    }
+
+    arquivo.close();
+
+    return logLocacoes;
+}
+
+std::vector<std::pair<std::string, std::pair<Filme *, int>>> Locacao::leituraLocacoesPendentes(){
+    std::ifstream arquivo(DIRETORIO_LOCACOES_PENDENTES, std::ios::in);
+
+    std::vector<std::pair<std::string, std::pair<Filme *, int>>> locacoesPendentes;
+
+    if (!arquivo.is_open())
+    {
+        std::cout << "ERRO: arquivo de locações pendentes inexistente" << std::endl;
+    }
+
+    std::string linha, palavra, CPFCliente, nomeFilme;
+    std::vector<std::string> palavras;
+    int identificadorFilme, dias;
+    int total = 0;
+
+    while (getline(arquivo, linha))
+    {
+
+        // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
+        std::istringstream iss(linha);
+
+        // é um stream de input baseado em uma string
+        iss >> identificadorFilme;
+        while (iss >> palavra)
+            palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
+        // devido ao fato de não sabermos a quantidade de palavras do nome
+        dias = std::stoi(palavras.back());
+        palavras.pop_back();
+        CPFCliente = palavras.back();
+        palavras.pop_back();
+        nomeFilme = std::accumulate(palavras.begin(), palavras.end(), std::string(), [](const std::string &texto, const std::string &palavra)
+                                    { return texto + (texto.empty() ? "" : " ") + palavra; }); // União das palavras do nome do filme, com a adição do espaço entre as palavras
+        palavras.clear();
+        std::pair<std::string, std::pair<Filme *, int>> loc;
+        loc.first = CPFCliente;
+        loc.second.first = _estoque->filmeExiste(identificadorFilme);
+        loc.second.second = dias;
+
+        locacoesPendentes.push_back(loc);
 
         total++;
     }
 
     arquivo.close();
     if (total)
-        std::cout << total << " logs de locacoes lidos com sucesso" << std::endl;
+        std::cout << total << " locacoes pendentes lidas com sucesso" << std::endl;
 
-    return logLocacoes;
+    return locacoesPendentes;
 }
 
 // Metodos publicos da classe
+
+void Locacao::associarPtrEstoque(Estoque* estoque){
+    _estoque = estoque;
+    _locacoes = this->leituraLocacoesPendentes();
+}
 
 int Locacao::getLocacoesPorCliente(std::string CPF)
 {
@@ -143,6 +213,8 @@ void Locacao::alugar(std::string CPF, std::vector<Filme *> filmes, int dias)
             valorAluguel += f->calculoPrecoLocacao(dias);
         }
 
+        this->salvarLocacaoPendentes(); // Atualizar arquivo
+
         std::cout << "Aluguel de " << dias << " dias foi aprovado para o CPF: " << CPF << std::endl;
         std::cout << "Valor a ser cobrado: " << std::setprecision(2) << std::fixed << valorAluguel << std::endl;
     }
@@ -166,17 +238,16 @@ int Locacao::devolucao(std::string CPF, Filme *filme, int dias, bool isDanificad
     int diasAlugados = locacao.second.second;
     if (diasAlugados < dias)
     { // Multa por atraso (calculo linear da multa)
-        valorMultas += (diasAlugados - dias) * 2;
+        valorMultas += (dias - diasAlugados) * 2;
     }
 
     if (isDanificado == true)
         valorMultas += 20; // Multa por danificação do produto
 
-    // Salvando log
-    this->salvarLocacaoLog(filme, CPF, dias, valorMultas);
-
     filme->adicionarUnidades();
-    this->removeLocacao(getPosicaoLocacaoVetorLocacoes(locacao));
+    this->removeLocacao(getPosicaoLocacaoVetorLocacoes(&locacao));
+    this->salvarLocacaoPendentes(); // Atualizar arquivo
+    this->salvarLocacaoLog(filme, CPF, dias, valorMultas); // Salvando log
 
     return valorMultas;
 }
@@ -187,7 +258,7 @@ void Locacao::relatorio()
 
     for (std::pair<std::string, std::pair<Filme *, int>> locacao : this->_locacoes)
     {
-        std::cout << "\t" << locacao.first << " - " << locacao.second.first->getIdentificador() << " " << locacao.second.first->getTitulo() << ";\n";
+        std::cout << "\t" << locacao.first << " - " << locacao.second.first->getIdentificador() << " " << locacao.second.first->getTitulo() << " " << locacao.second.second << std::endl;
     }
 }
 

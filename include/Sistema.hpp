@@ -19,6 +19,8 @@ private:
     CadastroClientes _clientes;
 
 public:
+    Sistema();
+
     void lerArquivo();
     void cadastrarFilme();
     void removerFilme();
@@ -29,6 +31,7 @@ public:
     void alugarFilmes();
     void devolverFilmes(); // CPF, Filmes por ID, dias
     void listarLogLocacoes();
+    void listarLocacoes();
     void limparTerminal();
     void mostrarOpcoes();
 };
