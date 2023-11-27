@@ -5,29 +5,30 @@
 #include <iostream>
 #include <vector>
 
-//FORMATO CPF: xxx.xxx.xxx-xx
-//FORMATO Data de Nascimento: dd/mm/yyyy
+// FORMATO CPF: xxx.xxx.xxx-xx
+// FORMATO Data de Nascimento: dd/mm/yyyy
 
-class CadastroClientes {
+class CadastroClientes
+{
 public:
-    //Métodos que manipulam a lista dos clientes
+    // Métodos que manipulam a lista dos clientes
 
-    void inserirCliente(Cliente* cliente);
-    void removerCliente(const std::string& cpf);
+    void inserirCliente(Cliente *cliente);
+    void removerCliente(const std::string &cpf);
     void listarClientesOrdenados() const;
-    //Método que verifica a existência de algum cliente
-    Cliente* clienteExiste(const std::string& cpf) const;
-    //Construtor
+    // Método que verifica a existência de algum cliente
+    Cliente *clienteExiste(const std::string &cpf) const;
+    // Construtor
     CadastroClientes();
-    //Destrutor
+    // Destrutor
     ~CadastroClientes();
 
 private:
-    //Lista dos clientes
-    static std::string diretorio;
-    std::vector<Cliente*> clientes;
+    // Lista dos clientes
+    static std::string _diretorio;
+    std::vector<Cliente *> _clientes;
     // Salvar dados antes do enceramento do sistema, para garantir que nenhum dado se perca
-    void salvarDados(const bool);
+    void salvarDados(const bool limparDados);
     // Ler banco de dados com as informações de clientes registrados anteriormente
     void lerArquivo();
 };
