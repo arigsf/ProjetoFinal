@@ -76,7 +76,7 @@ void Estoque::lerArquivo(const std::string diretorio)
 
     arquivo.close();
     std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
-    this->diretorio = diretorio;
+    this->_diretorio = diretorio;
 }
 
 bool Estoque::inserirFilme(Filme *novoFilme)
@@ -111,21 +111,21 @@ bool Estoque::inserirFilme(Filme *novoFilme)
         return false;
     }
 
-    this->estoque.push_back(novoFilme);
+    this->_estoque.push_back(novoFilme);
     return true;
 }
 
 void Estoque::removerFilme(const int identificador)
 {
     // Percorre o estoque a procura do filme
-    std::vector<Filme*>::iterator it = std::remove_if(this->estoque.begin(), this->estoque.end(), [identificador](Filme *filme)
+    std::vector<Filme*>::iterator it = std::remove_if(this->_estoque.begin(), this->_estoque.end(), [identificador](Filme *filme)
                              { return filme->getIdentificador() == identificador; });
 
     // Se existir um filme com o código associado, é excluído
-    if (it != this->estoque.end())
+    if (it != this->_estoque.end())
     {
         delete *it;
-        this->estoque.erase(it, this->estoque.end());
+        this->_estoque.erase(it, this->_estoque.end());
         std::cout << "Filme " << identificador << " removido com sucesso" << std::endl;
     }
     // Caso contrário, aparece mensagem de erro
@@ -138,7 +138,7 @@ void Estoque::removerFilme(const int identificador)
 void Estoque::pesquisarFilmesCodigo(const int identificador) const
 {
     // Lista todos os filmes que tem o identificador informado pelo usuário
-    for (Filme *filme : this->estoque)
+    for (Filme *filme : this->_estoque)
     {
         if (filme->getIdentificador() == identificador)
         {
@@ -151,7 +151,7 @@ void Estoque::pesquisarFilmesCodigo(const int identificador) const
 void Estoque::pesquisarFilmesTitulo(const std::string titulo) const
 {
     // Lista todos os filmes que tem o título ou parte dele informado pelo usuário
-    for (Filme *filme : this->estoque)
+    for (Filme *filme : this->_estoque)
     {
         std::string tituloFilme = filme->getTitulo();
         std::transform(tituloFilme.begin(), tituloFilme.end(), tituloFilme.begin(), ::tolower);
@@ -172,7 +172,7 @@ void Estoque::listarFilmesOrdenados(const std::string ordenacao) const
 
     if (COMPARADORES_FILME.find(ordenacao) != COMPARADORES_FILME.end())
     {
-        std::vector<Filme *> filmes_ordenados = this->estoque;
+        std::vector<Filme *> filmes_ordenados = this->_estoque;
         std::sort(filmes_ordenados.begin(), filmes_ordenados.end(), COMPARADORES_FILME.at(ordenacao));
 
         for (Filme *filme : filmes_ordenados)
@@ -195,7 +195,7 @@ void Estoque::listarFilmesOrdenados(const std::string ordenacao) const
 }
 
 Filme* Estoque::filmeExiste(const int identificador) const {
-    for (Filme *filme : this->estoque) {
+    for (Filme *filme : this->_estoque) {
         if(filme->getIdentificador() == identificador) return filme;
     }
 
@@ -222,7 +222,7 @@ Filme *Estoque::filmeValido(const int identificador) const
 void Estoque::salvarDados(const bool limparDados) // O parametro limpardados decide, se após dos dados serem salvos eles devem ser desalocados
 {
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
-    std::ofstream arquivo(this->diretorio, std::ios::out | std::ios::trunc);
+    std::ofstream arquivo(this->_diretorio, std::ios::out | std::ios::trunc);
 
     if (!arquivo.is_open())
     {
@@ -232,17 +232,17 @@ void Estoque::salvarDados(const bool limparDados) // O parametro limpardados dec
 
     if(limparDados) {
         
-        for (Filme *filme : estoque) {
+        for (Filme *filme : _estoque) {
             arquivo << filme->listarInformacoes() << std::endl;
             delete filme;
         }
 
-        this->estoque.clear();
+        this->_estoque.clear();
     }
 
     // Percorre a lista de filmes e adiciona no arquivo
     else
-        for (Filme *filme : this->estoque)
+        for (Filme *filme : this->_estoque)
             arquivo << filme->listarInformacoes() << std::endl;
 
     arquivo.close();

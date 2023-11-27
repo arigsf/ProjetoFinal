@@ -16,20 +16,20 @@ const std::map<std::string, std::function<bool(const Filme*, const Filme*)>> COM
 class Estoque
 {
 private:
-    std::vector<Filme*> estoque;
-    std::string diretorio;
+    std::vector<Filme*> _estoque;
+    std::string _diretorio;
 
 public:
     Estoque();
     ~Estoque();
-    void lerArquivo(const std::string);
-    bool inserirFilme(Filme*);
-    void removerFilme(const int);
-    void pesquisarFilmesCodigo(const int) const;
-    void pesquisarFilmesTitulo(const std::string) const;
-    void listarFilmesOrdenados(const std::string) const;
-    Filme *filmeExiste(const int) const;
-    Filme *filmeValido(const int) const;
+    void lerArquivo(const std::string diretorio);
+    bool inserirFilme(Filme* novoFilme);
+    void removerFilme(const int identificador);
+    void pesquisarFilmesCodigo(const int identificador) const;
+    void pesquisarFilmesTitulo(const std::string titulo) const;
+    void listarFilmesOrdenados(const std::string ordenacao) const;
+    Filme *filmeExiste(const int identificador) const;
+    Filme *filmeValido(const int identificador) const;
     void salvarDados(const bool);
 };
 
