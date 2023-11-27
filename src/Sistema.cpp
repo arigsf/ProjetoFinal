@@ -199,12 +199,12 @@ void Sistema::devolverFilmes() {
         Filme *filme = this->estoque.filmeValido(id);
         if(filme != nullptr) {
             bool isDanificado;
-            std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado? "<< std::endl;
+            std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado?\n[0] - Nao\n[1] - Sim\nEscolha: ";
             std::cin >> isDanificado;
 
             if(filme->getTipo() == 1) { // Se o filme é fita, precisamos verificar se está rebobinado
                 bool isRebobinado;
-                std::cout << "A fita " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta rebobinada? "<< std::endl;
+                std::cout << "A fita " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta rebobinada?\n[0] - Nao\n[1] - Sim\nEscolha: ";
                 std::cin >> isRebobinado;
                 if(!isRebobinado) valorDaMulta += 2;
             }
