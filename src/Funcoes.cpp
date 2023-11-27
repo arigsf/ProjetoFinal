@@ -36,7 +36,6 @@ bool isIdentificadorValido(const int identificador) { // Verifica se o id é val
     return identificador > 0;
 }
 
-
 int isCategoriaValido(char categoria) {
     for (std::map<int,char>::const_iterator it = Categorias.begin(); it != Categorias.end();it++)
         if(it->second == categoria) {
@@ -51,7 +50,6 @@ bool isCPFValido(std::string &cpf) {
     std::regex regexCPF(R"(\d{3}\.\d{3}\.\d{3}-\d{2})");
     return std::regex_match(cpf, regexCPF);
 }
-
 
 bool isDataNascimentoValido(std::string &data) {
     //Expressão regular para validar o formato da data de nascimento

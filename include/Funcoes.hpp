@@ -7,12 +7,12 @@
 // Função de aleatoridade em fitas
 const bool retornaVerdadeiroFalso();
 
-bool isTipoValido(const char);
-bool isUnidadesValido(const int);
-bool isIdentificadorValido(const int);
-int isCategoriaValido(char);
+bool isTipoValido(const char tipo);
+bool isUnidadesValido(const int unidades);
+bool isIdentificadorValido(const int identificador);
+int isCategoriaValido(char categoria);
 // Nota, bug presente, que afirma que não há referencia definida para esta função abaixo
-bool isCPFValido(std::string &);
-bool isDataNascimentoValido(std::string &);
+bool isCPFValido(std::string &cpf);
+bool isDataNascimentoValido(std::string &data);
 
 #endif
