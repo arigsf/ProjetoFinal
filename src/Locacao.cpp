@@ -28,7 +28,27 @@ std::pair<std::string, std::pair<Filme*, int>> Locacao::getLocacao(std::string C
 // Log Locações
 
 void Locacao::salvarLocacaoLog(Filme* filme, std::string CPF, int dias, int valorMultas){
+    std::vector<std::pair<std::vector<std::string>, std::vector<int>>> logLocacoes = this->leituraLocacaoLog();
+    std::pair<std::vector<std::string>, std::vector<int>> novaLocacao;
+    novaLocacao.first.push_back(filme->getTitulo());
+    novaLocacao.first.push_back(CPF);
+    novaLocacao.second.push_back(filme->getIdentificador());
+    novaLocacao.second.push_back(dias);
+    novaLocacao.second.push_back(valorMultas);
 
+    logLocacoes.push_back(novaLocacao);
+
+    // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
+    std::ofstream arquivo(DIRETORIO_HISTORICO_LOCACOES, std::ios::out | std::ios::trunc);
+
+    if (!arquivo.is_open())
+    {
+        std::cout << "Erro: não foi possível criar o arquivo para salvar locação finalizada" << std::endl;
+        return;
+    }
+
+    for(auto locacao : logLocacoes) arquivo << locacao.second[0] << " " << locacao.first[0] << " " << locacao.first[1] << " " << locacao.second[1] <<
+        " " << locacao.second[2] << std::endl;
 }
 
 std::vector<std::pair<std::vector<std::string>, std::vector<int>>> Locacao::leituraLocacaoLog(){
@@ -44,8 +64,9 @@ std::vector<std::pair<std::vector<std::string>, std::vector<int>>> Locacao::leit
 
     std::string linha, palavra, CPFCliente, nomeFilme;
     std::vector<std::string> palavras;
-    int identificadorFilme, dias, multaPaga, total;
-
+    int identificadorFilme, dias, multaPaga;
+    int total = 0;
+    
     while (getline(arquivo,linha)) {
         // Formato (par) par1 -> (nomeFilme, CPFCliente); par2 -> (identificadorFilme, dias, multaPaga)
         std::pair<std::vector<std::string>, std::vector<int>> parLeitura;
@@ -126,7 +147,7 @@ int Locacao::devolucao(std::string CPF, Filme* filme, int dias, bool isDanificad
     if(isDanificado == true) valorMultas+=20; // Multa por danificação do produto
 
     // Salvando log
-    //this->salvarLocacaoLog(filme, CPF, dias, valorMultas);
+    this->salvarLocacaoLog(filme, CPF, dias, valorMultas);
 
     filme->adicionarUnidades();
     this->removeLocacao(getPosicaoLocacaoVetorLocacoes(locacao));
