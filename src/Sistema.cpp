@@ -14,15 +14,15 @@ void Sistema::lerArquivo()
     while (true)
     {
         std::cin >> tipo;
-        if (tipo != ARQUIVO_CLIENTES && tipo != ARQUIVO_FILMES)
-            std::cout << "Erro : Tipo de leitura inválido" << std::endl;
-        else
-            break;
+        if (tipo != ARQUIVO_CLIENTES && tipo != ARQUIVO_FILMES) std::cout << "Erro : Tipo de leitura inválido" << std::endl;
+        else break;
     }
 
     std::cout << "\nDigite o caminho para o arquivo: ";
     std::cin >> diretorio;
-    this->_estoque.lerArquivo(diretorio);
+
+    if(ARQUIVO_FILMES) this->_estoque.lerArquivo(diretorio);
+    else if (ARQUIVO_CLIENTES) this->_clientes.lerArquivo(diretorio);
 }
 
 void Sistema::cadastrarFilme()
@@ -32,10 +32,8 @@ void Sistema::cadastrarFilme()
     {
         std::cout << "\nDigite o tipo do filme\n[D] - dvd\n[F] - fita\n\nEscolha: ";
         std::cin >> tipo;
-        if (!isTipoValido(tipo))
-            std::cout << "Erro : Tipo invalido, digite novamente" << std::endl;
-        else
-            break;
+        if(!isTipoValido(tipo)) std::cout << "ERRO: Tipo invalido, digite novamente" << std::endl;
+        else break;
     }
 
     int unidades, identificador;
@@ -44,10 +42,8 @@ void Sistema::cadastrarFilme()
         std::cout << "\nInsira a quantidade: ";
         std::cin >> unidades;
 
-        if (!isUnidadesValido)
-            std::cout << "Erro : Quantidades invalida, digite novamente" << std::endl;
-        else
-            break;
+        if(!isUnidadesValido) std::cout << "ERRO: Quantidades invalida, digite novamente" << std::endl;
+        else break;
     }
 
     while (true)
@@ -55,13 +51,10 @@ void Sistema::cadastrarFilme()
         std::cout << "\nInsira o identificador: ";
         std::cin >> identificador;
 
-        if (!isIdentificadorValido)
-            std::cout << "Erro : Identificador invalido, digite novamente" << std::endl;
-        else if (this->_estoque.filmeExiste(identificador))
-            std::cout << "ERRO: identificador repetido" << std::endl;
-
-        else
-            break;
+        if(!isIdentificadorValido) std::cout << "ERRO: Identificador invalido, digite novamente" << std::endl;
+        else if(this->_estoque.filmeExiste(identificador)) std::cout << "ERRO: identificador repetido" << std::endl; 
+        
+        else break;
     }
 
     std::string titulo;
@@ -153,9 +146,8 @@ void Sistema::cadastrarCliente()
             break;
     }
 
-    Cliente *novo_cliente = new Cliente(cpf, nome, data_nascimento);
-    _clientes.inserirCliente(novo_cliente);
-
+    Cliente* novo_cliente = new Cliente(cpf,nome,data_nascimento);
+    this->_clientes.inserirCliente(novo_cliente);
     std::cout << "\nCliente de CPF: " << cpf << " cadastrado com sucesso" << std::endl;
 }
 

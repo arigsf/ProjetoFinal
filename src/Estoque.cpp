@@ -19,6 +19,7 @@ Estoque::~Estoque()
 void Estoque::lerArquivo(const std::string diretorio)
 {
     std::ifstream arquivo(diretorio, std::ios::in);
+    std::ofstream log (DIRETORIO_LOG_FILMES,std::ios::app);
 
     if (!arquivo.is_open())
     {
@@ -26,6 +27,12 @@ void Estoque::lerArquivo(const std::string diretorio)
         return;
     }
 
+    if (!log.is_open())
+    {
+        std::cout << "ERRO: não foi possivel encontrar ou criar o arquivo" << std::endl;
+        return;
+    }
+    
     char tipo;
     int total = 0;
     Filme *novo_filme;
@@ -41,10 +48,35 @@ void Estoque::lerArquivo(const std::string diretorio)
 
         iss >> tipo >> unidades >> identificador;
 
-        if (tipo == Tipo_Filme.at(TIPO_FITA))
-        {
+        if(!isTipoValido(tipo)){
+            
+            log << linha << " - ERRO: tipo inválido" << std::endl;
+            continue;
+        }
+        if(!isUnidadesValido(unidades)) {
+            log << linha << " - ERRO: unidades inválido" << std::endl;
+            continue;
+        }
+            
+        if(!isIdentificadorValido(identificador)) {
+            log << linha << " - ERRO: Identificador invalido" << std::endl;
+            continue;
+        }
+            
+        if(this->filmeExiste(identificador)) {
+            log << linha << " - ERRO: Identificador repetido" << std::endl;
+            continue;
+        }
+
+        if(tipo == Tipo_Filme.at(TIPO_FITA)) {
             std::getline(iss >> std::ws, titulo);
-            novo_filme = new FITA(unidades, identificador, titulo, retornaVerdadeiroFalso());
+
+            if(titulo.empty()) {
+                log << linha << " - ERRO: Nome vazio" << std::endl;
+                continue;
+            }
+
+            novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
         }
 
         else if (tipo == Tipo_Filme.at(TIPO_DVD))
@@ -56,27 +88,38 @@ void Estoque::lerArquivo(const std::string diretorio)
                 palavras.push_back(palavra); // As palavras são separadas em um arranjo
 
             // A ultima palavra corresponde a categoria do DVD
-            int indice_categoria = -1;
-            for (std::map<int, char>::const_iterator it = Categorias.begin(); it != Categorias.end(); it++)
-                if (it->second == palavras.back()[0])
-                {
-                    indice_categoria = it->first;
-                    break;
-                }
+            int indiceCategoria = isCategoriaValido(palavras.back()[0]);
+            if(indiceCategoria == -1) {
+                log << linha << " - ERRO: categoria invalida" << std::endl;
+                continue;
+            }
+            
+            palavras.pop_back();
+            
+            std::ostringstream concatenar;
+            for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
+                concatenar << *(it);
+                if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
+            } 
 
-            if (indice_categoria != -1)
-                palavras.pop_back();
 
-            titulo = std::accumulate(palavras.begin(), palavras.end(), std::string());
+            titulo = concatenar.str();
+            
+            if(titulo.empty()) {
+                log << linha << " - ERRO: Nome vazio" << std::endl;
+                continue;
+            }
+            
             palavras.clear();
 
-            novo_filme = new DVD(unidades, identificador, titulo, indice_categoria);
+            novo_filme = new DVD(unidades, identificador, titulo, indiceCategoria);
         }
 
-        if (this->inserirFilme(novo_filme))
-            total++;
+        this->inserirFilme(novo_filme);
+        total++;
     }
 
+    log.close();
     arquivo.close();
     std::cout << total << " Filmes cadastrados com sucesso" << std::endl;
     this->_diretorio = diretorio;

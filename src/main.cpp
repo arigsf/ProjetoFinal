@@ -1,7 +1,7 @@
 #include "Sistema.hpp"
 
 const std::string LER_ARQUIVO = "LA";
-const std::string CADASTRAR_FILME = "CA";
+const std::string CADASTRAR_FILME = "CF";
 const std::string REMOVER_FILME = "RF";
 const std::string CADASTRAR_CLIENTE = "CC";
 const std::string LISTAR_FILMES = "LF";

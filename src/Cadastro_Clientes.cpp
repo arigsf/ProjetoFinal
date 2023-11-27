@@ -1,5 +1,4 @@
-#include "Cadastro_clientes.hpp"
-#include <unistd.h>
+#include "Cadastro_Clientes.hpp"
 #include <algorithm> //Remoção de clientes
 #include <regex>     //Validar cpf e data de nascimento
 #include <fstream>   // Operações com arquivos
@@ -9,11 +8,12 @@
 // FORMATO CPF: xxx.xxx.xxx-xx
 // FORMATO Data de Nascimento: dd/mm/yyyy
 
-std::string CadastroClientes::_diretorio = "./data/Clientes/clientes.txt";
+std::string CadastroClientes::_diretorio = "./data/Clientes/clientes";
+std::string CadastroClientes::_diretorioLogClientes = "./data/Clientes/logs";
 
 CadastroClientes::CadastroClientes()
 {
-    this->lerArquivo();
+    this->lerArquivo(_diretorio);
 }
 
 // Implementação dos métodos da classe CadastroClientes
@@ -109,10 +109,11 @@ void CadastroClientes::salvarDados(const bool limparDados)
     arquivo.close();
 }
 
-void CadastroClientes::lerArquivo()
-{
+void CadastroClientes::lerArquivo(std::string diretorio) {
+    
+    std::ifstream arquivo(diretorio, std::ios::in);
+    std::ofstream log (this->_diretorioLogClientes,std::ios::app);
 
-    std::ifstream arquivo(this->_diretorio, std::ios::in);
 
     if (!arquivo.is_open())
     {
@@ -120,37 +121,68 @@ void CadastroClientes::lerArquivo()
         return;
     }
 
-    std::string linha, palavra, cpf, nome, data_nascimento;
+
+    if (!log.is_open())
+    {
+        std::cout << "ERRO: não foi possivel encontrar ou criar o arquivo" << std::endl;
+        return;
+    }
+
+    std::string linha, palavra,cpf, nome, data_nascimento;
     std::vector<std::string> palavras;
     Cliente *novo_cliente;
-    int aux = 0; // Variável auxiliar para guardar o n° de clientes cadastrados com sucesso
+    int total = 0;
 
     while (getline(arquivo, linha))
     {
 
         // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
         std::istringstream iss(linha);
+
         // é um stream de input baseado em uma string
         iss >> cpf;
 
-        while (iss >> palavra)
-            palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
-        // devido ao fato de não sabermos a quantidade de palavras do nome
+        if(!isCPFValido(cpf)) {
+            log << linha << " - ERRO: CPF invalido" << std::endl;
+            continue;
+        }
+
+        while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
+        //devido ao fato de não sabermos a quantidade de palavras do none
 
         data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
+        
+        if(!isDataNascimentoValido(data_nascimento)) {
+            log << linha << " - ERRO: data de nascimento invalida" << std::endl;
+            continue;
+        }
+
         palavras.pop_back();
-        nome = std::accumulate(palavras.begin(), palavras.end(), std::string());
+
+        std::ostringstream concatenar;
+        for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
+            concatenar << *(it);
+            if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
+        } 
+
+        nome = concatenar.str();
+
+        if(nome.empty()) {
+            log << linha << " - ERRO: Nome invalido" << std::endl;
+            continue;
+        }
+
         palavras.clear();
         novo_cliente = new Cliente(cpf, nome, data_nascimento);
 
         this->inserirCliente(novo_cliente);
-        aux++;
+        total++;
     }
 
+    log.close();
     arquivo.close();
-
-    if (aux)
-        std::cout << aux << " clientes cadastrados com sucesso" << std::endl;
+    if(total) std::cout << total << " clientes cadastrados com sucesso" << std::endl;
+    
 }
 
 // Implementa o destrutor
