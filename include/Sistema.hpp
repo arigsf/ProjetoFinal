@@ -10,27 +10,27 @@ const char ARQUIVO_CLIENTES = 'C';
 #include <iterator>
 #include <unistd.h>
 
-class Sistema {
+class Sistema
+{
 
-    private:
-        Estoque estoque;
-        Locacao locacao;
-        CadastroClientes clientes;
-        
-    public:
-        void lerArquivo();
-        void cadastrarFilme();
-        void removerFilme();
-        void listarFilmesOrdenados() const;
-        void cadastrarCliente();
-        void listarClientesOrdenados() const;
-        void removerCliente();
-        void alugarFilmes();
-        void devolverFilmes(); // CPF, Filmes por ID, dias
-        void listarLogLocacoes();
-        void limparTerminal();
-        void mostrarOpcoes();
+private:
+    Estoque _estoque;
+    Locacao _locacao;
+    CadastroClientes _clientes;
+
+public:
+    void lerArquivo();
+    void cadastrarFilme();
+    void removerFilme();
+    void listarFilmesOrdenados() const;
+    void cadastrarCliente();
+    void listarClientesOrdenados() const;
+    void removerCliente();
+    void alugarFilmes();
+    void devolverFilmes(); // CPF, Filmes por ID, dias
+    void listarLogLocacoes();
+    void limparTerminal();
+    void mostrarOpcoes();
 };
-
 
 #endif
