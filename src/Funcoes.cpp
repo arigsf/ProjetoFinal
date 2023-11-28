@@ -56,3 +56,7 @@ bool isDataNascimentoValido(std::string &data) {
     std::regex regexDataNascimento(R"(\d{2}/\d{2}/\d{4})");
     return std::regex_match(data, regexDataNascimento);
 }
+
+bool isDiasValido(int dias) {
+    return dias > 0 || dias <= 7;
+}

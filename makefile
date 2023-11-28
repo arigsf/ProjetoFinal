@@ -1,29 +1,44 @@
-output: build/main.o build/Sistema.o build/Funcoes.o build/Estoque.o build/Filme.o build/Cadastro_Clientes.o build/Clientes.o build/Locacao.o 
-	g++ -g build/*.o -o ./build/output
+CC=g++
+CFLAGS=-std=c++11 -Wall
+TARGET =output
+LDFLAGS =-c
+IFLAG =-I
 
-build/main.o: ./src/main.cpp ./include/Sistema.hpp
-	g++ -I ./include -c -g ./src/main.cpp -o build/main.o
+ifdef DEBUG
+CFLAGS += -g
+endif
 
-build/Sistema.o: ./src/Sistema.cpp ./include/Sistema.hpp
-	g++ -I ./include -c -g ./src/Sistema.cpp -o build/Sistema.o
+BUILD_DIR = ./build
+SRC_DIR = ./src
+INCLUDE_DIR = ./include
 
-build/Funcoes.o: ./src/Funcoes.cpp ./include/Funcoes.hpp
-	g++ -I ./include -c -g ./src/Funcoes.cpp -o build/Funcoes.o
 
-build/Estoque.o: ./src/Estoque.cpp ./include/Estoque.hpp
-	g++ -I ./include -c -g ./src/Estoque.cpp -o build/Estoque.o
+${${BUILD_DIR}_DIR}/${TARGET}: ${BUILD_DIR}/main.o ${BUILD_DIR}/Sistema.o ${BUILD_DIR}/Funcoes.o ${BUILD_DIR}/Estoque.o ${BUILD_DIR}/Filme.o ${BUILD_DIR}/Cadastro_Clientes.o ${BUILD_DIR}/Clientes.o ${BUILD_DIR}/Locacao.o 
+	${CC} ${CFLAGS} ${BUILD_DIR}/*.o -o ./${BUILD_DIR}/${TARGET}
 
-build/Filme.o: ./src/Filme.cpp ./include/Filme.hpp
-	g++ -I ./include -c -g ./src/Filme.cpp -o build/Filme.o
+${BUILD_DIR}/main.o: ./${SRC_DIR}/main.cpp ./${INCLUDE_DIR}/Sistema.hpp
+	${CC} ${CFLAGS} ${IFLAG} ${INCLUDE_DIR} ${LDFLAGS} ./${SRC_DIR}/main.cpp -o ${BUILD_DIR}/main.o
 
-build/Cadastro_Clientes.o: ./src/Cadastro_Clientes.cpp ./include/Cadastro_Clientes.hpp
-	g++ -I ./include -c -g ./src/Cadastro_Clientes.cpp -o build/Cadastro_Clientes.o
+${BUILD_DIR}/Sistema.o: ./${SRC_DIR}/Sistema.cpp ./${INCLUDE_DIR}/Sistema.hpp
+	${CC} ${CFLAGS} ${IFLAG} ${INCLUDE_DIR} ${LDFLAGS} ./${SRC_DIR}/Sistema.cpp -o ${BUILD_DIR}/Sistema.o
 
-build/Clientes.o: ./src/Clientes.cpp ./include/Clientes.hpp
-	g++ -I ./include -c -g ./src/Clientes.cpp -o build/Clientes.o
+${BUILD_DIR}/Funcoes.o: ./${SRC_DIR}/Funcoes.cpp ./${INCLUDE_DIR}/Funcoes.hpp
+	${CC} ${CFLAGS} ${IFLAG} ${INCLUDE_DIR} ${LDFLAGS} ./${SRC_DIR}/Funcoes.cpp -o ${BUILD_DIR}/Funcoes.o
 
-build/Locacao.o: ./src/Locacao.cpp ./include/Locacao.hpp
-	g++ -I ./include -c -g ./src/Locacao.cpp -o build/Locacao.o
+${BUILD_DIR}/Estoque.o: ./${SRC_DIR}/Estoque.cpp ./${INCLUDE_DIR}/Estoque.hpp
+	${CC} ${CFLAGS} ${IFLAG} ${INCLUDE_DIR} ${LDFLAGS} ./${SRC_DIR}/Estoque.cpp -o ${BUILD_DIR}/Estoque.o
+
+${BUILD_DIR}/Filme.o: ./${SRC_DIR}/Filme.cpp ./${INCLUDE_DIR}/Filme.hpp
+	${CC} ${CFLAGS} ${IFLAG} ${INCLUDE_DIR} ${LDFLAGS} ./${SRC_DIR}/Filme.cpp -o ${BUILD_DIR}/Filme.o
+
+${BUILD_DIR}/Cadastro_Clientes.o: ./${SRC_DIR}/Cadastro_Clientes.cpp ./${INCLUDE_DIR}/Cadastro_Clientes.hpp
+	${CC} ${CFLAGS} ${IFLAG} ${INCLUDE_DIR} ${LDFLAGS} ./${SRC_DIR}/Cadastro_Clientes.cpp -o ${BUILD_DIR}/Cadastro_Clientes.o
+
+${BUILD_DIR}/Clientes.o: ./${SRC_DIR}/Clientes.cpp ./${INCLUDE_DIR}/Clientes.hpp
+	${CC} ${CFLAGS} ${IFLAG} ${INCLUDE_DIR} ${LDFLAGS} ./${SRC_DIR}/Clientes.cpp -o ${BUILD_DIR}/Clientes.o
+
+${BUILD_DIR}/Locacao.o: ./${SRC_DIR}/Locacao.cpp ./${INCLUDE_DIR}/Locacao.hpp
+	${CC} ${CFLAGS} ${IFLAG} ${INCLUDE_DIR} ${LDFLAGS} ./${SRC_DIR}/Locacao.cpp -o ${BUILD_DIR}/Locacao.o
 
 clean:
-	rm build/*
+	rm ${BUILD_DIR}/*

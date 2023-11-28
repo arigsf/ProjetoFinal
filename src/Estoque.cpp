@@ -168,19 +168,11 @@ void Estoque::removerFilme(const int identificador)
     // Percorre o estoque a procura do filme
     std::vector<Filme *>::iterator it = std::remove_if(this->_estoque.begin(), this->_estoque.end(), [identificador](Filme *filme)
                                                        { return filme->getIdentificador() == identificador; });
-
-    // Se existir um filme com o código associado, é excluído
-    if (it != this->_estoque.end())
-    {
-        delete *it;
-        this->_estoque.erase(it, this->_estoque.end());
-        std::cout << "Filme " << identificador << " removido com sucesso" << std::endl;
-    }
-    // Caso contrário, aparece mensagem de erro
-    else
-    {
-        std::cout << "ERRO: identificador inexistente" << std::endl;
-    }
+    delete *it;
+    this->_estoque.erase(it, this->_estoque.end());
+        
+    
+    
 }
 
 void Estoque::pesquisarFilmesCodigo(const int identificador) const
@@ -215,31 +207,25 @@ void Estoque::pesquisarFilmesTitulo(const std::string titulo) const
     }
 }
 
-void Estoque::listarFilmesOrdenados(const std::string ordenacao) const
-{
+void Estoque::listarFilmesOrdenados(const std::string ordenacao) const {
+    std::vector<Filme *> filmes_ordenados = this->_estoque;
+    std::sort(filmes_ordenados.begin(), filmes_ordenados.end(), COMPARADORES_FILME.at(ordenacao));
 
-    if (COMPARADORES_FILME.find(ordenacao) != COMPARADORES_FILME.end())
+    for (Filme *filme : filmes_ordenados)
     {
-        std::vector<Filme *> filmes_ordenados = this->_estoque;
-        std::sort(filmes_ordenados.begin(), filmes_ordenados.end(), COMPARADORES_FILME.at(ordenacao));
+        std::cout << filme->getIdentificador() << " " << filme->getTitulo()
+                    << " " << filme->getUnidades() << " " << Tipo_Filme.at(filme->getTipo()) << " ";
 
-        for (Filme *filme : filmes_ordenados)
+        if (filme->getTipo() == TIPO_DVD)
         {
-            std::cout << filme->getIdentificador() << " " << filme->getTitulo()
-                      << " " << filme->getUnidades() << " " << Tipo_Filme.at(filme->getTipo()) << " ";
-
-            if (filme->getTipo() == TIPO_DVD)
-            {
-                DVD *dvd = dynamic_cast<DVD *>(filme);
-                std::cout << aux_Categorias.at(dvd->getCategoria());
-                // Downcasting para usar a função getCategoria
-            }
-
-            std::cout << std::endl;
+            DVD *dvd = dynamic_cast<DVD *>(filme);
+            std::cout << aux_Categorias.at(dvd->getCategoria());
+            // Downcasting para usar a função getCategoria
         }
+
+        std::cout << std::endl;
     }
-    else
-        std::cout << "Erro: opção inexistente" << std::endl;
+
 }
 
 Filme *Estoque::filmeExiste(const int identificador) const

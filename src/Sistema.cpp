@@ -1,5 +1,4 @@
 #include "Sistema.hpp"
-#include "Funcoes.hpp"
 
 Sistema::Sistema(){
     _locacao.associarPtrEstoque(&_estoque); // Para funções próprias da locação
@@ -30,37 +29,46 @@ void Sistema::cadastrarFilme()
     char tipo;
     while (true)
     {
-        std::cout << "\nDigite o tipo do filme\n[D] - dvd\n[F] - fita\n\nEscolha: ";
+        std::cout << "\nDigite o tipo do filme\n[D] - dvd\n[F] - fita\n\nEscolha (Digite 0 se deseja cancelar): ";
         std::cin >> tipo;
-        if(!isTipoValido(tipo)) std::cout << "ERRO: Tipo invalido, digite novamente" << std::endl;
+        if(tipo = '0') return;
+        else if(!isTipoValido(tipo)) std::cout << "ERRO: Tipo invalido, digite novamente" << std::endl;
         else break;
     }
 
     int unidades, identificador;
     while (true)
     {
-        std::cout << "\nInsira a quantidade: ";
+        std::cout << "\nInsira a quantidade (Digite -1 se deseja cancelar): ";
         std::cin >> unidades;
-
-        if(!isUnidadesValido) std::cout << "ERRO: Quantidades invalida, digite novamente" << std::endl;
+        if(unidades == -1) return;
+        else if(!isUnidadesValido(unidades)) std::cout << "ERRO: Quantidades invalida, digite novamente" << std::endl;
         else break;
     }
 
     while (true)
     {
-        std::cout << "\nInsira o identificador: ";
+        std::cout << "\nInsira o identificador (Digite 0 se deseja cancelar): ";
         std::cin >> identificador;
-
-        if(!isIdentificadorValido) std::cout << "ERRO: Identificador invalido, digite novamente" << std::endl;
+        if(identificador == 0) return;
+        else if(!isIdentificadorValido(identificador)) std::cout << "ERRO: Identificador invalido, digite novamente" << std::endl;
         else if(this->_estoque.filmeExiste(identificador)) std::cout << "ERRO: identificador repetido" << std::endl; 
         
         else break;
     }
 
     std::string titulo;
-    std::cout << "\nDigite o nome do filme: ";
-    std::cin.ignore();
-    std::getline(std::cin, titulo);
+
+    while (true)
+    {
+        std::cout << "Digite o nome do filme (Digte CANCELAR se deseja cancelar): ";
+        std::cin.ignore();
+        std::getline(std::cin, titulo);
+        if(titulo == "CANCELAR") return;
+        else if(titulo.empty()) std::cout << "ERRO: nome titulo, digite novamente" << std::endl;
+        else break;;
+
+    }
 
     Filme *filme;
 
@@ -73,9 +81,11 @@ void Sistema::cadastrarFilme()
         while (true)
         {
             std::cout << "\nDigite a categoria do filme\n[E] - Estoque\n[L] - Lancamento\n[P] - Promocao\n";
-            std::cout << "\nEscolha: ";
+            std::cout << "\nEscolha (Digite 0 se deseja cancelar): ";
             std::cin >> categoria;
+            if(categoria == '0') return;
             indice_categoria = isCategoriaValido(categoria);
+
             if (indice_categoria < 0)
                 std::cout << "Erro : Categoria invalida, digite novamente" << std::endl;
             else
@@ -96,17 +106,38 @@ void Sistema::cadastrarFilme()
 void Sistema::removerFilme()
 {
     int identificador;
-    std::cout << "\nDigite o identificador: ";
-    std::cin >> identificador;
+    while (true)
+    {   
+        std::cout << "Digite o identificador (Digite 0 se deseja cancelar): ";
+        std::cin >> identificador;
+
+        if(identificador == 0) return;
+        else if (isIdentificadorValido(identificador)) std::cout << "ERRO: identificador invalido, digite novamente" << std::endl;
+        else if(!this->_estoque.filmeExiste(identificador)) std::cout << "ERRO: identificador inexistente, digite novamente" << std::endl;
+        else break;
+    }
+    
+
     this->_estoque.removerFilme(identificador);
+    std::cout << "Filme " << identificador << " removido com sucesso" << std::endl;    
 }
 
 void Sistema::listarFilmesOrdenados() const
 {
     std::string ordenacao;
-    std::cout << "Digite o critério de ordenação\n[C] - por identificador\n[U] - por quantidade\n[N] - por nome\n";
-    std::cout << "\nEscolha: ";
-    std::cin >> ordenacao;
+    std::cout << "Digite o critério de ordenação\n[C] - por identificador\n[U] - por quantidade\n[N] - por nome\n\n";
+
+    while (true)
+    {
+        std::cout << "Escolha (Digite CANCELAR se deseja cancelar): ";
+        std::cin >> ordenacao;
+        if(ordenacao == "CANCELAR") return;
+        else if (COMPARADORES_FILME.find(ordenacao) == COMPARADORES_FILME.end()) std::cout << "Erro: opção inexistente, digite novamente" << std::endl;
+        else break;
+    }
+    
+    
+    
     this->_estoque.listarFilmesOrdenados(ordenacao);
 }
 
@@ -118,28 +149,37 @@ void Sistema::cadastrarCliente()
     {
         std::cout << "\nDigite o CPF no formato "
                      "XXX.XXX.XXX-XX"
-                     ": ";
+                     "(Digite CANCELAR se deseja cancelar): ";
         std::cin >> cpf;
 
-        if (!isCPFValido(cpf))
-            std::cout << "\nERRO: Formato inválido de CPF\n"
-                      << std::endl;
-        else if (this->_clientes.clienteExiste(cpf))
-            std::cout << "\nERRO: CPF repetido\n"
-                      << std::endl;
-        else
-            break;
+        if(cpf == "CANCELAR") return;
+        else if (!isCPFValido(cpf)) std::cout << "\nERRO: Formato inválido de CPF" << std::endl;
+        else if (this->_clientes.clienteExiste(cpf)) std::cout << "\nERRO: CPF repetido" << std::endl;
+        else break;
     }
 
-    std::cout << "\nDigite o nome do cliente: ";
-    std::cin.ignore();
-    std::getline(std::cin, nome);
+
+    
 
     while (true)
     {
-        std::cout << "\nDigite a data de nascimento no formato DD/MM/AAAA: ";
+        std::cin.ignore();
+        std::cout << "\nDigite o nome do cliente (Digte CANCELAR se deseja cancelar): ";
+        std::getline(std::cin, nome);
+        if(nome == "CANCELAR") return;
+        else if(nome.empty()) std::cout << "ERRO: nome invalido, digite novamente" << std::endl; 
+        else break;;
+
+    }
+    
+    
+
+    while (true)
+    {
+        std::cout << "\nDigite a data de nascimento no formato DD/MM/AAAA (Digte CANCELAR se deseja cancelar): ";
         std::cin >> data_nascimento;
-        if (!isDataNascimentoValido(data_nascimento))
+        if(data_nascimento == "CANCELAR") return;
+        else if (!isDataNascimentoValido(data_nascimento))
             std::cout << "\nERRO: Formato inválido de data de nascimento\n"
                       << std::endl;
         else
@@ -159,54 +199,81 @@ void Sistema::listarClientesOrdenados() const
 void Sistema::removerCliente()
 {
     std::string cpf;
-    std::cout << "\nDigite o CPF do cliente: ";
-    std::cin >> cpf;
-    if (isCPFValido(cpf))
-        this->_clientes.removerCliente(cpf);
-    else
-        std::cout << "ERRO: Formato inválido de CPF" << std::endl;
+    
+    while(true) {
+        std::cout << "\nDigite o CPF do cliente (Digte CANCELAR se deseja cancelar): ";
+        std::cin >> cpf;
+        if(cpf == "CANCELAR") return;
+        else if (!isCPFValido(cpf)) std::cout << "ERRO: Formato inválido de CPF" << std::endl;
+        else break;
+        
+    }
+
+    this->_clientes.removerCliente(cpf);
+    
 }
 
 void Sistema::alugarFilmes()
 {
 
     int id, dias, quantidade;
-
     std::string cpf;
-    std::cout << "\nDigite CPF no formato "
-                 "XXX.XXX.XXX-XX"
-                 ": ";
-    std::cin.ignore();
-    std::getline(std::cin, cpf);
-
-    std::vector<Filme *> filmes;
-
-    if (!this->_clientes.clienteExiste(cpf))
-    {
-        std::cout << "ERRO: CPF inexistente" << std::endl;
-        return;
-    }
-
-    std::cout << "Digite a quantidade de filmes: ";
-    std::cin >> quantidade;
-
-    for (int i = 0; i < quantidade; i++)
-    {
-        std::cout << "\nDigite o id do filme " << i + 1 << ": ";
-        std::cin >> id;
-        Filme *filme = this->_estoque.filmeValido(id);
-        if (filme != nullptr)
-            filmes.push_back(filme);
-    }
 
     while (true)
     {
-        std::cout << "\nDigite o n° de dias do aluguel (entre 1 e 7): ";
+        std::cout << "\nDigite o CPF no formato "
+                     "XXX.XXX.XXX-XX"
+                     "(Digite CANCELAR se deseja cancelar): ";
+        std::cin >> cpf;
+
+        if(cpf == "CANCELAR") return;
+        else if (!isCPFValido(cpf)) std::cout << "\nERRO: Formato inválido de CPF" << std::endl;
+        else if (this->_clientes.clienteExiste(cpf)) std::cout << "\nERRO: CPF repetido" << std::endl;
+        else break;
+    }
+
+    
+    std::cout << "Digite o id dos filmes desejados, você pode alugar até 10 filmes " << std::endl;
+    
+
+    
+    std::vector<Filme *> filmes;
+
+    int i = 0;
+    while (i <= QTD_MAXIMO_FILMES_ALUGADOS)
+    {
+        std::cout << "\nDigite o id do filme " << i + 1 << " (Digite 0 se deseja cancelar, -1 se está satisfeito com os filmes alugados): ";
+        std::cin >> id;
+
+        if(id == 0) return;
+        else if(id == -1) break;
+
+        Filme *filme = this->_estoque.filmeValido(id);
+        if (!filme){
+            std::cout << "ERRO: não existe filme com indentificador " << id << ", digite novamente" << std::endl;
+            continue;
+        }
+
+        if(!this->_estoque.filmeValido(id)) {
+            std::cout << "Infelizmente o filme com indentificador " << id <<
+            " não se encontra disponivel, por favor escolha outro filme" << std::endl;
+            continue;
+        } 
+
+        filmes.push_back(filme);
+        i++;
+        
+    }
+
+    
+    while (true)
+    {
+        std::cout << "\nDigite o n° de dias do aluguel (entre 1 e 7, ou 0 se deseja cancelar): ";
         std::cin >> dias;
-        if (dias > 0 || dias <= 7)
-            break;
-        else
-            std::cout << "ERRO: N° de dias invalido" << std::endl;
+        if(dias == 0) return;
+        else if (!isDiasValido(dias)) std::cout << "ERRO: N° de dias invalido, digite novamente" << std::endl;
+        else break;
+            
     }
 
     this->_locacao.alugar(cpf, filmes, dias);

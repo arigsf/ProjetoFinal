@@ -40,8 +40,8 @@ const std::map<int, char> Tipo_Filme = {
 class Filme
 {
 protected:
-    int _identificador;
     int _unidades;
+    int _identificador;
     std::string _titulo;
     int _tipo;
 
