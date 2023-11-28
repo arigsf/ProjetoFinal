@@ -278,7 +278,7 @@ void Estoque::salvarDados(const bool limparDados) // O parametro limpardados dec
 
     // Formata a data e a hora como uma string
     std::ostringstream oss;
-    oss << std::put_time(horaLocal, "%d-%m-%Y %H:%M:%S");
+    oss << std::put_time(horaLocal, "%d-%m-%Y %H_%M_%S");
 
     std::string caminho_copia = "./data/Filmes/Historico/filmes "+oss.str();
     std::ofstream copia(caminho_copia, std::ios::out | std::ios::trunc);
