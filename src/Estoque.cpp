@@ -270,12 +270,33 @@ void Estoque::salvarDados(const bool limparDados) // O parametro limpardados dec
         return;
     }
 
+    std::chrono::system_clock::time_point agora = std::chrono::system_clock::now();
+    std::time_t tempo = std::chrono::system_clock::to_time_t(agora);
+
+    // Cria uma estrutura de tempo local
+    std::tm *horaLocal = std::localtime(&tempo);
+
+    // Formata a data e a hora como uma string
+    std::ostringstream oss;
+    oss << std::put_time(horaLocal, "%d-%m-%Y %H:%M:%S");
+
+    std::string caminho_copia = "./data/Filmes/Historico/filmes "+oss.str();
+    std::ofstream copia(caminho_copia, std::ios::out | std::ios::trunc);
+    // Cria um arquivo com o nome sendo a data atual
+
+
+    if(!copia.is_open()) {
+        std::cout << "Erro: não foi possível criar o arquivo copia" << std::endl;
+        return;
+    }
+
     if (limparDados)
     {
 
         for (Filme *filme : _estoque)
         {
             arquivo << filme->listarInformacoes() << std::endl;
+            copia << filme->listarInformacoes() << std::endl;
             delete filme;
         }
 
@@ -284,8 +305,12 @@ void Estoque::salvarDados(const bool limparDados) // O parametro limpardados dec
 
     // Percorre a lista de filmes e adiciona no arquivo
     else
-        for (Filme *filme : this->_estoque)
+        for (Filme *filme : this->_estoque) {
             arquivo << filme->listarInformacoes() << std::endl;
+            copia << filme->listarInformacoes() << std::endl;
+        }
+            
 
     arquivo.close();
+    copia.close();
 }

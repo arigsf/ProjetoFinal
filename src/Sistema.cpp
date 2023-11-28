@@ -31,7 +31,7 @@ void Sistema::cadastrarFilme()
     {
         std::cout << "\nDigite o tipo do filme\n[D] - dvd\n[F] - fita\n\nEscolha (Digite 0 se deseja cancelar): ";
         std::cin >> tipo;
-        if(tipo = '0') return;
+        if(tipo == '0') return;
         else if(!isTipoValido(tipo)) std::cout << "ERRO: Tipo invalido, digite novamente" << std::endl;
         else break;
     }
