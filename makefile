@@ -1,4 +1,4 @@
-output: build/main.o build/Sistema.o build/Funcoes.o build/Estoque.o build/Filme.o build/Cadastro_Clientes.o build/Clientes.o build/Locacao.o 
+output: build/Financeiro.o build/main.o build/Sistema.o build/Funcoes.o build/Estoque.o build/Filme.o build/Cadastro_Clientes.o build/Clientes.o build/Locacao.o 
 	g++ -g build/*.o -o ./build/output
 
 build/main.o: ./src/main.cpp ./include/Sistema.hpp
@@ -24,6 +24,9 @@ build/Clientes.o: ./src/Clientes.cpp ./include/Clientes.hpp
 
 build/Locacao.o: ./src/Locacao.cpp ./include/Locacao.hpp
 	g++ -I ./include -c -g ./src/Locacao.cpp -o build/Locacao.o
+
+build/Financeiro.o: ./src/Financeiro.cpp ./include/Financeiro.hpp
+	g++ -I ./include -c -g ./src/Financeiro.cpp -o build/Financeiro.o
 
 clean:
 	rm build/*
