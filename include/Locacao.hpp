@@ -5,6 +5,7 @@
 #include "Estoque.hpp"
 #include <numeric> // Transformar vetor de strings em uma string
 #include <sstream> // Leitura de arquivo
+#include <stdexcept>
 
 const int QTD_MAXIMO_FILMES_ALUGADOS = 10;
 

@@ -328,7 +328,12 @@ void Sistema::devolverFilmes()
                     valorDaMulta += 2;
             }
 
-            valorDaMulta += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
+            try {
+                valorDaMulta += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
+            } catch(const std::runtime_error& e) { 
+                std::cout << e.what() << " " << filme->getTitulo() << std::endl; 
+            }
+    
         }
     }
 

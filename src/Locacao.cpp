@@ -26,8 +26,7 @@ LocacaoData Locacao::getLocacao(std::string CPF, Filme *filme)
     for (LocacaoData i : this->_locacoes)
         if (i._CPFCliente == CPF && i._filme->getIdentificador() == filme->getIdentificador())
             return i;
-    // Implementar tratamento de erro.....
-    return this->_locacoes[0]; // Momentaneo (a ser removido do projeto)
+    throw std::runtime_error("\nERRO: este filme nao esta alugado por tal cliente"); // Erro
 }
 
 // Métodos para arquivos
@@ -204,15 +203,19 @@ void Locacao::alugar(std::string CPF, std::vector<Filme *> filmes, int dias)
 
     for (Filme *f : filmes)
     {
-        f->removerUnidades();
-        // Implementar tratamento de erro (se não há filmes)
-        LocacaoData loc;
-        loc._CPFCliente = CPF;
-        loc._filme = f;
-        loc._diasAlugados = dias;
-        this->_locacoes.push_back(loc);
-        this->_numeroLocacoes++;
-        valorAluguel += f->calculoPrecoLocacao(dias);
+        try{
+            f->removerUnidades();
+            LocacaoData loc;
+            loc._CPFCliente = CPF;
+            loc._filme = f;
+            loc._diasAlugados = dias;
+            this->_locacoes.push_back(loc);
+            this->_numeroLocacoes++;
+            valorAluguel += f->calculoPrecoLocacao(dias);
+        } catch (const std::runtime_error& e){
+            std::cout << "\nFilme: " << f->getTitulo() << " nao foi alugado" << std::endl; 
+        }
+        
     }
 
     this->salvarLocacaoPendentes(); // Atualizar arquivo
@@ -225,24 +228,28 @@ void Locacao::alugar(std::string CPF, std::vector<Filme *> filmes, int dias)
 int Locacao::devolucao(std::string CPF, Filme *filme, int dias, bool isDanificado)
 {
     int valorMultas = 0;
+    try{
+        LocacaoData locacao = this->getLocacao(CPF, filme);
 
-    LocacaoData locacao = this->getLocacao(CPF, filme);
-    // Implementar tratamento erro
-    int diasAlugados = locacao._diasAlugados;
-    if (diasAlugados < dias)
-    { // Multa por atraso (calculo linear da multa)
-        valorMultas += (dias - diasAlugados) * 2;
+        int diasAlugados = locacao._diasAlugados;
+        if (diasAlugados < dias)
+        { // Multa por atraso (calculo linear da multa)
+            valorMultas += (dias - diasAlugados) * 2;
+        }
+
+        if (isDanificado == true)
+            valorMultas += 20; // Multa por danificação do produto
+
+        filme->adicionarUnidades();
+        this->removeLocacao(getPosicaoLocacaoVetorLocacoes(&locacao));
+        this->salvarLocacaoPendentes(); // Atualizar arquivo
+        this->salvarLocacaoLog(filme, CPF, dias, valorMultas); // Salvando log
+
+        return valorMultas;
+
+    } catch(const std::runtime_error& e) {
+        throw e;
     }
-
-    if (isDanificado == true)
-        valorMultas += 20; // Multa por danificação do produto
-
-    filme->adicionarUnidades();
-    this->removeLocacao(getPosicaoLocacaoVetorLocacoes(&locacao));
-    this->salvarLocacaoPendentes(); // Atualizar arquivo
-    this->salvarLocacaoLog(filme, CPF, dias, valorMultas); // Salvando log
-
-    return valorMultas;
 }
 
 bool Locacao::verificarFilmeAlugado(int identificador)
