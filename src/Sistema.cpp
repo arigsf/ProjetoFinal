@@ -233,16 +233,17 @@ void Sistema::alugarFilmes()
     }
 
     
+    int alugados = this->_locacao.getLocacoesPorCliente(cpf);
     std::cout << "Digite o id dos filmes desejados, você pode alugar até 10 filmes " << std::endl;
-    
+    std::cout << "Você já alugou " << alugados << " filmes" << std::endl;
 
     
     std::vector<Filme *> filmes;
 
-    int i = 0;
-    while (i <= QTD_MAXIMO_FILMES_ALUGADOS)
+    
+    while (alugados <= QTD_MAXIMO_FILMES_ALUGADOS)
     {
-        std::cout << "\nDigite o id do filme " << i + 1 << " (Digite 0 se deseja cancelar, -1 se está satisfeito com os filmes alugados): ";
+        std::cout << "\nDigite o id do " << alugados + 1 << "° filme (Digite 0 se deseja cancelar, -1 se está satisfeito com os filmes alugados): ";
         std::cin >> id;
 
         if(id == 0) return;
@@ -261,7 +262,7 @@ void Sistema::alugarFilmes()
         } 
 
         filmes.push_back(filme);
-        i++;
+        alugados++;
         
     }
 
