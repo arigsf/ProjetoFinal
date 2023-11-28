@@ -51,6 +51,7 @@ public:
     void associarPtrEstoque(Estoque* estoque);                                           // Associar ponteiro de estoque a variavel _estoque da locação (para obter acesso aos itens de estoque)
     int getLocacoesPorCliente(std::string cpf);                                          // Retorna o número de locações de determinado cliente, com base em seu CPF
     int devolucao(std::string cpf, Filme *filme, int dias, bool isDanificado);           // Devolução por filme e caracteristicas do mesmo na devolução, retornando o valor a ser pago (multas)
+    bool verificarFilmeAlugado(int identificador);                                       // Verifica se tal filme (através do identificador individual) já está alocado
     void alugar(std::string cpf, std::vector<Filme *> filmes, int dias);                 // Processo de criação de aluguel de filmes
     void relatorio();                                                                    // Imprime um relatório de todas as locações pendentes no sistema
     void historicoLocacoes();                                                            // Imprime um log com todos os registros de locações já finalizadas (somente salvas após devolução), ordenado por CPF

@@ -245,6 +245,13 @@ int Locacao::devolucao(std::string CPF, Filme *filme, int dias, bool isDanificad
     return valorMultas;
 }
 
+bool Locacao::verificarFilmeAlugado(int identificador)
+{
+    for(LocacaoData locacao : this->_locacoes)
+        if(locacao._filme->getIdentificador() == identificador) return true;
+    return false;
+}
+
 void Locacao::relatorio()
 {
     std::cout << "Imprimindo relatorio das locacoes pendentes...\n\n";
