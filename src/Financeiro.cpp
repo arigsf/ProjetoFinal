@@ -2,8 +2,12 @@
 
 bool Financeiro::deposito(float valor) {
     if (valor > 0) {
+        Data data;
+        Transacao transacao(data, "DEPOSITO", valor);
         this->saldo += valor;
-        transacoes.push_back({"DEPOSITO", valor});
+
+        transacoes.push_back(transacao);
+
         return true;
     } 
         
@@ -22,9 +26,12 @@ bool Financeiro::saque(float valor) {
         std::cout << std::fixed << std::setprecision(2) <<  "\nValor indisponível, saldo atual de R$" << saldo << std::endl; 
         return false;
     }
-
+    
+    Data data;
+    Transacao transacao(data, "SAQUE", valor);
     this->saldo -= valor;
-    transacoes.push_back({"SAQUE", valor});
+
+    transacoes.push_back(transacao);
 
     std::cout << std::fixed << std::setprecision(2) <<  "Saque de R$" << valor << " realizado com sucesso!\nSaldo atual: R$" << saldo << std::endl;
 
@@ -38,3 +45,6 @@ float Financeiro::getSaldo() {
 void Financeiro::historicoTransacoes() {
     
 }
+
+Transacao::Transacao(Data _data, std::string _tipo, float _valor) : 
+    data(_data), tipo(_tipo), valor(_valor) {}

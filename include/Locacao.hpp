@@ -6,13 +6,6 @@
 #include <ctime>
 #include <numeric> // Transformar vetor de strings em uma string
 
-struct Data {
-    time_t now = time(0);
-    
-    int dia = localtime(&now)->tm_mday;
-    int mes = localtime(&now)->tm_mon + 1;
-    int ano = localtime(&now)->tm_year + 1900;
-};
 
 class Locacao
 {
