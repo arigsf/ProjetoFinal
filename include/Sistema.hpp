@@ -8,6 +8,7 @@ const char ARQUIVO_CLIENTES = 'C';
 #include "Estoque.hpp"
 #include "Locacao.hpp"
 #include "Cadastro_Clientes.hpp"
+#include "Funcoes.hpp"
 #include <iterator>
 #include <unistd.h>
 

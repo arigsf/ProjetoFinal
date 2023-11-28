@@ -3,6 +3,7 @@
 
 #include "Filme.hpp"
 #include "Funcoes.hpp"
+#include <chrono>
 #include <functional>
 
 const std::string DIRETORIO_PADRAO_FILMES = "./data/Filmes/filmes";
