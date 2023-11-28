@@ -6,6 +6,7 @@
 #include <ctime>
 #include <numeric> // Transformar vetor de strings em uma string
 
+const int QTD_MAXIMO_FILMES_ALUGADOS = 10;
 
 class Locacao
 {

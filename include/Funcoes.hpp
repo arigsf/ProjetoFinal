@@ -14,5 +14,6 @@ int isCategoriaValido(char categoria);
 // Nota, bug presente, que afirma que não há referencia definida para esta função abaixo
 bool isCPFValido(std::string &cpf);
 bool isDataNascimentoValido(std::string &data);
+bool isDiasValido(int dias);
 
 #endif
