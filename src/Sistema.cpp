@@ -373,11 +373,11 @@ void Sistema::devolverFilmes()
         try {
             multaAtual += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
             valorDaMulta += multaAtual;
+            i++;
         } catch(const std::runtime_error& e) { 
             std::cout << e.what() << std::endl; 
         }
 
-        i++;
     }
 
     std::cout << "\n\nDevolucoes realizadas com sucesso, valor de multas a serem liquidadas: " << valorDaMulta << std::endl;

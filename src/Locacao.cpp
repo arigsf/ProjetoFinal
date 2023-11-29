@@ -27,8 +27,7 @@ LocacaoData Locacao::getLocacao(std::string CPF, Filme *filme)
         if (i._CPFCliente == CPF && i._filme->getIdentificador() == filme->getIdentificador())
             return i;
     throw std::runtime_error("\nERRO: este filme nao esta alugado por tal cliente"); // Erro
-    // Você deve arrumar alguma forma de retornar nullptr caso x cliente não tenha filme y, recomendo você trocar o vetor de locacoes, atualmente ele armazena
-    // LocacaoData estatico, faça ele retornar ponteiros
+
 }
 
 // Métodos para arquivos
@@ -233,7 +232,6 @@ int Locacao::devolucao(std::string CPF, Filme *filme, int dias, bool isDanificad
     int valorMultas = 0;
     try{
         LocacaoData locacao = this->getLocacao(CPF, filme);
-        // Novamente se x pessoa nao alugou filme y, ocorrera um erro que é possivel ser tratado
 
         int diasAlugados = locacao._diasAlugados;
         if (diasAlugados < dias)
