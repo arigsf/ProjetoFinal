@@ -8,6 +8,7 @@
 
 const std::string DIRETORIO_PADRAO_FILMES = "./data/Filmes/filmes";
 const std::string DIRETORIO_LOG_FILMES = "./data/Filmes/logs";
+const std::string DIRETORIO_HISTORICO_FILMES = "./data/Filmes/Historico/";
 
 const std::map<std::string, std::function<bool(const Filme *, const Filme *)>> COMPARADORES_FILME = {
     {"C", [](const Filme *a, const Filme *b)
@@ -21,7 +22,6 @@ class Estoque
 {
 private:
     std::vector<Filme *> _estoque;
-    std::string _diretorio;
 
 public:
     Estoque();

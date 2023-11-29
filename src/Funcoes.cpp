@@ -57,6 +57,10 @@ bool isDataNascimentoValido(std::string &data) {
     return std::regex_match(data, regexDataNascimento);
 }
 
-bool isDiasValido(int dias) {
+bool isDiasValido(const int dias) {
     return dias > 0 || dias <= 7;
+}
+
+bool isDiasDecorridosValido(const int dias) {
+    return dias > 0;
 }

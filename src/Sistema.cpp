@@ -18,10 +18,11 @@ void Sistema::lerArquivo()
     }
 
     std::cout << "\nDigite o caminho para o arquivo: ";
-    std::cin >> diretorio;
+    std::cin.ignore();
+    std::getline(std::cin,diretorio);
 
-    if(ARQUIVO_FILMES) this->_estoque.lerArquivo(diretorio);
-    else if (ARQUIVO_CLIENTES) this->_clientes.lerArquivo(diretorio);
+    if(ARQUIVO_FILMES == tipo) this->_estoque.lerArquivo(diretorio);
+    else if (ARQUIVO_CLIENTES == tipo) this->_clientes.lerArquivo(diretorio);
 }
 
 void Sistema::cadastrarFilme()
@@ -112,13 +113,13 @@ void Sistema::removerFilme()
         std::cin >> identificador;
 
         if(identificador == 0) return;
-        else if (isIdentificadorValido(identificador)) std::cout << "ERRO: identificador invalido, digite novamente" << std::endl;
+        else if (!isIdentificadorValido(identificador)) std::cout << "ERRO: identificador invalido, digite novamente" << std::endl;
         else if (!this->_estoque.filmeExiste(identificador)) std::cout << "ERRO: identificador inexistente, digite novamente" << std::endl;
-        else if (this->_locacao.verificarFilmeAlugado(identificador)) std::cout << "ERRO: filme com aluguel pendente, nao pode ser removido" << std::endl;
+        else if (this->_locacao.verificarFilmeAlugado(identificador)) std::cout << "ERRO: filme com aluguel pendente, nao pode ser removido, digite novamente" << std::endl;
         else break;
     }
     
-
+    this->_estoque.salvarDados(false);
     this->_estoque.removerFilme(identificador);
     std::cout << "Filme " << identificador << " removido com sucesso" << std::endl;    
 }
@@ -206,10 +207,12 @@ void Sistema::removerCliente()
         std::cin >> cpf;
         if(cpf == "CANCELAR") return;
         else if (!isCPFValido(cpf)) std::cout << "ERRO: Formato inválido de CPF" << std::endl;
+        else if (!this->_locacao.getLocacoesPorCliente(cpf)) std::cout << "ERRO: cliente com aluguel pendente, nao pode ser removido, digite novamente" << std::endl;
         else break;
         
     }
 
+    this->_clientes.salvarDados(false);
     this->_clientes.removerCliente(cpf);
     
 }
@@ -287,54 +290,96 @@ void Sistema::devolverFilmes()
     int valorDaMulta = 0;
 
     std::vector<Filme *> filmes;
-
     std::string cpf;
-    std::cout << "\nDigite CPF no formato "
-                 "XXX.XXX.XXX-XX"
-                 ": ";
-    std::cin >> cpf;
 
-    if (!this->_clientes.clienteExiste(cpf))
+    while (true)
     {
-        std::cout << "ERRO: CPF inexistente" << std::endl;
-        return;
+        std::cout << "\nDigite o CPF no formato "
+                     "XXX.XXX.XXX-XX"
+                     "(Digite CANCELAR se deseja cancelar): ";
+        std::cin >> cpf;
+
+        if(cpf == "CANCELAR") return;
+        else if (!isCPFValido(cpf)) std::cout << "\nERRO: Formato inválido de CPF" << std::endl;
+        else if (!this->_clientes.clienteExiste(cpf)) std::cout << "\nERRO: CPF Inexistente na lista de clientes " << std::endl;
+        else break;
     }
-    std::cout << "\nDigite a quantidade de filmes a serem devolvidos: ";
-    std::cin >> qtdTotal;
 
-    std::cout << "\nDigite o n° de dias decorridos desde o aluguel: ";
-    std::cin >> dias;
+    while(true) {
+        std::cout << "\nDigite a quantidade de filmes a serem devolvidos (Digite 0 se deseja cancelar): ";
+        std::cin >> qtdTotal;
+        if(qtdTotal == 0) return;
+        else if(qtdTotal < 1 || qtdTotal > QTD_MAXIMO_FILMES_ALUGADOS) std::cout << "ERRO: quantidade de filmes invalida, digite novamente" << std::endl;
+        else break;
+    }
+    
 
+    while (true)
+    {
+        std::cout << "\nDigite o n° de dias decorridos desde o aluguel (Digite 0 se deseja cancelar): ";
+        std::cin >> dias;    
+        if(dias == 0) return;
+        else if(!isDiasDecorridosValido(dias)) std::cout << "ERRO: numero de dias invalido, digite novamente" << std::endl;
+        else break;
+    }
+    
+    int alugados = this->_locacao.getLocacoesPorCliente(cpf);
     std::vector<int> ids;
 
-    for (int i = 0; i < qtdTotal; i++)
+    int i = 0;
+    while (i <= alugados)
     {
-        std::cout << "\nDigite o id do filme " << i + 1 << ": ";
+        std::cout << "\nDigite o id do " << i + 1 << "° filme (Digite 0 se deseja cancelar, -1 se está satisfeito com os filmes alugados): ";
         std::cin >> id;
 
-        Filme *filme = this->_estoque.filmeValido(id);
-        if (filme != nullptr)
-        {
-            bool isDanificado;
-            std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado?\n[0] - Nao\n[1] - Sim\nEscolha: ";
-            std::cin >> isDanificado;
+        if(id == 0) return;
+        else if(id == -1) break;
 
-            if (filme->getTipo() == 1)
-            { // Se o filme é fita, precisamos verificar se está rebobinado
-                bool isRebobinado;
-                std::cout << "A fita " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta rebobinada?\n[0] - Nao\n[1] - Sim\nEscolha: ";
-                std::cin >> isRebobinado;
-                if (!isRebobinado)
-                    valorDaMulta += 2;
-            }
-
-            try {
-                valorDaMulta += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
-            } catch(const std::runtime_error& e) { 
-                std::cout << e.what() << " " << filme->getTitulo() << std::endl; 
-            }
-    
+        Filme *filme = this->_estoque.filmeExiste(id);
+        if (!filme){
+            std::cout << "ERRO: não existe filme com indentificador " << id << ", digite novamente" << std::endl;
+            continue;
         }
+
+        int isDanificado;
+        while (true)
+        {
+            std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado?\n[0] - Nao\n[1] - Sim\nEscolha (Digite -1 se deseja cancelar): ";
+            std::cin >> isDanificado;
+            if(isDanificado == -1) return;
+            else if(isDanificado != 1 && isDanificado != 0) std::cout << "ERRO: opção invalida, digite novamente" << std::endl;
+            else break;
+
+        }
+        
+        
+
+        if (filme->getTipo() == TIPO_FITA)
+        { // Se o filme é fita, precisamos verificar se está rebobinado
+            int isRebobinado;
+            while(true) {
+                std::cout << "A fita " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta rebobinada?\n[0] - Nao\n[1] - Sim\nEscolha (Digite -1 se deseja cancelar): ";
+                std::cin >> isRebobinado;
+                if(isDanificado == -1) return;
+                else if(isDanificado != 1 && isDanificado != 0) std::cout << "ERRO: opção invalida, digite novamente" << std::endl;
+                else break;
+                
+            }
+
+            if (!isRebobinado)
+                    valorDaMulta += 2;
+            
+        }
+
+        try {
+            valorDaMulta += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
+            // A logica desta parte ainda precisa ser alterada, junto com as funções devolver filme, e getLocacao da classe Locacao, caso determinado
+            // cliente nao tenha alugado determinado filme
+        } catch(const std::runtime_error& e) { 
+            std::cout << e.what() << " " << filme->getTitulo() << std::endl; 
+        }
+
+        i++;
     }
 
     std::cout << "\n\nDevolucoes realizadas com sucesso, valor de multas a serem liquidadas: " << valorDaMulta << std::endl;
