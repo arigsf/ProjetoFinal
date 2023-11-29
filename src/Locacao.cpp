@@ -198,9 +198,9 @@ int Locacao::getLocacoesPorCliente(std::string CPF)
     return soma;
 }
 
-void Locacao::alugar(std::string CPF, std::vector<Filme *> filmes, int dias)
+float Locacao::alugar(std::string CPF, std::vector<Filme *> filmes, int dias)
 {
- 
+    
     float valorAluguel = 0;
 
     for (Filme *f : filmes)
@@ -225,6 +225,7 @@ void Locacao::alugar(std::string CPF, std::vector<Filme *> filmes, int dias)
     std::cout << "Aluguel de " << dias << " dias foi aprovado para o CPF: " << CPF << std::endl;
     std::cout << "Valor a ser cobrado: " << std::setprecision(2) << std::fixed << valorAluguel << std::endl;
 
+    return valorAluguel;
 }
 
 int Locacao::devolucao(std::string CPF, Filme *filme, int dias, bool isDanificado)

@@ -227,10 +227,10 @@ void Sistema::alugarFilmes()
     {
         std::cout << "\nDigite o CPF no formato "
                      "XXX.XXX.XXX-XX"
-                     "(Digite CANCELAR se deseja cancelar): ";
+                     " (Digite 0 se deseja cancelar): ";
         std::cin >> cpf;
 
-        if(cpf == "CANCELAR") return;
+        if(cpf == "0") return;
         else if (!isCPFValido(cpf)) std::cout << "\nERRO: Formato inválido de CPF" << std::endl;
         else if (!this->_clientes.clienteExiste(cpf)) std::cout << "\nERRO: CPF Inexistente na lista de clientes " << std::endl;
         else break;
@@ -238,8 +238,13 @@ void Sistema::alugarFilmes()
 
     
     int alugados = this->_locacao.getLocacoesPorCliente(cpf);
-    std::cout << "Digite o id dos filmes desejados, você pode alugar até 10 filmes " << std::endl;
-    std::cout << "Você já alugou " << alugados << " filmes" << std::endl;
+
+    if(alugados == 10) {
+        std::cout << "Você já atingiu o limite máximo de 10 filmes alugados. Realize a devolucao para o aluguel de novos filmes" << std::endl;
+        return;
+    }
+    std::cout << "\nFilmes pendentes: " << alugados << std::endl; 
+    std::cout << "\nVocê pode alugar até " << 10-alugados << " filme(s)!" << std::endl;
 
     
     std::vector<Filme *> filmes;
@@ -247,7 +252,8 @@ void Sistema::alugarFilmes()
     
     while (alugados <= QTD_MAXIMO_FILMES_ALUGADOS)
     {
-        std::cout << "\nDigite o id do " << alugados + 1 << "° filme (Digite 0 se deseja cancelar, -1 se está satisfeito com os filmes alugados): ";
+
+        std::cout << "\nInsira o ID do " << alugados+1 << "° filme desejado (Para concluir digite -1 ou 0 para cancelar): ";
         std::cin >> id;
 
         if(id == 0) return;
@@ -255,7 +261,7 @@ void Sistema::alugarFilmes()
 
         Filme *filme = this->_estoque.filmeValido(id);
         if (!filme){
-            std::cout << "ERRO: não existe filme com indentificador " << id << ", digite novamente" << std::endl;
+            std::cout << "ERRO: não existe filme com indentificador " << id << ", digite novamente." << std::endl;
             continue;
         }
 
@@ -280,7 +286,8 @@ void Sistema::alugarFilmes()
             
     }
 
-    this->_locacao.alugar(cpf, filmes, dias);
+    float valor = this->_locacao.alugar(cpf, filmes, dias);
+    if(valor > 0) _financeiro.deposito(valor);
 }
 
 void Sistema::devolverFilmes()
@@ -383,6 +390,7 @@ void Sistema::devolverFilmes()
     }
 
     std::cout << "\n\nDevolucoes realizadas com sucesso, valor de multas a serem liquidadas: " << valorDaMulta << std::endl;
+    if (valorDaMulta > 0) _financeiro.deposito(valorDaMulta);
 }
 
 void Sistema::listarLogLocacoes()
@@ -400,6 +408,16 @@ void Sistema::limparTerminal()
     std::system("clear");
 }
 
+void Sistema::mostrarTransacoes()
+{
+    this->_financeiro.historicoTransacoes();
+}
+
+void Sistema::cancelarTransacao()
+{
+    this->_financeiro.cancelarUltimaTransacao();
+}
+
 void Sistema::mostrarOpcoes()
 {
     std::cout << "\nOpções disponíveis:\n";
@@ -413,9 +431,11 @@ void Sistema::mostrarOpcoes()
     std::cout << " - AL: Alugar Filme\n";
     std::cout << " - DV: Devolver Filme\n";
     std::cout << " - LL: Listar Locações\n";
-    std::cout << " - LH: Listar Historico Locações\n";
+    std::cout << " - LH: Listar Historico de Locações\n";
     std::cout << " - CL: Limpar Terminal\n";
     std::cout << " - MO: Mostrar Opções\n";
+    std::cout << " - MT: Mostrar Histórico de transações\n";
+    std::cout << " - CT: Cancelar ultima transacao\n";
     std::cout << " - FS: Finalizar Sistema\n\n";
     std::cout << "========================================================\n";
 }

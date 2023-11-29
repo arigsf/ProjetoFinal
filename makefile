@@ -11,7 +11,7 @@ SRC_DIR = ./src
 INCLUDE_DIR = ./include
 
 
-${${BUILD_DIR}_DIR}/${TARGET}: ${BUILD_DIR}/main.o ${BUILD_DIR}/Sistema.o ${BUILD_DIR}/Funcoes.o ${BUILD_DIR}/Estoque.o ${BUILD_DIR}/Filme.o ${BUILD_DIR}/Cadastro_Clientes.o ${BUILD_DIR}/Clientes.o ${BUILD_DIR}/Locacao.o 
+${${BUILD_DIR}_DIR}/${TARGET}: ${BUILD_DIR}/main.o ${BUILD_DIR}/Sistema.o ${BUILD_DIR}/Funcoes.o ${BUILD_DIR}/Estoque.o ${BUILD_DIR}/Filme.o ${BUILD_DIR}/Cadastro_Clientes.o ${BUILD_DIR}/Clientes.o ${BUILD_DIR}/Locacao.o ${BUILD_DIR}/Financeiro.o 
 	${CC} ${CFLAGS} -g ${BUILD_DIR}/*.o -o ./${BUILD_DIR}/${TARGET}
 
 ${BUILD_DIR}/main.o: ./${SRC_DIR}/main.cpp ./${INCLUDE_DIR}/Sistema.hpp
@@ -37,6 +37,9 @@ ${BUILD_DIR}/Clientes.o: ./${SRC_DIR}/Clientes.cpp ./${INCLUDE_DIR}/Clientes.hpp
 
 ${BUILD_DIR}/Locacao.o: ./${SRC_DIR}/Locacao.cpp ./${INCLUDE_DIR}/Locacao.hpp
 	${CC} ${CFLAGS} -I ${INCLUDE_DIR} -c -g ./${SRC_DIR}/Locacao.cpp -o ${BUILD_DIR}/Locacao.o
+
+${BUILD_DIR}/Financeiro.o: ./${SRC_DIR}/Financeiro.cpp ./${INCLUDE_DIR}/Financeiro.hpp
+	${CC} ${CFLAGS} -I ${INCLUDE_DIR} -c -g ./${SRC_DIR}/Financeiro.cpp -o ${BUILD_DIR}/Financeiro.o
 
 clean:
 	rm ${BUILD_DIR}/*
