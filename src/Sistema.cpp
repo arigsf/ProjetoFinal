@@ -113,7 +113,8 @@ void Sistema::removerFilme()
 
         if(identificador == 0) return;
         else if (isIdentificadorValido(identificador)) std::cout << "ERRO: identificador invalido, digite novamente" << std::endl;
-        else if(!this->_estoque.filmeExiste(identificador)) std::cout << "ERRO: identificador inexistente, digite novamente" << std::endl;
+        else if (!this->_estoque.filmeExiste(identificador)) std::cout << "ERRO: identificador inexistente, digite novamente" << std::endl;
+        else if (this->_locacao.verificarFilmeAlugado(identificador)) std::cout << "ERRO: filme com aluguel pendente, nao pode ser removido" << std::endl;
         else break;
     }
     
@@ -216,7 +217,7 @@ void Sistema::removerCliente()
 void Sistema::alugarFilmes()
 {
 
-    int id, dias, quantidade;
+    int id, dias;
     std::string cpf;
 
     while (true)
@@ -228,7 +229,7 @@ void Sistema::alugarFilmes()
 
         if(cpf == "CANCELAR") return;
         else if (!isCPFValido(cpf)) std::cout << "\nERRO: Formato inválido de CPF" << std::endl;
-        else if (this->_clientes.clienteExiste(cpf)) std::cout << "\nERRO: CPF repetido" << std::endl;
+        else if (!this->_clientes.clienteExiste(cpf)) std::cout << "\nERRO: CPF Inexistente na lista de clientes " << std::endl;
         else break;
     }
 
@@ -263,7 +264,6 @@ void Sistema::alugarFilmes()
 
         filmes.push_back(filme);
         alugados++;
-        
     }
 
     
@@ -283,7 +283,7 @@ void Sistema::alugarFilmes()
 void Sistema::devolverFilmes()
 {
 
-    int id, dias, qtdTotal, qtdDanificado, qtdNaoRebobinado;
+    int id, dias, qtdTotal;
     int valorDaMulta = 0;
 
     std::vector<Filme *> filmes;
@@ -328,7 +328,12 @@ void Sistema::devolverFilmes()
                     valorDaMulta += 2;
             }
 
-            valorDaMulta += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
+            try {
+                valorDaMulta += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
+            } catch(const std::runtime_error& e) { 
+                std::cout << e.what() << " " << filme->getTitulo() << std::endl; 
+            }
+    
         }
     }
 
