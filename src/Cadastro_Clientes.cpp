@@ -76,7 +76,7 @@ void CadastroClientes::salvarDados(const bool limparDados)
         // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
         std::ofstream arquivo(DIRETORIO_PADRAO_CLIENTES, std::ios::out | std::ios::trunc);
 
-        if (!arquivo.is_open()) throw std::runtime_error("Erro: não foi possível criar o arquivo");
+        if (!arquivo.is_open()) throw std::runtime_error("Erro: nao foi possível criar o arquivo");
         
         std::chrono::system_clock::time_point agora = std::chrono::system_clock::now();
         std::time_t tempo = std::chrono::system_clock::to_time_t(agora);
@@ -92,7 +92,7 @@ void CadastroClientes::salvarDados(const bool limparDados)
         std::ofstream copia(caminho_copia, std::ios::out | std::ios::trunc);
         // Cria um arquivo com o nome sendo a data atual
 
-        if (!copia.is_open()) throw std::runtime_error("ERRO: não foi possivel criar o arquivo copia");
+        if (!copia.is_open()) throw std::runtime_error("ERRO: nao foi possivel criar o arquivo copia");
             
         
         if (limparDados) {
@@ -132,7 +132,7 @@ void CadastroClientes::lerArquivo(std::string diretorio) {
 
         if (!arquivo.is_open()) throw std::runtime_error("ERRO: arquivo inexistente");
         
-        if (!log.is_open()) throw std::runtime_error("ERRO: não foi possivel encontrar ou criar o arquivo");
+        if (!log.is_open()) throw std::runtime_error("ERRO: nao foi possivel encontrar ou criar o arquivo");
             
         std::string linha, palavra,cpf, nome, data_nascimento;
         std::vector<std::string> palavras;

@@ -7,12 +7,12 @@ ifdef DEBUG
 endif
 
 BUILD_DIR = ./build
-SRC_DIR = ./src
+SRC_DIR = src
 INCLUDE_DIR = ./include
 
 
 ${${BUILD_DIR}_DIR}/${TARGET}: ${BUILD_DIR}/main.o ${BUILD_DIR}/Sistema.o ${BUILD_DIR}/Funcoes.o ${BUILD_DIR}/Estoque.o ${BUILD_DIR}/Filme.o ${BUILD_DIR}/Cadastro_Clientes.o ${BUILD_DIR}/Clientes.o ${BUILD_DIR}/Locacao.o ${BUILD_DIR}/Financeiro.o 
-	${CC} ${CFLAGS} -g ${BUILD_DIR}/*.o -o ./${BUILD_DIR}/${TARGET}
+	${CC} ${CFLAGS} -g ${BUILD_DIR}/*.o -o ${BUILD_DIR}/${TARGET}
 
 ${BUILD_DIR}/main.o: ./${SRC_DIR}/main.cpp ./${INCLUDE_DIR}/Sistema.hpp
 	${CC} ${CFLAGS} -I ${INCLUDE_DIR} -c -g ./${SRC_DIR}/main.cpp -o ${BUILD_DIR}/main.o
