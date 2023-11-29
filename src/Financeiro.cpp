@@ -4,11 +4,11 @@ Financeiro::Financeiro() {
     std::ifstream arquivo(DIRETORIO_HISTORICO_FINANCEIRO, std::ios::in);
 
     if(!arquivo.is_open()) {
-        std::cout << "Arquivo de histórico financeiro não encontrado.\nFavor inserir o saldo manualmente: R$";
+        std::cout << "Arquivo de historico financeiro nao encontrado.\nFavor inserir o saldo manualmente: R$";
         float saldo; std::cin >> saldo;
 
         while(saldo < 0) {
-            std::cout << "\nSaldo inválido, favor inserir novamente: R$";
+            std::cout << "\nSaldo invalido, favor inserir novamente: R$";
             std::cin >> saldo;
         } 
     }
@@ -48,19 +48,19 @@ bool Financeiro::deposito(float valor) {
         return true;
     } 
         
-    std::cout << "ERRO: Valor inválido" << std::endl;
+    std::cout << "ERRO: Valor invalido" << std::endl;
     return false;
     
 }
 
 bool Financeiro::saque(float valor) {
     if (valor <= 0) {
-        std::cout << "ERRO: Valor inválido" << std::endl;
+        std::cout << "ERRO: Valor invalido" << std::endl;
         return false;
     }
 
     if (valor > saldo) {
-        std::cout << std::fixed << std::setprecision(2) <<  "\nValor indisponível, saldo atual de R$" << saldo << std::endl; 
+        std::cout << std::fixed << std::setprecision(2) <<  "\nValor indisponivel, saldo atual de R$" << saldo << std::endl; 
         return false;
     }
     
@@ -80,14 +80,14 @@ float Financeiro::getSaldo() {
 }
 
 void Financeiro::historicoTransacoes() {
-    char escolha; std::cout << "\nSelecione o intervalo desejado para visualizar o histórico de transações!\n[D] - Dia atual\n[M] - Mês\n[T] - Total\n\nEscolha: ";
+    char escolha; std::cout << "\nSelecione o intervalo desejado para visualizar o historico de transacoes!\n[D] - Dia atual\n[M] - Mês\n[T] - Total\n\nEscolha: ";
     std::cin >> escolha;
 
     Data d;
 
     if(escolha == 'D') {
         if(this->transacoes[0].data.dia != d.dia) {// Se a transação mais recente não for do dia atual, então não há nenhuma transação no dia atual
-            std::cout << "\nNão há nenhuma transação referente ao dia de hoje" << std::endl;
+            std::cout << "\nNao ha nenhuma transacao referente ao dia de hoje" << std::endl;
             return;
         }
         std::cout << "\n|-------------------------------------------------------------|" << std::endl;
@@ -102,7 +102,7 @@ void Financeiro::historicoTransacoes() {
     }
     if(escolha == 'M') {
         if(this->transacoes[0].data.mes != d.mes) {// Se a transação mais recente não for do mes atual, então não há nenhuma transação no mes atual
-            std::cout << "\nNão há nenhuma transação referente ao mes de hoje" << std::endl;
+            std::cout << "\nNao ha nenhuma transacao referente ao mes de hoje" << std::endl;
             return;
         }
         std::cout << "\n|-------------------------------------------------------------|" << std::endl;
@@ -117,7 +117,7 @@ void Financeiro::historicoTransacoes() {
     }
     if(escolha == 'T') {
         if(!this->transacoes.size()) {
-            std::cout << "Não há nenhuma transação a ser mostrada" << std::endl;
+            std::cout << "Nao ha nenhuma transcao a ser mostrada" << std::endl;
             return;
         }
         std::cout << "\n|-------------------------------------------------------------|" << std::endl;
@@ -134,7 +134,7 @@ void Financeiro::salvarDados() {
     std::ofstream arquivo(DIRETORIO_HISTORICO_FINANCEIRO, std::ios::out | std::ios::trunc);
 
     if(!arquivo.is_open()) {
-        std::cout << "Erro: não foi possível criar/encontrar o arquivo para salvar o histórico financeiro" << std::endl;
+        std::cout << "Erro: nao foi possivel criar/encontrar o arquivo para salvar o historico financeiro" << std::endl;
         return;
     }
 
