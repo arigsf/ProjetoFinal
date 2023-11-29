@@ -38,6 +38,7 @@ public:
     void listarLocacoes();
     void limparTerminal();
     void mostrarTransacoes();
+    void cancelarTransacao();
     void mostrarOpcoes();
 };
 

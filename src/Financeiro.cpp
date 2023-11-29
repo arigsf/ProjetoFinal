@@ -148,6 +148,18 @@ void Financeiro::salvarDados() {
     arquivo.close();
 }
 
+void Financeiro::cancelarUltimaTransacao() {
+    if(transacoes[0].tipo == 'D') saldo -= transacoes[0].valor;
+    else if(transacoes[0].tipo == 'S') saldo += transacoes[0].valor;
+    else {
+        std::cout << "ERRO: Nao foi possivel cancelar a ultima transacao" << std::endl;
+        return;
+    }
+
+    this->transacoes.pop_front();
+    std::cout << "\nTransacao cancelada com sucesso" << std::endl;
+}
+
 Transacao::Transacao(Data _data, char _tipo, float _valor, float _saldo_final) : 
     data(_data), tipo(_tipo), valor(_valor), saldo_final(_saldo_final) {}
 

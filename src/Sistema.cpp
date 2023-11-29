@@ -368,6 +368,11 @@ void Sistema::mostrarTransacoes()
     this->_financeiro.historicoTransacoes();
 }
 
+void Sistema::cancelarTransacao()
+{
+    this->_financeiro.cancelarUltimaTransacao();
+}
+
 void Sistema::mostrarOpcoes()
 {
     std::cout << "\nOpções disponíveis:\n";
@@ -381,10 +386,11 @@ void Sistema::mostrarOpcoes()
     std::cout << " - AL: Alugar Filme\n";
     std::cout << " - DV: Devolver Filme\n";
     std::cout << " - LL: Listar Locações\n";
-    std::cout << " - LH: Listar Historico Locações\n";
+    std::cout << " - LH: Listar Historico de Locações\n";
     std::cout << " - CL: Limpar Terminal\n";
     std::cout << " - MO: Mostrar Opções\n";
-    std::cout << " - MT: Mostrar Transações\n";
+    std::cout << " - MT: Mostrar Histórico de transações\n";
+    std::cout << " - CT: Cancelar ultima transacao\n";
     std::cout << " - FS: Finalizar Sistema\n\n";
     std::cout << "========================================================\n";
 }

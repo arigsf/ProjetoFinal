@@ -14,6 +14,7 @@ const std::string LISTAR_HISTORICO_LOCACOES = "LH";
 const std::string FINALIZAR_SISTEMA = "FS";
 const std::string LIMPAR_TERMINAL = "CL";
 const std::string MOSTRAR_TRANSACOES = "MT";
+const std::string CANCELAR_TRANSACAO = "CT";
 const std::string MOSTRAR_OPCOES = "MO";
 
 
@@ -62,6 +63,7 @@ int main() {
         else if(comando == LIMPAR_TERMINAL) sistema_principal.limparTerminal();
         else if(comando == MOSTRAR_OPCOES) sistema_principal.mostrarOpcoes();
         else if(comando == MOSTRAR_TRANSACOES) sistema_principal.mostrarTransacoes();
+        else if(comando == MOSTRAR_TRANSACOES) sistema_principal.cancelarTransacao();
         else if(comando == FINALIZAR_SISTEMA) break; 
                 
     }

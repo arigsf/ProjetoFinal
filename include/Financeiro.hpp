@@ -46,6 +46,8 @@ class Financeiro {
         bool saque(float);
 
         void salvarDados();
+
+        void cancelarUltimaTransacao();
 };
 
 
