@@ -30,6 +30,7 @@ void Filme::removerUnidades()
     else
     {
         std::cout << "ERRO: Filme: " << this->getTitulo() << " nao disponivel no momento." << std::endl;
+        throw std::runtime_error("ERRO");
     }
 }
 
