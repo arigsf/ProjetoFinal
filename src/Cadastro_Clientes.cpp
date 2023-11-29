@@ -1,19 +1,11 @@
 #include "Cadastro_Clientes.hpp"
-#include <algorithm> //Remoção de clientes
-#include <regex>     //Validar cpf e data de nascimento
-#include <fstream>   // Operações com arquivos
-#include <sstream>   // Operações com leitura de linha
-#include <numeric>   // Transformar vetor de strings em uma string
 
 // FORMATO CPF: xxx.xxx.xxx-xx
 // FORMATO Data de Nascimento: dd/mm/yyyy
 
-std::string CadastroClientes::_diretorio = "./data/Clientes/clientes";
-std::string CadastroClientes::_diretorioLogClientes = "./data/Clientes/logs";
-
 CadastroClientes::CadastroClientes()
 {
-    this->lerArquivo(_diretorio);
+    this->lerArquivo(DIRETORIO_PADRAO_CLIENTES);
 }
 
 // Implementação dos métodos da classe CadastroClientes
@@ -80,133 +72,131 @@ Cliente *CadastroClientes::clienteExiste(const std::string &cpf) const
 void CadastroClientes::salvarDados(const bool limparDados)
 { // O parametro limpardados decide, se após dos dados serem salvos eles devem ser desalocados
 
-    // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
-    std::ofstream arquivo(this->_diretorio, std::ios::out | std::ios::trunc);
+    try {
+        // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
+        std::ofstream arquivo(DIRETORIO_PADRAO_CLIENTES, std::ios::out | std::ios::trunc);
 
-    if (!arquivo.is_open())
-    {
-        std::cout << "Erro: não foi possível criar o arquivo" << std::endl;
-        return;
-    }
+        if (!arquivo.is_open()) throw std::runtime_error("Erro: não foi possível criar o arquivo");
+        
+        std::chrono::system_clock::time_point agora = std::chrono::system_clock::now();
+        std::time_t tempo = std::chrono::system_clock::to_time_t(agora);
 
-    std::chrono::system_clock::time_point agora = std::chrono::system_clock::now();
-    std::time_t tempo = std::chrono::system_clock::to_time_t(agora);
+        // Cria uma estrutura de tempo local
+        std::tm *horaLocal = std::localtime(&tempo);
 
-    // Cria uma estrutura de tempo local
-    std::tm *horaLocal = std::localtime(&tempo);
+        // Formata a data e a hora como uma string
+        std::ostringstream oss;
+        oss << std::put_time(horaLocal, "%d-%m-%Y %H_%M_%S");
 
-    // Formata a data e a hora como uma string
-    std::ostringstream oss;
-    oss << std::put_time(horaLocal, "%d-%m-%Y %H_%M_%S");
+        std::string caminho_copia = DIRETORIO_HISTORICO_CLIENTES + "clientes " + oss.str();
+        std::ofstream copia(caminho_copia, std::ios::out | std::ios::trunc);
+        // Cria um arquivo com o nome sendo a data atual
 
-    std::string caminho_copia = "./data/Clientes/Historico/clientes "+oss.str();
-    std::ofstream copia(caminho_copia, std::ios::out | std::ios::trunc);
-    // Cria um arquivo com o nome sendo a data atual
-    
+        if (!copia.is_open()) throw std::runtime_error("ERRO: não foi possivel criar o arquivo copia");
+            
+        
+        if (limparDados) {
+            for (Cliente *cliente : this->_clientes)
+            {
+                arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
+                copia << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
+                delete cliente;
+            }
 
-    if (!copia.is_open())
-    {
-        std::cout << "ERRO: não foi possivel encontrar ou criar o arquivo copia" << std::endl;
-        return;
-    }
-
-    if (limparDados)
-    {
-
-        for (Cliente *cliente : this->_clientes)
-        {
-            arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
-            copia << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
-            delete cliente;
+            this->_clientes.clear();
         }
+        // Percorre a lista de filmes e adiciona no arquivo
 
-        this->_clientes.clear();
+        else
+            for (Cliente *cliente : this->_clientes) {
+                arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
+                copia << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
+            }
+
+        arquivo.close();
+        copia.close();
+
+
+        
+    } catch(const std::exception &e) {
+            std::cerr << e.what() << std::endl;
     }
-    // Percorre a lista de filmes e adiciona no arquivo
-
-    else
-        for (Cliente *cliente : this->_clientes) {
-            arquivo << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
-            copia << cliente->getCPF() << " " << cliente->getNome() << " " << cliente->getDataNascimento() << std::endl;
-        }
-
-    arquivo.close();
-    copia.close();
 }
 
 void CadastroClientes::lerArquivo(std::string diretorio) {
+
+    try {
     
-    std::ifstream arquivo(diretorio, std::ios::in);
-    std::ofstream log (this->_diretorioLogClientes,std::ios::app);
+        std::ifstream arquivo(diretorio, std::ios::in);
+        std::ofstream log (DIRETORIO_LOG_CLIENTES,std::ios::app);
 
-
-    if (!arquivo.is_open())
-    {
-        std::cout << "ERRO: arquivo inexistente" << std::endl;
-        return;
-    }
-
-
-    if (!log.is_open())
-    {
-        std::cout << "ERRO: não foi possivel encontrar ou criar o arquivo" << std::endl;
-        return;
-    }
-
-    std::string linha, palavra,cpf, nome, data_nascimento;
-    std::vector<std::string> palavras;
-    Cliente *novo_cliente;
-    int total = 0;
-
-    while (getline(arquivo, linha))
-    {
-
-        // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
-        std::istringstream iss(linha);
-
-        // é um stream de input baseado em uma string
-        iss >> cpf;
-
-        if(!isCPFValido(cpf)) {
-            log << linha << " - ERRO: CPF invalido" << std::endl;
-            continue;
-        }
-
-        while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
-        //devido ao fato de não sabermos a quantidade de palavras do none
-
-        data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
+        if (!arquivo.is_open()) throw std::runtime_error("ERRO: arquivo inexistente");
         
-        if(!isDataNascimentoValido(data_nascimento)) {
-            log << linha << " - ERRO: data de nascimento invalida" << std::endl;
-            continue;
+        if (!log.is_open()) throw std::runtime_error("ERRO: não foi possivel encontrar ou criar o arquivo");
+            
+        std::string linha, palavra,cpf, nome, data_nascimento;
+        std::vector<std::string> palavras;
+        Cliente *novo_cliente;
+        int total_lidos = 0, total_erros = 0;
+
+        while (getline(arquivo, linha))
+        {
+
+            // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
+            std::istringstream iss(linha);
+
+            // é um stream de input baseado em uma string
+            iss >> cpf;
+
+            if(!isCPFValido(cpf)) {
+                log << linha << " - ERRO: CPF invalido" << std::endl;
+                total_erros++;
+                continue;
+            }
+
+            while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
+            //devido ao fato de não sabermos a quantidade de palavras do none
+
+            data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
+            
+            if(!isDataNascimentoValido(data_nascimento)) {
+                log << linha << " - ERRO: data de nascimento invalida" << std::endl;
+                total_erros++;
+                continue;
+            }
+
+            palavras.pop_back();
+
+            std::ostringstream concatenar;
+            for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
+                concatenar << *(it);
+                if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
+            } 
+
+            nome = concatenar.str();
+
+            if(nome.empty()) {
+                log << linha << " - ERRO: Nome invalido" << std::endl;
+                total_erros++;
+                continue;
+            }
+
+            palavras.clear();
+            novo_cliente = new Cliente(cpf, nome, data_nascimento);
+
+            this->inserirCliente(novo_cliente);
+            total_lidos++;
         }
 
-        palavras.pop_back();
+        log.close();
+        arquivo.close();
 
-        std::ostringstream concatenar;
-        for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
-            concatenar << *(it);
-            if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
-        } 
+        if(total_lidos) std::cout << total_lidos << " clientes cadastrados com sucesso" << std::endl;
+        if(total_erros) std::cout << total_erros << " clientes geraram erro" << std::endl;
 
-        nome = concatenar.str();
-
-        if(nome.empty()) {
-            log << linha << " - ERRO: Nome invalido" << std::endl;
-            continue;
-        }
-
-        palavras.clear();
-        novo_cliente = new Cliente(cpf, nome, data_nascimento);
-
-        this->inserirCliente(novo_cliente);
-        total++;
+    } catch(const std::exception &e) {
+            std::cerr << e.what() << std::endl;
     }
-
-    log.close();
-    arquivo.close();
-    if(total) std::cout << total << " clientes cadastrados com sucesso" << std::endl;
     
 }
 

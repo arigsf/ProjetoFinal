@@ -18,10 +18,11 @@ void Sistema::lerArquivo()
     }
 
     std::cout << "\nDigite o caminho para o arquivo: ";
-    std::cin >> diretorio;
+    std::cin.ignore();
+    std::getline(std::cin,diretorio);
 
-    if(ARQUIVO_FILMES) this->_estoque.lerArquivo(diretorio);
-    else if (ARQUIVO_CLIENTES) this->_clientes.lerArquivo(diretorio);
+    if(ARQUIVO_FILMES == tipo) this->_estoque.lerArquivo(diretorio);
+    else if (ARQUIVO_CLIENTES == tipo) this->_clientes.lerArquivo(diretorio);
 }
 
 void Sistema::cadastrarFilme()
@@ -118,7 +119,7 @@ void Sistema::removerFilme()
         else break;
     }
     
-
+    this->_estoque.salvarDados(false);
     this->_estoque.removerFilme(identificador);
     std::cout << "Filme " << identificador << " removido com sucesso" << std::endl;    
 }
@@ -211,6 +212,7 @@ void Sistema::removerCliente()
         
     }
 
+    this->_clientes.salvarDados(false);
     this->_clientes.removerCliente(cpf);
     
 }
