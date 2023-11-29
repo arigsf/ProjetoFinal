@@ -293,7 +293,7 @@ void Sistema::alugarFilmes()
 void Sistema::devolverFilmes()
 {
 
-    int id, dias, qtdTotal;
+    int id, dias;
     int valorDaMulta = 0;
 
     std::vector<Filme *> filmes;
@@ -310,16 +310,7 @@ void Sistema::devolverFilmes()
         else if (!isCPFValido(cpf)) std::cout << "\nERRO: Formato inválido de CPF" << std::endl;
         else if (!this->_clientes.clienteExiste(cpf)) std::cout << "\nERRO: CPF Inexistente na lista de clientes " << std::endl;
         else break;
-    }
-
-    while(true) {
-        std::cout << "\nDigite a quantidade de filmes a serem devolvidos (Digite 0 se deseja cancelar): ";
-        std::cin >> qtdTotal;
-        if(qtdTotal == 0) return;
-        else if(qtdTotal < 1 || qtdTotal > QTD_MAXIMO_FILMES_ALUGADOS) std::cout << "ERRO: quantidade de filmes invalida, digite novamente" << std::endl;
-        else break;
-    }
-    
+    }    
 
     while (true)
     {
@@ -383,7 +374,7 @@ void Sistema::devolverFilmes()
             // A logica desta parte ainda precisa ser alterada, junto com as funções devolver filme, e getLocacao da classe Locacao, caso determinado
             // cliente nao tenha alugado determinado filme
         } catch(const std::runtime_error& e) { 
-            std::cout << e.what() << " " << filme->getTitulo() << std::endl; 
+            std::cout << e.what() << std::endl; 
         }
 
         i++;
