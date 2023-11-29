@@ -27,8 +27,7 @@ LocacaoData Locacao::getLocacao(std::string CPF, Filme *filme)
         if (i._CPFCliente == CPF && i._filme->getIdentificador() == filme->getIdentificador())
             return i;
     throw std::runtime_error("\nERRO: este filme nao esta alugado por tal cliente"); // Erro
-    // Você deve arrumar alguma forma de retornar nullptr caso x cliente não tenha filme y, recomendo você trocar o vetor de locacoes, atualmente ele armazena
-    // LocacaoData estatico, faça ele retornar ponteiros
+
 }
 
 // Métodos para arquivos
@@ -41,7 +40,7 @@ void Locacao::salvarLocacaoPendentes()                                          
 
     if (!arquivo.is_open())
     {
-        std::cout << "Erro: não foi possível criar/encontrar o arquivo para salvar locação" << std::endl;
+        std::cout << "Erro: nao foi possivel criar/encontrar o arquivo para salvar locacao" << std::endl;
         return;
     }
 
@@ -69,7 +68,7 @@ void Locacao::salvarLocacaoLog(Filme *filme, std::string CPF, int dias, int valo
 
     if (!arquivo.is_open())
     {
-        std::cout << "Erro: não foi possível criar/encontrar o arquivo para salvar locação finalizada" << std::endl;
+        std::cout << "Erro: nao foi possivel criar/encontrar o arquivo para salvar locacao finalizada" << std::endl;
         return;
     }
 
@@ -86,7 +85,7 @@ std::vector<LocacaoData> Locacao::leituraLocacoesPendentes(){
 
     if (!arquivo.is_open())
     {
-        std::cout << "ERRO: arquivo de locações pendentes inexistente" << std::endl;
+        std::cout << "ERRO: arquivo de locacoes pendentes inexistente" << std::endl;
     }
 
     std::string linha, palavra, CPFCliente, nomeFilme;
@@ -138,7 +137,7 @@ std::vector<LocacaoLogData> Locacao::leituraLocacaoLog()
 
     if (!arquivo.is_open())
     {
-        std::cout << "ERRO: arquivo de historico de locações inexistente" << std::endl;
+        std::cout << "ERRO: arquivo de historico de locacoes inexistente" << std::endl;
         return logLocacoes;
     }
 
@@ -233,7 +232,6 @@ int Locacao::devolucao(std::string CPF, Filme *filme, int dias, bool isDanificad
     int valorMultas = 0;
     try{
         LocacaoData locacao = this->getLocacao(CPF, filme);
-        // Novamente se x pessoa nao alugou filme y, ocorrera um erro que é possivel ser tratado
 
         int diasAlugados = locacao._diasAlugados;
         if (diasAlugados < dias)
@@ -269,7 +267,7 @@ void Locacao::relatorio()
 
     for (LocacaoData locacao : this->_locacoes)
     {
-        std::cout << "\t" << locacao._CPFCliente << " - " << locacao._filme->getIdentificador() << " " << locacao._filme->getTitulo() << " " << locacao._diasAlugados << std::endl;
+        std::cout << "\t" << locacao._CPFCliente << " - " << locacao._filme->getIdentificador() << " " << locacao._filme->getTitulo() << " dias: " << locacao._diasAlugados << std::endl;
     }
 }
 

@@ -26,7 +26,7 @@ void Estoque::lerArquivo(const std::string diretorio)
 
         if (!arquivo.is_open()) throw std::runtime_error("ERRO: arquivo inexistente");
             
-        if (!log.is_open()) throw std::runtime_error("ERRO: não foi possivel encontrar ou criar o arquivo");
+        if (!log.is_open()) throw std::runtime_error("ERRO: nao foi possivel encontrar ou criar o arquivo");
 
         char tipo;
         int total_lidos = 0, total_erros = 0;
@@ -45,12 +45,12 @@ void Estoque::lerArquivo(const std::string diretorio)
 
             if(!isTipoValido(tipo)){
                 
-                log << linha << " - ERRO: tipo inválido" << std::endl;
+                log << linha << " - ERRO: tipo invalido" << std::endl;
                 total_erros++;
                 continue;
             }
             if(!isUnidadesValido(unidades)) {
-                log << linha << " - ERRO: unidades inválido" << std::endl;
+                log << linha << " - ERRO: unidades invalido" << std::endl;
                 total_erros++;
                 continue;
             }
@@ -274,7 +274,7 @@ void Estoque::salvarDados(const bool limparDados) // O parametro limpardados dec
     
         std::ofstream arquivo(DIRETORIO_PADRAO_FILMES, std::ios::out | std::ios::trunc);
 
-        if (!arquivo.is_open()) throw std::runtime_error("Erro: não foi possível criar o arquivo");
+        if (!arquivo.is_open()) throw std::runtime_error("Erro: nao foi possível criar o arquivo");
 
         std::chrono::system_clock::time_point agora = std::chrono::system_clock::now();
         std::time_t tempo = std::chrono::system_clock::to_time_t(agora);
@@ -290,7 +290,7 @@ void Estoque::salvarDados(const bool limparDados) // O parametro limpardados dec
         std::ofstream copia(caminho_copia, std::ios::out | std::ios::trunc);
         // Cria um arquivo com o nome sendo a data atual
 
-        if (!copia.is_open()) throw std::runtime_error("ERRO: não foi possivel criar o arquivo copia");
+        if (!copia.is_open()) throw std::runtime_error("ERRO: nao foi possivel criar o arquivo copia");
 
         if (limparDados)
         {
