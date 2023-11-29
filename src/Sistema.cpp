@@ -339,7 +339,8 @@ void Sistema::devolverFilmes()
             continue;
         }
 
-        int isDanificado;
+        int multaAtual, isDanificado;
+        multaAtual = 0; // Multa da devolução atual
         while (true)
         {
             std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado?\n[0] - Nao\n[1] - Sim\nEscolha (Digite -1 se deseja cancelar): ";
@@ -365,17 +366,19 @@ void Sistema::devolverFilmes()
             }
 
             if (!isRebobinado)
-                    valorDaMulta += 2;
+                    multaAtual += 2;
             
         }
 
         try {
-            valorDaMulta += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
+            multaAtual += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
             // A logica desta parte ainda precisa ser alterada, junto com as funções devolver filme, e getLocacao da classe Locacao, caso determinado
             // cliente nao tenha alugado determinado filme
         } catch(const std::runtime_error& e) { 
             std::cout << e.what() << std::endl; 
         }
+
+        valorDaMulta += multaAtual;
 
         i++;
     }
