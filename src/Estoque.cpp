@@ -16,8 +16,8 @@ Estoque::~Estoque()
     salvarDados(true);
 }
 
-void Estoque::lerArquivo(const std::string diretorio)
-{
+void Estoque::lerArquivo(const std::string diretorio) {
+
     try {
 
 
@@ -36,89 +36,74 @@ void Estoque::lerArquivo(const std::string diretorio)
 
         while (std::getline(arquivo, linha)) {
 
-            // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
-            std::istringstream iss(linha);
-            novo_filme = nullptr;
-            // é um stream de input baseado em uma string
+            try {
 
-            iss >> tipo >> unidades >> identificador;
+            
 
-            if(!isTipoValido(tipo)){
+                // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
+                std::istringstream iss(linha);
+                novo_filme = nullptr;
+                // é um stream de input baseado em uma string
+
+                iss >> tipo >> unidades >> identificador;
+
+                if(!isTipoValido(tipo)) throw std::runtime_error (linha + " - ERRO: tipo invalido");
+                    
+                if(!isUnidadesValido(unidades)) throw std::runtime_error(linha + " - ERRO: unidades invalido");
+                    
+                if(!isIdentificadorValido(identificador)) throw std::runtime_error(linha + " - ERRO: Identificador invalido");
+                    
                 
-                log << linha << " - ERRO: tipo invalido" << std::endl;
-                total_erros++;
-                continue;
-            }
-            if(!isUnidadesValido(unidades)) {
-                log << linha << " - ERRO: unidades invalido" << std::endl;
-                total_erros++;
-                continue;
-            }
-                
-            if(!isIdentificadorValido(identificador)) {
-                log << linha << " - ERRO: Identificador invalido" << std::endl;
-                total_erros++;
-                continue;
-            }
-                
-            if(this->filmeExiste(identificador)) {
-                log << linha << " - ERRO: Identificador repetido" << std::endl;
-                total_erros++;
-                continue;
-            }
+                    
+                if(this->filmeExiste(identificador)) throw std::runtime_error(linha + " - ERRO: Identificador repetido");
 
-            if(tipo == Tipo_Filme.at(TIPO_FITA)) {
-                std::getline(iss >> std::ws, titulo);
+                if(tipo == Tipo_Filme.at(TIPO_FITA)) {
+                    std::getline(iss >> std::ws, titulo);
 
-                if(titulo.empty()) {
-                    log << linha << " - ERRO: Nome vazio" << std::endl;
-                    total_erros++;
-                    continue;
+                    if(titulo.empty()) throw std::runtime_error(linha + " - ERRO: Nome vazio");
+
+                    novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
                 }
 
-                novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
-            }
+                else if (tipo == Tipo_Filme.at(TIPO_DVD))
+                {
 
-            else if (tipo == Tipo_Filme.at(TIPO_DVD))
-            {
+                    std::string palavra;
+                    std::vector<std::string> palavras;
+                    while (iss >> palavra)
+                        palavras.push_back(palavra); // As palavras são separadas em um arranjo
 
-                std::string palavra;
-                std::vector<std::string> palavras;
-                while (iss >> palavra)
-                    palavras.push_back(palavra); // As palavras são separadas em um arranjo
+                    // A ultima palavra corresponde a categoria do DVD
+                    int indiceCategoria = isCategoriaValido(palavras.back()[0]);
+                    if(indiceCategoria == -1) throw std::runtime_error(linha + " - ERRO: categoria invalida");
+                    
+                    palavras.pop_back();
+                    
+                    std::ostringstream concatenar;
+                    for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
+                        concatenar << *(it);
+                        if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
+                    } 
 
-                // A ultima palavra corresponde a categoria do DVD
-                int indiceCategoria = isCategoriaValido(palavras.back()[0]);
-                if(indiceCategoria == -1) {
-                    log << linha << " - ERRO: categoria invalida" << std::endl;
-                    total_erros++;
-                    continue;
+
+                    titulo = concatenar.str();
+                    
+                    if(titulo.empty()) throw std::runtime_error(linha + " - ERRO: Nome vazio");
+                    
+                    palavras.clear();
+
+                    novo_filme = new DVD(unidades, identificador, titulo, indiceCategoria);
                 }
-                
-                palavras.pop_back();
-                
-                std::ostringstream concatenar;
-                for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
-                    concatenar << *(it);
-                    if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
-                } 
 
+                this->inserirFilme(novo_filme);
+                total_lidos++;
+            
 
-                titulo = concatenar.str();
-                
-                if(titulo.empty()) {
-                    log << linha << " - ERRO: Nome vazio" << std::endl;
-                    total_erros++;
-                    continue;
-                }
-                
-                palavras.clear();
-
-                novo_filme = new DVD(unidades, identificador, titulo, indiceCategoria);
+            } catch(const std::exception &e) {
+                log << e.what() << std::endl;
+                total_erros++;
             }
-
-            this->inserirFilme(novo_filme);
-            total_lidos++;
+        
         }
 
         log.close();
