@@ -2,32 +2,39 @@
 #define FINANCEIRO_H
 
 #include "Locacao.hpp"
-#include <vector>
+#include <deque>
 #include <iomanip>
+
+const std::string DIRETORIO_HISTORICO_FINANCEIRO = "./data/Financeiro/historico_financeiro";
 
 struct Data {
     time_t now = time(0);
     
-    int _dia = localtime(&now)->tm_mday;
-    int _mes = localtime(&now)->tm_mon + 1;
-    int _ano = localtime(&now)->tm_year + 1900;
+    int dia = localtime(&now)->tm_mday;
+    int mes = localtime(&now)->tm_mon + 1;
+    int ano = localtime(&now)->tm_year + 1900;
 };
 
 struct Transacao {
     Data data;
-    std::string tipo; // Saque ou Deposito
+    char tipo; // SAQUE OU DEPOSITO
     float valor;
+    float saldo_final; // saldo final após a transação
 
-    Transacao(Data, std::string, float);
+    Transacao(Data, char, float, float);
+    void imprimeTransacao();
 };
 
 
 class Financeiro {
     private:
         float saldo;
-        std::vector<Transacao> transacoes;
+        std::deque<Transacao> transacoes;
 
     public:
+        Financeiro();
+        ~Financeiro();
+
         void historicoTransacoes(); // dia, mẽs, total
 
         float getSaldo();
@@ -37,6 +44,8 @@ class Financeiro {
 
         // retorna true se o saque for realizado com sucesso e false caso contrário
         bool saque(float);
+
+        void salvarDados();
 };
 
 

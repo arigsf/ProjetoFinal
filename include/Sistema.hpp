@@ -9,6 +9,7 @@ const char ARQUIVO_CLIENTES = 'C';
 #include "Locacao.hpp"
 #include "Cadastro_Clientes.hpp"
 #include "Funcoes.hpp"
+#include "Financeiro.hpp"
 #include <iterator>
 #include <unistd.h>
 
@@ -19,6 +20,7 @@ private:
     Estoque _estoque;
     Locacao _locacao;
     CadastroClientes _clientes;
+    Financeiro _financeiro;
 
 public:
     Sistema();
@@ -35,6 +37,7 @@ public:
     void listarLogLocacoes();
     void listarLocacoes();
     void limparTerminal();
+    void mostrarTransacoes();
     void mostrarOpcoes();
 };
 
