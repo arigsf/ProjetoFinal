@@ -63,7 +63,7 @@ int main() {
         else if(comando == LIMPAR_TERMINAL) sistema_principal.limparTerminal();
         else if(comando == MOSTRAR_OPCOES) sistema_principal.mostrarOpcoes();
         else if(comando == MOSTRAR_TRANSACOES) sistema_principal.mostrarTransacoes();
-        else if(comando == MOSTRAR_TRANSACOES) sistema_principal.cancelarTransacao();
+        else if(comando == CANCELAR_TRANSACAO) sistema_principal.cancelarTransacao();
         else if(comando == FINALIZAR_SISTEMA) break; 
                 
     }
