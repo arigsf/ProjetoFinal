@@ -372,13 +372,10 @@ void Sistema::devolverFilmes()
 
         try {
             multaAtual += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
-            // A logica desta parte ainda precisa ser alterada, junto com as funções devolver filme, e getLocacao da classe Locacao, caso determinado
-            // cliente nao tenha alugado determinado filme
+            valorDaMulta += multaAtual;
         } catch(const std::runtime_error& e) { 
             std::cout << e.what() << std::endl; 
         }
-
-        valorDaMulta += multaAtual;
 
         i++;
     }
