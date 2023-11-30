@@ -34,7 +34,14 @@ private:
     std::vector<Filme *> _estoque;
 
 public:
+    /**
+     * @brief Construtor da classe Estoque.
+     */
     Estoque();
+
+    /**
+     * @brief Destrutor da classe Estoque.
+     */
     ~Estoque();
 
     /**
