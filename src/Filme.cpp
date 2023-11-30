@@ -1,5 +1,10 @@
 #include "Filme.hpp"
 
+/**
+ * @file Filme.cpp
+ * @brief Implementação das classes Filme, DVD e FITA.
+ */
+
 Filme::Filme(int unidades, int identificador, std::string titulo, int tipo) : _unidades(unidades), _identificador(identificador), _titulo(titulo), _tipo(tipo) {}
 
 Filme::~Filme() {}

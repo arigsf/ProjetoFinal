@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CineAluguel: Código-Fonte de include/Financeiro.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CineAluguel
+   </div>
+   <div id="projectbrief">Sistema de gerenciamento de filmes</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Financeiro.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_financeiro_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FINANCEIRO_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FINANCEIRO_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_locacao_8hpp.html">Locacao.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;deque&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="_financeiro_8hpp.html#a5a9cb4bee16701372f3ee0522f304484">   13</a></span><span class="keyword">const</span> std::string <a class="code hl_variable" href="_financeiro_8hpp.html#a5a9cb4bee16701372f3ee0522f304484">DIRETORIO_HISTORICO_FINANCEIRO</a> = <span class="stringliteral">&quot;./data/Financeiro/historico_financeiro&quot;</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="struct_data.html">   19</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_data.html">Data</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_data.html#a4dae11904353440a5dac9a51ac3e33de">   21</a></span>    time_t <a class="code hl_variable" href="struct_data.html#a4dae11904353440a5dac9a51ac3e33de">now</a> = time(0);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_data.html#ad76270db677fc394a4a7ded1c58de6d5">   23</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_data.html#ad76270db677fc394a4a7ded1c58de6d5">dia</a> = localtime(&amp;<a class="code hl_variable" href="struct_data.html#a4dae11904353440a5dac9a51ac3e33de">now</a>)-&gt;tm_mday;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_data.html#a8f77c5b515144e08b4fe26a8604f30ad">   24</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_data.html#a8f77c5b515144e08b4fe26a8604f30ad">mes</a> = localtime(&amp;<a class="code hl_variable" href="struct_data.html#a4dae11904353440a5dac9a51ac3e33de">now</a>)-&gt;tm_mon + 1;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_data.html#a80d76fe2225d187fe8a20414478a2cb5">   25</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_data.html#a80d76fe2225d187fe8a20414478a2cb5">ano</a> = localtime(&amp;<a class="code hl_variable" href="struct_data.html#a4dae11904353440a5dac9a51ac3e33de">now</a>)-&gt;tm_year + 1900;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
+</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct_transacao.html">   32</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_transacao.html">Transacao</a></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="struct_transacao.html#a1b505aad1f8c7fe93e2575f5e4afb276">   34</a></span>    <a class="code hl_struct" href="struct_data.html">Data</a> <a class="code hl_variable" href="struct_transacao.html#a1b505aad1f8c7fe93e2575f5e4afb276">data</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_transacao.html#a5d624905c2ddd7e493ddcdd9f6ff5ccc">   35</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="struct_transacao.html#a5d624905c2ddd7e493ddcdd9f6ff5ccc">tipo</a>; <span class="comment">// SAQUE OU DEPOSITO</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_transacao.html#aeeb0ce882b84f54575271fb64eb30def">   36</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_transacao.html#aeeb0ce882b84f54575271fb64eb30def">valor</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="struct_transacao.html#a607b4e7b64eb897125f89ceea1ab14e9">   37</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_transacao.html#a607b4e7b64eb897125f89ceea1ab14e9">saldo_final</a>; <span class="comment">// saldo final após a transação</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_struct" href="struct_transacao.html">Transacao</a>(<a class="code hl_struct" href="struct_data.html">Data</a>, <span class="keywordtype">char</span>, <span class="keywordtype">float</span>, <span class="keywordtype">float</span>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="struct_transacao.html#ae37bf998d517724372f36c7dba49babf">imprimeTransacao</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="};">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="class_financeiro.html">   58</a></span><span class="keyword">class </span><a class="code hl_class" href="class_financeiro.html">Financeiro</a></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">float</span> saldo;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    std::deque&lt;Transacao&gt; transacoes;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_function" href="class_financeiro.html#ab88aed8af3aa99a44a4272a2082fdfbf">Financeiro</a>();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_function" href="class_financeiro.html#a76459bfeaa461cab1e637209d2d42d25">~Financeiro</a>();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_financeiro.html#a8b9f432619faed9caa53309d24b50d96">historicoTransacoes</a>(); <span class="comment">// dia, mẽs, total</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_financeiro.html#a0ce15ce2bc671c1d7eba4455333a812a">getSaldo</a>();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_financeiro.html#ab5bdecfeb4b063cb200ae25fa1ec3717">deposito</a>(<span class="keywordtype">float</span>);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_financeiro.html#ae919df67148a9c841a9ae65f8540114f">saque</a>(<span class="keywordtype">float</span>);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_financeiro.html#ad71a6abb6012a213755e472e8a80c29a">salvarDados</a>();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_financeiro.html#ad784431b1dbb5ce4d9269c17c71b072c">cancelarUltimaTransacao</a>();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>};</div>
+</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_financeiro_8hpp_html_a5a9cb4bee16701372f3ee0522f304484"><div class="ttname"><a href="_financeiro_8hpp.html#a5a9cb4bee16701372f3ee0522f304484">DIRETORIO_HISTORICO_FINANCEIRO</a></div><div class="ttdeci">const std::string DIRETORIO_HISTORICO_FINANCEIRO</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:13</div></div>
+<div class="ttc" id="a_locacao_8hpp_html"><div class="ttname"><a href="_locacao_8hpp.html">Locacao.hpp</a></div><div class="ttdoc">Definição da classe Locacao, responsável por gerenciar as locações entre filmes e clientes.</div></div>
+<div class="ttc" id="aclass_financeiro_html"><div class="ttname"><a href="class_financeiro.html">Financeiro</a></div><div class="ttdoc">Classe para controle financeiro da locadora.</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:59</div></div>
+<div class="ttc" id="aclass_financeiro_html_a0ce15ce2bc671c1d7eba4455333a812a"><div class="ttname"><a href="class_financeiro.html#a0ce15ce2bc671c1d7eba4455333a812a">Financeiro::getSaldo</a></div><div class="ttdeci">float getSaldo()</div><div class="ttdoc">Obtém o saldo atual.</div><div class="ttdef"><b>Definição</b> Financeiro.cpp:97</div></div>
+<div class="ttc" id="aclass_financeiro_html_a76459bfeaa461cab1e637209d2d42d25"><div class="ttname"><a href="class_financeiro.html#a76459bfeaa461cab1e637209d2d42d25">Financeiro::~Financeiro</a></div><div class="ttdeci">~Financeiro()</div><div class="ttdoc">Destrutor da classe Financeiro.</div><div class="ttdef"><b>Definição</b> Financeiro.cpp:50</div></div>
+<div class="ttc" id="aclass_financeiro_html_a8b9f432619faed9caa53309d24b50d96"><div class="ttname"><a href="class_financeiro.html#a8b9f432619faed9caa53309d24b50d96">Financeiro::historicoTransacoes</a></div><div class="ttdeci">void historicoTransacoes()</div><div class="ttdoc">Exibe o histórico de transações com opção de visualização por dia, mês ou total.</div><div class="ttdef"><b>Definição</b> Financeiro.cpp:102</div></div>
+<div class="ttc" id="aclass_financeiro_html_ab5bdecfeb4b063cb200ae25fa1ec3717"><div class="ttname"><a href="class_financeiro.html#ab5bdecfeb4b063cb200ae25fa1ec3717">Financeiro::deposito</a></div><div class="ttdeci">bool deposito(float)</div><div class="ttdoc">Realiza um depósito na conta.</div><div class="ttdef"><b>Definição</b> Financeiro.cpp:55</div></div>
+<div class="ttc" id="aclass_financeiro_html_ab88aed8af3aa99a44a4272a2082fdfbf"><div class="ttname"><a href="class_financeiro.html#ab88aed8af3aa99a44a4272a2082fdfbf">Financeiro::Financeiro</a></div><div class="ttdeci">Financeiro()</div><div class="ttdoc">Construtor da classe Financeiro.</div><div class="ttdef"><b>Definição</b> Financeiro.cpp:8</div></div>
+<div class="ttc" id="aclass_financeiro_html_ad71a6abb6012a213755e472e8a80c29a"><div class="ttname"><a href="class_financeiro.html#ad71a6abb6012a213755e472e8a80c29a">Financeiro::salvarDados</a></div><div class="ttdeci">void salvarDados()</div><div class="ttdoc">Salva os dados do histórico financeiro em um arquivo.</div><div class="ttdef"><b>Definição</b> Financeiro.cpp:166</div></div>
+<div class="ttc" id="aclass_financeiro_html_ad784431b1dbb5ce4d9269c17c71b072c"><div class="ttname"><a href="class_financeiro.html#ad784431b1dbb5ce4d9269c17c71b072c">Financeiro::cancelarUltimaTransacao</a></div><div class="ttdeci">void cancelarUltimaTransacao()</div><div class="ttdoc">Cancela a última transação realizada.</div><div class="ttdef"><b>Definição</b> Financeiro.cpp:188</div></div>
+<div class="ttc" id="aclass_financeiro_html_ae919df67148a9c841a9ae65f8540114f"><div class="ttname"><a href="class_financeiro.html#ae919df67148a9c841a9ae65f8540114f">Financeiro::saque</a></div><div class="ttdeci">bool saque(float)</div><div class="ttdoc">Realiza um saque na conta.</div><div class="ttdef"><b>Definição</b> Financeiro.cpp:72</div></div>
+<div class="ttc" id="astruct_data_html"><div class="ttname"><a href="struct_data.html">Data</a></div><div class="ttdoc">Estrutura para representar a data das transações financeiras.</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:20</div></div>
+<div class="ttc" id="astruct_data_html_a4dae11904353440a5dac9a51ac3e33de"><div class="ttname"><a href="struct_data.html#a4dae11904353440a5dac9a51ac3e33de">Data::now</a></div><div class="ttdeci">time_t now</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:21</div></div>
+<div class="ttc" id="astruct_data_html_a80d76fe2225d187fe8a20414478a2cb5"><div class="ttname"><a href="struct_data.html#a80d76fe2225d187fe8a20414478a2cb5">Data::ano</a></div><div class="ttdeci">int ano</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:25</div></div>
+<div class="ttc" id="astruct_data_html_a8f77c5b515144e08b4fe26a8604f30ad"><div class="ttname"><a href="struct_data.html#a8f77c5b515144e08b4fe26a8604f30ad">Data::mes</a></div><div class="ttdeci">int mes</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:24</div></div>
+<div class="ttc" id="astruct_data_html_ad76270db677fc394a4a7ded1c58de6d5"><div class="ttname"><a href="struct_data.html#ad76270db677fc394a4a7ded1c58de6d5">Data::dia</a></div><div class="ttdeci">int dia</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:23</div></div>
+<div class="ttc" id="astruct_transacao_html"><div class="ttname"><a href="struct_transacao.html">Transacao</a></div><div class="ttdoc">Estrutura para representar uma transação financeira.</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:33</div></div>
+<div class="ttc" id="astruct_transacao_html_a1b505aad1f8c7fe93e2575f5e4afb276"><div class="ttname"><a href="struct_transacao.html#a1b505aad1f8c7fe93e2575f5e4afb276">Transacao::data</a></div><div class="ttdeci">Data data</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:34</div></div>
+<div class="ttc" id="astruct_transacao_html_a5d624905c2ddd7e493ddcdd9f6ff5ccc"><div class="ttname"><a href="struct_transacao.html#a5d624905c2ddd7e493ddcdd9f6ff5ccc">Transacao::tipo</a></div><div class="ttdeci">char tipo</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:35</div></div>
+<div class="ttc" id="astruct_transacao_html_a607b4e7b64eb897125f89ceea1ab14e9"><div class="ttname"><a href="struct_transacao.html#a607b4e7b64eb897125f89ceea1ab14e9">Transacao::saldo_final</a></div><div class="ttdeci">float saldo_final</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:37</div></div>
+<div class="ttc" id="astruct_transacao_html_ae37bf998d517724372f36c7dba49babf"><div class="ttname"><a href="struct_transacao.html#ae37bf998d517724372f36c7dba49babf">Transacao::imprimeTransacao</a></div><div class="ttdeci">void imprimeTransacao()</div><div class="ttdoc">Imprime os detalhes da transação.</div><div class="ttdef"><b>Definição</b> Financeiro.cpp:206</div></div>
+<div class="ttc" id="astruct_transacao_html_aeeb0ce882b84f54575271fb64eb30def"><div class="ttname"><a href="struct_transacao.html#aeeb0ce882b84f54575271fb64eb30def">Transacao::valor</a></div><div class="ttdeci">float valor</div><div class="ttdef"><b>Definição</b> Financeiro.hpp:36</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

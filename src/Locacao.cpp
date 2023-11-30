@@ -1,5 +1,10 @@
 #include "Locacao.hpp"
 
+/**
+ * @file Locacao.cpp
+ * @brief Implementação dos métodos da classe Locacao.
+ */
+
 int Locacao::_numeroLocacoes = 0;
 
 Locacao::Locacao() {}
@@ -11,7 +16,7 @@ void Locacao::removeLocacao(int posNoVetorLocacoes)
     _locacoes.erase(_locacoes.begin() + posNoVetorLocacoes);
 }
 
-int Locacao::getPosicaoLocacaoVetorLocacoes(LocacaoData* locacao)
+int Locacao::getPosicaoLocacaoVetorLocacoes(LocacaoData *locacao)
 {
     for (std::vector<LocacaoData>::size_type i = 0; i < _locacoes.size(); i++)
     {
@@ -27,12 +32,11 @@ LocacaoData Locacao::getLocacao(std::string CPF, Filme *filme)
         if (i._CPFCliente == CPF && i._filme->getIdentificador() == filme->getIdentificador())
             return i;
     throw std::runtime_error("\nERRO: este filme nao esta alugado por tal cliente"); // Erro
-
 }
 
 // Métodos para arquivos
 
-void Locacao::salvarLocacaoPendentes()                                          // Atualiza arquivo locações pendentes para o estado atual do sistema
+void Locacao::salvarLocacaoPendentes() // Atualiza arquivo locações pendentes para o estado atual do sistema
 {
 
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
@@ -44,7 +48,8 @@ void Locacao::salvarLocacaoPendentes()                                          
         return;
     }
 
-    for (LocacaoData locacao : this->_locacoes){
+    for (LocacaoData locacao : this->_locacoes)
+    {
         arquivo << locacao._filme->getIdentificador() << " " << locacao._filme->getTitulo() << " " << locacao._CPFCliente << " " << locacao._diasAlugados << std::endl;
     }
 
@@ -74,11 +79,12 @@ void Locacao::salvarLocacaoLog(Filme *filme, std::string CPF, int dias, int valo
 
     for (auto locacao : logLocacoes)
         arquivo << locacao._identificadorFilme << " " << locacao._nomeFilme << " " << locacao._CPFCliente << " " << locacao._diasAlugados << " " << locacao._multaPaga << std::endl;
-    
+
     arquivo.close();
 }
 
-std::vector<LocacaoData> Locacao::leituraLocacoesPendentes(){
+std::vector<LocacaoData> Locacao::leituraLocacoesPendentes()
+{
     std::ifstream arquivo(DIRETORIO_LOCACOES_PENDENTES, std::ios::in);
 
     std::vector<LocacaoData> locacoesPendentes;
@@ -183,7 +189,8 @@ std::vector<LocacaoLogData> Locacao::leituraLocacaoLog()
 
 // Metodos publicos da classe
 
-void Locacao::associarPtrEstoque(Estoque* estoque){
+void Locacao::associarPtrEstoque(Estoque *estoque)
+{
     _estoque = estoque;
     _locacoes = this->leituraLocacoesPendentes();
 }
@@ -199,12 +206,13 @@ int Locacao::getLocacoesPorCliente(std::string CPF)
 
 float Locacao::alugar(std::string CPF, std::vector<Filme *> filmes, int dias)
 {
-    
+
     float valorAluguel = 0;
 
     for (Filme *f : filmes)
     {
-        try{
+        try
+        {
             f->removerUnidades();
             LocacaoData loc;
             loc._CPFCliente = CPF;
@@ -213,10 +221,11 @@ float Locacao::alugar(std::string CPF, std::vector<Filme *> filmes, int dias)
             this->_locacoes.push_back(loc);
             this->_numeroLocacoes++;
             valorAluguel += f->calculoPrecoLocacao(dias);
-        } catch (const std::runtime_error& e){
-            std::cout << "\nFilme: " << f->getTitulo() << " nao foi alugado" << std::endl; 
         }
-        
+        catch (const std::runtime_error &e)
+        {
+            std::cout << "\nFilme: " << f->getTitulo() << " nao foi alugado" << std::endl;
+        }
     }
 
     this->salvarLocacaoPendentes(); // Atualizar arquivo
@@ -230,7 +239,8 @@ float Locacao::alugar(std::string CPF, std::vector<Filme *> filmes, int dias)
 int Locacao::devolucao(std::string CPF, Filme *filme, int dias, bool isDanificado)
 {
     int valorMultas = 0;
-    try{
+    try
+    {
         LocacaoData locacao = this->getLocacao(CPF, filme);
 
         int diasAlugados = locacao._diasAlugados;
@@ -244,20 +254,22 @@ int Locacao::devolucao(std::string CPF, Filme *filme, int dias, bool isDanificad
 
         filme->adicionarUnidades();
         this->removeLocacao(getPosicaoLocacaoVetorLocacoes(&locacao));
-        this->salvarLocacaoPendentes(); // Atualizar arquivo
+        this->salvarLocacaoPendentes();                        // Atualizar arquivo
         this->salvarLocacaoLog(filme, CPF, dias, valorMultas); // Salvando log
 
         return valorMultas;
-    
-    } catch(const std::runtime_error& e) {
+    }
+    catch (const std::runtime_error &e)
+    {
         throw e;
     }
 }
 
 bool Locacao::verificarFilmeAlugado(int identificador)
 {
-    for(LocacaoData locacao : this->_locacoes)
-        if(locacao._filme->getIdentificador() == identificador) return true;
+    for (LocacaoData locacao : this->_locacoes)
+        if (locacao._filme->getIdentificador() == identificador)
+            return true;
     return false;
 }
 

@@ -1,0 +1,56 @@
+\doxysection{Estoque.\+hpp}
+\hypertarget{_estoque_8hpp_source}{}\label{_estoque_8hpp_source}\index{include/Estoque.hpp@{include/Estoque.hpp}}
+\mbox{\hyperlink{_estoque_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ESTOQUE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ESTOQUE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_filme_8hpp}{Filme.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_funcoes_8hpp}{Funcoes.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{_estoque_8hpp_afbe424cecb84854c9cca515014e82c76}{DIRETORIO\_PADRAO\_FILMES}}\ =\ \textcolor{stringliteral}{"{}./data/Filmes/filmes"{}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{_estoque_8hpp_a755da710f9bd1895a8aa0320fce9f98f}{DIRETORIO\_LOG\_FILMES}}\ =\ \textcolor{stringliteral}{"{}./data/Filmes/logs"{}};}
+\DoxyCodeLine{00016\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{_estoque_8hpp_ad5ea46769b2a2b9f1596514e9c2156be}{DIRETORIO\_HISTORICO\_FILMES}}\ =\ \textcolor{stringliteral}{"{}./data/Filmes/Historico/"{}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{const}\ std::map<std::string,\ std::function<bool(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *)>>\ \mbox{\hyperlink{_estoque_8hpp_ae044cd02b67e22d016062085586cea28}{COMPARADORES\_FILME}}\ =\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \{\textcolor{stringliteral}{"{}C"{}},\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *b)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ a-\/>\mbox{\hyperlink{class_filme_af580ef04d5ab40ac2f2e3317cb7582f8}{getIdentificador}}()\ <\ b-\/>getIdentificador();\ \}\},}
+\DoxyCodeLine{00021\ \ \ \ \ \{\textcolor{stringliteral}{"{}N"{}},\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *b)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ a-\/>\mbox{\hyperlink{class_filme_ad20450d8f7ca44672f5a1a1a274a7c8d}{getTitulo}}()\ <\ b-\/>getTitulo();\ \}\},}
+\DoxyCodeLine{00023\ \ \ \ \ \{\textcolor{stringliteral}{"{}U"{}},\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *b)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ a-\/>\mbox{\hyperlink{class_filme_adb4fa33d5b3419b2b5f232f9b5e792dc}{getUnidades}}()\ <\ b-\/>getUnidades();\ \}\}\};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_estoque}{Estoque}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ std::vector<Filme\ *>\ \_estoque;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_estoque_ad459d7d644df8e6369853f7cfed57d16}{Estoque}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_estoque_a99c7f0dc2b6fa9950ad25b0071b9cb9b}{\string~Estoque}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_ab27ec24341f0edd49e9045d7b68de690}{lerArquivo}}(\textcolor{keyword}{const}\ std::string\ diretorio);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_estoque_af5ed78b1cd2907e07e30b7211afc8388}{inserirFilme}}(\mbox{\hyperlink{class_filme}{Filme}}\ *novoFilme);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_a05732c2e0f484145058979f64400c1c5}{removerFilme}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ identificador);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_a38ae587393930430b548a4ad21145169}{pesquisarFilmesCodigo}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ identificador)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_aee82491ceecbe1d5084da3838b05b11d}{pesquisarFilmesTitulo}}(\textcolor{keyword}{const}\ std::string\ titulo)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_a5b46b049b7700332b9f1c69ced0b89c8}{listarFilmesOrdenados}}(\textcolor{keyword}{const}\ std::string\ ordenacao)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{class_filme}{Filme}}\ *\mbox{\hyperlink{class_estoque_a333e42a1ac5cae968e1699b8c12edbd8}{filmeExiste}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ identificador)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{class_filme}{Filme}}\ *\mbox{\hyperlink{class_estoque_a256439a54ebc6c10f862e4232eefeb8d}{filmeValido}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ identificador)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_estoque_a21adcbcedb5a7a74ce697f88b5fd6554}{salvarDados}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ limparDados);}
+\DoxyCodeLine{00103\ \};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
