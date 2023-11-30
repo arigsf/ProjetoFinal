@@ -23,5 +23,11 @@ O sistema é dividido em classes que representam as entidades essenciais na gest
 
 - **Sistema:** A classe `Sistema` gerencia todas as aplicações que o usuário desejar fazer.
 
+### Modelagem
+Para acessar a modelagem, [clique aqui](https://github.com/arigsf/ProjetoFinal/wiki/Modelagem).
+
+### Documentação
+Para acessar a documentação, [clique aqui](https://github.com/arigsf/ProjetoFinal/wiki/Documenta%C3%A7%C3%A3o) ou diretamente [por aqui](https://arigsf.github.io/ProjetoFinal/docs/html/).
+
 ## Conclusão
 O projeto proporcionou uma oportunidade para aplicar os conhecimentos adquiridos em PDSII na prática, enfrentando desafios típicos do desenvolvimento de software, desde a utilização da ferramenta GitHub em sua totalidade, passando por questões típicas da programação em termos de lógica e sintaxe, até questões de organização, como limitação do que cada um realizaria. Apesar disso, o trabalho em equipe e a ajuda mútua proporcoinaram uma ótima experiência nesse trabalho prático. Por fim, o resultado final deste projeto é um sistema de controle de videolocadora da CineAluguel, que é funcional e segue boas práticas de desenvolvimento de software.
