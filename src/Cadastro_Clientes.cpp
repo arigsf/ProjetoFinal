@@ -141,51 +141,44 @@ void CadastroClientes::lerArquivo(std::string diretorio) {
 
         while (getline(arquivo, linha))
         {
+            try {
+                // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
+                std::istringstream iss(linha);
 
-            // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
-            std::istringstream iss(linha);
+                // é um stream de input baseado em uma string
+                iss >> cpf;
 
-            // é um stream de input baseado em uma string
-            iss >> cpf;
+                if(!isCPFValido(cpf)) throw std::runtime_error(linha + " - ERRO: CPF invalido");
+                    
+                while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
+                //devido ao fato de não sabermos a quantidade de palavras do none
 
-            if(!isCPFValido(cpf)) {
-                log << linha << " - ERRO: CPF invalido" << std::endl;
+                data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
+                
+                if(!isDataNascimentoValido(data_nascimento)) throw std::runtime_error(linha + " - ERRO: data de nascimento invalida");
+
+                palavras.pop_back();
+
+                std::ostringstream concatenar;
+                for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
+                    concatenar << *(it);
+                    if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
+                } 
+
+                nome = concatenar.str();
+
+                if(nome.empty()) throw std::runtime_error(linha + " - ERRO: Nome invalido");
+
+                palavras.clear();
+                novo_cliente = new Cliente(cpf, nome, data_nascimento);
+
+                this->inserirCliente(novo_cliente);
+                total_lidos++;
+
+            } catch (const std::exception &e) {
+                log << e.what() << std::endl;
                 total_erros++;
-                continue;
             }
-
-            while (iss >> palavra) palavras.push_back(palavra); // Todas as palavras pós cpf são separadas em um vetor,
-            //devido ao fato de não sabermos a quantidade de palavras do none
-
-            data_nascimento = palavras.back(); // A ultima palavra do array, por consequencia é a data de nascimento
-            
-            if(!isDataNascimentoValido(data_nascimento)) {
-                log << linha << " - ERRO: data de nascimento invalida" << std::endl;
-                total_erros++;
-                continue;
-            }
-
-            palavras.pop_back();
-
-            std::ostringstream concatenar;
-            for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
-                concatenar << *(it);
-                if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
-            } 
-
-            nome = concatenar.str();
-
-            if(nome.empty()) {
-                log << linha << " - ERRO: Nome invalido" << std::endl;
-                total_erros++;
-                continue;
-            }
-
-            palavras.clear();
-            novo_cliente = new Cliente(cpf, nome, data_nascimento);
-
-            this->inserirCliente(novo_cliente);
-            total_lidos++;
         }
 
         log.close();
