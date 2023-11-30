@@ -6,6 +6,11 @@
 #include <numeric>
 #include <sstream> // Operações com leitura de linha
 
+/**
+ * @file Estoque.cpp
+ * @brief Implementação da classe Estoque.
+ */
+
 Estoque::Estoque()
 {
     this->lerArquivo(DIRETORIO_PADRAO_FILMES);
@@ -18,15 +23,18 @@ Estoque::~Estoque()
 
 void Estoque::lerArquivo(const std::string diretorio)
 {
-    try {
 
+    try
+    {
 
         std::ifstream arquivo(diretorio, std::ios::in);
-        std::ofstream log (DIRETORIO_LOG_FILMES,std::ios::app);
+        std::ofstream log(DIRETORIO_LOG_FILMES, std::ios::app);
 
-        if (!arquivo.is_open()) throw std::runtime_error("ERRO: arquivo inexistente");
-            
-        if (!log.is_open()) throw std::runtime_error("ERRO: nao foi possivel encontrar ou criar o arquivo");
+        if (!arquivo.is_open())
+            throw std::runtime_error("ERRO: arquivo inexistente");
+
+        if (!log.is_open())
+            throw std::runtime_error("ERRO: nao foi possivel encontrar ou criar o arquivo");
 
         char tipo;
         int total_lidos = 0, total_erros = 0;
@@ -34,103 +42,96 @@ void Estoque::lerArquivo(const std::string diretorio)
         std::string titulo, linha;
         int unidades, identificador;
 
-        while (std::getline(arquivo, linha)) {
+        while (std::getline(arquivo, linha))
+        {
 
-            // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
-            std::istringstream iss(linha);
-            novo_filme = nullptr;
-            // é um stream de input baseado em uma string
-
-            iss >> tipo >> unidades >> identificador;
-
-            if(!isTipoValido(tipo)){
-                
-                log << linha << " - ERRO: tipo invalido" << std::endl;
-                total_erros++;
-                continue;
-            }
-            if(!isUnidadesValido(unidades)) {
-                log << linha << " - ERRO: unidades invalido" << std::endl;
-                total_erros++;
-                continue;
-            }
-                
-            if(!isIdentificadorValido(identificador)) {
-                log << linha << " - ERRO: Identificador invalido" << std::endl;
-                total_erros++;
-                continue;
-            }
-                
-            if(this->filmeExiste(identificador)) {
-                log << linha << " - ERRO: Identificador repetido" << std::endl;
-                total_erros++;
-                continue;
-            }
-
-            if(tipo == Tipo_Filme.at(TIPO_FITA)) {
-                std::getline(iss >> std::ws, titulo);
-
-                if(titulo.empty()) {
-                    log << linha << " - ERRO: Nome vazio" << std::endl;
-                    total_erros++;
-                    continue;
-                }
-
-                novo_filme = new FITA(unidades,identificador,titulo,retornaVerdadeiroFalso());
-            }
-
-            else if (tipo == Tipo_Filme.at(TIPO_DVD))
+            try
             {
 
-                std::string palavra;
-                std::vector<std::string> palavras;
-                while (iss >> palavra)
-                    palavras.push_back(palavra); // As palavras são separadas em um arranjo
+                // retorna nullpointer caso houve falha na leitura da linha, ou caso seja o final do arquivo
+                std::istringstream iss(linha);
+                novo_filme = nullptr;
+                // é um stream de input baseado em uma string
 
-                // A ultima palavra corresponde a categoria do DVD
-                int indiceCategoria = isCategoriaValido(palavras.back()[0]);
-                if(indiceCategoria == -1) {
-                    log << linha << " - ERRO: categoria invalida" << std::endl;
-                    total_erros++;
-                    continue;
+                iss >> tipo >> unidades >> identificador;
+
+                if (!isTipoValido(tipo))
+                    throw std::runtime_error(linha + " - ERRO: tipo invalido");
+
+                if (!isUnidadesValido(unidades))
+                    throw std::runtime_error(linha + " - ERRO: unidades invalido");
+
+                if (!isIdentificadorValido(identificador))
+                    throw std::runtime_error(linha + " - ERRO: Identificador invalido");
+
+                if (this->filmeExiste(identificador))
+                    throw std::runtime_error(linha + " - ERRO: Identificador repetido");
+
+                if (tipo == Tipo_Filme.at(TIPO_FITA))
+                {
+                    std::getline(iss >> std::ws, titulo);
+
+                    if (titulo.empty())
+                        throw std::runtime_error(linha + " - ERRO: Nome vazio");
+
+                    novo_filme = new FITA(unidades, identificador, titulo, retornaVerdadeiroFalso());
                 }
-                
-                palavras.pop_back();
-                
-                std::ostringstream concatenar;
-                for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++) {
-                    concatenar << *(it);
-                    if(it != palavras.end()-1) concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
-                } 
 
+                else if (tipo == Tipo_Filme.at(TIPO_DVD))
+                {
 
-                titulo = concatenar.str();
-                
-                if(titulo.empty()) {
-                    log << linha << " - ERRO: Nome vazio" << std::endl;
-                    total_erros++;
-                    continue;
+                    std::string palavra;
+                    std::vector<std::string> palavras;
+                    while (iss >> palavra)
+                        palavras.push_back(palavra); // As palavras são separadas em um arranjo
+
+                    // A ultima palavra corresponde a categoria do DVD
+                    int indiceCategoria = isCategoriaValido(palavras.back()[0]);
+                    if (indiceCategoria == -1)
+                        throw std::runtime_error(linha + " - ERRO: categoria invalida");
+
+                    palavras.pop_back();
+
+                    std::ostringstream concatenar;
+                    for (std::vector<std::string>::iterator it = palavras.begin(); it != palavras.end(); it++)
+                    {
+                        concatenar << *(it);
+                        if (it != palavras.end() - 1)
+                            concatenar << " "; // Assim não é adicionado um ultimo espaço na ultima palavra
+                    }
+
+                    titulo = concatenar.str();
+
+                    if (titulo.empty())
+                        throw std::runtime_error(linha + " - ERRO: Nome vazio");
+
+                    palavras.clear();
+
+                    novo_filme = new DVD(unidades, identificador, titulo, indiceCategoria);
                 }
-                
-                palavras.clear();
 
-                novo_filme = new DVD(unidades, identificador, titulo, indiceCategoria);
+                this->inserirFilme(novo_filme);
+                total_lidos++;
             }
-
-            this->inserirFilme(novo_filme);
-            total_lidos++;
+            catch (const std::exception &e)
+            {
+                log << e.what() << std::endl;
+                total_erros++;
+            }
         }
 
         log.close();
         arquivo.close();
 
-        if(total_lidos) std::cout << total_lidos << " Filmes cadastrados com sucesso" << std::endl;
-        if(total_erros) std::cout << total_erros << " Filmes geraram erro" << std::endl;
-
-     
-    } catch(const std::exception &e) {
-            std::cerr << e.what() << std::endl;
-    } 
+        if (total_lidos)
+            std::cout << total_lidos << " Filmes cadastrados com sucesso" << std::endl;
+        if (total_erros)
+            std::cout << total_erros << " Filmes geraram erro" << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 bool Estoque::inserirFilme(Filme *novoFilme)
@@ -178,9 +179,6 @@ void Estoque::removerFilme(const int identificador)
                                                        { return filme->getIdentificador() == identificador; });
     delete *it;
     this->_estoque.erase(it, this->_estoque.end());
-        
-    
-    
 }
 
 void Estoque::pesquisarFilmesCodigo(const int identificador) const
@@ -215,14 +213,15 @@ void Estoque::pesquisarFilmesTitulo(const std::string titulo) const
     }
 }
 
-void Estoque::listarFilmesOrdenados(const std::string ordenacao) const {
+void Estoque::listarFilmesOrdenados(const std::string ordenacao) const
+{
     std::vector<Filme *> filmes_ordenados = this->_estoque;
     std::sort(filmes_ordenados.begin(), filmes_ordenados.end(), COMPARADORES_FILME.at(ordenacao));
 
     for (Filme *filme : filmes_ordenados)
     {
         std::cout << filme->getIdentificador() << " " << filme->getTitulo()
-                    << " " << filme->getUnidades() << " " << Tipo_Filme.at(filme->getTipo()) << " ";
+                  << " " << filme->getUnidades() << " " << Tipo_Filme.at(filme->getTipo()) << " ";
 
         if (filme->getTipo() == TIPO_DVD)
         {
@@ -233,7 +232,6 @@ void Estoque::listarFilmesOrdenados(const std::string ordenacao) const {
 
         std::cout << std::endl;
     }
-
 }
 
 Filme *Estoque::filmeExiste(const int identificador) const
@@ -270,11 +268,13 @@ Filme *Estoque::filmeValido(const int identificador) const
 void Estoque::salvarDados(const bool limparDados) // O parametro limpardados decide, se após dos dados serem salvos eles devem ser desalocados
 {
     // Abre o arquivo em modo de escrita e limpo de qualquer frase que continha
-    try {
-    
+    try
+    {
+
         std::ofstream arquivo(DIRETORIO_PADRAO_FILMES, std::ios::out | std::ios::trunc);
 
-        if (!arquivo.is_open()) throw std::runtime_error("Erro: nao foi possível criar o arquivo");
+        if (!arquivo.is_open())
+            throw std::runtime_error("Erro: nao foi possível criar o arquivo");
 
         std::chrono::system_clock::time_point agora = std::chrono::system_clock::now();
         std::time_t tempo = std::chrono::system_clock::to_time_t(agora);
@@ -290,7 +290,8 @@ void Estoque::salvarDados(const bool limparDados) // O parametro limpardados dec
         std::ofstream copia(caminho_copia, std::ios::out | std::ios::trunc);
         // Cria um arquivo com o nome sendo a data atual
 
-        if (!copia.is_open()) throw std::runtime_error("ERRO: nao foi possivel criar o arquivo copia");
+        if (!copia.is_open())
+            throw std::runtime_error("ERRO: nao foi possivel criar o arquivo copia");
 
         if (limparDados)
         {
@@ -307,17 +308,17 @@ void Estoque::salvarDados(const bool limparDados) // O parametro limpardados dec
 
         // Percorre a lista de filmes e adiciona no arquivo
         else
-            for (Filme *filme : this->_estoque) {
+            for (Filme *filme : this->_estoque)
+            {
                 arquivo << filme->listarInformacoes() << std::endl;
                 copia << filme->listarInformacoes() << std::endl;
             }
-                
 
         arquivo.close();
         copia.close();
-
-    } catch(const std::exception &e) {
-            std::cerr << e.what() << std::endl;
     }
-
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
 }

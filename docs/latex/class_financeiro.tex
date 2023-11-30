@@ -1,0 +1,144 @@
+\doxysection{Referência à classe Financeiro}
+\hypertarget{class_financeiro}{}\label{class_financeiro}\index{Financeiro@{Financeiro}}
+
+
+Classe para controle financeiro da locadora.  
+
+
+
+
+{\ttfamily \#include $<$Financeiro.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_financeiro_ab88aed8af3aa99a44a4272a2082fdfbf}{Financeiro}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_financeiro}{Financeiro}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_financeiro_a76459bfeaa461cab1e637209d2d42d25}{\texorpdfstring{$\sim$}{\string~}\+Financeiro}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe \doxylink{class_financeiro}{Financeiro}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_financeiro_a8b9f432619faed9caa53309d24b50d96}{historico\+Transacoes}} ()
+\begin{DoxyCompactList}\small\item\em Exibe o histórico de transações com opção de visualização por dia, mês ou total. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_financeiro_a0ce15ce2bc671c1d7eba4455333a812a}{get\+Saldo}} ()
+\begin{DoxyCompactList}\small\item\em Obtém o saldo atual. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_financeiro_ab5bdecfeb4b063cb200ae25fa1ec3717}{deposito}} (float)
+\begin{DoxyCompactList}\small\item\em Realiza um depósito na conta. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_financeiro_ae919df67148a9c841a9ae65f8540114f}{saque}} (float)
+\begin{DoxyCompactList}\small\item\em Realiza um saque na conta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_financeiro_ad71a6abb6012a213755e472e8a80c29a}{salvar\+Dados}} ()
+\begin{DoxyCompactList}\small\item\em Salva os dados do histórico financeiro em um arquivo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_financeiro_ad784431b1dbb5ce4d9269c17c71b072c}{cancelar\+Ultima\+Transacao}} ()
+\begin{DoxyCompactList}\small\item\em Cancela a última transação realizada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe para controle financeiro da locadora. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_financeiro_ab88aed8af3aa99a44a4272a2082fdfbf}\label{class_financeiro_ab88aed8af3aa99a44a4272a2082fdfbf} 
+\index{Financeiro@{Financeiro}!Financeiro@{Financeiro}}
+\index{Financeiro@{Financeiro}!Financeiro@{Financeiro}}
+\doxysubsubsection{\texorpdfstring{Financeiro()}{Financeiro()}}
+{\footnotesize\ttfamily Financeiro\+::\+Financeiro (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_financeiro}{Financeiro}. 
+
+\Hypertarget{class_financeiro_a76459bfeaa461cab1e637209d2d42d25}\label{class_financeiro_a76459bfeaa461cab1e637209d2d42d25} 
+\index{Financeiro@{Financeiro}!````~Financeiro@{\texorpdfstring{$\sim$}{\string~}Financeiro}}
+\index{````~Financeiro@{\texorpdfstring{$\sim$}{\string~}Financeiro}!Financeiro@{Financeiro}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Financeiro()}{\string~Financeiro()}}
+{\footnotesize\ttfamily Financeiro\+::\texorpdfstring{$\sim$}{\string~}\+Financeiro (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destrutor da classe \doxylink{class_financeiro}{Financeiro}. 
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_financeiro_ad784431b1dbb5ce4d9269c17c71b072c}\label{class_financeiro_ad784431b1dbb5ce4d9269c17c71b072c} 
+\index{Financeiro@{Financeiro}!cancelarUltimaTransacao@{cancelarUltimaTransacao}}
+\index{cancelarUltimaTransacao@{cancelarUltimaTransacao}!Financeiro@{Financeiro}}
+\doxysubsubsection{\texorpdfstring{cancelarUltimaTransacao()}{cancelarUltimaTransacao()}}
+{\footnotesize\ttfamily void Financeiro\+::cancelar\+Ultima\+Transacao (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cancela a última transação realizada. 
+
+\Hypertarget{class_financeiro_ab5bdecfeb4b063cb200ae25fa1ec3717}\label{class_financeiro_ab5bdecfeb4b063cb200ae25fa1ec3717} 
+\index{Financeiro@{Financeiro}!deposito@{deposito}}
+\index{deposito@{deposito}!Financeiro@{Financeiro}}
+\doxysubsubsection{\texorpdfstring{deposito()}{deposito()}}
+{\footnotesize\ttfamily bool Financeiro\+::deposito (\begin{DoxyParamCaption}\item[{float}]{valor }\end{DoxyParamCaption})}
+
+
+
+Realiza um depósito na conta. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em valor} & O valor a ser depositado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+True se o depósito for bem-\/sucedido, False caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{class_financeiro_a0ce15ce2bc671c1d7eba4455333a812a}\label{class_financeiro_a0ce15ce2bc671c1d7eba4455333a812a} 
+\index{Financeiro@{Financeiro}!getSaldo@{getSaldo}}
+\index{getSaldo@{getSaldo}!Financeiro@{Financeiro}}
+\doxysubsubsection{\texorpdfstring{getSaldo()}{getSaldo()}}
+{\footnotesize\ttfamily float Financeiro\+::get\+Saldo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Obtém o saldo atual. 
+
+\begin{DoxyReturn}{Retorna}
+O saldo atual. 
+\end{DoxyReturn}
+\Hypertarget{class_financeiro_a8b9f432619faed9caa53309d24b50d96}\label{class_financeiro_a8b9f432619faed9caa53309d24b50d96} 
+\index{Financeiro@{Financeiro}!historicoTransacoes@{historicoTransacoes}}
+\index{historicoTransacoes@{historicoTransacoes}!Financeiro@{Financeiro}}
+\doxysubsubsection{\texorpdfstring{historicoTransacoes()}{historicoTransacoes()}}
+{\footnotesize\ttfamily void Financeiro\+::historico\+Transacoes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Exibe o histórico de transações com opção de visualização por dia, mês ou total. 
+
+\Hypertarget{class_financeiro_ad71a6abb6012a213755e472e8a80c29a}\label{class_financeiro_ad71a6abb6012a213755e472e8a80c29a} 
+\index{Financeiro@{Financeiro}!salvarDados@{salvarDados}}
+\index{salvarDados@{salvarDados}!Financeiro@{Financeiro}}
+\doxysubsubsection{\texorpdfstring{salvarDados()}{salvarDados()}}
+{\footnotesize\ttfamily void Financeiro\+::salvar\+Dados (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Salva os dados do histórico financeiro em um arquivo. 
+
+\Hypertarget{class_financeiro_ae919df67148a9c841a9ae65f8540114f}\label{class_financeiro_ae919df67148a9c841a9ae65f8540114f} 
+\index{Financeiro@{Financeiro}!saque@{saque}}
+\index{saque@{saque}!Financeiro@{Financeiro}}
+\doxysubsubsection{\texorpdfstring{saque()}{saque()}}
+{\footnotesize\ttfamily bool Financeiro\+::saque (\begin{DoxyParamCaption}\item[{float}]{valor }\end{DoxyParamCaption})}
+
+
+
+Realiza um saque na conta. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em valor} & O valor a ser sacado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+True se o saque for bem-\/sucedido, False caso contrário. 
+\end{DoxyReturn}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_financeiro_8hpp}{Financeiro.\+hpp}}\item 
+src/\mbox{\hyperlink{_financeiro_8cpp}{Financeiro.\+cpp}}\end{DoxyCompactItemize}

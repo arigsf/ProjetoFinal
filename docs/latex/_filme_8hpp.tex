@@ -1,0 +1,123 @@
+\doxysection{Referência ao ficheiro include/\+Filme.hpp}
+\hypertarget{_filme_8hpp}{}\label{_filme_8hpp}\index{include/Filme.hpp@{include/Filme.hpp}}
+
+
+Definição da classe \doxylink{class_filme}{Filme} e suas subclasses \doxylink{class_d_v_d}{DVD} e \doxylink{class_f_i_t_a}{FITA}.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+\doxysubsubsection*{Componentes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_filme}{Filme}}
+\begin{DoxyCompactList}\small\item\em Classe pai para representar um filme. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_d_v_d}{DVD}}
+\begin{DoxyCompactList}\small\item\em Subclasse de \doxylink{class_filme}{Filme} que representa um \doxylink{class_d_v_d}{DVD}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_f_i_t_a}{FITA}}
+\begin{DoxyCompactList}\small\item\em Subclasse de \doxylink{class_filme}{Filme} que representa uma \doxylink{class_f_i_t_a}{FITA}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variáveis}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{_filme_8hpp_aed81302ce0d6ff6589b4c0793682de66}{LANCAMENTO}} = 0
+\item 
+const int \mbox{\hyperlink{_filme_8hpp_a65bedb28f2d02030c917145beb9a0277}{ESTOQUE}} = 1
+\item 
+const int \mbox{\hyperlink{_filme_8hpp_a7ce4c27bc98e053b0d66bccdb71049bb}{PROMOCAO}} = 2
+\item 
+const int \mbox{\hyperlink{_filme_8hpp_ac412b23f73d0633a3c93a9a501fd5a7c}{TIPO\+\_\+\+DVD}} = 0
+\item 
+const int \mbox{\hyperlink{_filme_8hpp_ab60b3772e6d4603b5b8dd7632976b5ee}{TIPO\+\_\+\+FITA}} = 1
+\item 
+const std\+::map$<$ int, char $>$ \mbox{\hyperlink{_filme_8hpp_a32552b3bf6e8617b2d468fd76b22d462}{Categorias}}
+\item 
+const std\+::map$<$ char, std\+::string $>$ \mbox{\hyperlink{_filme_8hpp_add0b6a58617ec7da80c6cd56d9cdb14d}{aux\+\_\+\+Categorias}}
+\item 
+const std\+::map$<$ int, char $>$ \mbox{\hyperlink{_filme_8hpp_adc698013b4592398064ddff7421d1215}{Tipo\+\_\+\+Filme}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Definição da classe \doxylink{class_filme}{Filme} e suas subclasses \doxylink{class_d_v_d}{DVD} e \doxylink{class_f_i_t_a}{FITA}. 
+
+
+
+\doxysubsection{Documentação das variáveis}
+\Hypertarget{_filme_8hpp_add0b6a58617ec7da80c6cd56d9cdb14d}\label{_filme_8hpp_add0b6a58617ec7da80c6cd56d9cdb14d} 
+\index{Filme.hpp@{Filme.hpp}!aux\_Categorias@{aux\_Categorias}}
+\index{aux\_Categorias@{aux\_Categorias}!Filme.hpp@{Filme.hpp}}
+\doxysubsubsection{\texorpdfstring{aux\_Categorias}{aux\_Categorias}}
+{\footnotesize\ttfamily const std\+::map$<$char, std\+::string$>$ aux\+\_\+\+Categorias}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_filme_8hpp_aed81302ce0d6ff6589b4c0793682de66}{LANCAMENTO}},\ \textcolor{stringliteral}{"{}Lancamento"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_filme_8hpp_a65bedb28f2d02030c917145beb9a0277}{ESTOQUE}},\ \textcolor{stringliteral}{"{}Estoque"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_filme_8hpp_a7ce4c27bc98e053b0d66bccdb71049bb}{PROMOCAO}},\ \textcolor{stringliteral}{"{}Promocao"{}}\}\}}
+
+\end{DoxyCode}
+\Hypertarget{_filme_8hpp_a32552b3bf6e8617b2d468fd76b22d462}\label{_filme_8hpp_a32552b3bf6e8617b2d468fd76b22d462} 
+\index{Filme.hpp@{Filme.hpp}!Categorias@{Categorias}}
+\index{Categorias@{Categorias}!Filme.hpp@{Filme.hpp}}
+\doxysubsubsection{\texorpdfstring{Categorias}{Categorias}}
+{\footnotesize\ttfamily const std\+::map$<$int, char$>$ Categorias}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_filme_8hpp_aed81302ce0d6ff6589b4c0793682de66}{LANCAMENTO}},\ \textcolor{charliteral}{'L'}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_filme_8hpp_a65bedb28f2d02030c917145beb9a0277}{ESTOQUE}},\ \textcolor{charliteral}{'E'}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_filme_8hpp_a7ce4c27bc98e053b0d66bccdb71049bb}{PROMOCAO}},\ \textcolor{charliteral}{'P'}\}\}}
+
+\end{DoxyCode}
+\Hypertarget{_filme_8hpp_a65bedb28f2d02030c917145beb9a0277}\label{_filme_8hpp_a65bedb28f2d02030c917145beb9a0277} 
+\index{Filme.hpp@{Filme.hpp}!ESTOQUE@{ESTOQUE}}
+\index{ESTOQUE@{ESTOQUE}!Filme.hpp@{Filme.hpp}}
+\doxysubsubsection{\texorpdfstring{ESTOQUE}{ESTOQUE}}
+{\footnotesize\ttfamily const int ESTOQUE = 1}
+
+\Hypertarget{_filme_8hpp_aed81302ce0d6ff6589b4c0793682de66}\label{_filme_8hpp_aed81302ce0d6ff6589b4c0793682de66} 
+\index{Filme.hpp@{Filme.hpp}!LANCAMENTO@{LANCAMENTO}}
+\index{LANCAMENTO@{LANCAMENTO}!Filme.hpp@{Filme.hpp}}
+\doxysubsubsection{\texorpdfstring{LANCAMENTO}{LANCAMENTO}}
+{\footnotesize\ttfamily const int LANCAMENTO = 0}
+
+\Hypertarget{_filme_8hpp_a7ce4c27bc98e053b0d66bccdb71049bb}\label{_filme_8hpp_a7ce4c27bc98e053b0d66bccdb71049bb} 
+\index{Filme.hpp@{Filme.hpp}!PROMOCAO@{PROMOCAO}}
+\index{PROMOCAO@{PROMOCAO}!Filme.hpp@{Filme.hpp}}
+\doxysubsubsection{\texorpdfstring{PROMOCAO}{PROMOCAO}}
+{\footnotesize\ttfamily const int PROMOCAO = 2}
+
+\Hypertarget{_filme_8hpp_ac412b23f73d0633a3c93a9a501fd5a7c}\label{_filme_8hpp_ac412b23f73d0633a3c93a9a501fd5a7c} 
+\index{Filme.hpp@{Filme.hpp}!TIPO\_DVD@{TIPO\_DVD}}
+\index{TIPO\_DVD@{TIPO\_DVD}!Filme.hpp@{Filme.hpp}}
+\doxysubsubsection{\texorpdfstring{TIPO\_DVD}{TIPO\_DVD}}
+{\footnotesize\ttfamily const int TIPO\+\_\+\+DVD = 0}
+
+\Hypertarget{_filme_8hpp_adc698013b4592398064ddff7421d1215}\label{_filme_8hpp_adc698013b4592398064ddff7421d1215} 
+\index{Filme.hpp@{Filme.hpp}!Tipo\_Filme@{Tipo\_Filme}}
+\index{Tipo\_Filme@{Tipo\_Filme}!Filme.hpp@{Filme.hpp}}
+\doxysubsubsection{\texorpdfstring{Tipo\_Filme}{Tipo\_Filme}}
+{\footnotesize\ttfamily const std\+::map$<$int, char$>$ Tipo\+\_\+\+Filme}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_filme_8hpp_ac412b23f73d0633a3c93a9a501fd5a7c}{TIPO\_DVD}},\ \textcolor{charliteral}{'D'}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_filme_8hpp_ab60b3772e6d4603b5b8dd7632976b5ee}{TIPO\_FITA}},\ \textcolor{charliteral}{'F'}\}\}}
+
+\end{DoxyCode}
+\Hypertarget{_filme_8hpp_ab60b3772e6d4603b5b8dd7632976b5ee}\label{_filme_8hpp_ab60b3772e6d4603b5b8dd7632976b5ee} 
+\index{Filme.hpp@{Filme.hpp}!TIPO\_FITA@{TIPO\_FITA}}
+\index{TIPO\_FITA@{TIPO\_FITA}!Filme.hpp@{Filme.hpp}}
+\doxysubsubsection{\texorpdfstring{TIPO\_FITA}{TIPO\_FITA}}
+{\footnotesize\ttfamily const int TIPO\+\_\+\+FITA = 1}
+
