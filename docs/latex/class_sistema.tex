@@ -1,0 +1,274 @@
+\doxysection{Referência à classe Sistema}
+\hypertarget{class_sistema}{}\label{class_sistema}\index{Sistema@{Sistema}}
+
+
+Classe que representa o sistema de locação de filmes.  
+
+
+
+
+{\ttfamily \#include $<$Sistema.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sistema_a815b07845ef6b03247b239333fe75e28}{Sistema}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_sistema}{Sistema}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_a8bbc41204dc96fe3dc8cac80c2f8e2aa}{ler\+Arquivo}} ()
+\begin{DoxyCompactList}\small\item\em Lê informações de um arquivo e atualiza o estoque. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_a962d328f8bfe69979eb5f285de5d5fce}{cadastrar\+Filme}} ()
+\begin{DoxyCompactList}\small\item\em Cadastra um novo filme no estoque. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_aafd9516cb4d96fb4b8dde70dff4fd9da}{remover\+Filme}} ()
+\begin{DoxyCompactList}\small\item\em Remove um filme do estoque com base no identificador. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_a033e9a238009a67506a6cdfc75c6a329}{listar\+Filmes\+Ordenados}} () const
+\begin{DoxyCompactList}\small\item\em Lista os filmes ordenados por critérios específicos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_ac071a263e7b7ce22740a1800959bdea6}{cadastrar\+Cliente}} ()
+\begin{DoxyCompactList}\small\item\em Cadastra um novo cliente no sistema. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_a9f57512e59817ba897f697504282b80b}{listar\+Clientes\+Ordenados}} () const
+\begin{DoxyCompactList}\small\item\em Lista os clientes ordenados por critérios específicos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_ad4f3f554a42a9de933fa1d7dc7b6a5e7}{remover\+Cliente}} ()
+\begin{DoxyCompactList}\small\item\em Remove um cliente do sistema com base no CPF. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_af92e4542875f0ee11a198cf0987f7e8e}{alugar\+Filmes}} ()
+\begin{DoxyCompactList}\small\item\em Realiza a locação de filmes para um cliente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_a3b7d045640c1a0d68a2b12e75a7b8a50}{devolver\+Filmes}} ()
+\begin{DoxyCompactList}\small\item\em Realiza a devolução de filmes por um cliente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_a2dbabdff5aebbd724bbb2bbddddf9b26}{listar\+Log\+Locacoes}} ()
+\begin{DoxyCompactList}\small\item\em Lista o histórico de locações. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_acdd7c06f64d1b1e3b0c8a7a5ddebacdf}{listar\+Locacoes}} ()
+\begin{DoxyCompactList}\small\item\em Lista as locações atuais. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_acfd0c5ca3554122230ba437a0f9ff43e}{limpar\+Terminal}} ()
+\begin{DoxyCompactList}\small\item\em Limpa o terminal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_ac8ba2132a7ee42c93c9dd5598899b4e2}{mostrar\+Transacoes}} ()
+\begin{DoxyCompactList}\small\item\em Mostra o histórico de transações financeiras. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_abf32e30a02f274c3eab0a4b9fef31c09}{cancelar\+Transacao}} ()
+\begin{DoxyCompactList}\small\item\em Cancela a última transação financeira. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sistema_a748dbb6ae8b5e9a1620dcdca198a6929}{mostrar\+Opcoes}} ()
+\begin{DoxyCompactList}\small\item\em Mostra as opções disponíveis no sistema. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe que representa o sistema de locação de filmes. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_sistema_a815b07845ef6b03247b239333fe75e28}\label{class_sistema_a815b07845ef6b03247b239333fe75e28} 
+\index{Sistema@{Sistema}!Sistema@{Sistema}}
+\index{Sistema@{Sistema}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{Sistema()}{Sistema()}}
+{\footnotesize\ttfamily Sistema\+::\+Sistema (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_sistema}{Sistema}. 
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_sistema_af92e4542875f0ee11a198cf0987f7e8e}\label{class_sistema_af92e4542875f0ee11a198cf0987f7e8e} 
+\index{Sistema@{Sistema}!alugarFilmes@{alugarFilmes}}
+\index{alugarFilmes@{alugarFilmes}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{alugarFilmes()}{alugarFilmes()}}
+{\footnotesize\ttfamily void Sistema\+::alugar\+Filmes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Realiza a locação de filmes para um cliente. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em cpf} & O CPF do cliente. \\
+\hline
+{\em ids} & Vetor de identificadores dos filmes a serem locados. \\
+\hline
+{\em dias} & O número de dias para a locação. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_sistema_ac071a263e7b7ce22740a1800959bdea6}\label{class_sistema_ac071a263e7b7ce22740a1800959bdea6} 
+\index{Sistema@{Sistema}!cadastrarCliente@{cadastrarCliente}}
+\index{cadastrarCliente@{cadastrarCliente}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{cadastrarCliente()}{cadastrarCliente()}}
+{\footnotesize\ttfamily void Sistema\+::cadastrar\+Cliente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cadastra um novo cliente no sistema. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em cliente} & Ponteiro para o novo cliente a ser cadastrado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_sistema_a962d328f8bfe69979eb5f285de5d5fce}\label{class_sistema_a962d328f8bfe69979eb5f285de5d5fce} 
+\index{Sistema@{Sistema}!cadastrarFilme@{cadastrarFilme}}
+\index{cadastrarFilme@{cadastrarFilme}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{cadastrarFilme()}{cadastrarFilme()}}
+{\footnotesize\ttfamily void Sistema\+::cadastrar\+Filme (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cadastra um novo filme no estoque. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em novo\+\_\+filme} & Ponteiro para o novo filme a ser cadastrado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_sistema_abf32e30a02f274c3eab0a4b9fef31c09}\label{class_sistema_abf32e30a02f274c3eab0a4b9fef31c09} 
+\index{Sistema@{Sistema}!cancelarTransacao@{cancelarTransacao}}
+\index{cancelarTransacao@{cancelarTransacao}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{cancelarTransacao()}{cancelarTransacao()}}
+{\footnotesize\ttfamily void Sistema\+::cancelar\+Transacao (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cancela a última transação financeira. 
+
+\Hypertarget{class_sistema_a3b7d045640c1a0d68a2b12e75a7b8a50}\label{class_sistema_a3b7d045640c1a0d68a2b12e75a7b8a50} 
+\index{Sistema@{Sistema}!devolverFilmes@{devolverFilmes}}
+\index{devolverFilmes@{devolverFilmes}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{devolverFilmes()}{devolverFilmes()}}
+{\footnotesize\ttfamily void Sistema\+::devolver\+Filmes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Realiza a devolução de filmes por um cliente. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em cpf} & O CPF do cliente. \\
+\hline
+{\em ids} & Vetor de identificadores dos filmes a serem devolvidos. \\
+\hline
+{\em dias} & O número de dias de locação. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_sistema_a8bbc41204dc96fe3dc8cac80c2f8e2aa}\label{class_sistema_a8bbc41204dc96fe3dc8cac80c2f8e2aa} 
+\index{Sistema@{Sistema}!lerArquivo@{lerArquivo}}
+\index{lerArquivo@{lerArquivo}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{lerArquivo()}{lerArquivo()}}
+{\footnotesize\ttfamily void Sistema\+::ler\+Arquivo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Lê informações de um arquivo e atualiza o estoque. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em diretorio} & O caminho do arquivo a ser lido. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_sistema_acfd0c5ca3554122230ba437a0f9ff43e}\label{class_sistema_acfd0c5ca3554122230ba437a0f9ff43e} 
+\index{Sistema@{Sistema}!limparTerminal@{limparTerminal}}
+\index{limparTerminal@{limparTerminal}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{limparTerminal()}{limparTerminal()}}
+{\footnotesize\ttfamily void Sistema\+::limpar\+Terminal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Limpa o terminal. 
+
+\Hypertarget{class_sistema_a9f57512e59817ba897f697504282b80b}\label{class_sistema_a9f57512e59817ba897f697504282b80b} 
+\index{Sistema@{Sistema}!listarClientesOrdenados@{listarClientesOrdenados}}
+\index{listarClientesOrdenados@{listarClientesOrdenados}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{listarClientesOrdenados()}{listarClientesOrdenados()}}
+{\footnotesize\ttfamily void Sistema\+::listar\+Clientes\+Ordenados (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Lista os clientes ordenados por critérios específicos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ordenacao} & O critério de ordenação dos clientes. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_sistema_a033e9a238009a67506a6cdfc75c6a329}\label{class_sistema_a033e9a238009a67506a6cdfc75c6a329} 
+\index{Sistema@{Sistema}!listarFilmesOrdenados@{listarFilmesOrdenados}}
+\index{listarFilmesOrdenados@{listarFilmesOrdenados}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{listarFilmesOrdenados()}{listarFilmesOrdenados()}}
+{\footnotesize\ttfamily void Sistema\+::listar\+Filmes\+Ordenados (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Lista os filmes ordenados por critérios específicos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ordenacao} & O critério de ordenação dos filmes. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_sistema_acdd7c06f64d1b1e3b0c8a7a5ddebacdf}\label{class_sistema_acdd7c06f64d1b1e3b0c8a7a5ddebacdf} 
+\index{Sistema@{Sistema}!listarLocacoes@{listarLocacoes}}
+\index{listarLocacoes@{listarLocacoes}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{listarLocacoes()}{listarLocacoes()}}
+{\footnotesize\ttfamily void Sistema\+::listar\+Locacoes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Lista as locações atuais. 
+
+\Hypertarget{class_sistema_a2dbabdff5aebbd724bbb2bbddddf9b26}\label{class_sistema_a2dbabdff5aebbd724bbb2bbddddf9b26} 
+\index{Sistema@{Sistema}!listarLogLocacoes@{listarLogLocacoes}}
+\index{listarLogLocacoes@{listarLogLocacoes}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{listarLogLocacoes()}{listarLogLocacoes()}}
+{\footnotesize\ttfamily void Sistema\+::listar\+Log\+Locacoes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Lista o histórico de locações. 
+
+\Hypertarget{class_sistema_a748dbb6ae8b5e9a1620dcdca198a6929}\label{class_sistema_a748dbb6ae8b5e9a1620dcdca198a6929} 
+\index{Sistema@{Sistema}!mostrarOpcoes@{mostrarOpcoes}}
+\index{mostrarOpcoes@{mostrarOpcoes}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{mostrarOpcoes()}{mostrarOpcoes()}}
+{\footnotesize\ttfamily void Sistema\+::mostrar\+Opcoes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Mostra as opções disponíveis no sistema. 
+
+\Hypertarget{class_sistema_ac8ba2132a7ee42c93c9dd5598899b4e2}\label{class_sistema_ac8ba2132a7ee42c93c9dd5598899b4e2} 
+\index{Sistema@{Sistema}!mostrarTransacoes@{mostrarTransacoes}}
+\index{mostrarTransacoes@{mostrarTransacoes}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{mostrarTransacoes()}{mostrarTransacoes()}}
+{\footnotesize\ttfamily void Sistema\+::mostrar\+Transacoes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Mostra o histórico de transações financeiras. 
+
+\Hypertarget{class_sistema_ad4f3f554a42a9de933fa1d7dc7b6a5e7}\label{class_sistema_ad4f3f554a42a9de933fa1d7dc7b6a5e7} 
+\index{Sistema@{Sistema}!removerCliente@{removerCliente}}
+\index{removerCliente@{removerCliente}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{removerCliente()}{removerCliente()}}
+{\footnotesize\ttfamily void Sistema\+::remover\+Cliente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remove um cliente do sistema com base no CPF. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em cpf} & O CPF único do cliente a ser removido. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_sistema_aafd9516cb4d96fb4b8dde70dff4fd9da}\label{class_sistema_aafd9516cb4d96fb4b8dde70dff4fd9da} 
+\index{Sistema@{Sistema}!removerFilme@{removerFilme}}
+\index{removerFilme@{removerFilme}!Sistema@{Sistema}}
+\doxysubsubsection{\texorpdfstring{removerFilme()}{removerFilme()}}
+{\footnotesize\ttfamily void Sistema\+::remover\+Filme (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remove um filme do estoque com base no identificador. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em identificador} & O identificador único do filme a ser removido. \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_sistema_8hpp}{Sistema.\+hpp}}\item 
+src/\mbox{\hyperlink{_sistema_8cpp}{Sistema.\+cpp}}\end{DoxyCompactItemize}

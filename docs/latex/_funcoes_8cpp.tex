@@ -1,0 +1,86 @@
+\doxysection{Referência ao ficheiro src/\+Funcoes.cpp}
+\hypertarget{_funcoes_8cpp}{}\label{_funcoes_8cpp}\index{src/Funcoes.cpp@{src/Funcoes.cpp}}
+{\ttfamily \#include "{}Funcoes.\+hpp"{}}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$regex$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+const bool \mbox{\hyperlink{_funcoes_8cpp_ad4d65a6223376f0040d95160b9ee8b8c}{retorna\+Verdadeiro\+Falso}} ()
+\item 
+bool \mbox{\hyperlink{_funcoes_8cpp_a646656f7c1334e71b3c7bdd8cbe3cbfa}{is\+Tipo\+Valido}} (const char tipo)
+\item 
+bool \mbox{\hyperlink{_funcoes_8cpp_a1eeaa3f4a47bf7064e8a05d37932f08a}{is\+Unidades\+Valido}} (const int unidades)
+\item 
+bool \mbox{\hyperlink{_funcoes_8cpp_a518e4fdbff0b509ab6235504c5fc4c0a}{is\+Identificador\+Valido}} (const int identificador)
+\item 
+int \mbox{\hyperlink{_funcoes_8cpp_aeb6c6e8a36fe3f62625ef39eec8cfcdd}{is\+Categoria\+Valido}} (char categoria)
+\item 
+bool \mbox{\hyperlink{_funcoes_8cpp_a17beeb30e2a6498b7cd7f18957b89d1d}{is\+CPFValido}} (std\+::string \&cpf)
+\item 
+bool \mbox{\hyperlink{_funcoes_8cpp_a6495b8b4d5a81760b39808bf1ca7cc9e}{is\+Data\+Nascimento\+Valido}} (std\+::string \&data)
+\item 
+bool \mbox{\hyperlink{_funcoes_8cpp_a05f171e4385ef22a3dfaeda328a8ab17}{is\+Dias\+Valido}} (const int dias)
+\item 
+bool \mbox{\hyperlink{_funcoes_8cpp_ab876ff339683af190e4a34c5d901c97c}{is\+Dias\+Decorridos\+Valido}} (const int dias)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{_funcoes_8cpp_aeb6c6e8a36fe3f62625ef39eec8cfcdd}\label{_funcoes_8cpp_aeb6c6e8a36fe3f62625ef39eec8cfcdd} 
+\index{Funcoes.cpp@{Funcoes.cpp}!isCategoriaValido@{isCategoriaValido}}
+\index{isCategoriaValido@{isCategoriaValido}!Funcoes.cpp@{Funcoes.cpp}}
+\doxysubsubsection{\texorpdfstring{isCategoriaValido()}{isCategoriaValido()}}
+{\footnotesize\ttfamily int is\+Categoria\+Valido (\begin{DoxyParamCaption}\item[{char}]{categoria }\end{DoxyParamCaption})}
+
+\Hypertarget{_funcoes_8cpp_a17beeb30e2a6498b7cd7f18957b89d1d}\label{_funcoes_8cpp_a17beeb30e2a6498b7cd7f18957b89d1d} 
+\index{Funcoes.cpp@{Funcoes.cpp}!isCPFValido@{isCPFValido}}
+\index{isCPFValido@{isCPFValido}!Funcoes.cpp@{Funcoes.cpp}}
+\doxysubsubsection{\texorpdfstring{isCPFValido()}{isCPFValido()}}
+{\footnotesize\ttfamily bool is\+CPFValido (\begin{DoxyParamCaption}\item[{std\+::string \&}]{cpf }\end{DoxyParamCaption})}
+
+\Hypertarget{_funcoes_8cpp_a6495b8b4d5a81760b39808bf1ca7cc9e}\label{_funcoes_8cpp_a6495b8b4d5a81760b39808bf1ca7cc9e} 
+\index{Funcoes.cpp@{Funcoes.cpp}!isDataNascimentoValido@{isDataNascimentoValido}}
+\index{isDataNascimentoValido@{isDataNascimentoValido}!Funcoes.cpp@{Funcoes.cpp}}
+\doxysubsubsection{\texorpdfstring{isDataNascimentoValido()}{isDataNascimentoValido()}}
+{\footnotesize\ttfamily bool is\+Data\+Nascimento\+Valido (\begin{DoxyParamCaption}\item[{std\+::string \&}]{data }\end{DoxyParamCaption})}
+
+\Hypertarget{_funcoes_8cpp_ab876ff339683af190e4a34c5d901c97c}\label{_funcoes_8cpp_ab876ff339683af190e4a34c5d901c97c} 
+\index{Funcoes.cpp@{Funcoes.cpp}!isDiasDecorridosValido@{isDiasDecorridosValido}}
+\index{isDiasDecorridosValido@{isDiasDecorridosValido}!Funcoes.cpp@{Funcoes.cpp}}
+\doxysubsubsection{\texorpdfstring{isDiasDecorridosValido()}{isDiasDecorridosValido()}}
+{\footnotesize\ttfamily bool is\+Dias\+Decorridos\+Valido (\begin{DoxyParamCaption}\item[{const int}]{dias }\end{DoxyParamCaption})}
+
+\Hypertarget{_funcoes_8cpp_a05f171e4385ef22a3dfaeda328a8ab17}\label{_funcoes_8cpp_a05f171e4385ef22a3dfaeda328a8ab17} 
+\index{Funcoes.cpp@{Funcoes.cpp}!isDiasValido@{isDiasValido}}
+\index{isDiasValido@{isDiasValido}!Funcoes.cpp@{Funcoes.cpp}}
+\doxysubsubsection{\texorpdfstring{isDiasValido()}{isDiasValido()}}
+{\footnotesize\ttfamily bool is\+Dias\+Valido (\begin{DoxyParamCaption}\item[{const int}]{dias }\end{DoxyParamCaption})}
+
+\Hypertarget{_funcoes_8cpp_a518e4fdbff0b509ab6235504c5fc4c0a}\label{_funcoes_8cpp_a518e4fdbff0b509ab6235504c5fc4c0a} 
+\index{Funcoes.cpp@{Funcoes.cpp}!isIdentificadorValido@{isIdentificadorValido}}
+\index{isIdentificadorValido@{isIdentificadorValido}!Funcoes.cpp@{Funcoes.cpp}}
+\doxysubsubsection{\texorpdfstring{isIdentificadorValido()}{isIdentificadorValido()}}
+{\footnotesize\ttfamily bool is\+Identificador\+Valido (\begin{DoxyParamCaption}\item[{const int}]{identificador }\end{DoxyParamCaption})}
+
+\Hypertarget{_funcoes_8cpp_a646656f7c1334e71b3c7bdd8cbe3cbfa}\label{_funcoes_8cpp_a646656f7c1334e71b3c7bdd8cbe3cbfa} 
+\index{Funcoes.cpp@{Funcoes.cpp}!isTipoValido@{isTipoValido}}
+\index{isTipoValido@{isTipoValido}!Funcoes.cpp@{Funcoes.cpp}}
+\doxysubsubsection{\texorpdfstring{isTipoValido()}{isTipoValido()}}
+{\footnotesize\ttfamily bool is\+Tipo\+Valido (\begin{DoxyParamCaption}\item[{const char}]{tipo }\end{DoxyParamCaption})}
+
+\Hypertarget{_funcoes_8cpp_a1eeaa3f4a47bf7064e8a05d37932f08a}\label{_funcoes_8cpp_a1eeaa3f4a47bf7064e8a05d37932f08a} 
+\index{Funcoes.cpp@{Funcoes.cpp}!isUnidadesValido@{isUnidadesValido}}
+\index{isUnidadesValido@{isUnidadesValido}!Funcoes.cpp@{Funcoes.cpp}}
+\doxysubsubsection{\texorpdfstring{isUnidadesValido()}{isUnidadesValido()}}
+{\footnotesize\ttfamily bool is\+Unidades\+Valido (\begin{DoxyParamCaption}\item[{const int}]{unidades }\end{DoxyParamCaption})}
+
+\Hypertarget{_funcoes_8cpp_ad4d65a6223376f0040d95160b9ee8b8c}\label{_funcoes_8cpp_ad4d65a6223376f0040d95160b9ee8b8c} 
+\index{Funcoes.cpp@{Funcoes.cpp}!retornaVerdadeiroFalso@{retornaVerdadeiroFalso}}
+\index{retornaVerdadeiroFalso@{retornaVerdadeiroFalso}!Funcoes.cpp@{Funcoes.cpp}}
+\doxysubsubsection{\texorpdfstring{retornaVerdadeiroFalso()}{retornaVerdadeiroFalso()}}
+{\footnotesize\ttfamily const bool retorna\+Verdadeiro\+Falso (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

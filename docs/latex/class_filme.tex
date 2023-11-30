@@ -1,0 +1,254 @@
+\doxysection{Referência à classe Filme}
+\hypertarget{class_filme}{}\label{class_filme}\index{Filme@{Filme}}
+
+
+Classe pai para representar um filme.  
+
+
+
+
+{\ttfamily \#include $<$Filme.\+hpp$>$}
+
+Diagrama de heranças da classe Filme\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_filme}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_filme_af0555cf949ce36692bd8b2bcc59b686f}{Filme}} (int unidades, int identificador, std\+::string titulo, int tipo)
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_filme}{Filme}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_filme_a3d4bf28af3ba618785937af3744f0818}{\texorpdfstring{$\sim$}{\string~}\+Filme}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe \doxylink{class_filme}{Filme}. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{class_filme_af580ef04d5ab40ac2f2e3317cb7582f8}{get\+Identificador}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o identificador do filme. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{class_filme_adb4fa33d5b3419b2b5f232f9b5e792dc}{get\+Unidades}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o número de unidades disponíveis do filme. \end{DoxyCompactList}\item 
+const std\+::string \mbox{\hyperlink{class_filme_ad20450d8f7ca44672f5a1a1a274a7c8d}{get\+Titulo}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o título do filme. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{class_filme_a3df50f546eeadd34a68ab186c6f06b37}{get\+Tipo}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o tipo do filme (\doxylink{class_d_v_d}{DVD} ou \doxylink{class_f_i_t_a}{FITA}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_filme_a67acd2cde33ed049c2850988f4580c2a}{adicionar\+Unidades}} ()
+\begin{DoxyCompactList}\small\item\em Adiciona uma unidade do filme. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_filme_af7d10f52d298bd93686270adce0078ac}{remover\+Unidades}} ()
+\begin{DoxyCompactList}\small\item\em Remove uma unidade do filme. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{class_filme_a8373c99597a7eee7d6787d84147327d3}{calculo\+Preco\+Locacao}} (int dias)=0
+\begin{DoxyCompactList}\small\item\em Calcula o valor de locação do filme. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{class_filme_aa501f362613e645261f5bf223c24f2da}{listar\+Informacoes}} ()
+\begin{DoxyCompactList}\small\item\em Lista as informações do filme. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_filme_a210d3e2a9dff073eb3e54328d4355bf6}{validar\+Dados}} ()
+\begin{DoxyCompactList}\small\item\em Valida os dados do filme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos Protegidos}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_filme_a82e77ff5ec93451175326c5bf705ff10}{\+\_\+unidades}}
+\item 
+int \mbox{\hyperlink{class_filme_aef30915541139961135ad5882c771d4a}{\+\_\+identificador}}
+\item 
+std\+::string \mbox{\hyperlink{class_filme_a570d004dfe50753c61f8f6f867b2258d}{\+\_\+titulo}}
+\item 
+int \mbox{\hyperlink{class_filme_aa320460ec19cbd9dbec379369bc51150}{\+\_\+tipo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe pai para representar um filme. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_filme_af0555cf949ce36692bd8b2bcc59b686f}\label{class_filme_af0555cf949ce36692bd8b2bcc59b686f} 
+\index{Filme@{Filme}!Filme@{Filme}}
+\index{Filme@{Filme}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{Filme()}{Filme()}}
+{\footnotesize\ttfamily Filme\+::\+Filme (\begin{DoxyParamCaption}\item[{int}]{unidades,  }\item[{int}]{identificador,  }\item[{std\+::string}]{titulo,  }\item[{int}]{tipo }\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_filme}{Filme}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em unidades} & O número de unidades disponíveis do filme. \\
+\hline
+{\em identificador} & O identificador único do filme. \\
+\hline
+{\em titulo} & O título do filme. \\
+\hline
+{\em tipo} & O tipo do filme (\doxylink{class_d_v_d}{DVD} ou \doxylink{class_f_i_t_a}{FITA}). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_filme_a3d4bf28af3ba618785937af3744f0818}\label{class_filme_a3d4bf28af3ba618785937af3744f0818} 
+\index{Filme@{Filme}!````~Filme@{\texorpdfstring{$\sim$}{\string~}Filme}}
+\index{````~Filme@{\texorpdfstring{$\sim$}{\string~}Filme}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Filme()}{\string~Filme()}}
+{\footnotesize\ttfamily Filme\+::\texorpdfstring{$\sim$}{\string~}\+Filme (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destrutor da classe \doxylink{class_filme}{Filme}. 
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_filme_a67acd2cde33ed049c2850988f4580c2a}\label{class_filme_a67acd2cde33ed049c2850988f4580c2a} 
+\index{Filme@{Filme}!adicionarUnidades@{adicionarUnidades}}
+\index{adicionarUnidades@{adicionarUnidades}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{adicionarUnidades()}{adicionarUnidades()}}
+{\footnotesize\ttfamily void Filme\+::adicionar\+Unidades (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Adiciona uma unidade do filme. 
+
+\Hypertarget{class_filme_a8373c99597a7eee7d6787d84147327d3}\label{class_filme_a8373c99597a7eee7d6787d84147327d3} 
+\index{Filme@{Filme}!calculoPrecoLocacao@{calculoPrecoLocacao}}
+\index{calculoPrecoLocacao@{calculoPrecoLocacao}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{calculoPrecoLocacao()}{calculoPrecoLocacao()}}
+{\footnotesize\ttfamily virtual float Filme\+::calculo\+Preco\+Locacao (\begin{DoxyParamCaption}\item[{int}]{dias }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Calcula o valor de locação do filme. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em dias} & O número de dias para locação. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+O valor de locação calculado. 
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_d_v_d_aff178a8536f85ec33cc84c0d11871e3d}{DVD}} e \mbox{\hyperlink{class_f_i_t_a_a0c67438be2a720a7c64fe5a42e76612d}{FITA}}.
+
+\Hypertarget{class_filme_af580ef04d5ab40ac2f2e3317cb7582f8}\label{class_filme_af580ef04d5ab40ac2f2e3317cb7582f8} 
+\index{Filme@{Filme}!getIdentificador@{getIdentificador}}
+\index{getIdentificador@{getIdentificador}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{getIdentificador()}{getIdentificador()}}
+{\footnotesize\ttfamily const int Filme\+::get\+Identificador (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Obtém o identificador do filme. 
+
+\begin{DoxyReturn}{Retorna}
+O identificador do filme. 
+\end{DoxyReturn}
+\Hypertarget{class_filme_a3df50f546eeadd34a68ab186c6f06b37}\label{class_filme_a3df50f546eeadd34a68ab186c6f06b37} 
+\index{Filme@{Filme}!getTipo@{getTipo}}
+\index{getTipo@{getTipo}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{getTipo()}{getTipo()}}
+{\footnotesize\ttfamily const int Filme\+::get\+Tipo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Obtém o tipo do filme (\doxylink{class_d_v_d}{DVD} ou \doxylink{class_f_i_t_a}{FITA}). 
+
+\begin{DoxyReturn}{Retorna}
+O tipo do filme. 
+\end{DoxyReturn}
+\Hypertarget{class_filme_ad20450d8f7ca44672f5a1a1a274a7c8d}\label{class_filme_ad20450d8f7ca44672f5a1a1a274a7c8d} 
+\index{Filme@{Filme}!getTitulo@{getTitulo}}
+\index{getTitulo@{getTitulo}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{getTitulo()}{getTitulo()}}
+{\footnotesize\ttfamily const std\+::string Filme\+::get\+Titulo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Obtém o título do filme. 
+
+\begin{DoxyReturn}{Retorna}
+O título do filme. 
+\end{DoxyReturn}
+\Hypertarget{class_filme_adb4fa33d5b3419b2b5f232f9b5e792dc}\label{class_filme_adb4fa33d5b3419b2b5f232f9b5e792dc} 
+\index{Filme@{Filme}!getUnidades@{getUnidades}}
+\index{getUnidades@{getUnidades}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{getUnidades()}{getUnidades()}}
+{\footnotesize\ttfamily const int Filme\+::get\+Unidades (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Obtém o número de unidades disponíveis do filme. 
+
+\begin{DoxyReturn}{Retorna}
+O número de unidades disponíveis. 
+\end{DoxyReturn}
+\Hypertarget{class_filme_aa501f362613e645261f5bf223c24f2da}\label{class_filme_aa501f362613e645261f5bf223c24f2da} 
+\index{Filme@{Filme}!listarInformacoes@{listarInformacoes}}
+\index{listarInformacoes@{listarInformacoes}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{listarInformacoes()}{listarInformacoes()}}
+{\footnotesize\ttfamily std\+::string Filme\+::listar\+Informacoes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Lista as informações do filme. 
+
+\begin{DoxyReturn}{Retorna}
+Uma string contendo as informações do filme. 
+\end{DoxyReturn}
+
+
+Reimplementado em \mbox{\hyperlink{class_d_v_d_abb3219b5b8e84ff8ec35eb38963666b3}{DVD}} e \mbox{\hyperlink{class_f_i_t_a_abe08fb7223d16be0eed3b850afc2b2c3}{FITA}}.
+
+\Hypertarget{class_filme_af7d10f52d298bd93686270adce0078ac}\label{class_filme_af7d10f52d298bd93686270adce0078ac} 
+\index{Filme@{Filme}!removerUnidades@{removerUnidades}}
+\index{removerUnidades@{removerUnidades}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{removerUnidades()}{removerUnidades()}}
+{\footnotesize\ttfamily void Filme\+::remover\+Unidades (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remove uma unidade do filme. 
+
+\Hypertarget{class_filme_a210d3e2a9dff073eb3e54328d4355bf6}\label{class_filme_a210d3e2a9dff073eb3e54328d4355bf6} 
+\index{Filme@{Filme}!validarDados@{validarDados}}
+\index{validarDados@{validarDados}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{validarDados()}{validarDados()}}
+{\footnotesize\ttfamily bool Filme\+::validar\+Dados (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Valida os dados do filme. 
+
+\begin{DoxyReturn}{Retorna}
+true se os dados são válidos, false caso contrário. 
+\end{DoxyReturn}
+
+
+Reimplementado em \mbox{\hyperlink{class_d_v_d_aa74a9048bced2d9b0e51c3b76657a193}{DVD}}.
+
+
+
+\doxysubsection{Documentação dos dados membro}
+\Hypertarget{class_filme_aef30915541139961135ad5882c771d4a}\label{class_filme_aef30915541139961135ad5882c771d4a} 
+\index{Filme@{Filme}!\_identificador@{\_identificador}}
+\index{\_identificador@{\_identificador}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{\_identificador}{\_identificador}}
+{\footnotesize\ttfamily int Filme\+::\+\_\+identificador\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_filme_aa320460ec19cbd9dbec379369bc51150}\label{class_filme_aa320460ec19cbd9dbec379369bc51150} 
+\index{Filme@{Filme}!\_tipo@{\_tipo}}
+\index{\_tipo@{\_tipo}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{\_tipo}{\_tipo}}
+{\footnotesize\ttfamily int Filme\+::\+\_\+tipo\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_filme_a570d004dfe50753c61f8f6f867b2258d}\label{class_filme_a570d004dfe50753c61f8f6f867b2258d} 
+\index{Filme@{Filme}!\_titulo@{\_titulo}}
+\index{\_titulo@{\_titulo}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{\_titulo}{\_titulo}}
+{\footnotesize\ttfamily std\+::string Filme\+::\+\_\+titulo\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_filme_a82e77ff5ec93451175326c5bf705ff10}\label{class_filme_a82e77ff5ec93451175326c5bf705ff10} 
+\index{Filme@{Filme}!\_unidades@{\_unidades}}
+\index{\_unidades@{\_unidades}!Filme@{Filme}}
+\doxysubsubsection{\texorpdfstring{\_unidades}{\_unidades}}
+{\footnotesize\ttfamily int Filme\+::\+\_\+unidades\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_filme_8hpp}{Filme.\+hpp}}\item 
+src/\mbox{\hyperlink{_filme_8cpp}{Filme.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,169 @@
+\doxysection{Referência à classe Locacao}
+\hypertarget{class_locacao}{}\label{class_locacao}\index{Locacao@{Locacao}}
+
+
+Classe para gerenciar as locações.  
+
+
+
+
+{\ttfamily \#include $<$Locacao.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_locacao_a60e61893a9d3e4d3878c9d13322a4a67}{Locacao}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_locacao}{Locacao}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_locacao_a653814b229c01cde988f435295cb4694}{associar\+Ptr\+Estoque}} (\mbox{\hyperlink{class_estoque}{Estoque}} \texorpdfstring{$\ast$}{*}estoque)
+\begin{DoxyCompactList}\small\item\em Associa um ponteiro para o \doxylink{class_estoque}{Estoque} à classe \doxylink{class_locacao}{Locacao}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_locacao_ad627339199e53241459665ad415d5d33}{get\+Locacoes\+Por\+Cliente}} (std\+::string cpf)
+\begin{DoxyCompactList}\small\item\em Obtém o número de locações pendentes para um cliente. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_locacao_aca76c42a80a0461112541265ac68afca}{devolucao}} (std\+::string cpf, \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}filme, int dias, bool is\+Danificado)
+\begin{DoxyCompactList}\small\item\em Realiza a devolução de um filme e calcula o valor a ser pago (multas). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_locacao_a5a49c53820b048c25cd99c9f75e032ad}{verificar\+Filme\+Alugado}} (int identificador)
+\begin{DoxyCompactList}\small\item\em Verifica se um filme está alugado. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_locacao_a40afe8257688897031c2a4525365da30}{alugar}} (std\+::string cpf, std\+::vector$<$ \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*} $>$ filmes, int dias)
+\begin{DoxyCompactList}\small\item\em Realiza o aluguel de filmes para um cliente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_locacao_a9e2961de1c7e3e5c4d35be990d94b288}{relatorio}} ()
+\begin{DoxyCompactList}\small\item\em Imprime um relatório das locações pendentes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_locacao_a94820c2005f25465294df5bb79365134}{historico\+Locacoes}} ()
+\begin{DoxyCompactList}\small\item\em Imprime um histórico de todas as locações realizadas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe para gerenciar as locações. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_locacao_a60e61893a9d3e4d3878c9d13322a4a67}\label{class_locacao_a60e61893a9d3e4d3878c9d13322a4a67} 
+\index{Locacao@{Locacao}!Locacao@{Locacao}}
+\index{Locacao@{Locacao}!Locacao@{Locacao}}
+\doxysubsubsection{\texorpdfstring{Locacao()}{Locacao()}}
+{\footnotesize\ttfamily Locacao\+::\+Locacao (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_locacao}{Locacao}. 
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_locacao_a40afe8257688897031c2a4525365da30}\label{class_locacao_a40afe8257688897031c2a4525365da30} 
+\index{Locacao@{Locacao}!alugar@{alugar}}
+\index{alugar@{alugar}!Locacao@{Locacao}}
+\doxysubsubsection{\texorpdfstring{alugar()}{alugar()}}
+{\footnotesize\ttfamily float Locacao\+::alugar (\begin{DoxyParamCaption}\item[{std\+::string}]{cpf,  }\item[{std\+::vector$<$ \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*} $>$}]{filmes,  }\item[{int}]{dias }\end{DoxyParamCaption})}
+
+
+
+Realiza o aluguel de filmes para um cliente. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em CPF} & O CPF do cliente. \\
+\hline
+{\em filmes} & Um vetor de ponteiros para os filmes a serem alugados. \\
+\hline
+{\em dias} & O número de dias de locação. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_locacao_a653814b229c01cde988f435295cb4694}\label{class_locacao_a653814b229c01cde988f435295cb4694} 
+\index{Locacao@{Locacao}!associarPtrEstoque@{associarPtrEstoque}}
+\index{associarPtrEstoque@{associarPtrEstoque}!Locacao@{Locacao}}
+\doxysubsubsection{\texorpdfstring{associarPtrEstoque()}{associarPtrEstoque()}}
+{\footnotesize\ttfamily void Locacao\+::associar\+Ptr\+Estoque (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_estoque}{Estoque}} \texorpdfstring{$\ast$}{*}}]{estoque }\end{DoxyParamCaption})}
+
+
+
+Associa um ponteiro para o \doxylink{class_estoque}{Estoque} à classe \doxylink{class_locacao}{Locacao}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em estoque} & Ponteiro para o \doxylink{class_estoque}{Estoque}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_locacao_aca76c42a80a0461112541265ac68afca}\label{class_locacao_aca76c42a80a0461112541265ac68afca} 
+\index{Locacao@{Locacao}!devolucao@{devolucao}}
+\index{devolucao@{devolucao}!Locacao@{Locacao}}
+\doxysubsubsection{\texorpdfstring{devolucao()}{devolucao()}}
+{\footnotesize\ttfamily int Locacao\+::devolucao (\begin{DoxyParamCaption}\item[{std\+::string}]{cpf,  }\item[{\mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}}]{filme,  }\item[{int}]{dias,  }\item[{bool}]{is\+Danificado }\end{DoxyParamCaption})}
+
+
+
+Realiza a devolução de um filme e calcula o valor a ser pago (multas). 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em CPF} & O CPF do cliente. \\
+\hline
+{\em filme} & O filme a ser devolvido. \\
+\hline
+{\em dias} & O número de dias que o filme foi alugado. \\
+\hline
+{\em is\+Danificado} & Indica se o filme foi devolvido danificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+O valor a ser pago (multas). 
+\end{DoxyReturn}
+\Hypertarget{class_locacao_ad627339199e53241459665ad415d5d33}\label{class_locacao_ad627339199e53241459665ad415d5d33} 
+\index{Locacao@{Locacao}!getLocacoesPorCliente@{getLocacoesPorCliente}}
+\index{getLocacoesPorCliente@{getLocacoesPorCliente}!Locacao@{Locacao}}
+\doxysubsubsection{\texorpdfstring{getLocacoesPorCliente()}{getLocacoesPorCliente()}}
+{\footnotesize\ttfamily int Locacao\+::get\+Locacoes\+Por\+Cliente (\begin{DoxyParamCaption}\item[{std\+::string}]{cpf }\end{DoxyParamCaption})}
+
+
+
+Obtém o número de locações pendentes para um cliente. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em CPF} & O CPF do cliente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+O número de locações pendentes para o cliente. 
+\end{DoxyReturn}
+\Hypertarget{class_locacao_a94820c2005f25465294df5bb79365134}\label{class_locacao_a94820c2005f25465294df5bb79365134} 
+\index{Locacao@{Locacao}!historicoLocacoes@{historicoLocacoes}}
+\index{historicoLocacoes@{historicoLocacoes}!Locacao@{Locacao}}
+\doxysubsubsection{\texorpdfstring{historicoLocacoes()}{historicoLocacoes()}}
+{\footnotesize\ttfamily void Locacao\+::historico\+Locacoes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Imprime um histórico de todas as locações realizadas. 
+
+\Hypertarget{class_locacao_a9e2961de1c7e3e5c4d35be990d94b288}\label{class_locacao_a9e2961de1c7e3e5c4d35be990d94b288} 
+\index{Locacao@{Locacao}!relatorio@{relatorio}}
+\index{relatorio@{relatorio}!Locacao@{Locacao}}
+\doxysubsubsection{\texorpdfstring{relatorio()}{relatorio()}}
+{\footnotesize\ttfamily void Locacao\+::relatorio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Imprime um relatório das locações pendentes. 
+
+\Hypertarget{class_locacao_a5a49c53820b048c25cd99c9f75e032ad}\label{class_locacao_a5a49c53820b048c25cd99c9f75e032ad} 
+\index{Locacao@{Locacao}!verificarFilmeAlugado@{verificarFilmeAlugado}}
+\index{verificarFilmeAlugado@{verificarFilmeAlugado}!Locacao@{Locacao}}
+\doxysubsubsection{\texorpdfstring{verificarFilmeAlugado()}{verificarFilmeAlugado()}}
+{\footnotesize\ttfamily bool Locacao\+::verificar\+Filme\+Alugado (\begin{DoxyParamCaption}\item[{int}]{identificador }\end{DoxyParamCaption})}
+
+
+
+Verifica se um filme está alugado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em identificador} & O identificador do filme. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+True se o filme está alugado, False caso contrário. 
+\end{DoxyReturn}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_locacao_8hpp}{Locacao.\+hpp}}\item 
+src/\mbox{\hyperlink{_locacao_8cpp}{Locacao.\+cpp}}\end{DoxyCompactItemize}

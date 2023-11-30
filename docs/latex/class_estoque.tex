@@ -1,0 +1,215 @@
+\doxysection{Referência à classe Estoque}
+\hypertarget{class_estoque}{}\label{class_estoque}\index{Estoque@{Estoque}}
+
+
+Classe para gerenciar o estoque de filmes.  
+
+
+
+
+{\ttfamily \#include $<$Estoque.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_estoque_ad459d7d644df8e6369853f7cfed57d16}{Estoque}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_estoque}{Estoque}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_estoque_a99c7f0dc2b6fa9950ad25b0071b9cb9b}{\texorpdfstring{$\sim$}{\string~}\+Estoque}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe \doxylink{class_estoque}{Estoque}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_estoque_ab27ec24341f0edd49e9045d7b68de690}{ler\+Arquivo}} (const std\+::string diretorio)
+\begin{DoxyCompactList}\small\item\em Lê os filmes em estoque de um arquivo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_estoque_af5ed78b1cd2907e07e30b7211afc8388}{inserir\+Filme}} (\mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}novo\+Filme)
+\begin{DoxyCompactList}\small\item\em Insere um novo filme no estoque. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_estoque_a05732c2e0f484145058979f64400c1c5}{remover\+Filme}} (const int identificador)
+\begin{DoxyCompactList}\small\item\em Remove um filme do estoque. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_estoque_a38ae587393930430b548a4ad21145169}{pesquisar\+Filmes\+Codigo}} (const int identificador) const
+\begin{DoxyCompactList}\small\item\em Pesquisa filmes pelo identificador. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_estoque_aee82491ceecbe1d5084da3838b05b11d}{pesquisar\+Filmes\+Titulo}} (const std\+::string titulo) const
+\begin{DoxyCompactList}\small\item\em Pesquisa filmes pelo título. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_estoque_a5b46b049b7700332b9f1c69ced0b89c8}{listar\+Filmes\+Ordenados}} (const std\+::string ordenacao) const
+\begin{DoxyCompactList}\small\item\em Lista os filmes ordenados por critério. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_estoque_a333e42a1ac5cae968e1699b8c12edbd8}{filme\+Existe}} (const int identificador) const
+\begin{DoxyCompactList}\small\item\em Verifica se um filme com determinado identificador existe no estoque. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_estoque_a256439a54ebc6c10f862e4232eefeb8d}{filme\+Valido}} (const int identificador) const
+\begin{DoxyCompactList}\small\item\em Verifica se um filme com determinado identificador é válido para locação. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_estoque_a21adcbcedb5a7a74ce697f88b5fd6554}{salvar\+Dados}} (const bool limpar\+Dados)
+\begin{DoxyCompactList}\small\item\em Salva os filmes do estoque em um arquivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe para gerenciar o estoque de filmes. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_estoque_ad459d7d644df8e6369853f7cfed57d16}\label{class_estoque_ad459d7d644df8e6369853f7cfed57d16} 
+\index{Estoque@{Estoque}!Estoque@{Estoque}}
+\index{Estoque@{Estoque}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{Estoque()}{Estoque()}}
+{\footnotesize\ttfamily Estoque\+::\+Estoque (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_estoque}{Estoque}. 
+
+\Hypertarget{class_estoque_a99c7f0dc2b6fa9950ad25b0071b9cb9b}\label{class_estoque_a99c7f0dc2b6fa9950ad25b0071b9cb9b} 
+\index{Estoque@{Estoque}!````~Estoque@{\texorpdfstring{$\sim$}{\string~}Estoque}}
+\index{````~Estoque@{\texorpdfstring{$\sim$}{\string~}Estoque}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Estoque()}{\string~Estoque()}}
+{\footnotesize\ttfamily Estoque\+::\texorpdfstring{$\sim$}{\string~}\+Estoque (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destrutor da classe \doxylink{class_estoque}{Estoque}. 
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_estoque_a333e42a1ac5cae968e1699b8c12edbd8}\label{class_estoque_a333e42a1ac5cae968e1699b8c12edbd8} 
+\index{Estoque@{Estoque}!filmeExiste@{filmeExiste}}
+\index{filmeExiste@{filmeExiste}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{filmeExiste()}{filmeExiste()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*} Estoque\+::filme\+Existe (\begin{DoxyParamCaption}\item[{const int}]{identificador }\end{DoxyParamCaption}) const}
+
+
+
+Verifica se um filme com determinado identificador existe no estoque. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em identificador} & O identificador a ser verificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Ponteiro para o filme se existir, nullptr caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{class_estoque_a256439a54ebc6c10f862e4232eefeb8d}\label{class_estoque_a256439a54ebc6c10f862e4232eefeb8d} 
+\index{Estoque@{Estoque}!filmeValido@{filmeValido}}
+\index{filmeValido@{filmeValido}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{filmeValido()}{filmeValido()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*} Estoque\+::filme\+Valido (\begin{DoxyParamCaption}\item[{const int}]{identificador }\end{DoxyParamCaption}) const}
+
+
+
+Verifica se um filme com determinado identificador é válido para locação. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em identificador} & O identificador a ser verificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Ponteiro para o filme se válido, nullptr caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{class_estoque_af5ed78b1cd2907e07e30b7211afc8388}\label{class_estoque_af5ed78b1cd2907e07e30b7211afc8388} 
+\index{Estoque@{Estoque}!inserirFilme@{inserirFilme}}
+\index{inserirFilme@{inserirFilme}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{inserirFilme()}{inserirFilme()}}
+{\footnotesize\ttfamily bool Estoque\+::inserir\+Filme (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}}]{novo\+Filme }\end{DoxyParamCaption})}
+
+
+
+Insere um novo filme no estoque. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em novo\+Filme} & Ponteiro para o novo filme a ser inserido. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+true se o filme foi inserido com sucesso, false caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{class_estoque_ab27ec24341f0edd49e9045d7b68de690}\label{class_estoque_ab27ec24341f0edd49e9045d7b68de690} 
+\index{Estoque@{Estoque}!lerArquivo@{lerArquivo}}
+\index{lerArquivo@{lerArquivo}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{lerArquivo()}{lerArquivo()}}
+{\footnotesize\ttfamily void Estoque\+::ler\+Arquivo (\begin{DoxyParamCaption}\item[{const std\+::string}]{diretorio }\end{DoxyParamCaption})}
+
+
+
+Lê os filmes em estoque de um arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em diretorio} & O caminho do arquivo a ser lido. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_estoque_a5b46b049b7700332b9f1c69ced0b89c8}\label{class_estoque_a5b46b049b7700332b9f1c69ced0b89c8} 
+\index{Estoque@{Estoque}!listarFilmesOrdenados@{listarFilmesOrdenados}}
+\index{listarFilmesOrdenados@{listarFilmesOrdenados}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{listarFilmesOrdenados()}{listarFilmesOrdenados()}}
+{\footnotesize\ttfamily void Estoque\+::listar\+Filmes\+Ordenados (\begin{DoxyParamCaption}\item[{const std\+::string}]{ordenacao }\end{DoxyParamCaption}) const}
+
+
+
+Lista os filmes ordenados por critério. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em ordenacao} & O critério de ordenação (C -\/ Código, N -\/ Nome, U -\/ Unidades). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_estoque_a38ae587393930430b548a4ad21145169}\label{class_estoque_a38ae587393930430b548a4ad21145169} 
+\index{Estoque@{Estoque}!pesquisarFilmesCodigo@{pesquisarFilmesCodigo}}
+\index{pesquisarFilmesCodigo@{pesquisarFilmesCodigo}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{pesquisarFilmesCodigo()}{pesquisarFilmesCodigo()}}
+{\footnotesize\ttfamily void Estoque\+::pesquisar\+Filmes\+Codigo (\begin{DoxyParamCaption}\item[{const int}]{identificador }\end{DoxyParamCaption}) const}
+
+
+
+Pesquisa filmes pelo identificador. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em identificador} & O identificador a ser pesquisado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_estoque_aee82491ceecbe1d5084da3838b05b11d}\label{class_estoque_aee82491ceecbe1d5084da3838b05b11d} 
+\index{Estoque@{Estoque}!pesquisarFilmesTitulo@{pesquisarFilmesTitulo}}
+\index{pesquisarFilmesTitulo@{pesquisarFilmesTitulo}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{pesquisarFilmesTitulo()}{pesquisarFilmesTitulo()}}
+{\footnotesize\ttfamily void Estoque\+::pesquisar\+Filmes\+Titulo (\begin{DoxyParamCaption}\item[{const std\+::string}]{titulo }\end{DoxyParamCaption}) const}
+
+
+
+Pesquisa filmes pelo título. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em titulo} & O título a ser pesquisado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_estoque_a05732c2e0f484145058979f64400c1c5}\label{class_estoque_a05732c2e0f484145058979f64400c1c5} 
+\index{Estoque@{Estoque}!removerFilme@{removerFilme}}
+\index{removerFilme@{removerFilme}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{removerFilme()}{removerFilme()}}
+{\footnotesize\ttfamily void Estoque\+::remover\+Filme (\begin{DoxyParamCaption}\item[{const int}]{identificador }\end{DoxyParamCaption})}
+
+
+
+Remove um filme do estoque. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em identificador} & O identificador do filme a ser removido. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_estoque_a21adcbcedb5a7a74ce697f88b5fd6554}\label{class_estoque_a21adcbcedb5a7a74ce697f88b5fd6554} 
+\index{Estoque@{Estoque}!salvarDados@{salvarDados}}
+\index{salvarDados@{salvarDados}!Estoque@{Estoque}}
+\doxysubsubsection{\texorpdfstring{salvarDados()}{salvarDados()}}
+{\footnotesize\ttfamily void Estoque\+::salvar\+Dados (\begin{DoxyParamCaption}\item[{const bool}]{limpar\+Dados }\end{DoxyParamCaption})}
+
+
+
+Salva os filmes do estoque em um arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em limpar\+Dados} & Indica se os filmes do estoque devem ser desalocados após a escrita. \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_estoque_8hpp}{Estoque.\+hpp}}\item 
+src/\mbox{\hyperlink{_estoque_8cpp}{Estoque.\+cpp}}\end{DoxyCompactItemize}

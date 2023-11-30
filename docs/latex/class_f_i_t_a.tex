@@ -1,0 +1,149 @@
+\doxysection{Referência à classe FITA}
+\hypertarget{class_f_i_t_a}{}\label{class_f_i_t_a}\index{FITA@{FITA}}
+
+
+Subclasse de \doxylink{class_filme}{Filme} que representa uma \doxylink{class_f_i_t_a}{FITA}.  
+
+
+
+
+{\ttfamily \#include $<$Filme.\+hpp$>$}
+
+Diagrama de heranças da classe FITA\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_f_i_t_a}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_f_i_t_a_aaf5b20ebed5782d1d1268b79650088a8}{FITA}} (int unidades, int identificador, std\+::string titulo, bool esta\+Rebobinado)
+\begin{DoxyCompactList}\small\item\em Construtor da subclasse Fita. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_f_i_t_a_a6fc9d372a1484309099f5df30e3875eb}{is\+Rebobinado}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se a fita está rebobinada. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_f_i_t_a_a0c67438be2a720a7c64fe5a42e76612d}{calculo\+Preco\+Locacao}} (int dias) override
+\begin{DoxyCompactList}\small\item\em Calcula o valor de locação do filme. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_f_i_t_a_abe08fb7223d16be0eed3b850afc2b2c3}{listar\+Informacoes}} () override
+\begin{DoxyCompactList}\small\item\em Lista as informações do filme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{class_filme}{Filme}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_filme_af0555cf949ce36692bd8b2bcc59b686f}{Filme}} (int unidades, int identificador, std\+::string titulo, int tipo)
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_filme}{Filme}. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_filme_a3d4bf28af3ba618785937af3744f0818}{\texorpdfstring{$\sim$}{\string~}\+Filme}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe \doxylink{class_filme}{Filme}. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{class_filme_af580ef04d5ab40ac2f2e3317cb7582f8}{get\+Identificador}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o identificador do filme. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{class_filme_adb4fa33d5b3419b2b5f232f9b5e792dc}{get\+Unidades}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o número de unidades disponíveis do filme. \end{DoxyCompactList}\item 
+const std\+::string \mbox{\hyperlink{class_filme_ad20450d8f7ca44672f5a1a1a274a7c8d}{get\+Titulo}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o título do filme. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{class_filme_a3df50f546eeadd34a68ab186c6f06b37}{get\+Tipo}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o tipo do filme (\doxylink{class_d_v_d}{DVD} ou \doxylink{class_f_i_t_a}{FITA}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_filme_a67acd2cde33ed049c2850988f4580c2a}{adicionar\+Unidades}} ()
+\begin{DoxyCompactList}\small\item\em Adiciona uma unidade do filme. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_filme_af7d10f52d298bd93686270adce0078ac}{remover\+Unidades}} ()
+\begin{DoxyCompactList}\small\item\em Remove uma unidade do filme. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_filme_a210d3e2a9dff073eb3e54328d4355bf6}{validar\+Dados}} ()
+\begin{DoxyCompactList}\small\item\em Valida os dados do filme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Outros membros herdados}
+\doxysubsection*{Atributos Protegidos herdados de \mbox{\hyperlink{class_filme}{Filme}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_filme_a82e77ff5ec93451175326c5bf705ff10}{\+\_\+unidades}}
+\item 
+int \mbox{\hyperlink{class_filme_aef30915541139961135ad5882c771d4a}{\+\_\+identificador}}
+\item 
+std\+::string \mbox{\hyperlink{class_filme_a570d004dfe50753c61f8f6f867b2258d}{\+\_\+titulo}}
+\item 
+int \mbox{\hyperlink{class_filme_aa320460ec19cbd9dbec379369bc51150}{\+\_\+tipo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Subclasse de \doxylink{class_filme}{Filme} que representa uma \doxylink{class_f_i_t_a}{FITA}. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_f_i_t_a_aaf5b20ebed5782d1d1268b79650088a8}\label{class_f_i_t_a_aaf5b20ebed5782d1d1268b79650088a8} 
+\index{FITA@{FITA}!FITA@{FITA}}
+\index{FITA@{FITA}!FITA@{FITA}}
+\doxysubsubsection{\texorpdfstring{FITA()}{FITA()}}
+{\footnotesize\ttfamily FITA\+::\+FITA (\begin{DoxyParamCaption}\item[{int}]{unidades,  }\item[{int}]{identificador,  }\item[{std\+::string}]{titulo,  }\item[{bool}]{esta\+Rebobinado }\end{DoxyParamCaption})}
+
+
+
+Construtor da subclasse Fita. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em unidades} & O número de unidades disponíveis da Fita. \\
+\hline
+{\em identificador} & O identificador único da Fita. \\
+\hline
+{\em titulo} & O título da Fita. \\
+\hline
+{\em esta\+Rebobinado} & A rebobinação da Fita. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_f_i_t_a_a0c67438be2a720a7c64fe5a42e76612d}\label{class_f_i_t_a_a0c67438be2a720a7c64fe5a42e76612d} 
+\index{FITA@{FITA}!calculoPrecoLocacao@{calculoPrecoLocacao}}
+\index{calculoPrecoLocacao@{calculoPrecoLocacao}!FITA@{FITA}}
+\doxysubsubsection{\texorpdfstring{calculoPrecoLocacao()}{calculoPrecoLocacao()}}
+{\footnotesize\ttfamily float FITA\+::calculo\+Preco\+Locacao (\begin{DoxyParamCaption}\item[{int}]{dias }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calcula o valor de locação do filme. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em dias} & O número de dias para locação. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+O valor de locação calculado. 
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{class_filme_a8373c99597a7eee7d6787d84147327d3}{Filme}}.
+
+\Hypertarget{class_f_i_t_a_a6fc9d372a1484309099f5df30e3875eb}\label{class_f_i_t_a_a6fc9d372a1484309099f5df30e3875eb} 
+\index{FITA@{FITA}!isRebobinado@{isRebobinado}}
+\index{isRebobinado@{isRebobinado}!FITA@{FITA}}
+\doxysubsubsection{\texorpdfstring{isRebobinado()}{isRebobinado()}}
+{\footnotesize\ttfamily bool FITA\+::is\+Rebobinado (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Verifica se a fita está rebobinada. 
+
+\begin{DoxyReturn}{Retorna}
+true se a fita está rebobinada, false caso contrário. 
+\end{DoxyReturn}
+\Hypertarget{class_f_i_t_a_abe08fb7223d16be0eed3b850afc2b2c3}\label{class_f_i_t_a_abe08fb7223d16be0eed3b850afc2b2c3} 
+\index{FITA@{FITA}!listarInformacoes@{listarInformacoes}}
+\index{listarInformacoes@{listarInformacoes}!FITA@{FITA}}
+\doxysubsubsection{\texorpdfstring{listarInformacoes()}{listarInformacoes()}}
+{\footnotesize\ttfamily std\+::string FITA\+::listar\+Informacoes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Lista as informações do filme. 
+
+\begin{DoxyReturn}{Retorna}
+Uma string contendo as informações do filme. 
+\end{DoxyReturn}
+
+
+Reimplementado de \mbox{\hyperlink{class_filme_aa501f362613e645261f5bf223c24f2da}{Filme}}.
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_filme_8hpp}{Filme.\+hpp}}\item 
+src/\mbox{\hyperlink{_filme_8cpp}{Filme.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CineAluguel: Código-Fonte de include/Estoque.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CineAluguel
+   </div>
+   <div id="projectbrief">Sistema de gerenciamento de filmes</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Estoque.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_estoque_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ESTOQUE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ESTOQUE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_filme_8hpp.html">Filme.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_funcoes_8hpp.html">Funcoes.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="_estoque_8hpp.html#afbe424cecb84854c9cca515014e82c76">   14</a></span><span class="keyword">const</span> std::string <a class="code hl_variable" href="_estoque_8hpp.html#afbe424cecb84854c9cca515014e82c76">DIRETORIO_PADRAO_FILMES</a> = <span class="stringliteral">&quot;./data/Filmes/filmes&quot;</span>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="_estoque_8hpp.html#a755da710f9bd1895a8aa0320fce9f98f">   15</a></span><span class="keyword">const</span> std::string <a class="code hl_variable" href="_estoque_8hpp.html#a755da710f9bd1895a8aa0320fce9f98f">DIRETORIO_LOG_FILMES</a> = <span class="stringliteral">&quot;./data/Filmes/logs&quot;</span>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="_estoque_8hpp.html#ad5ea46769b2a2b9f1596514e9c2156be">   16</a></span><span class="keyword">const</span> std::string <a class="code hl_variable" href="_estoque_8hpp.html#ad5ea46769b2a2b9f1596514e9c2156be">DIRETORIO_HISTORICO_FILMES</a> = <span class="stringliteral">&quot;./data/Filmes/Historico/&quot;</span>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="_estoque_8hpp.html#ae044cd02b67e22d016062085586cea28">   18</a></span><span class="keyword">const</span> std::map&lt;std::string, std::function&lt;bool(<span class="keyword">const</span> <a class="code hl_class" href="class_filme.html">Filme</a> *, <span class="keyword">const</span> <a class="code hl_class" href="class_filme.html">Filme</a> *)&gt;&gt; <a class="code hl_variable" href="_estoque_8hpp.html#ae044cd02b67e22d016062085586cea28">COMPARADORES_FILME</a> = {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {<span class="stringliteral">&quot;C&quot;</span>, [](<span class="keyword">const</span> <a class="code hl_class" href="class_filme.html">Filme</a> *a, <span class="keyword">const</span> <a class="code hl_class" href="class_filme.html">Filme</a> *b)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>     { <span class="keywordflow">return</span> a-&gt;<a class="code hl_function" href="class_filme.html#af580ef04d5ab40ac2f2e3317cb7582f8">getIdentificador</a>() &lt; b-&gt;getIdentificador(); }},</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    {<span class="stringliteral">&quot;N&quot;</span>, [](<span class="keyword">const</span> <a class="code hl_class" href="class_filme.html">Filme</a> *a, <span class="keyword">const</span> <a class="code hl_class" href="class_filme.html">Filme</a> *b)</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>     { <span class="keywordflow">return</span> a-&gt;<a class="code hl_function" href="class_filme.html#ad20450d8f7ca44672f5a1a1a274a7c8d">getTitulo</a>() &lt; b-&gt;getTitulo(); }},</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {<span class="stringliteral">&quot;U&quot;</span>, [](<span class="keyword">const</span> <a class="code hl_class" href="class_filme.html">Filme</a> *a, <span class="keyword">const</span> <a class="code hl_class" href="class_filme.html">Filme</a> *b)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>     { <span class="keywordflow">return</span> a-&gt;<a class="code hl_function" href="class_filme.html#adb4fa33d5b3419b2b5f232f9b5e792dc">getUnidades</a>() &lt; b-&gt;getUnidades(); }}};</div>
+</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_estoque.html">   31</a></span><span class="keyword">class </span><a class="code hl_class" href="class_estoque.html">Estoque</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    std::vector&lt;Filme *&gt; _estoque;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_function" href="class_estoque.html#ad459d7d644df8e6369853f7cfed57d16">Estoque</a>();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_function" href="class_estoque.html#a99c7f0dc2b6fa9950ad25b0071b9cb9b">~Estoque</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_estoque.html#ab27ec24341f0edd49e9045d7b68de690">lerArquivo</a>(<span class="keyword">const</span> std::string diretorio);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_estoque.html#af5ed78b1cd2907e07e30b7211afc8388">inserirFilme</a>(<a class="code hl_class" href="class_filme.html">Filme</a> *novoFilme);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_estoque.html#a05732c2e0f484145058979f64400c1c5">removerFilme</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> identificador);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_estoque.html#a38ae587393930430b548a4ad21145169">pesquisarFilmesCodigo</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> identificador) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_estoque.html#aee82491ceecbe1d5084da3838b05b11d">pesquisarFilmesTitulo</a>(<span class="keyword">const</span> std::string titulo) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_estoque.html#a5b46b049b7700332b9f1c69ced0b89c8">listarFilmesOrdenados</a>(<span class="keyword">const</span> std::string ordenacao) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_class" href="class_filme.html">Filme</a> *<a class="code hl_function" href="class_estoque.html#a333e42a1ac5cae968e1699b8c12edbd8">filmeExiste</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> identificador) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <a class="code hl_class" href="class_filme.html">Filme</a> *<a class="code hl_function" href="class_estoque.html#a256439a54ebc6c10f862e4232eefeb8d">filmeValido</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> identificador) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_estoque.html#a21adcbcedb5a7a74ce697f88b5fd6554">salvarDados</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> limparDados);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>};</div>
+</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_estoque_8hpp_html_a755da710f9bd1895a8aa0320fce9f98f"><div class="ttname"><a href="_estoque_8hpp.html#a755da710f9bd1895a8aa0320fce9f98f">DIRETORIO_LOG_FILMES</a></div><div class="ttdeci">const std::string DIRETORIO_LOG_FILMES</div><div class="ttdef"><b>Definição</b> Estoque.hpp:15</div></div>
+<div class="ttc" id="a_estoque_8hpp_html_ad5ea46769b2a2b9f1596514e9c2156be"><div class="ttname"><a href="_estoque_8hpp.html#ad5ea46769b2a2b9f1596514e9c2156be">DIRETORIO_HISTORICO_FILMES</a></div><div class="ttdeci">const std::string DIRETORIO_HISTORICO_FILMES</div><div class="ttdef"><b>Definição</b> Estoque.hpp:16</div></div>
+<div class="ttc" id="a_estoque_8hpp_html_ae044cd02b67e22d016062085586cea28"><div class="ttname"><a href="_estoque_8hpp.html#ae044cd02b67e22d016062085586cea28">COMPARADORES_FILME</a></div><div class="ttdeci">const std::map&lt; std::string, std::function&lt; bool(const Filme *, const Filme *)&gt; &gt; COMPARADORES_FILME</div><div class="ttdef"><b>Definição</b> Estoque.hpp:18</div></div>
+<div class="ttc" id="a_estoque_8hpp_html_afbe424cecb84854c9cca515014e82c76"><div class="ttname"><a href="_estoque_8hpp.html#afbe424cecb84854c9cca515014e82c76">DIRETORIO_PADRAO_FILMES</a></div><div class="ttdeci">const std::string DIRETORIO_PADRAO_FILMES</div><div class="ttdef"><b>Definição</b> Estoque.hpp:14</div></div>
+<div class="ttc" id="a_filme_8hpp_html"><div class="ttname"><a href="_filme_8hpp.html">Filme.hpp</a></div><div class="ttdoc">Definição da classe Filme e suas subclasses DVD e FITA.</div></div>
+<div class="ttc" id="a_funcoes_8hpp_html"><div class="ttname"><a href="_funcoes_8hpp.html">Funcoes.hpp</a></div></div>
+<div class="ttc" id="aclass_estoque_html"><div class="ttname"><a href="class_estoque.html">Estoque</a></div><div class="ttdoc">Classe para gerenciar o estoque de filmes.</div><div class="ttdef"><b>Definição</b> Estoque.hpp:32</div></div>
+<div class="ttc" id="aclass_estoque_html_a05732c2e0f484145058979f64400c1c5"><div class="ttname"><a href="class_estoque.html#a05732c2e0f484145058979f64400c1c5">Estoque::removerFilme</a></div><div class="ttdeci">void removerFilme(const int identificador)</div><div class="ttdoc">Remove um filme do estoque.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:175</div></div>
+<div class="ttc" id="aclass_estoque_html_a21adcbcedb5a7a74ce697f88b5fd6554"><div class="ttname"><a href="class_estoque.html#a21adcbcedb5a7a74ce697f88b5fd6554">Estoque::salvarDados</a></div><div class="ttdeci">void salvarDados(const bool limparDados)</div><div class="ttdoc">Salva os filmes do estoque em um arquivo.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:268</div></div>
+<div class="ttc" id="aclass_estoque_html_a256439a54ebc6c10f862e4232eefeb8d"><div class="ttname"><a href="class_estoque.html#a256439a54ebc6c10f862e4232eefeb8d">Estoque::filmeValido</a></div><div class="ttdeci">Filme * filmeValido(const int identificador) const</div><div class="ttdoc">Verifica se um filme com determinado identificador é válido para locação.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:248</div></div>
+<div class="ttc" id="aclass_estoque_html_a333e42a1ac5cae968e1699b8c12edbd8"><div class="ttname"><a href="class_estoque.html#a333e42a1ac5cae968e1699b8c12edbd8">Estoque::filmeExiste</a></div><div class="ttdeci">Filme * filmeExiste(const int identificador) const</div><div class="ttdoc">Verifica se um filme com determinado identificador existe no estoque.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:237</div></div>
+<div class="ttc" id="aclass_estoque_html_a38ae587393930430b548a4ad21145169"><div class="ttname"><a href="class_estoque.html#a38ae587393930430b548a4ad21145169">Estoque::pesquisarFilmesCodigo</a></div><div class="ttdeci">void pesquisarFilmesCodigo(const int identificador) const</div><div class="ttdoc">Pesquisa filmes pelo identificador.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:184</div></div>
+<div class="ttc" id="aclass_estoque_html_a5b46b049b7700332b9f1c69ced0b89c8"><div class="ttname"><a href="class_estoque.html#a5b46b049b7700332b9f1c69ced0b89c8">Estoque::listarFilmesOrdenados</a></div><div class="ttdeci">void listarFilmesOrdenados(const std::string ordenacao) const</div><div class="ttdoc">Lista os filmes ordenados por critério.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:216</div></div>
+<div class="ttc" id="aclass_estoque_html_a99c7f0dc2b6fa9950ad25b0071b9cb9b"><div class="ttname"><a href="class_estoque.html#a99c7f0dc2b6fa9950ad25b0071b9cb9b">Estoque::~Estoque</a></div><div class="ttdeci">~Estoque()</div><div class="ttdoc">Destrutor da classe Estoque.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:19</div></div>
+<div class="ttc" id="aclass_estoque_html_ab27ec24341f0edd49e9045d7b68de690"><div class="ttname"><a href="class_estoque.html#ab27ec24341f0edd49e9045d7b68de690">Estoque::lerArquivo</a></div><div class="ttdeci">void lerArquivo(const std::string diretorio)</div><div class="ttdoc">Lê os filmes em estoque de um arquivo.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:24</div></div>
+<div class="ttc" id="aclass_estoque_html_ad459d7d644df8e6369853f7cfed57d16"><div class="ttname"><a href="class_estoque.html#ad459d7d644df8e6369853f7cfed57d16">Estoque::Estoque</a></div><div class="ttdeci">Estoque()</div><div class="ttdoc">Construtor da classe Estoque.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:14</div></div>
+<div class="ttc" id="aclass_estoque_html_aee82491ceecbe1d5084da3838b05b11d"><div class="ttname"><a href="class_estoque.html#aee82491ceecbe1d5084da3838b05b11d">Estoque::pesquisarFilmesTitulo</a></div><div class="ttdeci">void pesquisarFilmesTitulo(const std::string titulo) const</div><div class="ttdoc">Pesquisa filmes pelo título.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:197</div></div>
+<div class="ttc" id="aclass_estoque_html_af5ed78b1cd2907e07e30b7211afc8388"><div class="ttname"><a href="class_estoque.html#af5ed78b1cd2907e07e30b7211afc8388">Estoque::inserirFilme</a></div><div class="ttdeci">bool inserirFilme(Filme *novoFilme)</div><div class="ttdoc">Insere um novo filme no estoque.</div><div class="ttdef"><b>Definição</b> Estoque.cpp:137</div></div>
+<div class="ttc" id="aclass_filme_html"><div class="ttname"><a href="class_filme.html">Filme</a></div><div class="ttdoc">Classe pai para representar um filme.</div><div class="ttdef"><b>Definição</b> Filme.hpp:50</div></div>
+<div class="ttc" id="aclass_filme_html_ad20450d8f7ca44672f5a1a1a274a7c8d"><div class="ttname"><a href="class_filme.html#ad20450d8f7ca44672f5a1a1a274a7c8d">Filme::getTitulo</a></div><div class="ttdeci">const std::string getTitulo() const</div><div class="ttdoc">Obtém o título do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:20</div></div>
+<div class="ttc" id="aclass_filme_html_adb4fa33d5b3419b2b5f232f9b5e792dc"><div class="ttname"><a href="class_filme.html#adb4fa33d5b3419b2b5f232f9b5e792dc">Filme::getUnidades</a></div><div class="ttdeci">const int getUnidades() const</div><div class="ttdoc">Obtém o número de unidades disponíveis do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:18</div></div>
+<div class="ttc" id="aclass_filme_html_af580ef04d5ab40ac2f2e3317cb7582f8"><div class="ttname"><a href="class_filme.html#af580ef04d5ab40ac2f2e3317cb7582f8">Filme::getIdentificador</a></div><div class="ttdeci">const int getIdentificador() const</div><div class="ttdoc">Obtém o identificador do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:16</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

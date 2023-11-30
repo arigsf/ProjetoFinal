@@ -1,0 +1,102 @@
+\doxysection{Referência à estrutura Transacao}
+\hypertarget{struct_transacao}{}\label{struct_transacao}\index{Transacao@{Transacao}}
+
+
+Estrutura para representar uma transação financeira.  
+
+
+
+
+{\ttfamily \#include $<$Financeiro.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_transacao_ac58e8c0be0ab4de8369652de0f7bdeb6}{Transacao}} (\mbox{\hyperlink{struct_data}{Data}}, char, float, float)
+\begin{DoxyCompactList}\small\item\em Construtor da estrutura \doxylink{struct_transacao}{Transacao}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_transacao_ae37bf998d517724372f36c7dba49babf}{imprime\+Transacao}} ()
+\begin{DoxyCompactList}\small\item\em Imprime os detalhes da transação. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_data}{Data}} \mbox{\hyperlink{struct_transacao_a1b505aad1f8c7fe93e2575f5e4afb276}{data}}
+\item 
+char \mbox{\hyperlink{struct_transacao_a5d624905c2ddd7e493ddcdd9f6ff5ccc}{tipo}}
+\item 
+float \mbox{\hyperlink{struct_transacao_aeeb0ce882b84f54575271fb64eb30def}{valor}}
+\item 
+float \mbox{\hyperlink{struct_transacao_a607b4e7b64eb897125f89ceea1ab14e9}{saldo\+\_\+final}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Estrutura para representar uma transação financeira. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{struct_transacao_ac58e8c0be0ab4de8369652de0f7bdeb6}\label{struct_transacao_ac58e8c0be0ab4de8369652de0f7bdeb6} 
+\index{Transacao@{Transacao}!Transacao@{Transacao}}
+\index{Transacao@{Transacao}!Transacao@{Transacao}}
+\doxysubsubsection{\texorpdfstring{Transacao()}{Transacao()}}
+{\footnotesize\ttfamily Transacao\+::\+Transacao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_data}{Data}}}]{\+\_\+data,  }\item[{char}]{\+\_\+tipo,  }\item[{float}]{\+\_\+valor,  }\item[{float}]{\+\_\+saldo\+\_\+final }\end{DoxyParamCaption})}
+
+
+
+Construtor da estrutura \doxylink{struct_transacao}{Transacao}. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em \+\_\+data} & \doxylink{struct_data}{Data} da transação. \\
+\hline
+{\em \+\_\+tipo} & Tipo de transação (\textquotesingle{}D\textquotesingle{} para depósito, \textquotesingle{}S\textquotesingle{} para saque). \\
+\hline
+{\em \+\_\+valor} & Valor da transação. \\
+\hline
+{\em \+\_\+saldo\+\_\+final} & Saldo final após a transação. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{struct_transacao_ae37bf998d517724372f36c7dba49babf}\label{struct_transacao_ae37bf998d517724372f36c7dba49babf} 
+\index{Transacao@{Transacao}!imprimeTransacao@{imprimeTransacao}}
+\index{imprimeTransacao@{imprimeTransacao}!Transacao@{Transacao}}
+\doxysubsubsection{\texorpdfstring{imprimeTransacao()}{imprimeTransacao()}}
+{\footnotesize\ttfamily void Transacao\+::imprime\+Transacao (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Imprime os detalhes da transação. 
+
+
+
+\doxysubsection{Documentação dos dados membro}
+\Hypertarget{struct_transacao_a1b505aad1f8c7fe93e2575f5e4afb276}\label{struct_transacao_a1b505aad1f8c7fe93e2575f5e4afb276} 
+\index{Transacao@{Transacao}!data@{data}}
+\index{data@{data}!Transacao@{Transacao}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_data}{Data}} Transacao\+::data}
+
+\Hypertarget{struct_transacao_a607b4e7b64eb897125f89ceea1ab14e9}\label{struct_transacao_a607b4e7b64eb897125f89ceea1ab14e9} 
+\index{Transacao@{Transacao}!saldo\_final@{saldo\_final}}
+\index{saldo\_final@{saldo\_final}!Transacao@{Transacao}}
+\doxysubsubsection{\texorpdfstring{saldo\_final}{saldo\_final}}
+{\footnotesize\ttfamily float Transacao\+::saldo\+\_\+final}
+
+\Hypertarget{struct_transacao_a5d624905c2ddd7e493ddcdd9f6ff5ccc}\label{struct_transacao_a5d624905c2ddd7e493ddcdd9f6ff5ccc} 
+\index{Transacao@{Transacao}!tipo@{tipo}}
+\index{tipo@{tipo}!Transacao@{Transacao}}
+\doxysubsubsection{\texorpdfstring{tipo}{tipo}}
+{\footnotesize\ttfamily char Transacao\+::tipo}
+
+\Hypertarget{struct_transacao_aeeb0ce882b84f54575271fb64eb30def}\label{struct_transacao_aeeb0ce882b84f54575271fb64eb30def} 
+\index{Transacao@{Transacao}!valor@{valor}}
+\index{valor@{valor}!Transacao@{Transacao}}
+\doxysubsubsection{\texorpdfstring{valor}{valor}}
+{\footnotesize\ttfamily float Transacao\+::valor}
+
+
+
+A documentação para esta estrutura foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_financeiro_8hpp}{Financeiro.\+hpp}}\item 
+src/\mbox{\hyperlink{_financeiro_8cpp}{Financeiro.\+cpp}}\end{DoxyCompactItemize}
