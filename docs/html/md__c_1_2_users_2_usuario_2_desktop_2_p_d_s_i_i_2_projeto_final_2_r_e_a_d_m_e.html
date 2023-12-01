@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CineAluguel: CineAluguel</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CineAluguel
+   </div>
+   <div id="projectbrief">Sistema de gerenciamento de filmes</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div><div class="header">
+  <div class="headertitle"><div class="title">CineAluguel</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a> </p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Introdução</h1>
+<p>Nos dias atuais, com a presença em massa dos serviços online de streaming, é difícil lembrar que existiu uma época em que a escolha do que assistir para entretenimento não era uma tarefa tão simples como navegar por uma gama infinita de filmes e séries disponíveis nessas plataformas. Antigamente, as empresas que realizavam esses serviços eram chamadas de videolocadoras e as pessoas precisavam ir fisicamente para navegar no mundo dos DVDs e das fitas. Nesse contexto, surge a ideia do projeto, que tem como objetivo implementar um sistema de controle para a locadora de vídeo CineAluguel. As videolocadoras eram ambientes frequentados por amantes do cinema, que exploravam as prateleiras repletas de obras audiovisuais. A experiência frustrante de organizar os filmes no estoque, gerenciar os clientes, controlar as locações, lidar com prazos de devolução e cuidar do financeiro fazia parte da rotina desses estabelecimentos, que também é um problema da CineAluguel. Este projeto resgata esse ambiente e serve para que os desenvolvedores apliquem os conceitos e técnicas da Programação Orientada a Objetos aprendidos ao longo do curso de Programação e Desenvolvimento de Software II. A modelagem, a implementação, os testes e a documentação ajudam a criar uma solução confiável, reutilizável e de fácil manutenção. Dessa maneira, busca-se desenvolver um programa funcional, que garanta confiabilidade e flexibilidade.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Visão Geral da Solução</h1>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Estrutura do Programa</h2>
+<p>O sistema é dividido em classes que representam as entidades essenciais na gestão de uma videolocadora, como <code><a class="el" href="class_filme.html" title="Classe pai para representar um filme.">Filme</a></code>, que tem como subclasses <code><a class="el" href="class_d_v_d.html" title="Subclasse de Filme que representa um DVD.">DVD</a></code> e <code><a class="el" href="class_f_i_t_a.html" title="Subclasse de Filme que representa uma FITA.">FITA</a></code>, <code><a class="el" href="class_estoque.html" title="Classe para gerenciar o estoque de filmes.">Estoque</a></code>, <code><a class="el" href="class_cliente.html" title="Classe que representa os clientes.">Cliente</a></code>, <code>CadastroCliente</code>, <code><a class="el" href="class_locacao.html" title="Classe para gerenciar as locações.">Locacao</a></code>, <code><a class="el" href="class_financeiro.html" title="Classe para controle financeiro da locadora.">Financeiro</a></code> e <code><a class="el" href="class_sistema.html" title="Classe que representa o sistema de locação de filmes.">Sistema</a></code>. Cada classe tem responsabilidades específicas para garantir uma estrutura modular.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Funcionamento do Programa</h2>
+<ul>
+<li><b>Filmes:</b> Os filmes são representados pelas classes <code><a class="el" href="class_d_v_d.html" title="Subclasse de Filme que representa um DVD.">DVD</a></code> e <code><a class="el" href="class_f_i_t_a.html" title="Subclasse de Filme que representa uma FITA.">FITA</a></code>, que herdam da classe base <code><a class="el" href="class_filme.html" title="Classe pai para representar um filme.">Filme</a></code>. Cada filme tem um identificador único, título, quantidade em estoque, tipo (<a class="el" href="class_d_v_d.html" title="Subclasse de Filme que representa um DVD.">DVD</a> ou <a class="el" href="class_f_i_t_a.html" title="Subclasse de Filme que representa uma FITA.">FITA</a>), e características específicas, como categoria para DVDs e estado de rebobinamento para fitas.</li>
+<li><b><a class="el" href="class_estoque.html" title="Classe para gerenciar o estoque de filmes.">Estoque</a>:</b> A classe <code><a class="el" href="class_estoque.html" title="Classe para gerenciar o estoque de filmes.">Estoque</a></code> é responsável pelo gerenciamento do inventário de filmes. Ela permite a leitura de um arquivo de dados, inserção de novos filmes, remoção de filmes, pesquisa por código ou título, listagem ordenada, e salvamento de dados em arquivo.</li>
+<li><b>Clientes:</b> A classe <code><a class="el" href="class_cliente.html" title="Classe que representa os clientes.">Cliente</a></code> representa os clientes da vídeo-locadora, contendo informações como CPF, nome, data de nascimento e idade.</li>
+<li><b>CadastroCliente:</b> A classe <code>CadastroCliente</code> é responsável pelo gerenciamento de clientes do sistema. Ela permite a leitura de um arquivo de dados, inserção de novos clientes, remoção de clientes, listar clientes e salvamento dos dados em um arquivo.</li>
+<li><b>Locação:</b> O controle de locações é gerenciado pela classe <code><a class="el" href="class_locacao.html" title="Classe para gerenciar as locações.">Locacao</a></code>. Ela rastreia as locações pendentes, verifica a disponibilidade de filmes, realiza aluguéis, processa devoluções (calculando multas se necessário) e gera relatórios.</li>
+<li><b><a class="el" href="class_financeiro.html" title="Classe para controle financeiro da locadora.">Financeiro</a>:</b> A classe <code><a class="el" href="class_financeiro.html" title="Classe para controle financeiro da locadora.">Financeiro</a></code> é responsável por cuidar do caixa da empresa. Ela permite sacar, depositar, visualizar o saldo e ver o histórico de transações.</li>
+<li><b><a class="el" href="class_sistema.html" title="Classe que representa o sistema de locação de filmes.">Sistema</a>:</b> A classe <code><a class="el" href="class_sistema.html" title="Classe que representa o sistema de locação de filmes.">Sistema</a></code> gerencia todas as aplicações que o usuário desejar fazer.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Modelagem</h2>
+<p>Para acessar a modelagem, <a href="https://github.com/arigsf/ProjetoFinal/wiki/Modelagem">clique aqui</a>.</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Documentação</h2>
+<p>Para acessar a documentação, <a href="https://github.com/arigsf/ProjetoFinal/wiki/Documenta%C3%A7%C3%A3o">clique aqui</a> ou diretamente <a href="https://arigsf.github.io/ProjetoFinal/docs/html/">por aqui</a>.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Conclusão</h1>
+<p>O projeto proporcionou uma oportunidade para aplicar os conhecimentos adquiridos em PDSII na prática, enfrentando desafios típicos do desenvolvimento de software, desde a utilização da ferramenta GitHub em sua totalidade, passando por questões típicas da programação em termos de lógica e sintaxe, até questões de organização, como limitação do que cada um realizaria. Apesar disso, o trabalho em equipe e a ajuda mútua proporcoinaram uma ótima experiência nesse trabalho prático. Por fim, o resultado final deste projeto é um sistema de controle de videolocadora da CineAluguel, que é funcional e segue boas práticas de desenvolvimento de software. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
