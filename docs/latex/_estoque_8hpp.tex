@@ -1,0 +1,70 @@
+\doxysection{Referência ao ficheiro include/\+Estoque.hpp}
+\hypertarget{_estoque_8hpp}{}\label{_estoque_8hpp}\index{include/Estoque.hpp@{include/Estoque.hpp}}
+
+
+Definição da classe \doxylink{class_estoque}{Estoque}, responsável por gerenciar o estoque de filmes.  
+
+
+{\ttfamily \#include "{}Filme.\+hpp"{}}\newline
+{\ttfamily \#include "{}Funcoes.\+hpp"{}}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+\doxysubsubsection*{Componentes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_estoque}{Estoque}}
+\begin{DoxyCompactList}\small\item\em Classe para gerenciar o estoque de filmes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variáveis}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::string \mbox{\hyperlink{_estoque_8hpp_afbe424cecb84854c9cca515014e82c76}{DIRETORIO\+\_\+\+PADRAO\+\_\+\+FILMES}} = "{}./data/Filmes/filmes"{}
+\item 
+const std\+::string \mbox{\hyperlink{_estoque_8hpp_a755da710f9bd1895a8aa0320fce9f98f}{DIRETORIO\+\_\+\+LOG\+\_\+\+FILMES}} = "{}./data/Filmes/logs"{}
+\item 
+const std\+::string \mbox{\hyperlink{_estoque_8hpp_ad5ea46769b2a2b9f1596514e9c2156be}{DIRETORIO\+\_\+\+HISTORICO\+\_\+\+FILMES}} = "{}./data/Filmes/Historico/"{}
+\item 
+const std\+::map$<$ std\+::string, std\+::function$<$ bool(const \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*})$>$ $>$ \mbox{\hyperlink{_estoque_8hpp_ae044cd02b67e22d016062085586cea28}{COMPARADORES\+\_\+\+FILME}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Definição da classe \doxylink{class_estoque}{Estoque}, responsável por gerenciar o estoque de filmes. 
+
+
+
+\doxysubsection{Documentação das variáveis}
+\Hypertarget{_estoque_8hpp_ae044cd02b67e22d016062085586cea28}\label{_estoque_8hpp_ae044cd02b67e22d016062085586cea28} 
+\index{Estoque.hpp@{Estoque.hpp}!COMPARADORES\_FILME@{COMPARADORES\_FILME}}
+\index{COMPARADORES\_FILME@{COMPARADORES\_FILME}!Estoque.hpp@{Estoque.hpp}}
+\doxysubsubsection{\texorpdfstring{COMPARADORES\_FILME}{COMPARADORES\_FILME}}
+{\footnotesize\ttfamily const std\+::map$<$std\+::string, std\+::function$<$bool(const \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}, const \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*})$>$ $>$ COMPARADORES\+\_\+\+FILME}
+
+{\bfseries Valor inicial\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}C"{}},\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *b)}
+\DoxyCodeLine{\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ a-\/>\mbox{\hyperlink{class_filme_af580ef04d5ab40ac2f2e3317cb7582f8}{getIdentificador}}()\ <\ b-\/>getIdentificador();\ \}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}N"{}},\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *b)}
+\DoxyCodeLine{\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ a-\/>\mbox{\hyperlink{class_filme_ad20450d8f7ca44672f5a1a1a274a7c8d}{getTitulo}}()\ <\ b-\/>getTitulo();\ \}\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}U"{}},\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_filme}{Filme}}\ *b)}
+\DoxyCodeLine{\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ a-\/>\mbox{\hyperlink{class_filme_adb4fa33d5b3419b2b5f232f9b5e792dc}{getUnidades}}()\ <\ b-\/>getUnidades();\ \}\}\}}
+
+\end{DoxyCode}
+\Hypertarget{_estoque_8hpp_ad5ea46769b2a2b9f1596514e9c2156be}\label{_estoque_8hpp_ad5ea46769b2a2b9f1596514e9c2156be} 
+\index{Estoque.hpp@{Estoque.hpp}!DIRETORIO\_HISTORICO\_FILMES@{DIRETORIO\_HISTORICO\_FILMES}}
+\index{DIRETORIO\_HISTORICO\_FILMES@{DIRETORIO\_HISTORICO\_FILMES}!Estoque.hpp@{Estoque.hpp}}
+\doxysubsubsection{\texorpdfstring{DIRETORIO\_HISTORICO\_FILMES}{DIRETORIO\_HISTORICO\_FILMES}}
+{\footnotesize\ttfamily const std\+::string DIRETORIO\+\_\+\+HISTORICO\+\_\+\+FILMES = "{}./data/Filmes/Historico/"{}}
+
+\Hypertarget{_estoque_8hpp_a755da710f9bd1895a8aa0320fce9f98f}\label{_estoque_8hpp_a755da710f9bd1895a8aa0320fce9f98f} 
+\index{Estoque.hpp@{Estoque.hpp}!DIRETORIO\_LOG\_FILMES@{DIRETORIO\_LOG\_FILMES}}
+\index{DIRETORIO\_LOG\_FILMES@{DIRETORIO\_LOG\_FILMES}!Estoque.hpp@{Estoque.hpp}}
+\doxysubsubsection{\texorpdfstring{DIRETORIO\_LOG\_FILMES}{DIRETORIO\_LOG\_FILMES}}
+{\footnotesize\ttfamily const std\+::string DIRETORIO\+\_\+\+LOG\+\_\+\+FILMES = "{}./data/Filmes/logs"{}}
+
+\Hypertarget{_estoque_8hpp_afbe424cecb84854c9cca515014e82c76}\label{_estoque_8hpp_afbe424cecb84854c9cca515014e82c76} 
+\index{Estoque.hpp@{Estoque.hpp}!DIRETORIO\_PADRAO\_FILMES@{DIRETORIO\_PADRAO\_FILMES}}
+\index{DIRETORIO\_PADRAO\_FILMES@{DIRETORIO\_PADRAO\_FILMES}!Estoque.hpp@{Estoque.hpp}}
+\doxysubsubsection{\texorpdfstring{DIRETORIO\_PADRAO\_FILMES}{DIRETORIO\_PADRAO\_FILMES}}
+{\footnotesize\ttfamily const std\+::string DIRETORIO\+\_\+\+PADRAO\+\_\+\+FILMES = "{}./data/Filmes/filmes"{}}
+

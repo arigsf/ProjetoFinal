@@ -11,6 +11,11 @@
 #include <cmath>
 #include <iomanip>
 
+/**
+ * @file Filme.hpp
+ * @brief Definição da classe Filme e suas subclasses DVD e FITA.
+ */
+
 // Declaracao de constantes globais para facilitar a legibilidade do codigo;
 
 const int LANCAMENTO = 0;
@@ -37,6 +42,10 @@ const std::map<int, char> Tipo_Filme = {
     {TIPO_DVD, 'D'},
     {TIPO_FITA, 'F'}};
 
+/**
+ * @class Filme
+ * @brief Classe pai para representar um filme.
+ */
 class Filme
 {
 protected:
@@ -46,32 +55,97 @@ protected:
     int _tipo;
 
 public:
+    /**
+     * @brief Construtor da classe Filme.
+     * @param unidades O número de unidades disponíveis do filme.
+     * @param identificador O identificador único do filme.
+     * @param titulo O título do filme.
+     * @param tipo O tipo do filme (DVD ou FITA).
+     */
     Filme(int unidades, int identificador, std::string titulo, int tipo);
+
+    /**
+     * @brief Destrutor da classe Filme.
+     */
     virtual ~Filme();
 
+    /**
+     * @brief Obtém o identificador do filme.
+     * @return O identificador do filme.
+     */
     const int getIdentificador() const;
+
+    /**
+     * @brief Obtém o número de unidades disponíveis do filme.
+     * @return O número de unidades disponíveis.
+     */
     const int getUnidades() const;
+
+    /**
+     * @brief Obtém o título do filme.
+     * @return O título do filme.
+     */
     const std::string getTitulo() const;
+
+    /**
+     * @brief Obtém o tipo do filme (DVD ou FITA).
+     * @return O tipo do filme.
+     */
     const int getTipo() const;
 
+    /**
+     * @brief Adiciona uma unidade do filme.
+     */
     void adicionarUnidades();
+
+    /**
+     * @brief Remove uma unidade do filme.
+     */
     void removerUnidades();
 
-    // Cálculo do valor de locação, se comporta de maneira diferente para DVD ou FITA
+    /**
+     * @brief Calcula o valor de locação do filme.
+     * @param dias O número de dias para locação.
+     * @return O valor de locação calculado.
+     */
     virtual float calculoPrecoLocacao(int dias) = 0;
-    virtual std::string listarInformacoes(); // Método para listar as informacoes do DVD ou FITA, se comporta de maneira diferente em cada um
+
+    /**
+     * @brief Lista as informações do filme.
+     * @return Uma string contendo as informações do filme.
+     */
+    virtual std::string listarInformacoes();
+
+    /**
+     * @brief Valida os dados do filme.
+     * @return true se os dados são válidos, false caso contrário.
+     */
     virtual bool validarDados();
 };
 
-// Subclasse DVD que herda todos os atributos básicos da Classe Filme
-
+/**
+ * @class DVD
+ * @brief Subclasse de Filme que representa um DVD.
+ */
 class DVD : public Filme
 {
 private:
     int _categoria; // 0 - Lancamento, 1 - Estoque, 2 - Promocao;
 
 public:
+    /**
+     * @brief Construtor da subclasse DVD.
+     * @param unidades O número de unidades disponíveis do DVD.
+     * @param identificador O identificador único do DVD.
+     * @param titulo O título do DVD.
+     * @param categoria A categoria do DVD.
+     */
     DVD(int unidades, int identificador, std::string titulo, int categoria); // Construtor
+
+    /**
+     * @brief Obtém a categoria do DVD.
+     * @return A categoria do DVD.
+     */
     int getCategoria();
 
     float calculoPrecoLocacao(int dias) override;
@@ -79,17 +153,31 @@ public:
     bool validarDados() override;
 };
 
-// Subclasse FITA que herda todos os atributos básicos da Classe Filme
-
+/**
+ * @class FITA
+ * @brief Subclasse de Filme que representa uma FITA.
+ */
 class FITA : public Filme
 {
 private:
     bool _estaRebobinado;
 
 public:
+    /**
+     * @brief Construtor da subclasse Fita.
+     * @param unidades O número de unidades disponíveis da Fita.
+     * @param identificador O identificador único da Fita.
+     * @param titulo O título da Fita.
+     * @param estaRebobinado A rebobinação da Fita.
+     */
     FITA(int unidades, int identificador, std::string titulo, bool estaRebobinado); // Construtor
 
-    bool isRebobinado(); // Retorna no caso de FITA se a fita está ou não rebobinada
+    /**
+     * @brief Verifica se a fita está rebobinada.
+     * @return true se a fita está rebobinada, false caso contrário.
+     */
+    bool isRebobinado();
+
     float calculoPrecoLocacao(int dias) override;
     std::string listarInformacoes() override;
 };

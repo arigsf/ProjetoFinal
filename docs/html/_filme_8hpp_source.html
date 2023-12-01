@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CineAluguel: Código-Fonte de include/Filme.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CineAluguel
+   </div>
+   <div id="projectbrief">Sistema de gerenciamento de filmes</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">Filme.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_filme_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FILME_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FILME_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;iterator&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// Declaracao de constantes globais para facilitar a legibilidade do codigo;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="_filme_8hpp.html#aed81302ce0d6ff6589b4c0793682de66">   21</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="_filme_8hpp.html#aed81302ce0d6ff6589b4c0793682de66">LANCAMENTO</a> = 0;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="_filme_8hpp.html#a65bedb28f2d02030c917145beb9a0277">   22</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="_filme_8hpp.html#a65bedb28f2d02030c917145beb9a0277">ESTOQUE</a> = 1;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="_filme_8hpp.html#a7ce4c27bc98e053b0d66bccdb71049bb">   23</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="_filme_8hpp.html#a7ce4c27bc98e053b0d66bccdb71049bb">PROMOCAO</a> = 2;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="_filme_8hpp.html#ac412b23f73d0633a3c93a9a501fd5a7c">   25</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="_filme_8hpp.html#ac412b23f73d0633a3c93a9a501fd5a7c">TIPO_DVD</a> = 0;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="_filme_8hpp.html#ab60b3772e6d4603b5b8dd7632976b5ee">   26</a></span><span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="_filme_8hpp.html#ab60b3772e6d4603b5b8dd7632976b5ee">TIPO_FITA</a> = 1;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// Maps para serem usados na leitura de filmes, no programa principal;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="_filme_8hpp.html#a32552b3bf6e8617b2d468fd76b22d462">   30</a></span><span class="keyword">const</span> std::map&lt;int, char&gt; <a class="code hl_variable" href="_filme_8hpp.html#a32552b3bf6e8617b2d468fd76b22d462">Categorias</a> = {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    {<a class="code hl_variable" href="_filme_8hpp.html#aed81302ce0d6ff6589b4c0793682de66">LANCAMENTO</a>, <span class="charliteral">&#39;L&#39;</span>},</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    {<a class="code hl_variable" href="_filme_8hpp.html#a65bedb28f2d02030c917145beb9a0277">ESTOQUE</a>, <span class="charliteral">&#39;E&#39;</span>},</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    {<a class="code hl_variable" href="_filme_8hpp.html#a7ce4c27bc98e053b0d66bccdb71049bb">PROMOCAO</a>, <span class="charliteral">&#39;P&#39;</span>}};</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">// Usado na hora de salvar os dados;</span></div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="_filme_8hpp.html#add0b6a58617ec7da80c6cd56d9cdb14d">   36</a></span><span class="keyword">const</span> std::map&lt;char, std::string&gt; <a class="code hl_variable" href="_filme_8hpp.html#add0b6a58617ec7da80c6cd56d9cdb14d">aux_Categorias</a> = {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {<a class="code hl_variable" href="_filme_8hpp.html#aed81302ce0d6ff6589b4c0793682de66">LANCAMENTO</a>, <span class="stringliteral">&quot;Lancamento&quot;</span>},</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    {<a class="code hl_variable" href="_filme_8hpp.html#a65bedb28f2d02030c917145beb9a0277">ESTOQUE</a>, <span class="stringliteral">&quot;Estoque&quot;</span>},</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    {<a class="code hl_variable" href="_filme_8hpp.html#a7ce4c27bc98e053b0d66bccdb71049bb">PROMOCAO</a>, <span class="stringliteral">&quot;Promocao&quot;</span>}};</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="_filme_8hpp.html#adc698013b4592398064ddff7421d1215">   41</a></span><span class="keyword">const</span> std::map&lt;int, char&gt; <a class="code hl_variable" href="_filme_8hpp.html#adc698013b4592398064ddff7421d1215">Tipo_Filme</a> = {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {<a class="code hl_variable" href="_filme_8hpp.html#ac412b23f73d0633a3c93a9a501fd5a7c">TIPO_DVD</a>, <span class="charliteral">&#39;D&#39;</span>},</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {<a class="code hl_variable" href="_filme_8hpp.html#ab60b3772e6d4603b5b8dd7632976b5ee">TIPO_FITA</a>, <span class="charliteral">&#39;F&#39;</span>}};</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_filme.html">   49</a></span><span class="keyword">class </span><a class="code hl_class" href="class_filme.html">Filme</a></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_filme.html#a82e77ff5ec93451175326c5bf705ff10">   52</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_filme.html#a82e77ff5ec93451175326c5bf705ff10">_unidades</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="class_filme.html#aef30915541139961135ad5882c771d4a">   53</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_filme.html#aef30915541139961135ad5882c771d4a">_identificador</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_filme.html#a570d004dfe50753c61f8f6f867b2258d">   54</a></span>    std::string <a class="code hl_variable" href="class_filme.html#a570d004dfe50753c61f8f6f867b2258d">_titulo</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_filme.html#aa320460ec19cbd9dbec379369bc51150">   55</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_filme.html#aa320460ec19cbd9dbec379369bc51150">_tipo</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_class" href="class_filme.html">Filme</a>(<span class="keywordtype">int</span> unidades, <span class="keywordtype">int</span> identificador, std::string titulo, <span class="keywordtype">int</span> tipo);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_filme.html#a3d4bf28af3ba618785937af3744f0818">~Filme</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_filme.html#af580ef04d5ab40ac2f2e3317cb7582f8">getIdentificador</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_filme.html#adb4fa33d5b3419b2b5f232f9b5e792dc">getUnidades</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">const</span> std::string <a class="code hl_function" href="class_filme.html#ad20450d8f7ca44672f5a1a1a274a7c8d">getTitulo</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_filme.html#a3df50f546eeadd34a68ab186c6f06b37">getTipo</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_filme.html#a67acd2cde33ed049c2850988f4580c2a">adicionarUnidades</a>();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_filme.html#af7d10f52d298bd93686270adce0078ac">removerUnidades</a>();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="class_filme.html#a8373c99597a7eee7d6787d84147327d3">  111</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="class_filme.html#a8373c99597a7eee7d6787d84147327d3">calculoPrecoLocacao</a>(<span class="keywordtype">int</span> dias) = 0;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">virtual</span> std::string <a class="code hl_function" href="class_filme.html#aa501f362613e645261f5bf223c24f2da">listarInformacoes</a>();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_filme.html#a210d3e2a9dff073eb3e54328d4355bf6">validarDados</a>();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>};</div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="foldopen" id="foldopen00130" data-start="{" data-end="};">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="class_d_v_d.html">  130</a></span><span class="keyword">class </span><a class="code hl_class" href="class_d_v_d.html">DVD</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_filme.html">Filme</a></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>{</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordtype">int</span> _categoria; <span class="comment">// 0 - Lancamento, 1 - Estoque, 2 - Promocao;</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <a class="code hl_class" href="class_d_v_d.html">DVD</a>(<span class="keywordtype">int</span> unidades, <span class="keywordtype">int</span> identificador, std::string titulo, <span class="keywordtype">int</span> categoria); <span class="comment">// Construtor</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_d_v_d.html#a6a1127f085aa26d857f808fa396904b2">getCategoria</a>();</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_d_v_d.html#aff178a8536f85ec33cc84c0d11871e3d">calculoPrecoLocacao</a>(<span class="keywordtype">int</span> dias) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    std::string <a class="code hl_function" href="class_d_v_d.html#abb3219b5b8e84ff8ec35eb38963666b3">listarInformacoes</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_d_v_d.html#aa74a9048bced2d9b0e51c3b76657a193">validarDados</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>};</div>
+</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="foldopen" id="foldopen00160" data-start="{" data-end="};">
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="class_f_i_t_a.html">  160</a></span><span class="keyword">class </span><a class="code hl_class" href="class_f_i_t_a.html">FITA</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_filme.html">Filme</a></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>{</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">bool</span> _estaRebobinado;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <a class="code hl_class" href="class_f_i_t_a.html">FITA</a>(<span class="keywordtype">int</span> unidades, <span class="keywordtype">int</span> identificador, std::string titulo, <span class="keywordtype">bool</span> estaRebobinado); <span class="comment">// Construtor</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_f_i_t_a.html#a6fc9d372a1484309099f5df30e3875eb">isRebobinado</a>();</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_f_i_t_a.html#a0c67438be2a720a7c64fe5a42e76612d">calculoPrecoLocacao</a>(<span class="keywordtype">int</span> dias) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    std::string <a class="code hl_function" href="class_f_i_t_a.html#abe08fb7223d16be0eed3b850afc2b2c3">listarInformacoes</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>};</div>
+</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_filme_8hpp_html_a32552b3bf6e8617b2d468fd76b22d462"><div class="ttname"><a href="_filme_8hpp.html#a32552b3bf6e8617b2d468fd76b22d462">Categorias</a></div><div class="ttdeci">const std::map&lt; int, char &gt; Categorias</div><div class="ttdef"><b>Definição</b> Filme.hpp:30</div></div>
+<div class="ttc" id="a_filme_8hpp_html_a65bedb28f2d02030c917145beb9a0277"><div class="ttname"><a href="_filme_8hpp.html#a65bedb28f2d02030c917145beb9a0277">ESTOQUE</a></div><div class="ttdeci">const int ESTOQUE</div><div class="ttdef"><b>Definição</b> Filme.hpp:22</div></div>
+<div class="ttc" id="a_filme_8hpp_html_a7ce4c27bc98e053b0d66bccdb71049bb"><div class="ttname"><a href="_filme_8hpp.html#a7ce4c27bc98e053b0d66bccdb71049bb">PROMOCAO</a></div><div class="ttdeci">const int PROMOCAO</div><div class="ttdef"><b>Definição</b> Filme.hpp:23</div></div>
+<div class="ttc" id="a_filme_8hpp_html_ab60b3772e6d4603b5b8dd7632976b5ee"><div class="ttname"><a href="_filme_8hpp.html#ab60b3772e6d4603b5b8dd7632976b5ee">TIPO_FITA</a></div><div class="ttdeci">const int TIPO_FITA</div><div class="ttdef"><b>Definição</b> Filme.hpp:26</div></div>
+<div class="ttc" id="a_filme_8hpp_html_ac412b23f73d0633a3c93a9a501fd5a7c"><div class="ttname"><a href="_filme_8hpp.html#ac412b23f73d0633a3c93a9a501fd5a7c">TIPO_DVD</a></div><div class="ttdeci">const int TIPO_DVD</div><div class="ttdef"><b>Definição</b> Filme.hpp:25</div></div>
+<div class="ttc" id="a_filme_8hpp_html_adc698013b4592398064ddff7421d1215"><div class="ttname"><a href="_filme_8hpp.html#adc698013b4592398064ddff7421d1215">Tipo_Filme</a></div><div class="ttdeci">const std::map&lt; int, char &gt; Tipo_Filme</div><div class="ttdef"><b>Definição</b> Filme.hpp:41</div></div>
+<div class="ttc" id="a_filme_8hpp_html_add0b6a58617ec7da80c6cd56d9cdb14d"><div class="ttname"><a href="_filme_8hpp.html#add0b6a58617ec7da80c6cd56d9cdb14d">aux_Categorias</a></div><div class="ttdeci">const std::map&lt; char, std::string &gt; aux_Categorias</div><div class="ttdef"><b>Definição</b> Filme.hpp:36</div></div>
+<div class="ttc" id="a_filme_8hpp_html_aed81302ce0d6ff6589b4c0793682de66"><div class="ttname"><a href="_filme_8hpp.html#aed81302ce0d6ff6589b4c0793682de66">LANCAMENTO</a></div><div class="ttdeci">const int LANCAMENTO</div><div class="ttdef"><b>Definição</b> Filme.hpp:21</div></div>
+<div class="ttc" id="aclass_d_v_d_html"><div class="ttname"><a href="class_d_v_d.html">DVD</a></div><div class="ttdoc">Subclasse de Filme que representa um DVD.</div><div class="ttdef"><b>Definição</b> Filme.hpp:131</div></div>
+<div class="ttc" id="aclass_d_v_d_html_a6a1127f085aa26d857f808fa396904b2"><div class="ttname"><a href="class_d_v_d.html#a6a1127f085aa26d857f808fa396904b2">DVD::getCategoria</a></div><div class="ttdeci">int getCategoria()</div><div class="ttdoc">Obtém a categoria do DVD.</div><div class="ttdef"><b>Definição</b> Filme.cpp:42</div></div>
+<div class="ttc" id="aclass_d_v_d_html_aa74a9048bced2d9b0e51c3b76657a193"><div class="ttname"><a href="class_d_v_d.html#aa74a9048bced2d9b0e51c3b76657a193">DVD::validarDados</a></div><div class="ttdeci">bool validarDados() override</div><div class="ttdoc">Valida os dados do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:86</div></div>
+<div class="ttc" id="aclass_d_v_d_html_abb3219b5b8e84ff8ec35eb38963666b3"><div class="ttname"><a href="class_d_v_d.html#abb3219b5b8e84ff8ec35eb38963666b3">DVD::listarInformacoes</a></div><div class="ttdeci">std::string listarInformacoes() override</div><div class="ttdoc">Lista as informações do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:71</div></div>
+<div class="ttc" id="aclass_d_v_d_html_aff178a8536f85ec33cc84c0d11871e3d"><div class="ttname"><a href="class_d_v_d.html#aff178a8536f85ec33cc84c0d11871e3d">DVD::calculoPrecoLocacao</a></div><div class="ttdeci">float calculoPrecoLocacao(int dias) override</div><div class="ttdoc">Calcula o valor de locação do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:44</div></div>
+<div class="ttc" id="aclass_f_i_t_a_html"><div class="ttname"><a href="class_f_i_t_a.html">FITA</a></div><div class="ttdoc">Subclasse de Filme que representa uma FITA.</div><div class="ttdef"><b>Definição</b> Filme.hpp:161</div></div>
+<div class="ttc" id="aclass_f_i_t_a_html_a0c67438be2a720a7c64fe5a42e76612d"><div class="ttname"><a href="class_f_i_t_a.html#a0c67438be2a720a7c64fe5a42e76612d">FITA::calculoPrecoLocacao</a></div><div class="ttdeci">float calculoPrecoLocacao(int dias) override</div><div class="ttdoc">Calcula o valor de locação do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:61</div></div>
+<div class="ttc" id="aclass_f_i_t_a_html_a6fc9d372a1484309099f5df30e3875eb"><div class="ttname"><a href="class_f_i_t_a.html#a6fc9d372a1484309099f5df30e3875eb">FITA::isRebobinado</a></div><div class="ttdeci">bool isRebobinado()</div><div class="ttdoc">Verifica se a fita está rebobinada.</div><div class="ttdef"><b>Definição</b> Filme.cpp:59</div></div>
+<div class="ttc" id="aclass_f_i_t_a_html_abe08fb7223d16be0eed3b850afc2b2c3"><div class="ttname"><a href="class_f_i_t_a.html#abe08fb7223d16be0eed3b850afc2b2c3">FITA::listarInformacoes</a></div><div class="ttdeci">std::string listarInformacoes() override</div><div class="ttdoc">Lista as informações do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:76</div></div>
+<div class="ttc" id="aclass_filme_html"><div class="ttname"><a href="class_filme.html">Filme</a></div><div class="ttdoc">Classe pai para representar um filme.</div><div class="ttdef"><b>Definição</b> Filme.hpp:50</div></div>
+<div class="ttc" id="aclass_filme_html_a210d3e2a9dff073eb3e54328d4355bf6"><div class="ttname"><a href="class_filme.html#a210d3e2a9dff073eb3e54328d4355bf6">Filme::validarDados</a></div><div class="ttdeci">virtual bool validarDados()</div><div class="ttdoc">Valida os dados do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:81</div></div>
+<div class="ttc" id="aclass_filme_html_a3d4bf28af3ba618785937af3744f0818"><div class="ttname"><a href="class_filme.html#a3d4bf28af3ba618785937af3744f0818">Filme::~Filme</a></div><div class="ttdeci">virtual ~Filme()</div><div class="ttdoc">Destrutor da classe Filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:10</div></div>
+<div class="ttc" id="aclass_filme_html_a3df50f546eeadd34a68ab186c6f06b37"><div class="ttname"><a href="class_filme.html#a3df50f546eeadd34a68ab186c6f06b37">Filme::getTipo</a></div><div class="ttdeci">const int getTipo() const</div><div class="ttdoc">Obtém o tipo do filme (DVD ou FITA).</div><div class="ttdef"><b>Definição</b> Filme.cpp:22</div></div>
+<div class="ttc" id="aclass_filme_html_a570d004dfe50753c61f8f6f867b2258d"><div class="ttname"><a href="class_filme.html#a570d004dfe50753c61f8f6f867b2258d">Filme::_titulo</a></div><div class="ttdeci">std::string _titulo</div><div class="ttdef"><b>Definição</b> Filme.hpp:54</div></div>
+<div class="ttc" id="aclass_filme_html_a67acd2cde33ed049c2850988f4580c2a"><div class="ttname"><a href="class_filme.html#a67acd2cde33ed049c2850988f4580c2a">Filme::adicionarUnidades</a></div><div class="ttdeci">void adicionarUnidades()</div><div class="ttdoc">Adiciona uma unidade do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:24</div></div>
+<div class="ttc" id="aclass_filme_html_a82e77ff5ec93451175326c5bf705ff10"><div class="ttname"><a href="class_filme.html#a82e77ff5ec93451175326c5bf705ff10">Filme::_unidades</a></div><div class="ttdeci">int _unidades</div><div class="ttdef"><b>Definição</b> Filme.hpp:52</div></div>
+<div class="ttc" id="aclass_filme_html_a8373c99597a7eee7d6787d84147327d3"><div class="ttname"><a href="class_filme.html#a8373c99597a7eee7d6787d84147327d3">Filme::calculoPrecoLocacao</a></div><div class="ttdeci">virtual float calculoPrecoLocacao(int dias)=0</div><div class="ttdoc">Calcula o valor de locação do filme.</div></div>
+<div class="ttc" id="aclass_filme_html_aa320460ec19cbd9dbec379369bc51150"><div class="ttname"><a href="class_filme.html#aa320460ec19cbd9dbec379369bc51150">Filme::_tipo</a></div><div class="ttdeci">int _tipo</div><div class="ttdef"><b>Definição</b> Filme.hpp:55</div></div>
+<div class="ttc" id="aclass_filme_html_aa501f362613e645261f5bf223c24f2da"><div class="ttname"><a href="class_filme.html#aa501f362613e645261f5bf223c24f2da">Filme::listarInformacoes</a></div><div class="ttdeci">virtual std::string listarInformacoes()</div><div class="ttdoc">Lista as informações do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:66</div></div>
+<div class="ttc" id="aclass_filme_html_ad20450d8f7ca44672f5a1a1a274a7c8d"><div class="ttname"><a href="class_filme.html#ad20450d8f7ca44672f5a1a1a274a7c8d">Filme::getTitulo</a></div><div class="ttdeci">const std::string getTitulo() const</div><div class="ttdoc">Obtém o título do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:20</div></div>
+<div class="ttc" id="aclass_filme_html_adb4fa33d5b3419b2b5f232f9b5e792dc"><div class="ttname"><a href="class_filme.html#adb4fa33d5b3419b2b5f232f9b5e792dc">Filme::getUnidades</a></div><div class="ttdeci">const int getUnidades() const</div><div class="ttdoc">Obtém o número de unidades disponíveis do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:18</div></div>
+<div class="ttc" id="aclass_filme_html_aef30915541139961135ad5882c771d4a"><div class="ttname"><a href="class_filme.html#aef30915541139961135ad5882c771d4a">Filme::_identificador</a></div><div class="ttdeci">int _identificador</div><div class="ttdef"><b>Definição</b> Filme.hpp:53</div></div>
+<div class="ttc" id="aclass_filme_html_af580ef04d5ab40ac2f2e3317cb7582f8"><div class="ttname"><a href="class_filme.html#af580ef04d5ab40ac2f2e3317cb7582f8">Filme::getIdentificador</a></div><div class="ttdeci">const int getIdentificador() const</div><div class="ttdoc">Obtém o identificador do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:16</div></div>
+<div class="ttc" id="aclass_filme_html_af7d10f52d298bd93686270adce0078ac"><div class="ttname"><a href="class_filme.html#af7d10f52d298bd93686270adce0078ac">Filme::removerUnidades</a></div><div class="ttdeci">void removerUnidades()</div><div class="ttdoc">Remove uma unidade do filme.</div><div class="ttdef"><b>Definição</b> Filme.cpp:29</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

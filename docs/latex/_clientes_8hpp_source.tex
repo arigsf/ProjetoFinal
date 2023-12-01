@@ -1,0 +1,36 @@
+\doxysection{Clientes.\+hpp}
+\hypertarget{_clientes_8hpp_source}{}\label{_clientes_8hpp_source}\index{include/Clientes.hpp@{include/Clientes.hpp}}
+\mbox{\hyperlink{_clientes_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CLIENTE\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CLIENTE\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ FORMATO\ CPF:\ xxx.xxx.xxx-\/xx}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ FORMATO\ Data\ de\ Nascimento:\ dd/mm/yyyy}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_cliente}{Cliente}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_cliente}{Cliente}}(\textcolor{keyword}{const}\ std::string\ cpf,\ \textcolor{keyword}{const}\ std::string\ nome,\ \textcolor{keyword}{const}\ std::string\ dataNascimento\ \textcolor{comment}{/*const\ std::string\ endereco*/});}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{class_cliente_a94874253d977830689e1f3d77b233d0b}{getCPF}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{class_cliente_aefe923bf690604895c4b4fb3d55afbae}{getNome}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{class_cliente_a85d4eaab56f8d68fc6cf034065c0894b}{getDataNascimento}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_cliente_aae76817bca9d8f03298d5bd0deeba4bb}{getIdade}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ std::string\ \_cpf;}
+\DoxyCodeLine{00056\ \ \ \ \ std::string\ \_nome;}
+\DoxyCodeLine{00057\ \ \ \ \ std::string\ \_dataNascimento;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{/*std::string\ endereco;*/}}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

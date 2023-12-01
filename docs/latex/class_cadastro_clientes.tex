@@ -1,0 +1,158 @@
+\doxysection{Referência à classe Cadastro\+Clientes}
+\hypertarget{class_cadastro_clientes}{}\label{class_cadastro_clientes}\index{CadastroClientes@{CadastroClientes}}
+
+
+Classe responsável pelo gerenciamento dos clientes.  
+
+
+
+
+{\ttfamily \#include $<$Cadastro\+\_\+\+Clientes.\+hpp$>$}
+
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_cadastro_clientes_a38b094288614aa951d597e7b45fe088b}{inserir\+Cliente}} (\mbox{\hyperlink{class_cliente}{Cliente}} \texorpdfstring{$\ast$}{*}cliente)
+\begin{DoxyCompactList}\small\item\em Insere um novo cliente no cadastro. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cadastro_clientes_ae108009463fd938c64e1544c9856ff8d}{remover\+Cliente}} (const std\+::string \&cpf)
+\begin{DoxyCompactList}\small\item\em Remove um cliente do cadastro pelo CPF. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cadastro_clientes_a377c0979c4b5612fa119732bce08102a}{listar\+Clientes\+Ordenados}} () const
+\begin{DoxyCompactList}\small\item\em Lista os clientes ordenados por CPF ou nome. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_cliente}{Cliente}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_cadastro_clientes_a817766c86d95e21ef4664bd667205c71}{cliente\+Existe}} (const std\+::string \&cpf) const
+\begin{DoxyCompactList}\small\item\em Verifica se um cliente com o CPF fornecido já existe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cadastro_clientes_a2a1d6119cfb1d6dec376dc2153b84912}{ler\+Arquivo}} (std\+::string diretorio)
+\begin{DoxyCompactList}\small\item\em Lê os dados dos clientes do arquivo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cadastro_clientes_a777ec12b53cf8e1c1d78c78c554efc44}{salvar\+Dados}} (const bool limpar\+Dados)
+\begin{DoxyCompactList}\small\item\em Salva os dados dos clientes no arquivo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_cadastro_clientes_a936ea3c406f89407ac143c465d70854d}{Cadastro\+Clientes}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_cadastro_clientes}{Cadastro\+Clientes}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_cadastro_clientes_ac2b70bc63cafb66b05d92ca145095844}{\texorpdfstring{$\sim$}{\string~}\+Cadastro\+Clientes}} ()
+\begin{DoxyCompactList}\small\item\em Destrutor da classe \doxylink{class_cadastro_clientes}{Cadastro\+Clientes}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Classe responsável pelo gerenciamento dos clientes. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_cadastro_clientes_a936ea3c406f89407ac143c465d70854d}\label{class_cadastro_clientes_a936ea3c406f89407ac143c465d70854d} 
+\index{CadastroClientes@{CadastroClientes}!CadastroClientes@{CadastroClientes}}
+\index{CadastroClientes@{CadastroClientes}!CadastroClientes@{CadastroClientes}}
+\doxysubsubsection{\texorpdfstring{CadastroClientes()}{CadastroClientes()}}
+{\footnotesize\ttfamily Cadastro\+Clientes\+::\+Cadastro\+Clientes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_cadastro_clientes}{Cadastro\+Clientes}. 
+
+\Hypertarget{class_cadastro_clientes_ac2b70bc63cafb66b05d92ca145095844}\label{class_cadastro_clientes_ac2b70bc63cafb66b05d92ca145095844} 
+\index{CadastroClientes@{CadastroClientes}!````~CadastroClientes@{\texorpdfstring{$\sim$}{\string~}CadastroClientes}}
+\index{````~CadastroClientes@{\texorpdfstring{$\sim$}{\string~}CadastroClientes}!CadastroClientes@{CadastroClientes}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CadastroClientes()}{\string~CadastroClientes()}}
+{\footnotesize\ttfamily Cadastro\+Clientes\+::\texorpdfstring{$\sim$}{\string~}\+Cadastro\+Clientes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destrutor da classe \doxylink{class_cadastro_clientes}{Cadastro\+Clientes}. 
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_cadastro_clientes_a817766c86d95e21ef4664bd667205c71}\label{class_cadastro_clientes_a817766c86d95e21ef4664bd667205c71} 
+\index{CadastroClientes@{CadastroClientes}!clienteExiste@{clienteExiste}}
+\index{clienteExiste@{clienteExiste}!CadastroClientes@{CadastroClientes}}
+\doxysubsubsection{\texorpdfstring{clienteExiste()}{clienteExiste()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_cliente}{Cliente}} \texorpdfstring{$\ast$}{*} Cadastro\+Clientes\+::cliente\+Existe (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{cpf }\end{DoxyParamCaption}) const}
+
+
+
+Verifica se um cliente com o CPF fornecido já existe. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em cpf} & CPF a ser verificado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Ponteiro para o cliente se existir; senão, nullptr. 
+\end{DoxyReturn}
+\Hypertarget{class_cadastro_clientes_a38b094288614aa951d597e7b45fe088b}\label{class_cadastro_clientes_a38b094288614aa951d597e7b45fe088b} 
+\index{CadastroClientes@{CadastroClientes}!inserirCliente@{inserirCliente}}
+\index{inserirCliente@{inserirCliente}!CadastroClientes@{CadastroClientes}}
+\doxysubsubsection{\texorpdfstring{inserirCliente()}{inserirCliente()}}
+{\footnotesize\ttfamily void Cadastro\+Clientes\+::inserir\+Cliente (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_cliente}{Cliente}} \texorpdfstring{$\ast$}{*}}]{cliente }\end{DoxyParamCaption})}
+
+
+
+Insere um novo cliente no cadastro. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em cliente} & Ponteiro para o cliente a ser inserido. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_cadastro_clientes_a2a1d6119cfb1d6dec376dc2153b84912}\label{class_cadastro_clientes_a2a1d6119cfb1d6dec376dc2153b84912} 
+\index{CadastroClientes@{CadastroClientes}!lerArquivo@{lerArquivo}}
+\index{lerArquivo@{lerArquivo}!CadastroClientes@{CadastroClientes}}
+\doxysubsubsection{\texorpdfstring{lerArquivo()}{lerArquivo()}}
+{\footnotesize\ttfamily void Cadastro\+Clientes\+::ler\+Arquivo (\begin{DoxyParamCaption}\item[{std\+::string}]{diretorio }\end{DoxyParamCaption})}
+
+
+
+Lê os dados dos clientes do arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em diretorio} & O caminho do arquivo a ser lido. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_cadastro_clientes_a377c0979c4b5612fa119732bce08102a}\label{class_cadastro_clientes_a377c0979c4b5612fa119732bce08102a} 
+\index{CadastroClientes@{CadastroClientes}!listarClientesOrdenados@{listarClientesOrdenados}}
+\index{listarClientesOrdenados@{listarClientesOrdenados}!CadastroClientes@{CadastroClientes}}
+\doxysubsubsection{\texorpdfstring{listarClientesOrdenados()}{listarClientesOrdenados()}}
+{\footnotesize\ttfamily void Cadastro\+Clientes\+::listar\+Clientes\+Ordenados (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Lista os clientes ordenados por CPF ou nome. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em por\+CPF} & Se verdadeiro, ordena por CPF; senão, ordena por nome. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_cadastro_clientes_ae108009463fd938c64e1544c9856ff8d}\label{class_cadastro_clientes_ae108009463fd938c64e1544c9856ff8d} 
+\index{CadastroClientes@{CadastroClientes}!removerCliente@{removerCliente}}
+\index{removerCliente@{removerCliente}!CadastroClientes@{CadastroClientes}}
+\doxysubsubsection{\texorpdfstring{removerCliente()}{removerCliente()}}
+{\footnotesize\ttfamily void Cadastro\+Clientes\+::remover\+Cliente (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{cpf }\end{DoxyParamCaption})}
+
+
+
+Remove um cliente do cadastro pelo CPF. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em cpf} & CPF do cliente a ser removido. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_cadastro_clientes_a777ec12b53cf8e1c1d78c78c554efc44}\label{class_cadastro_clientes_a777ec12b53cf8e1c1d78c78c554efc44} 
+\index{CadastroClientes@{CadastroClientes}!salvarDados@{salvarDados}}
+\index{salvarDados@{salvarDados}!CadastroClientes@{CadastroClientes}}
+\doxysubsubsection{\texorpdfstring{salvarDados()}{salvarDados()}}
+{\footnotesize\ttfamily void Cadastro\+Clientes\+::salvar\+Dados (\begin{DoxyParamCaption}\item[{const bool}]{limpar\+Dados }\end{DoxyParamCaption})}
+
+
+
+Salva os dados dos clientes no arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em limpar\+Dados} & Se verdadeiro, desaloca os dados após salvar. \\
+\hline
+\end{DoxyParams}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_cadastro___clientes_8hpp}{Cadastro\+\_\+\+Clientes.\+hpp}}\item 
+src/\mbox{\hyperlink{_cadastro___clientes_8cpp}{Cadastro\+\_\+\+Clientes.\+cpp}}\end{DoxyCompactItemize}

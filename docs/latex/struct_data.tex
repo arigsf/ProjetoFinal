@@ -1,0 +1,57 @@
+\doxysection{Referência à estrutura Data}
+\hypertarget{struct_data}{}\label{struct_data}\index{Data@{Data}}
+
+
+Estrutura para representar a data das transações financeiras.  
+
+
+
+
+{\ttfamily \#include $<$Financeiro.\+hpp$>$}
+
+\doxysubsubsection*{Atributos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+time\+\_\+t \mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}} = time(0)
+\item 
+int \mbox{\hyperlink{struct_data_ad76270db677fc394a4a7ded1c58de6d5}{dia}} = localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/$>$tm\+\_\+mday
+\item 
+int \mbox{\hyperlink{struct_data_a8f77c5b515144e08b4fe26a8604f30ad}{mes}} = localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/$>$tm\+\_\+mon + 1
+\item 
+int \mbox{\hyperlink{struct_data_a80d76fe2225d187fe8a20414478a2cb5}{ano}} = localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/$>$tm\+\_\+year + 1900
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Estrutura para representar a data das transações financeiras. 
+
+\doxysubsection{Documentação dos dados membro}
+\Hypertarget{struct_data_a80d76fe2225d187fe8a20414478a2cb5}\label{struct_data_a80d76fe2225d187fe8a20414478a2cb5} 
+\index{Data@{Data}!ano@{ano}}
+\index{ano@{ano}!Data@{Data}}
+\doxysubsubsection{\texorpdfstring{ano}{ano}}
+{\footnotesize\ttfamily int Data\+::ano = localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/$>$tm\+\_\+year + 1900}
+
+\Hypertarget{struct_data_ad76270db677fc394a4a7ded1c58de6d5}\label{struct_data_ad76270db677fc394a4a7ded1c58de6d5} 
+\index{Data@{Data}!dia@{dia}}
+\index{dia@{dia}!Data@{Data}}
+\doxysubsubsection{\texorpdfstring{dia}{dia}}
+{\footnotesize\ttfamily int Data\+::dia = localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/$>$tm\+\_\+mday}
+
+\Hypertarget{struct_data_a8f77c5b515144e08b4fe26a8604f30ad}\label{struct_data_a8f77c5b515144e08b4fe26a8604f30ad} 
+\index{Data@{Data}!mes@{mes}}
+\index{mes@{mes}!Data@{Data}}
+\doxysubsubsection{\texorpdfstring{mes}{mes}}
+{\footnotesize\ttfamily int Data\+::mes = localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/$>$tm\+\_\+mon + 1}
+
+\Hypertarget{struct_data_a4dae11904353440a5dac9a51ac3e33de}\label{struct_data_a4dae11904353440a5dac9a51ac3e33de} 
+\index{Data@{Data}!now@{now}}
+\index{now@{now}!Data@{Data}}
+\doxysubsubsection{\texorpdfstring{now}{now}}
+{\footnotesize\ttfamily time\+\_\+t Data\+::now = time(0)}
+
+
+
+A documentação para esta estrutura foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_financeiro_8hpp}{Financeiro.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,64 @@
+\doxysection{Sistema.\+hpp}
+\hypertarget{_sistema_8hpp_source}{}\label{_sistema_8hpp_source}\index{include/Sistema.hpp@{include/Sistema.hpp}}
+\mbox{\hyperlink{_sistema_8hpp}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SISTEMA\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SISTEMA\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_estoque_8hpp}{Estoque.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_locacao_8hpp}{Locacao.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cadastro___clientes_8hpp}{Cadastro\_Clientes.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_funcoes_8hpp}{Funcoes.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_financeiro_8hpp}{Financeiro.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{_sistema_8hpp_a78dd6059d1f3df45c89d04d229e15626}{ARQUIVO\_FILMES}}\ =\ \textcolor{charliteral}{'F'};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{_sistema_8hpp_acb4fc0e521697cfa78be3f2a04120f79}{ARQUIVO\_CLIENTES}}\ =\ \textcolor{charliteral}{'C'};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sistema}{Sistema}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_estoque}{Estoque}}\ \_estoque;}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_locacao}{Locacao}}\ \_locacao;}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_cadastro_clientes}{CadastroClientes}}\ \_clientes;}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_financeiro}{Financeiro}}\ \_financeiro;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_sistema_a815b07845ef6b03247b239333fe75e28}{Sistema}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_a8bbc41204dc96fe3dc8cac80c2f8e2aa}{lerArquivo}}();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_a962d328f8bfe69979eb5f285de5d5fce}{cadastrarFilme}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_aafd9516cb4d96fb4b8dde70dff4fd9da}{removerFilme}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_a033e9a238009a67506a6cdfc75c6a329}{listarFilmesOrdenados}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_ac071a263e7b7ce22740a1800959bdea6}{cadastrarCliente}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_a9f57512e59817ba897f697504282b80b}{listarClientesOrdenados}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_ad4f3f554a42a9de933fa1d7dc7b6a5e7}{removerCliente}}();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_af92e4542875f0ee11a198cf0987f7e8e}{alugarFilmes}}();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_a3b7d045640c1a0d68a2b12e75a7b8a50}{devolverFilmes}}();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_a2dbabdff5aebbd724bbb2bbddddf9b26}{listarLogLocacoes}}();}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_acdd7c06f64d1b1e3b0c8a7a5ddebacdf}{listarLocacoes}}();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_acfd0c5ca3554122230ba437a0f9ff43e}{limparTerminal}}();}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_ac8ba2132a7ee42c93c9dd5598899b4e2}{mostrarTransacoes}}();}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_abf32e30a02f274c3eab0a4b9fef31c09}{cancelarTransacao}}();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sistema_a748dbb6ae8b5e9a1620dcdca198a6929}{mostrarOpcoes}}();}
+\DoxyCodeLine{00125\ \};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
