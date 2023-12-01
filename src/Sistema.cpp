@@ -18,7 +18,7 @@ void Sistema::lerArquivo()
     while(true) {
         std::cout << "Filmes ou Clientes (F/C)? (Digite CANCELAR se deseja cancelar) ";
         std::cin >> tipo;
-        if(tipo == "CANCELAR")
+        if (tipo == "CANCELAR")
             return;
         else if (tipo[0] != ARQUIVO_CLIENTES && tipo[0] != ARQUIVO_FILMES)
             std::cout << "Erro : Tipo de leitura invalido" << std::endl;
@@ -31,7 +31,7 @@ void Sistema::lerArquivo()
     std::cin.ignore();
     std::getline(std::cin, diretorio);
 
-    if(ARQUIVO_FILMES == tipo[0])
+    if (ARQUIVO_FILMES == tipo[0])
         this->_estoque.lerArquivo(diretorio);
     else if (ARQUIVO_CLIENTES == tipo[0])
         this->_clientes.lerArquivo(diretorio);
@@ -44,9 +44,9 @@ void Sistema::cadastrarFilme()
     {
         std::cout << "\nDigite o tipo do filme\n[D] - dvd\n[F] - fita\n\nEscolha (Digite CANCELAR se deseja cancelar): ";
         std::cin >> tipo;
-        if(tipo == "CANCELAR")
+        if (tipo == "CANCELAR")
             return;
-        else if(!isTipoValido(tipo[0]))
+        else if (!isTipoValido(tipo[0]))
             std::cout << "ERRO: Tipo invalido, digite novamente" << std::endl;
         else
             break;
@@ -87,9 +87,9 @@ void Sistema::cadastrarFilme()
         std::cout << "Digite o nome do filme (Digte CANCELAR se deseja cancelar): ";
         std::cin.ignore();
         std::getline(std::cin, titulo);
-        if(titulo == "CANCELAR")
+        if (titulo == "CANCELAR")
             return;
-        else if(titulo.empty())
+        else if (titulo.empty())
             std::cout << "ERRO: titulo invalido, digite novamente" << std::endl;
         else
             break;
@@ -109,7 +109,7 @@ void Sistema::cadastrarFilme()
             std::cout << "\nDigite a categoria do filme\n[E] - Estoque\n[L] - Lancamento\n[P] - Promocao\n";
             std::cout << "\nEscolha (Digite CANCELAR se deseja cancelar): ";
             std::cin >> categoria;
-            if(categoria == "CANCELAR")
+            if (categoria == "CANCELAR")
                 return;
             indice_categoria = isCategoriaValido(categoria[0]);
 
@@ -268,7 +268,7 @@ void Sistema::alugarFilmes()
                      " (Digite CANCELAR se deseja cancelar): ";
         std::cin >> cpf;
 
-        if(cpf == "CANCELAR")
+        if (cpf == "CANCELAR")
             return;
         else if (!isCPFValido(cpf))
             std::cout << "\nERRO: Formato invalido de CPF" << std::endl;
