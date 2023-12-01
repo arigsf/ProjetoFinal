@@ -172,14 +172,7 @@ Membros públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Realiza a locação de filmes para um cliente. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cpf</td><td>O CPF do cliente. </td></tr>
-    <tr><td class="paramname">ids</td><td>Vetor de identificadores dos filmes a serem locados. </td></tr>
-    <tr><td class="paramname">dias</td><td>O número de dias para a locação. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>O usuário deve digitar, respectivamente, o CPF do cliente, os ids dos filmes e o número de dias do aluguel. </p>
 
 </div>
 </div>
@@ -199,12 +192,7 @@ Membros públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Cadastra um novo cliente no sistema. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cliente</td><td>Ponteiro para o novo cliente a ser cadastrado. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>O usuário deve digitar os dados do cliente, respectivamente, o CPF, o nome e a data de nascimento. </p>
 
 </div>
 </div>
@@ -224,12 +212,7 @@ Membros públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Cadastra um novo filme no estoque. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">novo_filme</td><td>Ponteiro para o novo filme a ser cadastrado. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>O usuário deve digitar primeiramente o tipo do filme [D | F]. Em seguida, deve inserir, respectivamente, a quantidade, o identificador e o título. Se o tipo for D, também deve ser inserido a categoria [E | L | P]. </p>
 
 </div>
 </div>
@@ -268,14 +251,7 @@ Membros públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Realiza a devolução de filmes por um cliente. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cpf</td><td>O CPF do cliente. </td></tr>
-    <tr><td class="paramname">ids</td><td>Vetor de identificadores dos filmes a serem devolvidos. </td></tr>
-    <tr><td class="paramname">dias</td><td>O número de dias de locação. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>O usuário deve digitar, respectivamente, o CPF do cliente, o número de dias decorridos desde o aluguel e os ids dos filmes. </p>
 
 </div>
 </div>
@@ -295,12 +271,7 @@ Membros públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lê informações de um arquivo e atualiza o estoque. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">diretorio</td><td>O caminho do arquivo a ser lido. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>O usuário deve digitar se deseja abrir o arquivo de filmes ou de clientes [F | C]. Em seguida, deve inserir o diretório do arquivo. </p>
 
 </div>
 </div>
@@ -339,12 +310,6 @@ Membros públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lista os clientes ordenados por critérios específicos. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ordenacao</td><td>O critério de ordenação dos clientes. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -364,12 +329,7 @@ Membros públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lista os filmes ordenados por critérios específicos. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ordenacao</td><td>O critério de ordenação dos filmes. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>O usuário deve digitar o tipo de ordenação que deseja [C | U | N]. </p>
 
 </div>
 </div>
@@ -465,12 +425,7 @@ Membros públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Remove um cliente do sistema com base no CPF. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cpf</td><td>O CPF único do cliente a ser removido. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>O usuário deve digitar o CPF do cliente que deseja remover. </p>
 
 </div>
 </div>
@@ -490,18 +445,13 @@ Membros públicos</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Remove um filme do estoque com base no identificador. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">identificador</td><td>O identificador único do filme a ser removido. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>O usuário deve digitar o identificador do filme que deseja remover. </p>
 
 </div>
 </div>
 <hr/>A documentação para esta classe foi gerada a partir dos seguintes ficheiros:<ul>
-<li>include/<a class="el" href="_sistema_8hpp_source.html">Sistema.hpp</a></li>
-<li>src/<a class="el" href="_sistema_8cpp.html">Sistema.cpp</a></li>
+<li>C:/Users/Usuario/Desktop/PDSII/ProjetoFinal/include/<a class="el" href="_sistema_8hpp_source.html">Sistema.hpp</a></li>
+<li>C:/Users/Usuario/Desktop/PDSII/ProjetoFinal/src/<a class="el" href="_sistema_8cpp.html">Sistema.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
