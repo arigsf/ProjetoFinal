@@ -16,5 +16,6 @@ bool isCPFValido(std::string &cpf);
 bool isDataNascimentoValido(std::string &data);
 bool isDiasValido(const int dias);
 bool isDiasDecorridosValido(const int dias);
+bool isNumeroValido(const std::string& s);
 
 #endif
