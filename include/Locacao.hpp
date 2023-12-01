@@ -66,7 +66,7 @@ private:
      * @param filme O filme alugado.
      * @return A locação encontrada.
      */
-    LocacaoData getLocacao(std::string cpf, Filme *filme);
+    LocacaoData* getLocacao(std::string cpf, Filme *filme);
 
     /**
      * @brief Salva as locações pendentes em um arquivo.
