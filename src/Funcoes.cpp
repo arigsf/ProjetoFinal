@@ -64,3 +64,10 @@ bool isDiasValido(const int dias) {
 bool isDiasDecorridosValido(const int dias) {
     return dias > 0;
 }
+
+
+bool isNumeroValido(const std::string& s)
+{
+    return !s.empty() && std::find_if(s.begin(), 
+        s.end(), [](unsigned char c) { return !std::isdigit(c); }) == s.end();
+}

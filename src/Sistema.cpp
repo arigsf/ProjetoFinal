@@ -52,32 +52,50 @@ void Sistema::cadastrarFilme()
             break;
     }
 
-    int unidades, identificador;
+    std::string unidades_string, identificador_string;
+    unsigned long int unidades, identificador;
     while (true)
     {
-        std::cout << "\nInsira a quantidade (Digite -1 se deseja cancelar): ";
-        std::cin >> unidades;
-        if (unidades == -1)
+        std::cout << "\nInsira a quantidade (Digite CANCELAR se deseja cancelar): ";
+        std::cin >> unidades_string;
+        if (unidades_string == "CANCELAR")
             return;
-        else if (!isUnidadesValido(unidades))
-            std::cout << "ERRO: Quantidades invalida, digite novamente" << std::endl;
-        else
-            break;
+        else if (!isNumeroValido(unidades_string))
+            std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
+        
+        else {
+            unidades = std::stoi(unidades_string);
+
+            if (!isUnidadesValido(unidades))
+                std::cout << "ERRO: Quantidades invalida, digite novamente" << std::endl;
+            else
+                break;    
+        }
+
+        
     }
 
     while (true)
     {
-        std::cout << "\nInsira o identificador (Digite 0 se deseja cancelar): ";
-        std::cin >> identificador;
-        if (identificador == 0)
+        std::cout << "\nInsira o identificador (Digite CANCELAR se deseja cancelar): ";
+        std::cin >> identificador_string;
+        if (identificador_string == "CANCELAR")
             return;
-        else if (!isIdentificadorValido(identificador))
-            std::cout << "ERRO: Identificador invalido, digite novamente" << std::endl;
-        else if (this->_estoque.filmeExiste(identificador))
-            std::cout << "ERRO: identificador repetido" << std::endl;
+        else if (!isNumeroValido(identificador_string))
+            std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
 
-        else
-            break;
+        else {
+
+            identificador = std::stoi(identificador_string);
+
+            if (!isIdentificadorValido(identificador))
+                std::cout << "ERRO: Identificador invalido, digite novamente" << std::endl;
+            else if (this->_estoque.filmeExiste(identificador))
+                std::cout << "ERRO: identificador repetido" << std::endl;
+            else
+                break;
+        }
+        
     }
 
     std::string titulo;
@@ -132,22 +150,32 @@ void Sistema::cadastrarFilme()
 
 void Sistema::removerFilme()
 {
-    int identificador;
+    std::string identificador_string;
+    unsigned long int identificador;
     while (true)
     {
-        std::cout << "Digite o identificador (Digite 0 se deseja cancelar): ";
-        std::cin >> identificador;
+        
+        std::cout << "Digite o identificador (Digite CANCELAR se deseja cancelar): ";
+        std::cin >> identificador_string;
 
-        if (identificador == 0)
+        if (identificador_string == "CANCELAR")
             return;
-        else if (!isIdentificadorValido(identificador))
-            std::cout << "ERRO: identificador invalido, digite novamente" << std::endl;
-        else if (!this->_estoque.filmeExiste(identificador))
-            std::cout << "ERRO: identificador inexistente, digite novamente" << std::endl;
-        else if (this->_locacao.verificarFilmeAlugado(identificador))
-            std::cout << "ERRO: filme com aluguel pendente, nao pode ser removido, digite novamente" << std::endl;
-        else
-            break;
+        else if (!isNumeroValido(identificador_string))
+            std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
+            
+        else {
+
+            identificador = std::stoi(identificador_string);
+
+            if (!isIdentificadorValido(identificador))
+                std::cout << "ERRO: identificador invalido, digite novamente" << std::endl;
+            else if (!this->_estoque.filmeExiste(identificador))
+                std::cout << "ERRO: identificador inexistente, digite novamente" << std::endl;
+            else if (this->_locacao.verificarFilmeAlugado(identificador))
+                std::cout << "ERRO: filme com aluguel pendente, nao pode ser removido, digite novamente" << std::endl;
+            else
+                break;
+        }
     }
 
     this->_estoque.salvarDados(false);
@@ -258,8 +286,9 @@ void Sistema::removerCliente()
 void Sistema::alugarFilmes()
 {
 
-    int id, dias;
-    std::string cpf;
+    
+    unsigned id, dias;
+    std::string cpf, dias_string, id_string;;
 
     while (true)
     {
@@ -280,7 +309,7 @@ void Sistema::alugarFilmes()
 
     int alugados = this->_locacao.getLocacoesPorCliente(cpf);
 
-    if (alugados == 10)
+    if (alugados == QTD_MAXIMO_FILMES_ALUGADOS)
     {
         std::cout << "Você ja atingiu o limite máximo de 10 filmes alugados. Realize a devolucao para o aluguel de novos filmes" << std::endl;
         return;
@@ -293,13 +322,20 @@ void Sistema::alugarFilmes()
     while (alugados <= QTD_MAXIMO_FILMES_ALUGADOS)
     {
 
-        std::cout << "\nInsira o ID do " << alugados + 1 << "º filme desejado (Para concluir digite -1 ou 0 para cancelar): ";
-        std::cin >> id;
+        std::cout << "\nInsira o ID do " << alugados + 1 << "º filme desejado (Para concluir digite PARAR ou CANCELAR para cancelar): ";
+        std::cin >> id_string;
 
-        if (id == 0)
+        if (id_string == "CANCELAR")
             return;
-        else if (id == -1)
+        else if (id_string == "PARAR")
             break;
+
+        else if (!isNumeroValido(id_string)) {
+            std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
+            continue;
+        }
+
+        id = std::stoi(id_string);
 
         Filme *filme = this->_estoque.filmeValido(id);
         if (!filme)
@@ -320,14 +356,25 @@ void Sistema::alugarFilmes()
 
     while (true)
     {
-        std::cout << "\nDigite o numero de dias do aluguel (entre 1 e 7, ou 0 se deseja cancelar): ";
-        std::cin >> dias;
-        if (dias == 0)
+        std::cout << "\nDigite o numero de dias do aluguel (entre 1 e 7, ou CANCELAR se deseja cancelar): ";
+        std::cin >> dias_string;
+        if (dias_string == "CANCELAR")
             return;
-        else if (!isDiasValido(dias))
-            std::cout << "ERRO: Numero de dias invalido, digite novamente" << std::endl;
-        else
-            break;
+
+        else if (!isNumeroValido(dias_string)) 
+            std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
+        
+        else {
+
+            dias = std::stoi(dias_string);
+
+            if (!isDiasValido(dias))
+                std::cout << "ERRO: Numero de dias invalido, digite novamente" << std::endl;
+            else
+                break;
+        }
+
+        
     }
 
     float valor = this->_locacao.alugar(cpf, filmes, dias);
@@ -337,8 +384,8 @@ void Sistema::alugarFilmes()
 
 void Sistema::devolverFilmes()
 {
-
-    int id, dias;
+    std::string dias_string, id_string;
+    unsigned long int id, dias;
     int valorDaMulta = 0;
 
     std::vector<Filme *> filmes;
@@ -363,14 +410,25 @@ void Sistema::devolverFilmes()
 
     while (true)
     {
-        std::cout << "\nDigite o numero de dias decorridos desde o aluguel (Digite 0 se deseja cancelar): ";
-        std::cin >> dias;
-        if (dias == 0)
+        std::cout << "\nDigite o numero de dias decorridos desde o aluguel (Digite CANCELAR se deseja cancelar): ";
+        std::cin >> dias_string;
+        if (dias_string == "CANCELAR")
             return;
-        else if (!isDiasDecorridosValido(dias))
-            std::cout << "ERRO: numero de dias invalido, digite novamente" << std::endl;
-        else
-            break;
+
+        else if (!isNumeroValido(dias_string)) 
+            std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
+        
+
+        else {
+
+            dias = std::stoi(dias_string);
+
+            if (!isDiasDecorridosValido(dias))
+                std::cout << "ERRO: numero de dias invalido, digite novamente" << std::endl;
+            else
+                break;
+        }
+        
     }
 
     int alugados = this->_locacao.getLocacoesPorCliente(cpf);
@@ -379,13 +437,19 @@ void Sistema::devolverFilmes()
     int i = 0;
     while (i <= alugados)
     {
-        std::cout << "\nDigite o id do " << i + 1 << "º filme (Digite 0 se deseja cancelar, -1 se está satisfeito com os filmes alugados): ";
-        std::cin >> id;
+        std::cout << "\nDigite o id do " << i + 1 << "º filme (Digite CANCELAR se deseja cancelar, PARAR se está satisfeito com os filmes alugados): ";
+        std::cin >> id_string;
 
-        if (id == 0)
+        if (id_string == "CANCELAR")
             return;
-        else if (id == -1)
+        else if (id_string == "PARAR")
             break;
+        else if (!isNumeroValido(id_string)) {
+            std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
+            continue;
+        }
+            
+        id = std::stoi(id_string);
 
         Filme *filme = this->_estoque.filmeExiste(id);
         if (!filme)
@@ -395,34 +459,39 @@ void Sistema::devolverFilmes()
         }
 
         int multaAtual, isDanificado;
+        std::string danificado_string;
         multaAtual = 0; // Multa da devolução atual
         while (true)
         {
-            std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado?\n[0] - Nao\n[1] - Sim\nEscolha (Digite -1 se deseja cancelar): ";
-            std::cin >> isDanificado;
-            if (isDanificado == -1)
+            std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado?\n[0] - Nao\n[1] - Sim\nEscolha (Digite CANCELAR se deseja cancelar): ";
+            std::cin >> danificado_string;
+            if (danificado_string == "CANCELAR")
                 return;
-            else if (isDanificado != 1 && isDanificado != 0)
+            else if (danificado_string != "1" && danificado_string != "0")
                 std::cout << "ERRO: opcao invalida, digite novamente" << std::endl;
             else
                 break;
         }
 
+        isDanificado = std::stoi(danificado_string);
+
         if (filme->getTipo() == TIPO_FITA)
         { // Se o filme é fita, precisamos verificar se está rebobinado
+            std::string rebobinado_string;
             int isRebobinado;
             while (true)
             {
-                std::cout << "A fita " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta rebobinada?\n[0] - Nao\n[1] - Sim\nEscolha (Digite -1 se deseja cancelar): ";
-                std::cin >> isRebobinado;
-                if (isDanificado == -1)
+                std::cout << "A fita " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta rebobinada?\n[0] - Nao\n[1] - Sim\nEscolha (Digite CANCELAR se deseja cancelar): ";
+                std::cin >> rebobinado_string;
+                if (rebobinado_string == "CANCELAR")
                     return;
-                else if (isDanificado != 1 && isDanificado != 0)
+                else if (rebobinado_string != "1" &&  rebobinado_string != "0")
                     std::cout << "ERRO: opcao invalida, digite novamente" << std::endl;
                 else
                     break;
             }
 
+            isRebobinado = std::stoi(rebobinado_string);
             if (!isRebobinado)
                 multaAtual += 2;
         }
