@@ -287,7 +287,7 @@ void Sistema::alugarFilmes()
 {
 
     
-    unsigned id, dias;
+    unsigned long int id, dias;
     std::string cpf, dias_string, id_string;;
 
     while (true)
