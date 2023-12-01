@@ -18,11 +18,11 @@ void Sistema::lerArquivo()
     while(true) {
         std::cout << "Filmes ou Clientes (F/C)? (Digite CANCELAR se deseja cancelar) ";
         std::cin >> tipo;
+        tipo = toUpperCase(tipo);
         if (tipo == "CANCELAR")
             return;
-        else if (tipo[0] != ARQUIVO_CLIENTES && tipo[0] != ARQUIVO_FILMES)
+        else if (((tipo[0] != ARQUIVO_CLIENTES && tipo[0] != ARQUIVO_FILMES)) || tipo.size() > 1)
             std::cout << "Erro : Tipo de leitura invalido" << std::endl;
-        
         else
             break;
     }
@@ -44,9 +44,11 @@ void Sistema::cadastrarFilme()
     {
         std::cout << "\nDigite o tipo do filme\n[D] - dvd\n[F] - fita\n\nEscolha (Digite CANCELAR se deseja cancelar): ";
         std::cin >> tipo;
+        tipo = toUpperCase(tipo);
+
         if (tipo == "CANCELAR")
             return;
-        else if (!isTipoValido(tipo[0]))
+        else if (!isTipoValido(tipo[0]) || tipo.size() > 1)
             std::cout << "ERRO: Tipo invalido, digite novamente" << std::endl;
         else
             break;
@@ -58,7 +60,7 @@ void Sistema::cadastrarFilme()
     {
         std::cout << "\nInsira a quantidade (Digite CANCELAR se deseja cancelar): ";
         std::cin >> unidades_string;
-        if (unidades_string == "CANCELAR")
+        if (toUpperCase(unidades_string) == "CANCELAR")
             return;
         else if (!isNumeroValido(unidades_string))
             std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
@@ -79,7 +81,7 @@ void Sistema::cadastrarFilme()
     {
         std::cout << "\nInsira o identificador (Digite CANCELAR se deseja cancelar): ";
         std::cin >> identificador_string;
-        if (identificador_string == "CANCELAR")
+        if (toUpperCase(identificador_string) == "CANCELAR")
             return;
         else if (!isNumeroValido(identificador_string))
             std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
@@ -105,7 +107,7 @@ void Sistema::cadastrarFilme()
         std::cout << "Digite o nome do filme (Digte CANCELAR se deseja cancelar): ";
         std::cin.ignore();
         std::getline(std::cin, titulo);
-        if (titulo == "CANCELAR")
+        if (toUpperCase(titulo) == "CANCELAR")
             return;
         else if (titulo.empty())
             std::cout << "ERRO: titulo invalido, digite novamente" << std::endl;
@@ -127,11 +129,13 @@ void Sistema::cadastrarFilme()
             std::cout << "\nDigite a categoria do filme\n[E] - Estoque\n[L] - Lancamento\n[P] - Promocao\n";
             std::cout << "\nEscolha (Digite CANCELAR se deseja cancelar): ";
             std::cin >> categoria;
+            categoria = toUpperCase(categoria);
+
             if (categoria == "CANCELAR")
                 return;
             indice_categoria = isCategoriaValido(categoria[0]);
 
-            if (indice_categoria < 0)
+            if (indice_categoria < 0 || categoria.size() > 1)
                 std::cout << "Erro : Categoria invalida, digite novamente" << std::endl;
             else
                 break;
@@ -158,7 +162,7 @@ void Sistema::removerFilme()
         std::cout << "Digite o identificador (Digite CANCELAR se deseja cancelar): ";
         std::cin >> identificador_string;
 
-        if (identificador_string == "CANCELAR")
+        if (toUpperCase(identificador_string) == "CANCELAR")
             return;
         else if (!isNumeroValido(identificador_string))
             std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
@@ -192,6 +196,7 @@ void Sistema::listarFilmesOrdenados() const
     {
         std::cout << "Escolha (Digite CANCELAR se deseja cancelar): ";
         std::cin >> ordenacao;
+        ordenacao = toUpperCase(ordenacao);
         if (ordenacao == "CANCELAR")
             return;
         else if (COMPARADORES_FILME.find(ordenacao) == COMPARADORES_FILME.end())
@@ -211,10 +216,10 @@ void Sistema::cadastrarCliente()
     {
         std::cout << "\nDigite o CPF no formato "
                      "XXX.XXX.XXX-XX"
-                     "(Digite CANCELAR se deseja cancelar): ";
+                     " (Digite CANCELAR se deseja cancelar): ";
         std::cin >> cpf;
 
-        if (cpf == "CANCELAR")
+        if (toUpperCase(cpf) == "CANCELAR")
             return;
         else if (!isCPFValido(cpf))
             std::cout << "\nERRO: Formato invalido de CPF" << std::endl;
@@ -229,7 +234,7 @@ void Sistema::cadastrarCliente()
         std::cin.ignore();
         std::cout << "\nDigite o nome do cliente (Digte CANCELAR se deseja cancelar): ";
         std::getline(std::cin, nome);
-        if (nome == "CANCELAR")
+        if (toUpperCase(nome) == "CANCELAR")
             return;
         else if (nome.empty())
             std::cout << "ERRO: nome invalido, digite novamente" << std::endl;
@@ -242,7 +247,7 @@ void Sistema::cadastrarCliente()
     {
         std::cout << "\nDigite a data de nascimento no formato DD/MM/AAAA (Digte CANCELAR se deseja cancelar): ";
         std::cin >> data_nascimento;
-        if (data_nascimento == "CANCELAR")
+        if (toUpperCase(data_nascimento) == "CANCELAR")
             return;
         else if (!isDataNascimentoValido(data_nascimento))
             std::cout << "\nERRO: Formato invalido de data de nascimento\n"
@@ -269,7 +274,7 @@ void Sistema::removerCliente()
     {
         std::cout << "\nDigite o CPF do cliente (Digte CANCELAR se deseja cancelar): ";
         std::cin >> cpf;
-        if (cpf == "CANCELAR")
+        if (toUpperCase(cpf) == "CANCELAR")
             return;
         else if (!isCPFValido(cpf))
             std::cout << "ERRO: Formato invalido de CPF" << std::endl;
@@ -297,7 +302,7 @@ void Sistema::alugarFilmes()
                      " (Digite CANCELAR se deseja cancelar): ";
         std::cin >> cpf;
 
-        if (cpf == "CANCELAR")
+        if (toUpperCase(cpf) == "CANCELAR")
             return;
         else if (!isCPFValido(cpf))
             std::cout << "\nERRO: Formato invalido de CPF" << std::endl;
@@ -325,9 +330,9 @@ void Sistema::alugarFilmes()
         std::cout << "\nInsira o ID do " << alugados + 1 << "º filme desejado (Para concluir digite PARAR ou CANCELAR para cancelar): ";
         std::cin >> id_string;
 
-        if (id_string == "CANCELAR")
+        if (toUpperCase(id_string) == "CANCELAR")
             return;
-        else if (id_string == "PARAR")
+        else if (toUpperCase(id_string) == "PARAR")
             break;
 
         else if (!isNumeroValido(id_string)) {
@@ -358,7 +363,7 @@ void Sistema::alugarFilmes()
     {
         std::cout << "\nDigite o numero de dias do aluguel (entre 1 e 7, ou CANCELAR se deseja cancelar): ";
         std::cin >> dias_string;
-        if (dias_string == "CANCELAR")
+        if (toUpperCase(dias_string) == "CANCELAR")
             return;
 
         else if (!isNumeroValido(dias_string)) 
@@ -398,7 +403,7 @@ void Sistema::devolverFilmes()
                      "(Digite CANCELAR se deseja cancelar): ";
         std::cin >> cpf;
 
-        if (cpf == "CANCELAR")
+        if (toUpperCase(cpf) == "CANCELAR")
             return;
         else if (!isCPFValido(cpf))
             std::cout << "\nERRO: Formato invalido de CPF" << std::endl;
@@ -412,7 +417,7 @@ void Sistema::devolverFilmes()
     {
         std::cout << "\nDigite o numero de dias decorridos desde o aluguel (Digite CANCELAR se deseja cancelar): ";
         std::cin >> dias_string;
-        if (dias_string == "CANCELAR")
+        if (toUpperCase(dias_string) == "CANCELAR")
             return;
 
         else if (!isNumeroValido(dias_string)) 
@@ -440,9 +445,9 @@ void Sistema::devolverFilmes()
         std::cout << "\nDigite o id do " << i + 1 << "º filme (Digite CANCELAR se deseja cancelar, PARAR se está satisfeito com os filmes alugados): ";
         std::cin >> id_string;
 
-        if (id_string == "CANCELAR")
+        if (toUpperCase(id_string) == "CANCELAR")
             return;
-        else if (id_string == "PARAR")
+        else if (toUpperCase(id_string) == "PARAR")
             break;
         else if (!isNumeroValido(id_string)) {
             std::cout << "ERRO: A entrada digitada não é um inteiro positivo, digite novamente" << std::endl;
@@ -465,7 +470,7 @@ void Sistema::devolverFilmes()
         {
             std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado?\n[0] - Nao\n[1] - Sim\nEscolha (Digite CANCELAR se deseja cancelar): ";
             std::cin >> danificado_string;
-            if (danificado_string == "CANCELAR")
+            if (toUpperCase(danificado_string) == "CANCELAR")
                 return;
             else if (danificado_string != "1" && danificado_string != "0")
                 std::cout << "ERRO: opcao invalida, digite novamente" << std::endl;
@@ -483,7 +488,7 @@ void Sistema::devolverFilmes()
             {
                 std::cout << "A fita " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta rebobinada?\n[0] - Nao\n[1] - Sim\nEscolha (Digite CANCELAR se deseja cancelar): ";
                 std::cin >> rebobinado_string;
-                if (rebobinado_string == "CANCELAR")
+                if (toUpperCase(rebobinado_string) == "CANCELAR")
                     return;
                 else if (rebobinado_string != "1" &&  rebobinado_string != "0")
                     std::cout << "ERRO: opcao invalida, digite novamente" << std::endl;
