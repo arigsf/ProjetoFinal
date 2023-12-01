@@ -12,15 +12,17 @@ Sistema::Sistema()
 
 void Sistema::lerArquivo()
 {
-    char tipo;
+    std::string tipo;
     std::string diretorio;
 
-    std::cout << "Filmes ou Clientes (F/C)? ";
-    while (true)
-    {
+    while(true) {
+        std::cout << "Filmes ou Clientes (F/C)? (Digite CANCELAR se deseja cancelar) ";
         std::cin >> tipo;
-        if (tipo != ARQUIVO_CLIENTES && tipo != ARQUIVO_FILMES)
+        if (tipo == "CANCELAR")
+            return;
+        else if (tipo[0] != ARQUIVO_CLIENTES && tipo[0] != ARQUIVO_FILMES)
             std::cout << "Erro : Tipo de leitura invalido" << std::endl;
+        
         else
             break;
     }
@@ -29,22 +31,22 @@ void Sistema::lerArquivo()
     std::cin.ignore();
     std::getline(std::cin, diretorio);
 
-    if (ARQUIVO_FILMES == tipo)
+    if (ARQUIVO_FILMES == tipo[0])
         this->_estoque.lerArquivo(diretorio);
-    else if (ARQUIVO_CLIENTES == tipo)
+    else if (ARQUIVO_CLIENTES == tipo[0])
         this->_clientes.lerArquivo(diretorio);
 }
 
 void Sistema::cadastrarFilme()
 {
-    char tipo;
+    std::string tipo;
     while (true)
     {
-        std::cout << "\nDigite o tipo do filme\n[D] - dvd\n[F] - fita\n\nEscolha (Digite 0 se deseja cancelar): ";
+        std::cout << "\nDigite o tipo do filme\n[D] - dvd\n[F] - fita\n\nEscolha (Digite CANCELAR se deseja cancelar): ";
         std::cin >> tipo;
-        if (tipo == '0')
+        if (tipo == "CANCELAR")
             return;
-        else if (!isTipoValido(tipo))
+        else if (!isTipoValido(tipo[0]))
             std::cout << "ERRO: Tipo invalido, digite novamente" << std::endl;
         else
             break;
@@ -88,28 +90,28 @@ void Sistema::cadastrarFilme()
         if (titulo == "CANCELAR")
             return;
         else if (titulo.empty())
-            std::cout << "ERRO: nome titulo, digite novamente" << std::endl;
+            std::cout << "ERRO: titulo invalido, digite novamente" << std::endl;
         else
             break;
-        ;
+
     }
 
     Filme *filme;
 
-    if (tipo == Tipo_Filme.at(TIPO_DVD))
+    if (tipo[0] == Tipo_Filme.at(TIPO_DVD))
     {
 
-        char categoria;
+        std::string categoria;
         int indice_categoria;
 
         while (true)
         {
             std::cout << "\nDigite a categoria do filme\n[E] - Estoque\n[L] - Lancamento\n[P] - Promocao\n";
-            std::cout << "\nEscolha (Digite 0 se deseja cancelar): ";
+            std::cout << "\nEscolha (Digite CANCELAR se deseja cancelar): ";
             std::cin >> categoria;
-            if (categoria == '0')
+            if (categoria == "CANCELAR")
                 return;
-            indice_categoria = isCategoriaValido(categoria);
+            indice_categoria = isCategoriaValido(categoria[0]);
 
             if (indice_categoria < 0)
                 std::cout << "Erro : Categoria invalida, digite novamente" << std::endl;
@@ -120,7 +122,7 @@ void Sistema::cadastrarFilme()
         filme = new DVD(unidades, identificador, titulo, indice_categoria);
     }
 
-    else if (tipo == 'F')
+    else if (tipo[0] == Tipo_Filme.at(TIPO_FITA))
         filme = new FITA(unidades, identificador, titulo, retornaVerdadeiroFalso());
 
     this->_estoque.inserirFilme(filme);
@@ -263,10 +265,10 @@ void Sistema::alugarFilmes()
     {
         std::cout << "\nDigite o CPF no formato "
                      "XXX.XXX.XXX-XX"
-                     " (Digite 0 se deseja cancelar): ";
+                     " (Digite CANCELAR se deseja cancelar): ";
         std::cin >> cpf;
 
-        if (cpf == "0")
+        if (cpf == "CANCELAR")
             return;
         else if (!isCPFValido(cpf))
             std::cout << "\nERRO: Formato invalido de CPF" << std::endl;
