@@ -92,7 +92,7 @@ void Sistema::cadastrarFilme()
         else if(titulo.empty())
             std::cout << "ERRO: titulo invalido, digite novamente" << std::endl;
         else
-            break;;
+            break;
 
     }
 
