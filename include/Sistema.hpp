@@ -37,59 +37,57 @@ public:
 
     /**
      * @brief Lê informações de um arquivo e atualiza o estoque.
-     * @param diretorio O caminho do arquivo a ser lido.
+     * @details O usuário deve digitar se deseja abrir o arquivo de filmes ou de clientes [F | C].
+     * Em seguida, deve inserir o diretório do arquivo.
      */
     void lerArquivo();
 
     /**
      * @brief Cadastra um novo filme no estoque.
-     * @param novo_filme Ponteiro para o novo filme a ser cadastrado.
+     * @details O usuário deve digitar primeiramente o tipo do filme [D | F]. Em seguida, deve inserir,
+     * respectivamente, a quantidade, o identificador e o título. Se o tipo for D, também deve ser inserido
+     * a categoria [E | L | P].
      */
     void cadastrarFilme();
 
     /**
      * @brief Remove um filme do estoque com base no identificador.
-     * @param identificador O identificador único do filme a ser removido.
+     * @details O usuário deve digitar o identificador do filme que deseja remover.
      */
     void removerFilme();
 
     /**
      * @brief Lista os filmes ordenados por critérios específicos.
-     * @param ordenacao O critério de ordenação dos filmes.
+     * @details O usuário deve digitar o tipo de ordenação que deseja [C | U | N].
      */
     void listarFilmesOrdenados() const;
 
     /**
      * @brief Cadastra um novo cliente no sistema.
-     * @param cliente Ponteiro para o novo cliente a ser cadastrado.
+     * @details O usuário deve digitar os dados do cliente, respectivamente, o CPF, o nome e a data de nascimento.
      */
     void cadastrarCliente();
 
     /**
      * @brief Lista os clientes ordenados por critérios específicos.
-     * @param ordenacao O critério de ordenação dos clientes.
      */
     void listarClientesOrdenados() const;
 
     /**
      * @brief Remove um cliente do sistema com base no CPF.
-     * @param cpf O CPF único do cliente a ser removido.
+     * @details O usuário deve digitar o CPF do cliente que deseja remover.
      */
     void removerCliente();
 
     /**
      * @brief Realiza a locação de filmes para um cliente.
-     * @param cpf O CPF do cliente.
-     * @param ids Vetor de identificadores dos filmes a serem locados.
-     * @param dias O número de dias para a locação.
+     * @details O usuário deve digitar, respectivamente, o CPF do cliente, os ids dos filmes e o número de dias do aluguel.
      */
     void alugarFilmes();
 
     /**
      * @brief Realiza a devolução de filmes por um cliente.
-     * @param cpf O CPF do cliente.
-     * @param ids Vetor de identificadores dos filmes a serem devolvidos.
-     * @param dias O número de dias de locação.
+     * @details O usuário deve digitar, respectivamente, o CPF do cliente, o número de dias decorridos desde o aluguel e os ids dos filmes.
      */
     void devolverFilmes();
 
