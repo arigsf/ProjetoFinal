@@ -20,10 +20,10 @@ void Sistema::lerArquivo()
     {
         std::cout << "Filmes ou Clientes (F/C)? (Digite 0 se deseja cancelar) ";
         std::cin >> tipo;
-        if (tipo != ARQUIVO_CLIENTES && tipo != ARQUIVO_FILMES)
-            std::cout << "Erro : Tipo de leitura invalido" << std::endl;
-        else if(tipo == '0')
+        if(tipo == '0')
             return;
+        else if (tipo != ARQUIVO_CLIENTES && tipo != ARQUIVO_FILMES)
+            std::cout << "Erro : Tipo de leitura invalido" << std::endl;
         else
             break;
     }
