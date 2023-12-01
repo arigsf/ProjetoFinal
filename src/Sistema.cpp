@@ -345,13 +345,19 @@ void Sistema::alugarFilmes()
         Filme *filme = this->_estoque.filmeValido(id);
         if (!filme)
         {
-            std::cout << "ERRO: nao existe filme com indentificador " << id << ", digite novamente." << std::endl;
+            std::cout << "ERRO: Nao existe filme com indentificador " << id << ", digite novamente." << std::endl;
             continue;
         }
 
         if (!this->_estoque.filmeValido(id))
         {
             std::cout << "Infelizmente o filme com indentificador " << id << " nao se encontra disponivel, por favor escolha outro filme" << std::endl;
+            continue;
+        }
+
+        LocacaoData* locExiste = this->_locacao.getLocacao(cpf, filme); // Verifica se já existe uma locação de tal filme para o tal CPF
+        if(locExiste != nullptr){
+            std::cout << "ERRO: Tal cliente ja possui uma locacao deste filme" << std::endl;
             continue;
         }
 
@@ -463,23 +469,6 @@ void Sistema::devolverFilmes()
             continue;
         }
 
-        int multaAtual, isDanificado;
-        std::string danificado_string;
-        multaAtual = 0; // Multa da devolução atual
-        while (true)
-        {
-            std::cout << "O filme " << filme->getTitulo() << " - " << filme->getIdentificador() << " esta danificado?\n[0] - Nao\n[1] - Sim\nEscolha (Digite CANCELAR se deseja cancelar): ";
-            std::cin >> danificado_string;
-            if (toUpperCase(danificado_string) == "CANCELAR")
-                return;
-            else if (danificado_string != "1" && danificado_string != "0")
-                std::cout << "ERRO: opcao invalida, digite novamente" << std::endl;
-            else
-                break;
-        }
-
-        isDanificado = std::stoi(danificado_string);
-
         if (filme->getTipo() == TIPO_FITA)
         { // Se o filme é fita, precisamos verificar se está rebobinado
             std::string rebobinado_string;
@@ -498,19 +487,15 @@ void Sistema::devolverFilmes()
 
             isRebobinado = std::stoi(rebobinado_string);
             if (!isRebobinado)
-                multaAtual += 2;
+                valorDaMulta += 2;
         }
 
-        try
-        {
-            multaAtual += this->_locacao.devolucao(cpf, filme, dias, isDanificado);
-            valorDaMulta += multaAtual;
-            i++;
-        }
-        catch (const std::runtime_error &e)
-        {
-            std::cout << e.what() << std::endl;
-        }
+        filmes.push_back(filme);
+        i++;
+    }
+
+    for(Filme* filme : filmes){
+        valorDaMulta += this->_locacao.devolucao(cpf, filme, dias);
     }
 
     std::cout << "\n\nDevolucoes realizadas com sucesso, valor de multas a serem liquidadas: " << valorDaMulta << std::endl;

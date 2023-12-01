@@ -168,9 +168,8 @@ public:
      * @param unidades O número de unidades disponíveis da Fita.
      * @param identificador O identificador único da Fita.
      * @param titulo O título da Fita.
-     * @param estaRebobinado A rebobinação da Fita.
      */
-    FITA(int unidades, int identificador, std::string titulo, bool estaRebobinado); // Construtor
+    FITA(int unidades, int identificador, std::string titulo, bool estaRebobinado);
 
     /**
      * @brief Verifica se a fita está rebobinada.
