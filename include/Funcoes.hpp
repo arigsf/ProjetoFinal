@@ -18,5 +18,6 @@ bool isDiasValido(const int dias);
 bool isDiasDecorridosValido(const int dias);
 bool isNumeroValido(const std::string& s);
 std::string toUpperCase(const std::string& s);
+bool isApenasEspaco(const std::string& s);
 
 #endif

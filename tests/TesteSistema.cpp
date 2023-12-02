@@ -256,3 +256,43 @@ TEST_CASE("REMOVER CLIENTE 1") {
 
     CHECK(outputbuffer.str().find("sucesso") != std::string::npos);   
 }
+
+TEST_CASE("ALUGAR FILME 1") {
+    Sistema sistema;
+
+    std::ostringstream outputbuffer;
+    std::streambuf* oldCout = std::cout.rdbuf(outputbuffer.rdbuf());
+
+    std::istringstream inputbuffer("safsdwajdsa\n 124322\n -5393503\n 124.678.124-35\n 677332\n -57575\n soi\n 19.9\n 1456\n 2468\n 13\n PARAR\n -10\n 8\n 5\n");
+    std::streambuf* oldCin = std::cin.rdbuf(inputbuffer.rdbuf());
+
+    sistema.alugarFilmes();
+
+        // Restaura a saída padrão
+    std::cout.rdbuf(oldCout);
+
+    // Restaura a entrada padrão
+    std::cin.rdbuf(oldCin);
+
+    CHECK(outputbuffer.str().find("aprovado") != std::string::npos);   
+}
+
+TEST_CASE("DEVOLVER FILME 1") {
+    Sistema sistema;
+
+    std::ostringstream outputbuffer;
+    std::streambuf* oldCout = std::cout.rdbuf(outputbuffer.rdbuf());
+
+    std::istringstream inputbuffer("safsdwajdsa\n 124322\n -5393503\n 124.678.124-35\n -100\n teste\n 90\n 6773\n -57575\n soi\n 19.9\n 1456\n 2468\n 13\n PARAR\n");
+    std::streambuf* oldCin = std::cin.rdbuf(inputbuffer.rdbuf());
+
+    sistema.devolverFilmes();
+
+        // Restaura a saída padrão
+    std::cout.rdbuf(oldCout);
+
+    // Restaura a entrada padrão
+    std::cin.rdbuf(oldCin);
+
+    CHECK(outputbuffer.str().find("sucesso") != std::string::npos);   
+}

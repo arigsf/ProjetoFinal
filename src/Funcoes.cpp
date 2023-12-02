@@ -72,10 +72,18 @@ bool isNumeroValido(const std::string& s)
         s.end(), [](unsigned char c) { return !std::isdigit(c); }) == s.end();
 }
 
-
 std::string toUpperCase(const std::string& s) {
     std::string copia = s;
     std::transform(copia.begin(), copia.end(), copia.begin(), ::toupper);
 
     return copia;
+}
+
+bool isApenasEspaco(const std::string& s) {
+    for (char c : s) {
+        if (!std::isspace(static_cast<unsigned char>(c))) {
+            return false;
+        }
+    }
+    return true;
 }

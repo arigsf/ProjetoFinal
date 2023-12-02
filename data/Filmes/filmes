@@ -1,6 +1,6 @@
-D 12 1456 Homem Aranha Promocao
+D 13 1456 Homem Aranha Promocao
 F 0 2468 Mulher Maravilha
-D 19 3579 Batman Estoque
+D 20 3579 Batman Estoque
 F 8 9632 Superman
 D 15 1597 Homem de Ferro Estoque
 F 10 7531 Capitão América
@@ -11,9 +11,9 @@ F 7 2020 Psicose
 D 12 3030 O Iluminado Estoque
 F 6 4040 Invocação do Mal
 D 7 5050 Sexta-Feira 13 Promocao
-F 9 6060 O Chamado
+F 10 6060 O Chamado
 D 6 9090 O Massacre da Serra Elétrica Promocao
-F 11 1122 O Exorcismo de Emily Rose
+F 12 1122 O Exorcismo de Emily Rose
 D 8 1313 O Grito Lancamento
 F 8 1414 A Casa dos Espíritos
 D 7 1515 Atividade Paranormal 2 Estoque

@@ -61,14 +61,6 @@ private:
     int getPosicaoLocacaoVetorLocacoes(LocacaoData *locacao);
 
     /**
-     * @brief Encontra uma locação com base no CPF do cliente e no filme alugado.
-     * @param CPF O CPF do cliente.
-     * @param filme O filme alugado.
-     * @return A locação encontrada.
-     */
-    LocacaoData getLocacao(std::string cpf, Filme *filme);
-
-    /**
      * @brief Salva as locações pendentes em um arquivo.
      */
     void salvarLocacaoPendentes();
@@ -114,14 +106,21 @@ public:
     int getLocacoesPorCliente(std::string cpf);
 
     /**
+     * @brief Encontra uma locação com base no CPF do cliente e no filme alugado.
+     * @param CPF O CPF do cliente.
+     * @param filme O filme alugado.
+     * @return A locação encontrada.
+     */
+    LocacaoData* getLocacao(std::string cpf, Filme *filme);
+
+    /**
      * @brief Realiza a devolução de um filme e calcula o valor a ser pago (multas).
      * @param CPF O CPF do cliente.
      * @param filme O filme a ser devolvido.
      * @param dias O número de dias que o filme foi alugado.
-     * @param isDanificado Indica se o filme foi devolvido danificado.
      * @return O valor a ser pago (multas).
      */
-    int devolucao(std::string cpf, Filme *filme, int dias, bool isDanificado);
+    int devolucao(std::string cpf, Filme *filme, int dias);
 
     /**
      * @brief Verifica se um filme está alugado.
