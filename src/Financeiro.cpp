@@ -101,13 +101,26 @@ float Financeiro::getSaldo()
 
 void Financeiro::historicoTransacoes()
 {
-    char escolha;
-    std::cout << "\nSelecione o intervalo desejado para visualizar o historico de transacoes!\n[D] - Dia atual\n[M] - Mês\n[T] - Total\n\nEscolha: ";
-    std::cin >> escolha;
+    std::string escolha;
+    
+    while (true)
+    {   
+        std::cout << "\nSelecione o intervalo desejado para visualizar o historico de transacoes!\n[D] - Dia atual\n[M] - Mês\n[T] - Total\n\nEscolha (Digite CANCELAR se deseja cancelar): ";
+        std::cin >> escolha;
+        escolha = toUpperCase(escolha);
+        if(escolha == "CANCELAR")
+            return;
+        else if((escolha[0] != DIA && escolha[0] != MES && escolha[0] != TOTAL) || escolha.size() > 1)
+            std::cout << "Erro : Categoria invalida, digite novamente" << std::endl;
+        else 
+            break;
+    }
+    
+    
 
     Data d;
 
-    if (escolha == 'D')
+    if (escolha[0] == DIA)
     {
         if (this->transacoes[0].data.dia != d.dia)
         { // Se a transação mais recente não for do dia atual, então não há nenhuma transação no dia atual
@@ -126,7 +139,7 @@ void Financeiro::historicoTransacoes()
         }
         return;
     }
-    if (escolha == 'M')
+    if (escolha[0] == MES)
     {
         if (this->transacoes[0].data.mes != d.mes)
         { // Se a transação mais recente não for do mes atual, então não há nenhuma transação no mes atual
@@ -145,7 +158,7 @@ void Financeiro::historicoTransacoes()
         }
         return;
     }
-    if (escolha == 'T')
+    if (escolha[0] == TOTAL)
     {
         if (!this->transacoes.size())
         {
