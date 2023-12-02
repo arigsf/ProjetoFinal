@@ -46,34 +46,34 @@
 \DoxyCodeLine{00055\ }
 \DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ getPosicaoLocacaoVetorLocacoes(\mbox{\hyperlink{struct_locacao_data}{LocacaoData}}\ *locacao);}
 \DoxyCodeLine{00062\ }
-\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{struct_locacao_data}{LocacaoData}}\ getLocacao(std::string\ cpf,\ \mbox{\hyperlink{class_filme}{Filme}}\ *filme);}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ salvarLocacaoPendentes();}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ salvarLocacaoLog(\mbox{\hyperlink{class_filme}{Filme}}\ *filme,\ std::string\ cpf,\ \textcolor{keywordtype}{int}\ dias,\ \textcolor{keywordtype}{int}\ multaPaga);}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00089\ \ \ \ \ std::vector<LocacaoData>\ leituraLocacoesPendentes();}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00095\ \ \ \ \ std::vector<LocacaoLogData>\ leituraLocacaoLog();}
-\DoxyCodeLine{00096\ }
-\DoxyCodeLine{00097\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{class_locacao_a60e61893a9d3e4d3878c9d13322a4a67}{Locacao}}();}
-\DoxyCodeLine{00102\ }
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_locacao_a653814b229c01cde988f435295cb4694}{associarPtrEstoque}}(\mbox{\hyperlink{class_estoque}{Estoque}}\ *estoque);}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_locacao_ad627339199e53241459665ad415d5d33}{getLocacoesPorCliente}}(std::string\ cpf);}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ salvarLocacaoPendentes();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ salvarLocacaoLog(\mbox{\hyperlink{class_filme}{Filme}}\ *filme,\ std::string\ cpf,\ \textcolor{keywordtype}{int}\ dias,\ \textcolor{keywordtype}{int}\ multaPaga);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \ \ \ \ std::vector<LocacaoData>\ leituraLocacoesPendentes();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ \ \ \ \ std::vector<LocacaoLogData>\ leituraLocacaoLog();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_locacao_a60e61893a9d3e4d3878c9d13322a4a67}{Locacao}}();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_locacao_a653814b229c01cde988f435295cb4694}{associarPtrEstoque}}(\mbox{\hyperlink{class_estoque}{Estoque}}\ *estoque);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_locacao_ad627339199e53241459665ad415d5d33}{getLocacoesPorCliente}}(std::string\ cpf);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{struct_locacao_data}{LocacaoData}}*\ \mbox{\hyperlink{class_locacao_abe0fc9b80e9dc2a339ee9db608ccddb4}{getLocacao}}(std::string\ cpf,\ \mbox{\hyperlink{class_filme}{Filme}}\ *filme);}
 \DoxyCodeLine{00115\ }
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_locacao_aca76c42a80a0461112541265ac68afca}{devolucao}}(std::string\ cpf,\ \mbox{\hyperlink{class_filme}{Filme}}\ *filme,\ \textcolor{keywordtype}{int}\ dias,\ \textcolor{keywordtype}{bool}\ isDanificado);}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_locacao_a5a49c53820b048c25cd99c9f75e032ad}{verificarFilmeAlugado}}(\textcolor{keywordtype}{int}\ identificador);}
-\DoxyCodeLine{00132\ }
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_locacao_a40afe8257688897031c2a4525365da30}{alugar}}(std::string\ cpf,\ std::vector<Filme\ *>\ filmes,\ \textcolor{keywordtype}{int}\ dias);}
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_locacao_a9e2961de1c7e3e5c4d35be990d94b288}{relatorio}}();}
-\DoxyCodeLine{00145\ }
-\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_locacao_a94820c2005f25465294df5bb79365134}{historicoLocacoes}}();}
-\DoxyCodeLine{00150\ \};}
-\DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_locacao_a8132355fee7d18af237351e5a9a02277}{devolucao}}(std::string\ cpf,\ \mbox{\hyperlink{class_filme}{Filme}}\ *filme,\ \textcolor{keywordtype}{int}\ dias);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_locacao_a5a49c53820b048c25cd99c9f75e032ad}{verificarFilmeAlugado}}(\textcolor{keywordtype}{int}\ identificador);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_locacao_a40afe8257688897031c2a4525365da30}{alugar}}(std::string\ cpf,\ std::vector<Filme\ *>\ filmes,\ \textcolor{keywordtype}{int}\ dias);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_locacao_a9e2961de1c7e3e5c4d35be990d94b288}{relatorio}}();}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_locacao_a94820c2005f25465294df5bb79365134}{historicoLocacoes}}();}
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}
