@@ -58,9 +58,24 @@ bool isDataNascimentoValido(std::string &data) {
 }
 
 bool isDiasValido(const int dias) {
-    return dias > 0 || dias <= 7;
+    return dias > 0 && dias <= 7;
 }
 
 bool isDiasDecorridosValido(const int dias) {
     return dias > 0;
+}
+
+
+bool isNumeroValido(const std::string& s)
+{
+    return !s.empty() && std::find_if(s.begin(), 
+        s.end(), [](unsigned char c) { return !std::isdigit(c); }) == s.end();
+}
+
+
+std::string toUpperCase(const std::string& s) {
+    std::string copia = s;
+    std::transform(copia.begin(), copia.end(), copia.begin(), ::toupper);
+
+    return copia;
 }

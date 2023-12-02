@@ -48,6 +48,7 @@ int main() {
     while (true) {
         std::cout << "\nComando: ";
         std::cin >> comando;
+        comando = toUpperCase(comando);
 
         if(comando == LER_ARQUIVO) sistema_principal.lerArquivo();
         else if(comando == CADASTRAR_FILME) sistema_principal.cadastrarFilme();

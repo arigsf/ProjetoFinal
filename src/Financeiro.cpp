@@ -37,9 +37,9 @@ Financeiro::Financeiro()
 
         char tipo;
         iss >> tipo;
-        int valor;
+        float valor;
         iss >> valor;
-        int saldo_final;
+        float saldo_final;
         iss >> saldo_final;
         this->transacoes.push_back(Transacao(d, tipo, valor, saldo_final));
     }
