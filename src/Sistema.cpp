@@ -361,6 +361,17 @@ void Sistema::alugarFilmes()
             continue;
         }
 
+        bool isFilmeJaSelecionado = false;
+        for(auto f : filmes){
+            if(f->getIdentificador() == filme->getIdentificador())
+            {
+                std::cout << "ERRO: Filme ja cadastrado para locacao atual" << std::endl;
+                isFilmeJaSelecionado = true;
+                continue;
+            }
+        }
+        if(isFilmeJaSelecionado) continue;
+
         filmes.push_back(filme);
         alugados++;
     }
