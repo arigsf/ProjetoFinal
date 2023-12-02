@@ -462,7 +462,7 @@ void Sistema::devolverFilmes()
     int i = 0;
     while (i <= alugados)
     {
-        std::cout << "\nDigite o id do " << i + 1 << "º filme (Digite CANCELAR se deseja cancelar, PARAR se está satisfeito com os filmes alugados): ";
+        std::cout << "\nDigite o id do " << i + 1 << "º filme (Digite CANCELAR se deseja cancelar, PARAR se finalizou a selecao de filmes): ";
         std::cin >> id_string;
 
         if (toUpperCase(id_string) == "CANCELAR")
@@ -480,6 +480,12 @@ void Sistema::devolverFilmes()
         if (!filme)
         {
             std::cout << "ERRO: nao existe filme com indentificador " << id << ", digite novamente" << std::endl;
+            continue;
+        }
+
+        LocacaoData* locExiste = this->_locacao.getLocacao(cpf, filme); // Verifica se existe uma locação de tal filme para o tal CPF
+        if(locExiste == nullptr){
+            std::cout << "ERRO: Tal cliente nao possui uma locacao deste filme" << std::endl;
             continue;
         }
 
