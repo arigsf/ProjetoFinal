@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "../third-party/doctest.h"
-#include "../include/Sistema.hpp"
+#include "doctest.h"
+#include "Sistema.hpp"
 #include <sstream>
 #include <iostream>
 
