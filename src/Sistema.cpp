@@ -480,6 +480,17 @@ void Sistema::devolverFilmes()
             continue;
         }
 
+        bool isFilmeJaSelecionado = false;
+        for(auto f : filmes){
+            if(f->getIdentificador() == filme->getIdentificador())
+            {
+                std::cout << "ERRO: Filme ja cadastrado para devolucao atual" << std::endl;
+                isFilmeJaSelecionado = true;
+                continue;
+            }
+        }
+        if(isFilmeJaSelecionado) continue;
+
         if (filme->getTipo() == TIPO_FITA)
         { // Se o filme é fita, precisamos verificar se está rebobinado
             std::string rebobinado_string;
