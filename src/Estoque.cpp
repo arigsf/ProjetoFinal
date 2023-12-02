@@ -274,7 +274,7 @@ void Estoque::salvarDados(const bool limparDados) // O parametro limpardados dec
         std::ofstream arquivo(DIRETORIO_PADRAO_FILMES, std::ios::out | std::ios::trunc);
 
         if (!arquivo.is_open())
-            throw std::runtime_error("Erro: nao foi possível criar o arquivo");
+            throw std::runtime_error("ERRO: nao foi possível criar o arquivo");
 
         std::chrono::system_clock::time_point agora = std::chrono::system_clock::now();
         std::time_t tempo = std::chrono::system_clock::to_time_t(agora);
