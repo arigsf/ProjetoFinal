@@ -109,7 +109,7 @@ void Sistema::cadastrarFilme()
         std::getline(std::cin, titulo);
         if (toUpperCase(titulo) == "CANCELAR")
             return;
-        else if (titulo.empty())
+        else if (titulo.empty() || isApenasEspaco(titulo))
             std::cout << "ERRO: titulo invalido, digite novamente" << std::endl;
         else
             break;
@@ -236,7 +236,7 @@ void Sistema::cadastrarCliente()
         std::getline(std::cin, nome);
         if (toUpperCase(nome) == "CANCELAR")
             return;
-        else if (nome.empty())
+        else if (nome.empty() || isApenasEspaco(nome))
             std::cout << "ERRO: nome invalido, digite novamente" << std::endl;
         else
             break;
@@ -324,7 +324,7 @@ void Sistema::alugarFilmes()
 
     std::vector<Filme *> filmes;
 
-    while (alugados <= QTD_MAXIMO_FILMES_ALUGADOS)
+    while (alugados < QTD_MAXIMO_FILMES_ALUGADOS)
     {
 
         std::cout << "\nInsira o ID do " << alugados + 1 << "º filme desejado (Para concluir digite PARAR ou CANCELAR para cancelar): ";
@@ -342,7 +342,7 @@ void Sistema::alugarFilmes()
 
         id = std::stoi(id_string);
 
-        Filme *filme = this->_estoque.filmeValido(id);
+        Filme *filme = this->_estoque.filmeExiste(id);
         if (!filme)
         {
             std::cout << "ERRO: Nao existe filme com indentificador " << id << ", digite novamente." << std::endl;
@@ -362,12 +362,12 @@ void Sistema::alugarFilmes()
         }
 
         bool isFilmeJaSelecionado = false;
-        for(auto f : filmes){
+        for(Filme* f : filmes){
             if(f->getIdentificador() == filme->getIdentificador())
             {
                 std::cout << "ERRO: Filme ja cadastrado para locacao atual" << std::endl;
                 isFilmeJaSelecionado = true;
-                continue;
+                break;
             }
         }
         if(isFilmeJaSelecionado) continue;
@@ -420,7 +420,7 @@ void Sistema::devolverFilmes()
     {
         std::cout << "\nDigite o CPF no formato "
                      "XXX.XXX.XXX-XX"
-                     "(Digite CANCELAR se deseja cancelar): ";
+                     " (Digite CANCELAR se deseja cancelar): ";
         std::cin >> cpf;
 
         if (toUpperCase(cpf) == "CANCELAR")
@@ -460,7 +460,7 @@ void Sistema::devolverFilmes()
     std::vector<int> ids;
 
     int i = 0;
-    while (i <= alugados)
+    while (i < alugados)
     {
         std::cout << "\nDigite o id do " << i + 1 << "º filme (Digite CANCELAR se deseja cancelar, PARAR se finalizou a selecao de filmes): ";
         std::cin >> id_string;
@@ -495,7 +495,7 @@ void Sistema::devolverFilmes()
             {
                 std::cout << "ERRO: Filme ja cadastrado para devolucao atual" << std::endl;
                 isFilmeJaSelecionado = true;
-                continue;
+                break;
             }
         }
         if(isFilmeJaSelecionado) continue;
@@ -565,7 +565,7 @@ void Sistema::mostrarOpcoes()
 {
     std::cout << "\nOpcoes disponiveis:\n";
     std::cout << " - LA: Ler Arquivo\n";
-    std::cout << " - CA: Cadastrar Filme\n";
+    std::cout << " - CF: Cadastrar Filme\n";
     std::cout << " - RF: Remover Filme\n";
     std::cout << " - CC: Cadastrar Cliente\n";
     std::cout << " - LF: Listar Filmes\n";
