@@ -3,10 +3,10 @@ var searchData=
   ['da_20solução_0',['Visão Geral da Solução',['../md__c_1_2_users_2_usuario_2_desktop_2_p_d_s_i_i_2_projeto_final_2_r_e_a_d_m_e.html#autotoc_md2',1,'']]],
   ['data_1',['data',['../struct_data.html',1,'Data'],['../struct_transacao.html#a1b505aad1f8c7fe93e2575f5e4afb276',1,'Transacao::data']]],
   ['deposito_2',['deposito',['../class_financeiro.html#ab5bdecfeb4b063cb200ae25fa1ec3717',1,'Financeiro']]],
-  ['devolucao_3',['devolucao',['../class_locacao.html#aca76c42a80a0461112541265ac68afca',1,'Locacao']]],
+  ['devolucao_3',['devolucao',['../class_locacao.html#a8132355fee7d18af237351e5a9a02277',1,'Locacao']]],
   ['devolver_5ffilme_4',['DEVOLVER_FILME',['../main_8cpp.html#a9e0eccf94081efd11769ac260e84c9cb',1,'main.cpp']]],
   ['devolverfilmes_5',['devolverFilmes',['../class_sistema.html#a3b7d045640c1a0d68a2b12e75a7b8a50',1,'Sistema']]],
-  ['dia_6',['dia',['../struct_data.html#ad76270db677fc394a4a7ded1c58de6d5',1,'Data']]],
+  ['dia_6',['dia',['../struct_data.html#ad76270db677fc394a4a7ded1c58de6d5',1,'Data::dia'],['../_financeiro_8hpp.html#a7d9d104c3c6b0a84f7886fdb527eed4a',1,'DIA:&#160;Financeiro.hpp']]],
   ['diretorio_5fhistorico_5fclientes_7',['DIRETORIO_HISTORICO_CLIENTES',['../_cadastro___clientes_8hpp.html#a4816ea7b094e1fbad02ba281d5ba2e05',1,'Cadastro_Clientes.hpp']]],
   ['diretorio_5fhistorico_5ffilmes_8',['DIRETORIO_HISTORICO_FILMES',['../_estoque_8hpp.html#ad5ea46769b2a2b9f1596514e9c2156be',1,'Estoque.hpp']]],
   ['diretorio_5fhistorico_5ffinanceiro_9',['DIRETORIO_HISTORICO_FINANCEIRO',['../_financeiro_8hpp.html#a5a9cb4bee16701372f3ee0522f304484',1,'Financeiro.hpp']]],
@@ -17,6 +17,7 @@ var searchData=
   ['diretorio_5fpadrao_5fclientes_14',['DIRETORIO_PADRAO_CLIENTES',['../_cadastro___clientes_8hpp.html#a8a400c945d8d3cb493efe44eb941193b',1,'Cadastro_Clientes.hpp']]],
   ['diretorio_5fpadrao_5ffilmes_15',['DIRETORIO_PADRAO_FILMES',['../_estoque_8hpp.html#afbe424cecb84854c9cca515014e82c76',1,'Estoque.hpp']]],
   ['do_20programa_16',['do programa',['../md__c_1_2_users_2_usuario_2_desktop_2_p_d_s_i_i_2_projeto_final_2_r_e_a_d_m_e.html#autotoc_md3',1,'Estrutura do Programa'],['../md__c_1_2_users_2_usuario_2_desktop_2_p_d_s_i_i_2_projeto_final_2_r_e_a_d_m_e.html#autotoc_md4',1,'Funcionamento do Programa']]],
-  ['documentação_17',['Documentação',['../md__c_1_2_users_2_usuario_2_desktop_2_p_d_s_i_i_2_projeto_final_2_r_e_a_d_m_e.html#autotoc_md6',1,'']]],
-  ['dvd_18',['dvd',['../class_d_v_d.html',1,'DVD'],['../class_d_v_d.html#a3fc29ffcf97d1d292d8c87207b72a6a3',1,'DVD::DVD()']]]
+  ['doctest_5fconfig_5fimplement_5fwith_5fmain_17',['doctest_config_implement_with_main',['../_teste_cliente-_cadastro_cliente_8cpp.html#a623b8690a262536536a43eab2d7df03d',1,'DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN:&#160;TesteCliente-CadastroCliente.cpp'],['../_teste_estoque_8cpp.html#a623b8690a262536536a43eab2d7df03d',1,'DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN:&#160;TesteEstoque.cpp'],['../_teste_sistema_8cpp.html#a623b8690a262536536a43eab2d7df03d',1,'DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN:&#160;TesteSistema.cpp']]],
+  ['documentação_18',['Documentação',['../md__c_1_2_users_2_usuario_2_desktop_2_p_d_s_i_i_2_projeto_final_2_r_e_a_d_m_e.html#autotoc_md6',1,'']]],
+  ['dvd_19',['dvd',['../class_d_v_d.html',1,'DVD'],['../class_d_v_d.html#a3fc29ffcf97d1d292d8c87207b72a6a3',1,'DVD::DVD()']]]
 ];

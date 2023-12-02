@@ -8,54 +8,58 @@
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_locacao_8hpp}{Locacao.hpp}}"{}}}
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <deque>}}
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iomanip>}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{_financeiro_8hpp_a5a9cb4bee16701372f3ee0522f304484}{DIRETORIO\_HISTORICO\_FINANCEIRO}}\ =\ \textcolor{stringliteral}{"{}./data/Financeiro/historico\_financeiro"{}};}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_data}{Data}}}
-\DoxyCodeLine{00020\ \{}
-\DoxyCodeLine{00021\ \ \ \ \ time\_t\ \mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}}\ =\ time(0);}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_data_ad76270db677fc394a4a7ded1c58de6d5}{dia}}\ =\ localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/>tm\_mday;}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_data_a8f77c5b515144e08b4fe26a8604f30ad}{mes}}\ =\ localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/>tm\_mon\ +\ 1;}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_data_a80d76fe2225d187fe8a20414478a2cb5}{ano}}\ =\ localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/>tm\_year\ +\ 1900;}
-\DoxyCodeLine{00026\ \};}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00032\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_transacao}{Transacao}}}
-\DoxyCodeLine{00033\ \{}
-\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{struct_data}{Data}}\ \mbox{\hyperlink{struct_transacao_a1b505aad1f8c7fe93e2575f5e4afb276}{data}};}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_transacao_a5d624905c2ddd7e493ddcdd9f6ff5ccc}{tipo}};\ \textcolor{comment}{//\ SAQUE\ OU\ DEPOSITO}}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_transacao_aeeb0ce882b84f54575271fb64eb30def}{valor}};}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_transacao_a607b4e7b64eb897125f89ceea1ab14e9}{saldo\_final}};\ \textcolor{comment}{//\ saldo\ final\ após\ a\ transação}}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{struct_transacao}{Transacao}}(\mbox{\hyperlink{struct_data}{Data}},\ \textcolor{keywordtype}{char},\ \textcolor{keywordtype}{float},\ \textcolor{keywordtype}{float});}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_transacao_ae37bf998d517724372f36c7dba49babf}{imprimeTransacao}}();}
-\DoxyCodeLine{00052\ \};}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_financeiro}{Financeiro}}}
-\DoxyCodeLine{00059\ \{}
-\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{float}\ saldo;}
-\DoxyCodeLine{00062\ \ \ \ \ std::deque<Transacao>\ transacoes;}
-\DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_financeiro_ab88aed8af3aa99a44a4272a2082fdfbf}{Financeiro}}();}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_financeiro_a76459bfeaa461cab1e637209d2d42d25}{\string~Financeiro}}();}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_financeiro_a8b9f432619faed9caa53309d24b50d96}{historicoTransacoes}}();\ \textcolor{comment}{//\ dia,\ mẽs,\ total}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_financeiro_a0ce15ce2bc671c1d7eba4455333a812a}{getSaldo}}();}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_financeiro_ab5bdecfeb4b063cb200ae25fa1ec3717}{deposito}}(\textcolor{keywordtype}{float});}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_financeiro_ae919df67148a9c841a9ae65f8540114f}{saque}}(\textcolor{keywordtype}{float});}
-\DoxyCodeLine{00099\ }
-\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_financeiro_ad71a6abb6012a213755e472e8a80c29a}{salvarDados}}();}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_financeiro_ad784431b1dbb5ce4d9269c17c71b072c}{cancelarUltimaTransacao}}();}
-\DoxyCodeLine{00109\ \};}
-\DoxyCodeLine{00110\ }
-\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_funcoes_8hpp}{Funcoes.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{_financeiro_8hpp_a5a9cb4bee16701372f3ee0522f304484}{DIRETORIO\_HISTORICO\_FINANCEIRO}}\ =\ \textcolor{stringliteral}{"{}./data/Financeiro/historico\_financeiro"{}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{_financeiro_8hpp_a7d9d104c3c6b0a84f7886fdb527eed4a}{DIA}}\ =\ \textcolor{charliteral}{'D'};}
+\DoxyCodeLine{00016\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{_financeiro_8hpp_a3a7a03ea21ba3bae36667c0e3f8e71f3}{MES}}\ =\ \textcolor{charliteral}{'M'};}
+\DoxyCodeLine{00017\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{_financeiro_8hpp_a7ca3987b98a6f08bdd9cbca4f33d797a}{TOTAL}}\ =\ \textcolor{charliteral}{'T'};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_data}{Data}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ time\_t\ \mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}}\ =\ time(0);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_data_ad76270db677fc394a4a7ded1c58de6d5}{dia}}\ =\ localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/>tm\_mday;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_data_a8f77c5b515144e08b4fe26a8604f30ad}{mes}}\ =\ localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/>tm\_mon\ +\ 1;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_data_a80d76fe2225d187fe8a20414478a2cb5}{ano}}\ =\ localtime(\&\mbox{\hyperlink{struct_data_a4dae11904353440a5dac9a51ac3e33de}{now}})-\/>tm\_year\ +\ 1900;}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_transacao}{Transacao}}}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{struct_data}{Data}}\ \mbox{\hyperlink{struct_transacao_a1b505aad1f8c7fe93e2575f5e4afb276}{data}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_transacao_a5d624905c2ddd7e493ddcdd9f6ff5ccc}{tipo}};\ \textcolor{comment}{//\ SAQUE\ OU\ DEPOSITO}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_transacao_aeeb0ce882b84f54575271fb64eb30def}{valor}};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_transacao_a607b4e7b64eb897125f89ceea1ab14e9}{saldo\_final}};\ \textcolor{comment}{//\ saldo\ final\ após\ a\ transação}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{struct_transacao}{Transacao}}(\mbox{\hyperlink{struct_data}{Data}},\ \textcolor{keywordtype}{char},\ \textcolor{keywordtype}{float},\ \textcolor{keywordtype}{float});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_transacao_ae37bf998d517724372f36c7dba49babf}{imprimeTransacao}}();}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_financeiro}{Financeiro}}}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ saldo;}
+\DoxyCodeLine{00066\ \ \ \ \ std::deque<Transacao>\ transacoes;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{class_financeiro_ab88aed8af3aa99a44a4272a2082fdfbf}{Financeiro}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_financeiro_a76459bfeaa461cab1e637209d2d42d25}{\string~Financeiro}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_financeiro_a8b9f432619faed9caa53309d24b50d96}{historicoTransacoes}}();\ \textcolor{comment}{//\ dia,\ mẽs,\ total}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_financeiro_a0ce15ce2bc671c1d7eba4455333a812a}{getSaldo}}();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_financeiro_ab5bdecfeb4b063cb200ae25fa1ec3717}{deposito}}(\textcolor{keywordtype}{float});}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_financeiro_ae919df67148a9c841a9ae65f8540114f}{saque}}(\textcolor{keywordtype}{float});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_financeiro_ad71a6abb6012a213755e472e8a80c29a}{salvarDados}}();}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_financeiro_ad784431b1dbb5ce4d9269c17c71b072c}{cancelarUltimaTransacao}}();}
+\DoxyCodeLine{00113\ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

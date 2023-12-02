@@ -18,7 +18,9 @@ void \mbox{\hyperlink{class_locacao_a653814b229c01cde988f435295cb4694}{associar\
 \begin{DoxyCompactList}\small\item\em Associa um ponteiro para o \doxylink{class_estoque}{Estoque} à classe \doxylink{class_locacao}{Locacao}. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_locacao_ad627339199e53241459665ad415d5d33}{get\+Locacoes\+Por\+Cliente}} (std\+::string cpf)
 \begin{DoxyCompactList}\small\item\em Obtém o número de locações pendentes para um cliente. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{class_locacao_aca76c42a80a0461112541265ac68afca}{devolucao}} (std\+::string cpf, \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}filme, int dias, bool is\+Danificado)
+\mbox{\hyperlink{struct_locacao_data}{Locacao\+Data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_locacao_abe0fc9b80e9dc2a339ee9db608ccddb4}{get\+Locacao}} (std\+::string cpf, \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}filme)
+\begin{DoxyCompactList}\small\item\em Encontra uma locação com base no CPF do cliente e no filme alugado. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_locacao_a8132355fee7d18af237351e5a9a02277}{devolucao}} (std\+::string cpf, \mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}filme, int dias)
 \begin{DoxyCompactList}\small\item\em Realiza a devolução de um filme e calcula o valor a ser pago (multas). \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_locacao_a5a49c53820b048c25cd99c9f75e032ad}{verificar\+Filme\+Alugado}} (int identificador)
 \begin{DoxyCompactList}\small\item\em Verifica se um filme está alugado. \end{DoxyCompactList}\item 
@@ -81,11 +83,11 @@ Associa um ponteiro para o \doxylink{class_estoque}{Estoque} à classe \doxylink
 {\em estoque} & Ponteiro para o \doxylink{class_estoque}{Estoque}. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{class_locacao_aca76c42a80a0461112541265ac68afca}\label{class_locacao_aca76c42a80a0461112541265ac68afca} 
+\Hypertarget{class_locacao_a8132355fee7d18af237351e5a9a02277}\label{class_locacao_a8132355fee7d18af237351e5a9a02277} 
 \index{Locacao@{Locacao}!devolucao@{devolucao}}
 \index{devolucao@{devolucao}!Locacao@{Locacao}}
 \doxysubsubsection{\texorpdfstring{devolucao()}{devolucao()}}
-{\footnotesize\ttfamily int Locacao\+::devolucao (\begin{DoxyParamCaption}\item[{std\+::string}]{cpf,  }\item[{\mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}}]{filme,  }\item[{int}]{dias,  }\item[{bool}]{is\+Danificado }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Locacao\+::devolucao (\begin{DoxyParamCaption}\item[{std\+::string}]{cpf,  }\item[{\mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}}]{filme,  }\item[{int}]{dias }\end{DoxyParamCaption})}
 
 
 
@@ -99,11 +101,29 @@ Realiza a devolução de um filme e calcula o valor a ser pago (multas).
 \hline
 {\em dias} & O número de dias que o filme foi alugado. \\
 \hline
-{\em is\+Danificado} & Indica se o filme foi devolvido danificado. \\
-\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Retorna}
 O valor a ser pago (multas). 
+\end{DoxyReturn}
+\Hypertarget{class_locacao_abe0fc9b80e9dc2a339ee9db608ccddb4}\label{class_locacao_abe0fc9b80e9dc2a339ee9db608ccddb4} 
+\index{Locacao@{Locacao}!getLocacao@{getLocacao}}
+\index{getLocacao@{getLocacao}!Locacao@{Locacao}}
+\doxysubsubsection{\texorpdfstring{getLocacao()}{getLocacao()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_locacao_data}{Locacao\+Data}} \texorpdfstring{$\ast$}{*} Locacao\+::get\+Locacao (\begin{DoxyParamCaption}\item[{std\+::string}]{cpf,  }\item[{\mbox{\hyperlink{class_filme}{Filme}} \texorpdfstring{$\ast$}{*}}]{filme }\end{DoxyParamCaption})}
+
+
+
+Encontra uma locação com base no CPF do cliente e no filme alugado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em CPF} & O CPF do cliente. \\
+\hline
+{\em filme} & O filme alugado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+A locação encontrada. 
 \end{DoxyReturn}
 \Hypertarget{class_locacao_ad627339199e53241459665ad415d5d33}\label{class_locacao_ad627339199e53241459665ad415d5d33} 
 \index{Locacao@{Locacao}!getLocacoesPorCliente@{getLocacoesPorCliente}}

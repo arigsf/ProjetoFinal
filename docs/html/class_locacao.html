@@ -93,9 +93,12 @@ Membros públicos</h2></td></tr>
 <tr class="memitem:ad627339199e53241459665ad415d5d33" id="r_ad627339199e53241459665ad415d5d33"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_locacao.html#ad627339199e53241459665ad415d5d33">getLocacoesPorCliente</a> (std::string cpf)</td></tr>
 <tr class="memdesc:ad627339199e53241459665ad415d5d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtém o número de locações pendentes para um cliente.  <br /></td></tr>
 <tr class="separator:ad627339199e53241459665ad415d5d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca76c42a80a0461112541265ac68afca" id="r_aca76c42a80a0461112541265ac68afca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_locacao.html#aca76c42a80a0461112541265ac68afca">devolucao</a> (std::string cpf, <a class="el" href="class_filme.html">Filme</a> *filme, int dias, bool isDanificado)</td></tr>
-<tr class="memdesc:aca76c42a80a0461112541265ac68afca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza a devolução de um filme e calcula o valor a ser pago (multas).  <br /></td></tr>
-<tr class="separator:aca76c42a80a0461112541265ac68afca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0fc9b80e9dc2a339ee9db608ccddb4" id="r_abe0fc9b80e9dc2a339ee9db608ccddb4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_locacao_data.html">LocacaoData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_locacao.html#abe0fc9b80e9dc2a339ee9db608ccddb4">getLocacao</a> (std::string cpf, <a class="el" href="class_filme.html">Filme</a> *filme)</td></tr>
+<tr class="memdesc:abe0fc9b80e9dc2a339ee9db608ccddb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra uma locação com base no CPF do cliente e no filme alugado.  <br /></td></tr>
+<tr class="separator:abe0fc9b80e9dc2a339ee9db608ccddb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8132355fee7d18af237351e5a9a02277" id="r_a8132355fee7d18af237351e5a9a02277"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_locacao.html#a8132355fee7d18af237351e5a9a02277">devolucao</a> (std::string cpf, <a class="el" href="class_filme.html">Filme</a> *filme, int dias)</td></tr>
+<tr class="memdesc:a8132355fee7d18af237351e5a9a02277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza a devolução de um filme e calcula o valor a ser pago (multas).  <br /></td></tr>
+<tr class="separator:a8132355fee7d18af237351e5a9a02277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a49c53820b048c25cd99c9f75e032ad" id="r_a5a49c53820b048c25cd99c9f75e032ad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_locacao.html#a5a49c53820b048c25cd99c9f75e032ad">verificarFilmeAlugado</a> (int identificador)</td></tr>
 <tr class="memdesc:a5a49c53820b048c25cd99c9f75e032ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se um filme está alugado.  <br /></td></tr>
 <tr class="separator:a5a49c53820b048c25cd99c9f75e032ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,8 +205,8 @@ Membros públicos</h2></td></tr>
 
 </div>
 </div>
-<a id="aca76c42a80a0461112541265ac68afca" name="aca76c42a80a0461112541265ac68afca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca76c42a80a0461112541265ac68afca">&#9670;&#160;</a></span>devolucao()</h2>
+<a id="a8132355fee7d18af237351e5a9a02277" name="a8132355fee7d18af237351e5a9a02277"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8132355fee7d18af237351e5a9a02277">&#9670;&#160;</a></span>devolucao()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,13 +227,7 @@ Membros públicos</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>dias</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isDanificado</em>&#160;</td>
+          <td class="paramname"><em>dias</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -246,11 +243,48 @@ Membros públicos</h2></td></tr>
     <tr><td class="paramname">CPF</td><td>O CPF do cliente. </td></tr>
     <tr><td class="paramname">filme</td><td>O filme a ser devolvido. </td></tr>
     <tr><td class="paramname">dias</td><td>O número de dias que o filme foi alugado. </td></tr>
-    <tr><td class="paramname">isDanificado</td><td>Indica se o filme foi devolvido danificado. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Retorna</dt><dd>O valor a ser pago (multas). </dd></dl>
+
+</div>
+</div>
+<a id="abe0fc9b80e9dc2a339ee9db608ccddb4" name="abe0fc9b80e9dc2a339ee9db608ccddb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0fc9b80e9dc2a339ee9db608ccddb4">&#9670;&#160;</a></span>getLocacao()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_locacao_data.html">LocacaoData</a> * Locacao::getLocacao </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>cpf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_filme.html">Filme</a> *&#160;</td>
+          <td class="paramname"><em>filme</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Encontra uma locação com base no CPF do cliente e no filme alugado. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CPF</td><td>O CPF do cliente. </td></tr>
+    <tr><td class="paramname">filme</td><td>O filme alugado. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>A locação encontrada. </dd></dl>
 
 </div>
 </div>
