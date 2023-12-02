@@ -399,9 +399,12 @@ void Sistema::alugarFilmes()
         
     }
 
-    float valor = this->_locacao.alugar(cpf, filmes, dias);
-    if (valor > 0)
-        _financeiro.deposito(valor);
+    if(filmes.size() > 0){
+        float valor = this->_locacao.alugar(cpf, filmes, dias);
+        if (valor > 0)
+            _financeiro.deposito(valor);
+    }
+
 }
 
 void Sistema::devolverFilmes()
@@ -516,13 +519,15 @@ void Sistema::devolverFilmes()
         i++;
     }
 
-    for(Filme* filme : filmes){
-        valorDaMulta += this->_locacao.devolucao(cpf, filme, dias);
+    if(filmes.size() > 0){
+        for(Filme* filme : filmes)
+            valorDaMulta += this->_locacao.devolucao(cpf, filme, dias);
+        
+        std::cout << "\n\nDevolucoes realizadas com sucesso, valor de multas a serem liquidadas: " << valorDaMulta << std::endl;
+        if (valorDaMulta > 0)
+            _financeiro.deposito(valorDaMulta);
     }
-
-    std::cout << "\n\nDevolucoes realizadas com sucesso, valor de multas a serem liquidadas: " << valorDaMulta << std::endl;
-    if (valorDaMulta > 0)
-        _financeiro.deposito(valorDaMulta);
+    
 }
 
 void Sistema::listarLogLocacoes()
@@ -566,8 +571,8 @@ void Sistema::mostrarOpcoes()
     std::cout << " - LH: Listar Historico de Locacoes\n";
     std::cout << " - CL: Limpar Terminal\n";
     std::cout << " - MO: Mostrar Opcoes\n";
-    std::cout << " - MT: Mostrar Historico de transacoes\n";
-    std::cout << " - CT: Cancelar ultima transacao\n";
+    std::cout << " - MT: Mostrar Historico de Transacoes\n";
+    std::cout << " - CT: Cancelar Ultima Transacao\n";
     std::cout << " - FS: Finalizar Sistema\n\n";
     std::cout << "========================================================\n";
 }
