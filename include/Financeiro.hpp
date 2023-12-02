@@ -4,6 +4,7 @@
 #include "Locacao.hpp"
 #include <deque>
 #include <iomanip>
+#include "Funcoes.hpp"
 
 /**
  * @file Financeiro.hpp
@@ -11,6 +12,9 @@
  */
 
 const std::string DIRETORIO_HISTORICO_FINANCEIRO = "./data/Financeiro/historico_financeiro";
+const char DIA = 'D';
+const char MES = 'M';
+const char TOTAL = 'T';
 
 /**
  * @struct Data

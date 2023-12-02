@@ -278,7 +278,7 @@ void Sistema::removerCliente()
             return;
         else if (!isCPFValido(cpf))
             std::cout << "ERRO: Formato invalido de CPF" << std::endl;
-        else if (!this->_locacao.getLocacoesPorCliente(cpf))
+        else if (this->_locacao.getLocacoesPorCliente(cpf))
             std::cout << "ERRO: cliente com aluguel pendente, nao pode ser removido, digite novamente" << std::endl;
         else
             break;
